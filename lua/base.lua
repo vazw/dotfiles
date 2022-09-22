@@ -38,4 +38,9 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 vim.opt.formatoptions:append { 'r' }
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
-vim.opt.whichwrap:append "[]hl"
+vim.opt.whichwrap:append "<>[]hl"
+
+
+-- use mouse click
+vim.opt.mouse = "a"
+vim.opt.signcolumn = "yes"
