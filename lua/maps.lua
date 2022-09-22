@@ -15,7 +15,7 @@ keymap.set('n', 'dw', 'vb"_d')
 keymap.set('n', '<ESC>', '<cmd> noh <CR>')
 
 -- RUN PYTHON
-keymap.set('n', '<F5>', '<cmd> :!python %<CR>')
+keymap.set('n', '<F5>', function() require('nvterm.terminal').send('python ' .. vim.fn.expand('%')) end)
 
 -- Select all
 keymap.set('n', '<C-a>', 'gg<S-v>G')
