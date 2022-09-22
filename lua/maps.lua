@@ -48,3 +48,6 @@ keymap.set('v', '<leader>/', "<ESC><cmd>lua require('Comment.api').toggle.linewi
 -- toggle terminal
 local toggle_modes = { 'n', 't' }
 keymap.set(toggle_modes, '<leader>h', function() require("nvterm.terminal").toggle('horizontal') end)
+
+-- close buffer
+keymap.set({ 'n', 'i', 'v' }, '<leader>x', "<ESC> :close<CR>")
