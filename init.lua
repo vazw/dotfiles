@@ -1,4 +1,4 @@
-require('base')
-require('highlights')
-require('maps')
-require('plugins')
+require("base")
+require("highlights")
+require("plugins")
+require("maps")
