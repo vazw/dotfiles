@@ -14,8 +14,10 @@ null_ls.setup({
 		null_ls.builtins.formatting.black.with({
 			extra_args = { "--line-length", "79" },
 		}),
-		null_ls.builtins.diagnostics.flake8.with({ filetypes = { "python" } }),
-
+		null_ls.builtins.diagnostics.flake8.with({
+			filetypes = { "python" },
+			extra_args = { "--extend-ignore", "E203" },
+		}),
 		-- refactoring plugin but...
 		-- null_ls.builtins.code_actions.refactoring.with({ filetypes = { "python" } }),
 		-- Lua
