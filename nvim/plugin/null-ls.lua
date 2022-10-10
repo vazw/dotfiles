@@ -16,7 +16,7 @@ null_ls.setup({
 		}),
 		null_ls.builtins.diagnostics.flake8.with({
 			filetypes = { "python" },
-			extra_args = { "--extend-ignore", "E203" },
+			extra_args = { "--extend-ignore", "E203, F841" },
 		}),
 
 		-- refactoring plugin but...
@@ -35,7 +35,7 @@ null_ls.setup({
 				group = augroup_format,
 				buffer = 0,
 				callback = function()
-					vim.lsp.buf.formatting(nill, 20000)
+					vim.lsp.buf.formatting_seq_sync(nill, 20000)
 				end,
 			})
 		end

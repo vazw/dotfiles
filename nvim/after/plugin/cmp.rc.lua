@@ -4,6 +4,7 @@ if not status then
 end
 local lspkind = require("lspkind")
 
+require("luasnip.loaders.from_vscode").lazy_load()
 vim.opt.completeopt = "menuone,noselect"
 
 local function border(hl_name)
@@ -72,9 +73,10 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "luasnip" }, -- For luasnip users.
 		{ name = "nvim_lsp_signature_help" },
 	}),
 	formatting = {
-		format = lspkind.cmp_format({ with_text = false, maxwidth = 50 }),
+		format = lspkind.cmp_format({ with_text = true, maxwidth = 50 }),
 	},
 })

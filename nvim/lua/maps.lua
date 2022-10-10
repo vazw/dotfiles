@@ -33,7 +33,7 @@ keymap.set("n", "<ESC>", "<cmd> noh <CR>")
 
 -- RUN PYTHON
 keymap.set("n", "<F5>", function()
-	require("nvterm.terminal").send("python " .. vim.fn.expand("%"))
+	require("nvterm.terminal").send("source " .. "env/bin/activate" .. " && " .. "python " .. vim.fn.expand("%"))
 end)
 
 -- Select all
