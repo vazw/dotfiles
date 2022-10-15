@@ -10,8 +10,8 @@
   fg:    #FF5555;
   accent:           #00000000;
   background:       #282A36;
-  background-light: #F1FA8C;
-  foreground:       #F8F8F2;
+  background-light: #FFF73C;
+  foreground:       #000000;
   on:               #50FA7B;
   off:              #FF5555;
 }

@@ -20,7 +20,7 @@ alt + F1
 
 # Rofi Network Menu
 super + n
-	nmd
+    bash ~/.config/bspwm/rofi/rofi-network-manager/rofi-network-manager.sh	
 
 # Rofi Themes Menu
 ctrl + alt + t

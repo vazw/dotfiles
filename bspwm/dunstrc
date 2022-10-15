@@ -16,7 +16,7 @@ horizontal_padding = 5
 frame_width = 1
 sort = no
 idle_threshold = 120
-font = BlexMono Semibold 10
+font = BlexMono SemiBold 10
 markup = full
 format = %s\n%b
 alignment = left
@@ -37,18 +37,18 @@ class = Dunst
 
 [urgency_low]
 timeout = 2
-background = ""
-foreground = ""
-frame_color = ""
+background = "#000000"
+foreground = "#FFFFFF"
+frame_color = "#000000"
 
 [urgency_normal]
 timeout = 5
-background = ""
-foreground = ""
-frame_color = ""
+background = "#000000"
+foreground = "#FFFFFF"
+frame_color = "#000000"
 
 [urgency_critical]
 timeout = 0
-background = ""
-foreground = ""
-frame_color = ""
+background = "#000000"
+foreground = "#FFFFFF"
+frame_color = "#000000"

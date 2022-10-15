@@ -11,32 +11,24 @@ msg() {
 # Options
 screen=""
 area=""
-window=""
+# window=""
 
 # Variable passed to rofi
-options="$screen\n$area\n$window"
+options="$screen\n$area"
 
 chosen="$(echo -e "$options" | $rofi_command -p '' -dmenu -selected-row 1)"
 case $chosen in
 $screen)
-	if [[ -f /usr/local/bin/takeshot ]]; then
+	if [[ -f /usr/bin/scrot ]]; then
 		sleep 1
-		takeshot --now
+		scrot -F '%Y-%m-%d_$wx$h.png' -e 'optipng $f -dir ~/Pictures/screenshot/'
 	else
 		msg
 	fi
 	;;
 $area)
-	if [[ -f /usr/local/bin/takeshot ]]; then
-		takeshot --area
-	else
-		msg
-	fi
-	;;
-$window)
-	if [[ -f /usr/local/bin/takeshot ]]; then
-		sleep 1
-		takeshot --win
+	if [[ -f /usr/bin/scrot ]]; then
+		scrot -s -f -F '%Y-%m-%d_$wx$h.png' -e 'optipng $f -dir ~/Pictures/screenshot/' 
 	else
 		msg
 	fi
