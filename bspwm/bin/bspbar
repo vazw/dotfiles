@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+## Files and Directories
+DIR="$HOME/.config/bspwm/polybar"
+
+
+## Launch Polybar with selected style
+launch_bar() {
+
+
+	if [[ ! `pidof polybar` ]]; then
+		sh "$DIR"/launch.sh &
+	else
+		polybar-msg cmd restart
+	fi
+}
+
+
+launch_bar

@@ -1,0 +1,17 @@
+
+
+* {
+  al:    #00000000;
+  bg:    #00000000;
+  bg1:   #00000000;
+  bg2:   #00000000;
+  bg3:   #00000000;
+  bg4:   #00000000;
+  fg:    #FF5555;
+  accent:           #00000000;
+  background:       #282A36;
+  background-light: #F1FA8C;
+  foreground:       #F8F8F2;
+  on:               #50FA7B;
+  off:              #FF5555;
+}
