@@ -4,7 +4,7 @@
 Desktop stuff
 `````
 wmname          -   window manager naming
-xorg            -   X11 Desktop
+xorg            -   X11 server
 xf86-video-*    -   garphic-driver : xf86-video-amdgpu xf86-video-intel xf86-video-nouveua xf86-video-ati
 xsetroot        -   X11 config helper
 xwinwrap        -   X11 background
@@ -14,6 +14,8 @@ polkit          -   Policy Authorization Toolkit
 python          -   a snake?
 python-pip      -   :P
 python3-dbus    -   python binding dbus
+lightdm         -   Desktop Manager
+lightdm-gtk3-greeter  -   lightdm greeter
 bspwm           -   desktop environment
 betterlockscreen -  lock screen
 sxhkd           -   keyborads shortcut
@@ -84,6 +86,11 @@ ls /var/service/
 # to link avalable service to use
 
 sudo ln -s /etc/sv/<service-we-wanted> /var/service/
+`````
+`````
+# if you don't want auto-startup but need service
+
+sudo touch /etc/sv/<service>/down
 `````
 
 to tell runit use the following commands with 'root' or 'sudo'
