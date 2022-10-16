@@ -15,7 +15,7 @@ python          -   a snake?
 python-pip      -   :P
 python3-dbus    -   python binding dbus
 lightdm         -   Desktop Manager
-lightdm-gtk3-greeter  -   lightdm greeter
+lightdm-webkit2-greeter  -   lightdm greeter
 bspwm           -   desktop environment
 betterlockscreen -  lock screen
 sxhkd           -   keyborads shortcut
