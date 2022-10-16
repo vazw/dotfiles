@@ -52,6 +52,8 @@ htop            -   task manager
 neofetch        -   show system info
 unzip           -   zip files
 obs-studio      -   screen recording
+docker          -   isolated network
+tmux            -   terminal 
 `````
 
 rofi stuff
@@ -99,3 +101,7 @@ sudo ln -s /etc/sv/NetworkManager /var/service/
 sudo sv up NetworkManager
 `````
 
+lastly don't forget to put this to '.xinitrc'
+`````
+exec bspwm
+`````
