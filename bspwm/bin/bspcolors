@@ -58,7 +58,7 @@ bspterm() {
 }
 
 bsprofi() {
-	cat >$DIR/rofi/themes/colors.rasi <<-EOF
+	cat >~/.config/rofi/themes/colors.rasi <<-EOF
 		* {
 			background:   ${BACKGROUND};
 			foreground:   ${FOREGROUND};

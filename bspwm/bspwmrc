@@ -95,11 +95,14 @@ bspc rule -a spotify desktop='^7' follow=on focus=on
 ## Autostart -------------------------------------------------#
 
 # Kill if already running
-killall -9 xsettingsd sxhkd dunst ksuperkey xfce4-power-manager mpd networkctl NetworkManager
+declare -a killlist=(xsettingsd sxhkd dunst ksuperkey xfce4-power-manager mpd networkctl)
+for i in ${!killlist[@]}; do
+        pkill $i
+done
+
 
 # Lauch xsettingsd daemon
 xsettingsd &
-NetworkManager &
 
 # polkit agent
 if [[ ! $(pidof xfce-polkit) ]]; then
@@ -116,6 +119,8 @@ ksuperkey -e 'Super_R=Alt_L|F1' &
 # Enable power management
 xfce4-power-manager &
 
+xmodmap -e 'remove lock = Caps_Lock'
+setxkbmap -layout us,th -option grp:caps_toggle,grp_led:caps 
 # Fix cursor
 xsetroot -cursor_name left_ptr
 

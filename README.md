@@ -14,7 +14,7 @@ feh             -   wallpapaer stuff
 xsettingsd      -   X11 settings
 polkit          -   Policy Authorization Toolkit
 python          -   a snake?
-python-pip      -   :P
+python3-pip      -   :P
 python3-dbus    -   python binding dbus
 lightdm         -   Desktop Manager
 lightdm-webkit2-greeter  -   lightdm greeter
@@ -24,6 +24,7 @@ sxhkd           -   keyborads shortcut
 NetworkManager  -   Networking
 polybar         -   task bar
 ranger          -   files manager
+ueberzug        -   Draw image on terminal
 rofi            -   app launcher
 rofi-emoji      -   Emoji typing
 dunst           -   notification
