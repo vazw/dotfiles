@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 ## Environtment
 export PATH="${PATH}:$HOME/.config/bspwm/bin"
+export TerminalEmulator=alacritty
 
 ## Java Applications
 wmname LG3D
@@ -39,9 +40,9 @@ bspc config normal_border_color "$BACKGROUND"
 bspc config active_border_color "$MAGENTA"
 bspc config presel_feedback_color "$GREEN"
 
-bspc config borderless_monocle true
+# bspc config borderless_monocle true
 bspc config gapless_monocle true
-bspc config paddingless_monocle true
+# bspc config paddingless_monocle true
 bspc config single_monocle false
 bspc config focus_follows_pointer true
 
@@ -97,7 +98,7 @@ bspc rule -a spotify desktop='^7' follow=on focus=on
 # Kill if already running
 declare -a killlist=(xsettingsd sxhkd dunst ksuperkey xfce4-power-manager mpd networkctl)
 for i in ${!killlist[@]}; do
-        pkill $i
+        pkill ${killlist[$i]}
 done
 
 

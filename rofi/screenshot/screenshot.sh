@@ -21,14 +21,14 @@ case $chosen in
 $screen)
 	if [[ -f /usr/bin/scrot ]]; then
 		sleep 1
-		scrot -F '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/'
+		scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/'
 	else
 		msg
 	fi
 	;;
 $area)
 	if [[ -f /usr/bin/scrot ]]; then
-		scrot -s -f -F '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/' 
+		scrot -s -f -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/' 
 	else
 		msg
 	fi

@@ -14,5 +14,5 @@ theme='style-4'
 
 ## Run
 rofi \
-    -show drun\
+    -show emoji \
     -theme ${dir}/${theme}.rasi

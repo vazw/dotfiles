@@ -38,20 +38,18 @@ super + x
 super + s
 	bash ~/.config/rofi/screenshot/screenshot.sh
 
+super + e
+	bash ~/.config/rofi/applets/bin/emoji.sh
 
 ##---------- Applications ----------##
 
 # Launch Apps
-super + shift + {f,w,e}
-	{thunar,chromium,geany}
+super + shift + {f,w}
+	{thunar,firefox}
 
 # Terminal Apps
 ctrl + alt + {v,r,h}
 	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {nvim,ranger,htop}
-
-# Color Picker
-super + p
-	color-gpick
 
 # Lockscreen
 ctrl + alt + l
@@ -61,23 +59,11 @@ ctrl + alt + l
 
 # Take a screenshot
 Print
-	takeshot --now
+    scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/'
 	
-# Take screenshot in 5 second
-alt + Print	
-	takeshot --in5
-
-# Take screenshot in 10 second
-shift + Print	
-	takeshot --in10
-
-# Take screenshot of active window
-ctrl + Print
-	takeshot --win
-
 # Take screenshot of area
-ctrl + alt + Print
-	takeshot --area
+ctrl + Print
+    scrot -s -f -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/' 
 
 # Brighness control
 XF86MonBrightness{Up,Down}
