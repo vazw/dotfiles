@@ -6,6 +6,18 @@ if not status then
 end
 
 local protocol = require("vim.lsp.protocol")
+
+local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
+local enable_format_on_save = function(_, bufnr)
+	vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = augroup_format,
+		buffer = bufnr,
+		callback = function()
+			vim.lsp.buf.format({ bufnr = bufnr })
+		end,
+	})
+end
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem = {
@@ -79,6 +91,8 @@ protocol.CompletionItemKind = {
 	"", -- TypeParameter
 }
 
+nvim_lsp.bashls.setup({})
+
 nvim_lsp.pyright.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -96,7 +110,10 @@ nvim_lsp.pyright.setup({
 })
 
 nvim_lsp.sumneko_lua.setup({
-	on_attach = on_attach,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		enable_format_on_save(client, bufnr)
+	end,
 	capabilities = capabilities,
 	settings = {
 		Lua = {
@@ -106,7 +123,7 @@ nvim_lsp.sumneko_lua.setup({
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
-				-- library = vim.api.nvim_get_runtime_file("", true),
+				library = vim.api.nvim_get_runtime_file("", true),
 				checkThirdParty = false,
 			},
 		},
