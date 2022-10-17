@@ -1,6 +1,8 @@
 # my personal config files for Voidlinux
 ### Packages list to install:
 
+<img src="https://github.com/vazw/vazw/blob/main/1">
+
 Desktop stuff
 `````
 wmname          -   window manager naming
@@ -33,7 +35,7 @@ xclip           -   clipboard
 acpi            -   battery thermal sensor 
 light           -   blacklight control
 `````
-
+<img src="https://github.com/vazw/vazw/blob/main/2">
 Sound Driver
 `````
 pulseaudio      -   audio driver
