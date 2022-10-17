@@ -14,8 +14,10 @@ feh             -   wallpapaer stuff
 xsettingsd      -   X11 settings
 polkit          -   Policy Authorization Toolkit
 python          -   a snake?
-python3-pip      -   :P
+python3-pip     -   :P
 python3-dbus    -   python binding dbus
+python3-cython  -   cpython
+nodejs          -   nodejs for npm
 lightdm         -   Desktop Manager
 nody-greeter    -   more rice login screen
 bspwm           -   desktop environment
