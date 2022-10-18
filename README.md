@@ -19,6 +19,7 @@ python3-dbus    -   python binding dbus
 python3-cython  -   cpython
 nodejs          -   nodejs for npm
 lightdm         -   Desktop Manager
+lightdm-webkit2-greeter - an engine for nody-greeter
 nody-greeter    -   more rice login screen
 bspwm           -   desktop environment
 betterlockscreen -  lock screen
@@ -39,7 +40,9 @@ acpi            -   battery thermal sensor
 light           -   blacklight control
 `````
 <img src="https://github.com/vazw/vazw/blob/main/2">
+
 Sound Driver
+
 `````
 pulseaudio      -   audio driver
 apulse          -   alsa plugin for pulse audio
