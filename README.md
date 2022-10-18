@@ -1,5 +1,4 @@
 # my personal config files for Voidlinux
-### Packages list to install:
 <img align="right" src="https://github.com/vazw/dotfiles/blob/main/screenshot/2022-10-19-02-52-23_418x102.png">
 I prefer to disable picom :D
 
@@ -7,7 +6,7 @@ I prefer to disable picom :D
 
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/2022-10-19-02-42-50_1440x900.png">
 
-
+### Packages list to install:
 Desktop stuff
 `````
 wmname          -   window manager naming
@@ -124,6 +123,9 @@ lastly don't forget to put this to '.xinitrc'
 `````sh
 exec bspwm
 `````
+
+## nody-greeter - more rice login screen
+
 
 ```sh
 git clone --recursive https://github.com/JezerM/nody-greeter.git
