@@ -9,33 +9,33 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 ## Get colors from .Xresources -------------------------------#
 xrdb ~/.Xresources
 getcolors() {
-	FOREGROUND=$(xrdb -query | grep 'foreground:' | awk '{print $NF}')
-	BACKGROUND=$(xrdb -query | grep 'background:' | awk '{print $NF}')
-	BLACK=$(xrdb -query | grep 'color0:' | awk '{print $NF}')
-	RED=$(xrdb -query | grep 'color1:' | awk '{print $NF}')
-	GREEN=$(xrdb -query | grep 'color2:' | awk '{print $NF}')
-	YELLOW=$(xrdb -query | grep 'color3:' | awk '{print $NF}')
-	BLUE=$(xrdb -query | grep 'color4:' | awk '{print $NF}')
-	MAGENTA=$(xrdb -query | grep 'color5:' | awk '{print $NF}')
-	CYAN=$(xrdb -query | grep 'color6:' | awk '{print $NF}')
-	WHITE=$(xrdb -query | grep 'color7:' | awk '{print $NF}')
+    FOREGROUND=$(xrdb -query | grep 'foreground:' | awk '{print $NF}')
+    BACKGROUND=$(xrdb -query | grep 'background:' | awk '{print $NF}')
+    BLACK=$(xrdb -query | grep 'color0:' | awk '{print $NF}')
+    RED=$(xrdb -query | grep 'color1:' | awk '{print $NF}')
+    GREEN=$(xrdb -query | grep 'color2:' | awk '{print $NF}')
+    YELLOW=$(xrdb -query | grep 'color3:' | awk '{print $NF}')
+    BLUE=$(xrdb -query | grep 'color4:' | awk '{print $NF}')
+    MAGENTA=$(xrdb -query | grep 'color5:' | awk '{print $NF}')
+    CYAN=$(xrdb -query | grep 'color6:' | awk '{print $NF}')
+    WHITE=$(xrdb -query | grep 'color7:' | awk '{print $NF}')
 }
 getcolors
 ## Configurations --------------------------------------------#
 workspaces() {
-	name=1
-	for monitor in $(bspc query -M); do
-		bspc monitor ${monitor} -n "$name" -d '' '' '' '' '' '' ''
-		let name++
-	done
+    name=1
+    for monitor in $(bspc query -M); do
+        bspc monitor "${monitor}" -n "$name" -d '' '' '' '' '' '' '' ''
+        (( name++))
+    done
 }
 workspaces
 
-bspc config border_width 0
-bspc config window_gap 5
+bspc config border_width 1
+bspc config window_gap 2
 bspc config split_ratio 0.50
 
-bspc config focused_border_color "$BLUE"
+bspc config focused_border_color "#81D4FA"
 bspc config normal_border_color "$BACKGROUND"
 bspc config active_border_color "$MAGENTA"
 bspc config presel_feedback_color "$GREEN"
@@ -44,97 +44,77 @@ bspc config presel_feedback_color "$GREEN"
 bspc config gapless_monocle true
 # bspc config paddingless_monocle true
 bspc config single_monocle false
-bspc config focus_follows_pointer true
+bspc config focus_follows_pointer false
+bspc config border_radius 5
 
-# bspc config border_radius 5
 ## Window rules ----------------------------------------------#
 
 # remove all rules first
-bspc rule -r *:*
+bspc rule -r '*:*'
 
-# 1 > terminal
-bspc rule -a Alacritty desktop='^1' follow=on focus=on
-bspc rule -a Zsh desktop='^1' follow=on focus=on
+# 1 > browsers
+declare -a browsers=(Chromium Edge Microsoft-edge edge firefox Google-chrome Firefox firefox)
+for i in "${browsers[@]}"; do
+    bspc rule -a "$i" desktop='^1' follow=on focus=on
+done
 
 # 2 > code
-declare -a code=(Neovide nvim neovim nvide neovide Geany code-oss Visual-Studio-Code Code VSCode code vscode visual-studio-code)
-for i in ${code[@]}; do
-	bspc rule -a $i desktop='^2' follow=on focus=on
+declare -a code=(Neovide nvim neovim Neovim neovide Geany code-oss Visual-Studio-Code Code VSCode code vscode visual-studio-code)
+for i in "${code[@]}"; do
+    bspc rule -a "$i" desktop='^2' follow=on focus=on
 done
 
-# 3 > Browser
-declare -a browsers=(Chromium Edge Microsoft-edge edge firefox Google-chrome Firefox firefox)
-for i in ${browsers[@]}; do
-	bspc rule -a $i desktop='^3' follow=on focus=on
+# 3 > terminal
+bspc rule -a Zsh desktop='^3' follow=on focus=on
+
+# 4 > File stuff
+declare -a comm=(Thunar ranger)
+for i in "${comm[@]}"; do
+    bspc rule -a "$i" desktop='^4' follow=on focus=on
 done
 
-# 4 > Communication
-declare -a comm=(Thunderbird TelegramDesktop Hexchat MongoDB\ Compass)
-for i in ${comm[@]}; do
-	bspc rule -a $i desktop='^4' follow=on focus=on
+# 5 > Discord and comuniccation
+declare -a files=(discord Discord OBS OBS-Studio obs)
+for i in "${files[@]}"; do
+    bspc rule -a "$i" desktop='^5' follow=on focus=on
 done
-
-# 5 > Discord
-declare -a files=(discord Discord)
-for i in ${files[@]}; do
-	bspc rule -a $i desktop='^5' follow=on focus=on
-done
-# 6 > files
-declare -a files=(Pcmanfm Thunar qBittorrent)
-for i in ${files[@]}; do
-	bspc rule -a $i desktop='^6' follow=on focus=on
-done
-
-# 7 > Spotify
-declare -a music=(Spotify spotify spicetify mpd)
-for i in ${music[@]}; do
-	bspc rule -a $i desktop='^7' follow=on focus=on
-done
-bspc rule -a Spotify desktop='^7' follow=on focus=on
-bspc rule -a spotify desktop='^7' follow=on focus=on
 
 ## Autostart -------------------------------------------------#
 
 # Kill if already running
-declare -a killlist=(xsettingsd sxhkd dunst ksuperkey xfce4-power-manager mpd networkctl)
-for i in ${!killlist[@]}; do
-        pkill ${killlist[$i]}
+declare -a killlist=(xsettingsd sxhkd dunst ksuperkey mpd networkctl)
+for i in "${!killlist[@]}"; do
+    pkill "${killlist[$i]}"
 done
 
 
 # Lauch xsettingsd daemon
 xsettingsd &
 
-# polkit agent
-if [[ ! $(pidof xfce-polkit) ]]; then
-	/usr/lib/xfce-polkit/xfce-polkit &
-fi
 
 # Lauch keybindings daemon
-sxhkd -c $HOME/.config/bspwm/sxhkd/sxhkdrc &
+sxhkd -c "$HOME/.config/bspwm/sxhkd/sxhkdrc" &
 
 # Enable Super Keys For Menu
 ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
 
-# Enable power management
-xfce4-power-manager &
 
 xmodmap -e 'remove lock = Caps_Lock'
-setxkbmap -layout us,th -option grp:caps_toggle,grp_led:caps 
+setxkbmap -layout us,th -option grp:caps_toggle,grp_led:caps
+numlockx on
 # Fix cursor
-xsetroot -cursor_name left_ptr
-
+# xsetroot -cursor_name left_ptr
 # Restore wallpaper
-bash $HOME/.fehbg
-
+bash "$HOME/.fehbg"
 # Start mpd
 exec mpd &
 
 # Start bspwm scripts
 bspcolors
 bspbar
-bspcomp
+# Enable picom if wanted riced
+# bspcomp
 bspdunst
 livewallpaper &
 bspfloat &

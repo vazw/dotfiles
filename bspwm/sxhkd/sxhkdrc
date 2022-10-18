@@ -59,11 +59,11 @@ ctrl + alt + l
 
 # Take a screenshot
 Print
-    scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/'
+    scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/' && notify-send "Screenshot saved"
 	
 # Take screenshot of area
 ctrl + Print
-    scrot -s -f -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/' 
+    scrot -s -f -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshot/' && notify-send "Screenshot saved" 
 
 # Brighness control
 XF86MonBrightness{Up,Down}
@@ -88,7 +88,7 @@ super + {_,shift + }c
 
 # Reload Keybindings
 super + Escape
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd && sh ~/.config/bspwm/bin/bspbar
 
 # kill window
 ctrl + alt + Escape
@@ -109,7 +109,7 @@ super + ctrl + {1-9}
 # Fullscreen or Monocle
 super + f
 #	bspc desktop -l next
-    bspc node -t "~"fullscreen
+    bspc node -t "~"fullscreen && notify-send "Fullscreen-Mode : Use super + f again to exit"
 
 # Toggle beetwen floating & tiled
 super + space
