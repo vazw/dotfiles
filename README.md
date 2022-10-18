@@ -1,5 +1,10 @@
 # my personal config files for Voidlinux
 ### Packages list to install:
+I prefer to disable picom :D
+<img src="https://github.com/vazw/dotfiles/blob/main/screenshot/2022-10-19-02-52-46_1440x31.png">
+<img src="https://github.com/vazw/dotfiles/blob/main/screenshot/2022-10-19-02-52-23_418x102.png">
+<img src="https://github.com/vazw/dotfiles/blob/main/screenshot/2022-10-19-02-42-50_1440x900.png">
+
 
 <img src="https://github.com/vazw/vazw/blob/main/1">
 
