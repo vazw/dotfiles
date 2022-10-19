@@ -8,11 +8,11 @@ configuration {
 *{
 	font: "BlexMono NFM 10";			//Font
 	//Colors
-	foreground:#f8f8f2; 				//Text
-	background:#0A1229; 				//Background
-	accent:#00BCD4; 					//Highlight
+	foreground:#000000; 				//Text
+	background:#01579B; 				//Background
+	accent:#f8f8f2; 					//Highlight
 	foreground-selection:@foreground; 	//Selection_fg
-	background-selection:#e34039; 		//Selection_bg
+	background-selection:#81D4FA; 		//Selection_bg
 
 	transparent:					#ffffff00;
 	background-color:				@transparent;
@@ -24,7 +24,7 @@ configuration {
 	urgent-foreground:           	@foreground;
 	alternate-urgent-background: 	@background;
 	active-foreground:           	@accent;
-	selected-active-foreground:  	@background-selection;
+	selected-active-foreground:  	#f00;
 	alternate-normal-foreground: 	@foreground;
 	alternate-active-background: 	@background;
 	bordercolor:                 	@background;
@@ -35,7 +35,7 @@ configuration {
 	alternate-urgent-foreground: 	@foreground;
 	selected-urgent-background:  	@accent;
 	alternate-active-foreground: 	@foreground;
-	selected-active-background:  	@transparent;
+	selected-active-background:  	@background-selection;
 	active-background:           	@transparent;
 }
 window {

@@ -82,7 +82,7 @@ done
 ## Autostart -------------------------------------------------#
 
 # Kill if already running
-declare -a killlist=(xsettingsd sxhkd dunst ksuperkey mpd networkctl)
+declare -a killlist=(xsettingsd sxhkd dunst ksuperkey networkctl)
 for i in "${!killlist[@]}"; do
     pkill "${killlist[$i]}"
 done
@@ -107,8 +107,6 @@ numlockx on
 # xsetroot -cursor_name left_ptr
 # Restore wallpaper
 bash "$HOME/.fehbg"
-# Start mpd
-exec mpd &
 
 # Start bspwm scripts
 bspcolors

@@ -42,6 +42,8 @@ maim            -   screenshot
 xclip           -   clipboard 
 acpi            -   battery thermal sensor 
 light           -   blacklight control
+nerd-fonts      -   fonts needed
+font-awesome    -   icon fonts
 `````
 
 Sound Driver
