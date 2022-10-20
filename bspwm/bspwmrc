@@ -21,15 +21,18 @@ getcolors() {
     WHITE=$(xrdb -query | grep 'color7:' | awk '{print $NF}')
 }
 getcolors
-## Configurations --------------------------------------------#
+# Configurations --------------------------------------------#
 workspaces() {
     name=1
     for monitor in $(bspc query -M); do
-        bspc monitor "${monitor}" -n "$name" -d '' '' '' '' '' '' '' ''
-        (( name++))
+        bspc monitor "${monitor}" -n "$name" -d '' '' '' '' ''
+        ((name++))
     done
 }
+
+
 workspaces
+
 
 bspc config border_width 1
 bspc config window_gap 2
@@ -45,7 +48,7 @@ bspc config gapless_monocle true
 # bspc config paddingless_monocle true
 bspc config single_monocle false
 bspc config focus_follows_pointer false
-bspc config border_radius 5
+# bspc config border_radius 5
 
 ## Window rules ----------------------------------------------#
 
@@ -114,5 +117,5 @@ bspbar
 # Enable picom if wanted riced
 # bspcomp
 bspdunst
-livewallpaper &
+# livewallpaper &
 bspfloat &

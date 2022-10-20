@@ -59,11 +59,11 @@ ctrl + alt + l
 
 # Take a screenshot
 Print
-    cd $HOME/Pictures/screenshots | scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' && notify-send "Screenshot saved"
+    scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' && notify-send "Screenshot saved"
 	
 # Take screenshot of area
 ctrl + Print
-    cd $HOME/Pictures/screenshots | scrot -s -f -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/' && notify-send "Screenshot saved" 
+    scrot -s -f -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/' && notify-send "Screenshot saved" 
 
 # Brighness control
 XF86MonBrightness{Up,Down}

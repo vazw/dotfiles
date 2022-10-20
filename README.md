@@ -8,67 +8,8 @@ I prefer to disable picom :D
 
 ### Packages list to install:
 Desktop stuff
-`````
-wmname          -   window manager naming
-xorg            -   X11 server
-xf86-video-*    -   garphic-driver : xf86-video-amdgpu xf86-video-intel xf86-video-nouveua xf86-video-ati
-xsetroot        -   X11 config helper
-xwinwrap        -   X11 background
-feh             -   wallpapaer stuff
-xsettingsd      -   X11 settings
-polkit          -   Policy Authorization Toolkit
-python          -   a snake?
-python3-pip     -   :P
-python3-dbus    -   python binding dbus
-python3-cython  -   cpython
-nodejs          -   nodejs for npm
-lightdm         -   Desktop Manager
-lightdm-webkit2-greeter - an engine for nody-greeter
-nody-greeter    -   more rice login screen
-bspwm           -   desktop environment
-betterlockscreen -  lock screen
-sxhkd           -   keyborads shortcut
-NetworkManager  -   Networking
-polybar         -   task bar
-ranger          -   files manager
-ueberzug        -   Draw image on terminal
-rofi            -   app launcher
-rofi-emoji      -   Emoji typing
-dunst           -   notification
-picom           -   tranparent background
-alacritty       -   terminal-emulator
-zsh             -   shell
-maim            -   screenshot
-xclip           -   clipboard 
-acpi            -   battery thermal sensor 
-light           -   blacklight control
-nerd-fonts      -   fonts needed
-font-awesome    -   icon fonts
-`````
-
-Sound Driver
-
-`````
-pulseaudio      -   audio driver
-apulse          -   alsa plugin for pulse audio
-pavucontrol     -   pulseaudio volume control
-pamixer         -   pulseaudio mixer
-`````
-
-optional
-`````
-neovim          -   PDE
-git             -   git
-firefox         -   browser
-mpd             -   Music player
-mpc             -   mpd controller
-mpv             -   Video player
-htop            -   task manager
-neofetch        -   show system info
-unzip           -   zip files
-obs-studio      -   screen recording
-docker          -   isolated network
-tmux            -   terminal 
+`````sh
+sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config 
 `````
 
 rofi stuff
@@ -84,6 +25,7 @@ zsh oh my zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 `````
 
+## runit
 Void runit service control
 `````sh
 # avalable service list
