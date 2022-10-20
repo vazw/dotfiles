@@ -59,6 +59,22 @@ lastly don't forget to put this to '.xinitrc'
 `````sh
 exec bspwm
 `````
+## Keybind?
+
+| Keybinds       | Uses        |
+| -------------- | ----------- |
+| Super + Enter    | Terminal    |
+| Super + Space    | Toggle Window Mode      |
+| Super + r        | Run as Root        |
+| Super + c        | Close a Window     |
+| Super + x        | PowerMenu  |
+| Super + w        | App Launcher  |
+| Super + s        | Screen Menu  |
+| Super + n        | Network Menu  |
+| Super + e        | Emoji Menu  |
+| Super + f | Toggle Full Screen Mode |
+| Super + (1-9)        | Switch Workspace  |
+
 
 ## nody-greeter - more rice login screen
 
