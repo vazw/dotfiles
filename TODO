@@ -1,3 +1,18 @@
 Not yet Fix Shutdown and reboot command
 More customize...
 Just thinking.....
+
+---------
+20/10/22
+Shutdown and Reboot solution
+`````sh
+# since VOidlinux don't have systemctl we neet to excute sudo for shutdown or reboot 
+# each time to be able to properly shutdown the machine
+# in root user
+sudo visudo
+# find this line and add
+
+%wheel ALL=(ALL:ALL) NOPASSWD: NOPASSWD:/usr/bin/halt,/usr/bin/poweroff,/usr/bin/reboot,/usr/bin/shutdown,/usr/bin/zzz,/usr/bin/ZZZ
+
+# source : https://darknesscode.xyz/notes/shutdown-void-linux/?fbclid=IwAR0IWmTLqpQC8Yw8x14J1WiXOGdXRuCothJW9faM1PbS15S17afNXXBiY6U
+`````

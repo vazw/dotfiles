@@ -9,15 +9,7 @@ I prefer to disable picom :D
 ### Packages list to install:
 Desktop stuff
 `````sh
-sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config 
-`````
-
-rofi stuff
-`````sh
-git clone --depth=1 https://github.com/adi1090x/rofi.git
-cd rofi
-chmod +x setup.sh
-./setup.sh
+sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka 
 `````
 
 zsh oh my zsh
@@ -132,3 +124,20 @@ Afterwards, set your theme as `lightdm-void-theme` inside
 web-greeter/nody-greeter/sea-greeter's config file (`/etc/lightdm/web-greeter.yml`).
 
 [nody-greeter]: https://github.com/JezerM/nody-greeter "Nody Greeter"
+
+## VoidLinux shutdown | reboot
+
+Shutdown and Reboot solution
+
+!!!!Warning: NEVER edit /etc/sudoers directly! Always use the visudo command. 
+`````sh
+# since VOidlinux don't have systemctl we neet to excute sudo for shutdown or reboot 
+# each time to be able to properly shutdown the machine
+# in root user
+sudo visudo
+# find this line and add
+
+%wheel ALL=(ALL:ALL) NOPASSWD: NOPASSWD:/usr/bin/halt,/usr/bin/poweroff,/usr/bin/reboot,/usr/bin/shutdown,/usr/bin/zzz,/usr/bin/ZZZ
+
+# source : https://darknesscode.xyz/notes/shutdown-void-linux/?fbclid=IwAR0IWmTLqpQC8Yw8x14J1WiXOGdXRuCothJW9faM1PbS15S17afNXXBiY6U
+`````
