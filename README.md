@@ -9,7 +9,7 @@ I prefer to disable picom :D
 ### Packages list to install:
 Desktop stuff
 `````sh
-sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython python3-xcffib python3-cairocffi nodejs lightdm lightdm-webkit2-greeter NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka 
+sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka 
 `````
 
 zsh oh my zsh
@@ -59,6 +59,22 @@ lastly don't forget to put this to '.xinitrc'
 `````sh
 exec bspwm
 `````
+## Keybind?
+
+| Keybinds       | Uses        |
+| -------------- | ----------- |
+| Super + Enter    | Terminal    |
+| Super + Space    | Toggle Window Mode      |
+| Super + r        | Run as Root        |
+| Super + c        | Close a Window     |
+| Super + x        | PowerMenu  |
+| Super + w        | App Launcher  |
+| Super + s        | Screen Menu  |
+| Super + n        | Network Menu  |
+| Super + e        | Emoji Menu  |
+| Super + f | Toggle Full Screen Mode |
+| Super + (1-9)        | Switch Workspace  |
+
 
 ## nody-greeter - more rice login screen
 
