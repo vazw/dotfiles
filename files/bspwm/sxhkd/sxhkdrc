@@ -16,7 +16,7 @@ super + t
 
 # Rofi App Launcher
 alt + F1
-    bash ~/.config/rofi/launchers/type-5/launcher.sh
+    bash ~/.config/rofi/launchers/launcher.sh
 
 # Rofi Network Menu
 super + n
@@ -24,7 +24,7 @@ super + n
 
 # Rofi Menus/Applets
 super + w
-	bash ~/.config/rofi/launchers/type-5/launcher.sh
+	bash ~/.config/rofi/launchers/launcher.sh
 # Rofi Menus/Applets
 super + m
 	bash ~/.config/rofi/applets/bin/mpd.sh
@@ -33,7 +33,7 @@ super + r
 	bash ~/.config/rofi/applets/bin/appasroot.sh
 
 super + x
-	bash ~/.config/rofi/powermenu/type-5/powermenu.sh
+	bash ~/.config/rofi/powermenu/powermenu.sh
         
 super + s
 	bash ~/.config/rofi/screenshot/screenshot.sh
@@ -59,7 +59,7 @@ ctrl + alt + l
 
 # Take a screenshot
 Print
-    scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' && notify-send "Screenshot saved"
+    scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/' && notify-send "Screenshot saved"
 	
 # Take screenshot of area
 ctrl + Print
