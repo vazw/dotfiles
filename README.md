@@ -1,6 +1,5 @@
 # my personal config files for Voidlinux
-<img align="right" src="https://github.com/vazw/dotfiles/blob/main/screenshot/2022-10-19-02-52-23_418x102.png">
-I prefer to disable picom :D
+<img src="https://github.com/vazw/dotfiles/blob/main/screenshot/2022-10-19-02-52-23_418x102.png">
 
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/2022-10-19-02-52-46_1440x31.png">
 
@@ -9,7 +8,7 @@ I prefer to disable picom :D
 ### Packages list to install:
 Desktop stuff
 `````sh
-sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka 
+sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka make font-TLWG font-adobe-source-code-pro 
 `````
 
 zsh oh my zsh
