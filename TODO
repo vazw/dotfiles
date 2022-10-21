@@ -16,3 +16,5 @@ sudo visudo
 
 # source : https://darknesscode.xyz/notes/shutdown-void-linux/?fbclid=IwAR0IWmTLqpQC8Yw8x14J1WiXOGdXRuCothJW9faM1PbS15S17afNXXBiY6U
 `````
+# if time problem 
+date --set="2 OCT 2022 22:20:00"
