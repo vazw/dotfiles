@@ -57,13 +57,13 @@ ctrl + alt + l
 
 ##---------- System Keys ----------##
 
-# Take a screenshot
+# Take a screenshotscrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e "mv \$f ${target}/\$f"
 Print
-    scrot -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/' && notify-send "Screenshot saved"
+    scrot -F '%Y-%m-%d-%H-%M-%S.png' -e 'mv "%Y-%m-%d-%H-%M-%S.png" ~/Pictures/Screenshots/' && notify-send "Screenshot saved"
 	
 # Take screenshot of area
 ctrl + Print
-    scrot -s -f -F '%Y-%m-%d-%H-%M-%S_$wx$h.png' -e 'mv $f ~/Pictures/screenshots/' && notify-send "Screenshot saved" 
+    scrot -s -f -F '%Y-%m-%d-%H-%M-%S.png' -e 'mv "%Y-%m-%d-%H-%M-%S.png" ~/Pictures/Screenshots/' && notify-send "Screenshot saved" 
 
 # Brighness control
 XF86MonBrightness{Up,Down}

@@ -98,10 +98,6 @@ xsettingsd &
 # Lauch keybindings daemon
 sxhkd -c "$HOME/.config/bspwm/sxhkd/sxhkdrc" &
 
-# Enable Super Keys For Menu
-ksuperkey -e 'Super_L=Alt_L|F1' &
-ksuperkey -e 'Super_R=Alt_L|F1' &
-
 
 xmodmap -e 'remove lock = Caps_Lock'
 setxkbmap -layout us,th -option grp:caps_toggle,grp_led:caps
@@ -114,8 +110,5 @@ bash "$HOME/.fehbg"
 # Start bspwm scripts
 bspcolors
 bspbar
-# Enable picom if wanted riced
-# bspcomp
 bspdunst
-# livewallpaper &
 bspfloat &
