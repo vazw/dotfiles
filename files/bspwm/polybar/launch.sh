@@ -11,5 +11,5 @@ pkill polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch the bar
-exec "$DIR"/interfaces.sh &
+bash "$DIR"/interfaces.sh &
 polybar -q main -c "$DIR"/config.ini &
