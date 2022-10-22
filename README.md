@@ -54,10 +54,6 @@ sudo ln -s /etc/sv/NetworkManager /var/service/
 sudo sv up NetworkManager
 `````
 
-lastly don't forget to put this to '.xinitrc'
-`````sh
-exec bspwm
-`````
 ## Keybind?
 
 | Keybinds       | Uses        |

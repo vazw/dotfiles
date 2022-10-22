@@ -110,4 +110,5 @@ bash "$HOME/.fehbg"
 bspcolors
 bspbar
 bspdunst
+border &
 bspfloat &
