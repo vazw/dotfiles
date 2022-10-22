@@ -9,9 +9,9 @@ colors:
   normal:
     black:   '#3C3E4A'
     red:     '#FF5555'
-    green:   '#50FA7B'
+    green:   '#FFA07A'
     yellow:  '#F1FA8C'
-    blue:    '#FF7F50'
+    blue:    '#4FC3F7'
     magenta: '#FF79C6'
     cyan:    '#8BE9FD'
     white:   '#BFBFBF'

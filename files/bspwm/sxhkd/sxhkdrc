@@ -49,7 +49,7 @@ super + shift + {f,w}
 
 # Terminal Apps
 ctrl + alt + {v,r,h}
-	alacritty --config-file ~/.config/bspwm/alacritty/alacritty.yml -e {nvim,ranger,htop}
+	alacritty -e {nvim,ranger,htop}
 
 # Lockscreen
 ctrl + alt + l
@@ -99,7 +99,7 @@ ctrl + shift + {q,r}
 	bspc {quit,wm -r}
 	
 # Split horizontal, vertical or cancel
-super + {h,v,q}
+ctrl + shift + {j,l,k}
 	bspc node -p {east,south,cancel}
 
 # Preselect the ratio
@@ -125,6 +125,8 @@ super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
 # Send the window to another edge of the screen
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
 super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
@@ -135,24 +137,32 @@ alt + {_,shift + }Tab
 # Switch workspace
 ctrl + alt + {Left,Right}
 	bspc desktop -f {prev.local,next.local}
+ctrl + alt + {h,l}
+	bspc desktop -f {prev.local,next.local}
 
 # Switch to last opened workspace
 super + {Tab,grave}
 	bspc {node,desktop} -f last
 
 # Send focused window to another workspace
-super + {_,shift + }{1-8}
-	bspc {desktop -f,node -d} '^{1-8}'
+super + {_,shift + }{1-9}
+	bspc {desktop -f,node -d} '^{1-9}'
 
 # Expanding windows
+super + control + {h,l,k,j}
+	bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
 super + control + {Left,Right,Up,Down}
 	bspc node -z {left -20 0,right 20 0,top 0 -20,bottom 0 20}
 	
 ## Shrinking windows
 super + alt + {Left,Right,Up,Down}
 	bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
+super + alt + {h,l,k,j}
+	bspc node -z {left 20 0,right -20 0,top 0 20,bottom 0 -20}
 	
 ## Move floating windows
+alt + shift + {h,j,k,l}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
 alt + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 

@@ -1,7 +1,7 @@
 ## Import files (Colors, Fonts, Etc)
 import:
-  - ~/.config/bspwm/alacritty/colors.yml
-  - ~/.config/bspwm/alacritty/fonts.yml
+  - ~/.config/alacritty/colors.yml
+  - ~/.config/alacritty/fonts.yml
 ## Set environment variables
 env:
   TERM: alacritty
