@@ -22,16 +22,7 @@ getcolors() {
 }
 getcolors
 # Configurations --------------------------------------------#
-workspaces() {
-    name=1
-    for monitor in $(bspc query -M); do
-        bspc monitor "${monitor}" -n "$name" -d '' '' '' '' ''
-        ((name++))
-    done
-}
-
-
-workspaces
+bspc monitor -d '' '' '' '' ''
 
 bspc config border_width 2
 bspc config window_gap 0
@@ -96,7 +87,6 @@ xsettingsd &
 # Lauch keybindings daemon
 sxhkd -c "$HOME/.config/bspwm/sxhkd/sxhkdrc" &
 
-bash "$HOME/.config/bspwm/polybar/checkforupdate.sh" &
 
 xmodmap -e 'remove lock = Caps_Lock'
 setxkbmap -layout us,th -option grp:caps_toggle,grp_led:caps
@@ -106,9 +96,14 @@ xsetroot -cursor_name left_ptr
 # Restore wallpaper
 bash "$HOME/.fehbg"
 
+
+
 # Start bspwm scripts
 bspcolors
 bspbar
 bspdunst
 border &
 bspfloat &
+
+
+bash "$HOME/.config/bspwm/polybar/checkforupdate.sh" &

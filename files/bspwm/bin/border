@@ -7,10 +7,10 @@ xtitle -s| while read; do
     open_windows=( $(bspc query -N -d) )
     if [[ ${#open_windows[@]} -gt 1 ]]; then
         for i in  "${!open_windows[@]}"; do
-            bspc config -n ${open_windows[$i]} border_width 2
+            bspc config -n "${open_windows[$i]}" border_width 2
         done
     else
-        bspc config -n $(bspc query -N -n) border_width 0
+        bspc config -n "$(bspc query -N -n)" border_width 0
     fi
 
 done

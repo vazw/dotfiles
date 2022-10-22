@@ -1,23 +1,26 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 # vazw
 # notify update to polybar
 
-upd="$(xbps-install -nuM | wc -l)"
+upd=$(xbps-install -nuM | wc -l)
 
 _append ()
 {
     cat > ~/.config/bspwm/polybar/needupdate.ini <<EOF
     [needupdate]
-    amount =$upd
+    amount = $upd
 EOF
 }
 
-if [[ "$upd" -lt 0 ]];
+
+
+if [[ "$upd" -gt 0 ]];
 then
-    _append && notify-send "Have $upd packages need to update"
-elif [[ "$upd" < 1 ]];
+    _append
+    notify-send "Have $upd packages need to update"
+elif [[ "$upd" -eq 0 ]];
 then
     upd=
-    _append && notify-send "Have Updated all packages $upd"
+    _append
+    notify-send "System up-to-date $upd"
 fi
