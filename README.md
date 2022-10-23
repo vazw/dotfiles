@@ -83,7 +83,7 @@ sudo sv up NetworkManager
 ## nody-greeter - more rice login screen
 Install nody-greeter+Void-theme
 
-https://github.com/JezerM/nody-greeter
+https://github.com/JezerM/nody-greeter <br />
 https://github.com/JezerM/lightdm-void-theme
 
 ## VoidLinux shutdown | reboot
