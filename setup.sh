@@ -36,8 +36,14 @@ install_themes() {
     cp -rf "$DIR/.Xresources" "$HOME"
 
     if [[ -f "$INSTALL_DIR/bspwm/bspwmrc" ]]; then
-        echo -e ${BGreen}"[*] Successfully Installed.\n" ${Color_Off}
         feh --bg-scale "${HOME}/.config/bspwm/wall.png"
+        mkdir ~/Musics
+        mkdir ~/Musics/playlists
+        mkdir ~/.local/share/mpd
+        touch ~/.local/share/mpd/log
+        touch ~/.local/share/mpd/database
+        touch ~/.local/share/mpd/sticker.sql
+        echo -e ${BGreen}"[*] Successfully Installed.\n" ${Color_Off}
         exit 0
     else
         echo -e ${BRed}"[!] Failed to install.\n" ${Color_Off}
