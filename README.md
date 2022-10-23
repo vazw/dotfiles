@@ -80,69 +80,10 @@ sudo sv up NetworkManager
 
 
 ## nody-greeter - more rice login screen
-
-
-```sh
-git clone --recursive https://github.com/JezerM/nody-greeter.git
-cd nody-greeter
-npm install
-npm run rebuild
-npm run build
-sudo node make install
-```
-
-This will rebuild **electron** along with **node-gtk**, compile typescript with `npx tsc`, and then build the package root directory inside `build/unpacked`. Later, install it with `node make install`.
-
-Also, you can package `build/unpacked` to whatever you want, like **.deb** with:
-```sh
-dpkg-deb --root-owner-group --build unpacked
-```
-
-Setting up with LightDM 
-
-Inside `/etc/lightdm/lightdm.conf`, below a Seat configuration, add:
-```
-greeter-session=nody-greeter
-```
-
-
 Install nody-greeter+Void-theme
-Run the next commands to build Void theme:
 
-```sh
-git clone https://github.com/JezerM/lightdm-void-theme.git
-cd lightdm-void-theme
-npm install
-npm run build
-```
-
-Then, copy the **dist** directory into `/usr/share/web-greeter/themes/`:
-
-```sh
-sudo cp -r ./dist /usr/share/web-greeter/themes/lightdm-void-theme
-```
-
-Afterwards, set your theme as `lightdm-void-theme` inside
-web-greeter/nody-greeter/sea-greeter's config file (`/etc/lightdm/web-greeter.yml`).
-
-
-```sh
-git clone https://github.com/JezerM/lightdm-void-theme.git
-cd lightdm-void-theme
-npm install
-npm run build
-```
-
-Then, copy the **dist** directory into `/usr/share/web-greeter/themes/`:
-
-```sh
-sudo cp -r ./dist /usr/share/web-greeter/themes/lightdm-void-theme
-```
-
-Afterwards, set your theme as `lightdm-void-theme` inside
-web-greeter/nody-greeter/sea-greeter's config file (`/etc/lightdm/web-greeter.yml`).
-
-[nody-greeter]: https://github.com/JezerM/nody-greeter "Nody Greeter"
+https://github.com/JezerM/nody-greeter
+https://github.com/JezerM/lightdm-void-theme
 
 ## VoidLinux shutdown | reboot
 
