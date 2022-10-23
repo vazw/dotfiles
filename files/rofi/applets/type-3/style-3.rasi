@@ -22,7 +22,7 @@ USE_ICON=YES
 
 /*****----- Main Window -----*****/
 window {
-    transparency:                "real";
+    transparency:                "screenshot";
     location:                    east;
     anchor:                      east;
     fullscreen:                  false;

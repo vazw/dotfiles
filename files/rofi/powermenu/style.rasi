@@ -16,11 +16,11 @@ configuration {
 * {
     font:                        "JetBrains Mono Nerd Font 10";
     background:                  #131D1F;
-    background-alt:              #183A43;
+    background-alt:              #425F57;
     foreground:                  #FFFFFF;
-    selected:                    #649094;
-    active:                      #E9CC9D;
-    urgent:                      #FEA861;
+    selected:                    #A8E890;
+    active:                      #CFFF8D;
+    urgent:                      #749F82;
 }
 
 /*
@@ -29,7 +29,7 @@ USE_BUTTONS=YES
 
 /*****----- Main Window -----*****/
 window {
-    transparency:                "real";
+    transparency:                "screenshot";
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
@@ -64,7 +64,7 @@ inputbar {
     spacing:                     0px;
     padding:                     150px 40px;
     background-color:            transparent;
-    background-image:            url("~/.config/rofi/images/i.jpg", width);
+    background-image:            url("~/.config/rofi/images/i.png", width);
     children:                    [ "textbox-prompt-colon", "dummy","prompt"];
 }
 

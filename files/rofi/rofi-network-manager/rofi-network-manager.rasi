@@ -6,13 +6,13 @@ configuration {
 	me-accept-entry: [MousePrimary];
 }
 *{
-	font: "BlexMono NFM 10";			//Font
+	font: "BlexMono Nerd Font 10";			//Font
 	//Colors
 	foreground:#000000; 				//Text
-	background:#01579B; 				//Background
+	background:#425F57; 				//Background
 	accent:#f8f8f2; 					//Highlight
 	foreground-selection:@foreground; 	//Selection_fg
-	background-selection:#81D4FA; 		//Selection_bg
+	background-selection:#A8E890; 		//Selection_bg
 
 	transparent:					#ffffff00;
 	background-color:				@transparent;
@@ -39,6 +39,7 @@ configuration {
 	active-background:           	@transparent;
 }
 window {
+        transparency:                   "screenshot";
 	text-color:			@foreground;
 	background-color:	@background;
 	border-radius: 		6px;

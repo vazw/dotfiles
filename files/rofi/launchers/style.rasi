@@ -27,7 +27,7 @@ configuration {
 /*****----- Main Window -----*****/
 window {
     /* properties for window widget */
-    transparency:                "real";
+    transparency:                "screenshot";
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
@@ -121,15 +121,15 @@ element {
 }
 element normal.active {
     background-image:            linear-gradient(to right, #4C4F52, #2E343B);
-    text-color:                  #19B466;
+    text-color:                  #EA5553;
 }
 element selected.normal {
     background-image:            linear-gradient(to right, #4C4F52, #2E343B);
-    text-color:                  #FF9030;
+    text-color:                  #19B466;
 }
 element selected.active {
     background-image:            linear-gradient(to right, #4C4F52, #2E343B);
-    text-color:                  #EA5553;
+    text-color:                  #FF9030;
 }
 element-icon {
     background-color:            transparent;
@@ -161,7 +161,7 @@ button {
 }
 button selected {
     background-color:            inherit;
-    text-color:                  #FF9030;
+    text-color:                  #19B466;
 }
 
 /*****----- Message -----*****/
@@ -173,7 +173,7 @@ error-message {
 message {
     padding:                     0px;
     background-color:            inherit;
-    text-color:                  #FF9030;
+    text-color:                  #19B466;
 }
 textbox {
     padding:                     0px;

@@ -1,7 +1,7 @@
 
 
 configuration {
-    show-icons:                     false;
+    show-icons:                     true;
     disable-history:                false;
 	sidebar-mode: 					false;
 }
@@ -14,7 +14,7 @@ configuration {
 }
 
 window {
-    transparency:                   "real";
+    transparency:                   "screenshot";
     border-radius:                  12px;
     width:                          100px;
     location:                       east;
@@ -23,7 +23,7 @@ window {
 }
 
 listview {
-    lines:							2;
+    lines:							3;
     margin:                         8px;
     spacing:                        8px;
     cycle:                          true;

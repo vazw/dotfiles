@@ -1,9 +1,10 @@
 # my personal config files for Voidlinux
-<img src="https://github.com/vazw/dotfiles/blob/main/screenshot/1.png">
+A combination between rice + light : <br />
+let's call this lice!
 
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/2.png">
-
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/3.png">
+<img src="https://github.com/vazw/dotfiles/blob/main/screenshot/1.png">
 
 ### Packages list to install:
 Desktop stuff
