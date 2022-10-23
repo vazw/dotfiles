@@ -28,9 +28,6 @@ super + w
 # Rofi Menus/Applets
 super + m
 	bash ~/.config/rofi/applets/bin/mpd.sh
-# Rofi Menus/Applets
-super + r
-	bash ~/.config/rofi/applets/bin/appasroot.sh
 
 super + x
 	bash ~/.config/rofi/powermenu/powermenu.sh

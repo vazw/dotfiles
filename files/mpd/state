@@ -1,0 +1,175 @@
+sw_volume: 100
+audio_device_state:1:pulse audio
+state: pause
+current: 27
+time: 98.980000
+random: 0
+repeat: 1
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:2tech-audio-positive-ideas.mp3
+1:alex-productions-enemy.mp3
+2:foxxy-mulderr-just-checking-in.mp3
+3:hipsybeats-rap.mp3
+4:mixaund-bright-morning.mp3
+5:purrple-cat-pillars-of-creation.mp3
+6:Audiophile Bossa Voices - 15 Brazilian Love Tracks/01. Summer Samba.flac
+7:Audiophile Bossa Voices - 15 Brazilian Love Tracks/02. Photograph.flac
+8:Audiophile Bossa Voices - 15 Brazilian Love Tracks/03. Desafinado.flac
+9:Audiophile Bossa Voices - 15 Brazilian Love Tracks/04. A Day in the Life of a Fool.flac
+10:Audiophile Bossa Voices - 15 Brazilian Love Tracks/05. Meditation.flac
+11:Audiophile Bossa Voices - 15 Brazilian Love Tracks/06. My Little Boat.flac
+12:Audiophile Bossa Voices - 15 Brazilian Love Tracks/07. Quando a Lembrança Me Vem.flac
+13:Audiophile Bossa Voices - 15 Brazilian Love Tracks/08. Tomara.flac
+14:Audiophile Bossa Voices - 15 Brazilian Love Tracks/09. Once I Loved.flac
+15:Audiophile Bossa Voices - 15 Brazilian Love Tracks/10. Depois de Tanto Amor.flac
+16:Audiophile Bossa Voices - 15 Brazilian Love Tracks/11. Fly Me to the Moon.flac
+17:Audiophile Bossa Voices - 15 Brazilian Love Tracks/12. Constelação.flac
+18:Audiophile Bossa Voices - 15 Brazilian Love Tracks/13. Gaiolas Abertas.flac
+19:Audiophile Bossa Voices - 15 Brazilian Love Tracks/14. It's Only Love.flac
+20:Audiophile Bossa Voices - 15 Brazilian Love Tracks/15. Smoke in the City.flac
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0001
+Range: 0-271480
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 01
+Title: Never Diminishing Passion
+Artist: Never Diminishing Passion
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0002
+Range: 271480-541240
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 02
+Title: Ask Me
+Artist: Ask Me
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0003
+Range: 541240-889346
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 03
+Title: I Believe
+Artist: I Believe
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0004
+Range: 889346-1174746
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 04
+Title: Sound of Silence
+Artist: Sound of Silence
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0005
+Range: 1174746-1404706
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 05
+Title: Just The Way I Am
+Artist: Just The Way I Am
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0006
+Range: 1404706-1579826
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 06
+Title: Happy Faces
+Artist: Happy Faces
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0007
+Range: 1579826-1817253
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 07
+Title: Shanghai by Night
+Artist: Shanghai by Night
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0008
+Range: 1817253-2020813
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 08
+Title: Smoke Gets Into Your Eyes
+Artist: Smoke Gets Into Your Eyes
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0009
+Range: 2020813-2194546
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 09
+Title: Teach The World To Sing
+Artist: Teach The World To Sing
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0010
+Range: 2194546-2407320
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 10
+Title: You Are The Sunshine of My Heart
+Artist: You Are The Sunshine of My Heart
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0011
+Range: 2407320-2589546
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 11
+Title: Good Omens
+Artist: Good Omens
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0012
+Range: 2589546-2824840
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 12
+Title: Love You 10,000 Years
+Artist: Love You 10,000 Years
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0013
+Range: 2824840-3153880
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 13
+Title: Feelings
+Artist: Feelings
+mtime: 1666509235
+song_end
+song_begin: VA - Ex-Seed Collection/VA - Ex-Seed Collection.cue/track0014
+Range: 3153880-
+Time: 3346.013000
+AlbumArtist: VA
+Album: Ex-Seed Collection
+Track: 14
+Title: Only You
+Artist: Only You
+mtime: 1666509235
+song_end
+playlist_end

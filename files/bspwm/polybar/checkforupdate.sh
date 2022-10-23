@@ -24,3 +24,6 @@ then
     _append
     notify-send "System up-to-date $upd"
 fi
+
+
+exec ~/.config/bspwm/bin/bspbar
