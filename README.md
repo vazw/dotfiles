@@ -9,7 +9,7 @@ let's call this lice!
 ### Packages list to install:
 Desktop stuff
 `````sh
-sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka make font-TLWG font-adobe-source-code-pro numlockx betterlockscreen cmake
+sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro numlockx betterlockscreen cmake mpd mpc udiskie lxappearance breeze-gtk breeze-icons sv-netmount
 `````
 Installation
 `````sh
@@ -156,7 +156,7 @@ Shutdown and Reboot solution
 sudo visudo
 # find this line and add
 
-%wheel ALL=(ALL:ALL) NOPASSWD: NOPASSWD:/usr/bin/halt,/usr/bin/poweroff,/usr/bin/reboot,/usr/bin/shutdown,/usr/bin/zzz,/usr/bin/ZZZ
+%wheel ALL=(ALL:ALL) NOPASSWD:/usr/bin/shutdown,/usr/bin/reboot,/usr/bin/suspend,/usr/bin/udiskie,/usr/bin/pkill,/usr/bin/zzz,/usr/bin/ZZZ,/usr/bin/halt,/usr/bin/poweroff
 
 # source : https://darknesscode.xyz/notes/shutdown-void-linux/?fbclid=IwAR0IWmTLqpQC8Yw8x14J1WiXOGdXRuCothJW9faM1PbS15S17afNXXBiY6U
 `````
