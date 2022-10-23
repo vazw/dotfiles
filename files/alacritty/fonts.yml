@@ -1,20 +1,20 @@
 # Font configuration
 font:
   normal:
-    family: "BlexMono NFM"
-    style: "SemiBold"
+    family: "BlexMono Nerd Font Mono"
+    style: "Regular"
   # Bold font face
   bold:
-    family: "BlexMono NFM"
+    family: "BlexMono Nerd Font Mono"
     style: "SemiBold"
 
   # Italic font face
   italic:
-    family: "BlexMono NFM"
+    family: "BlexMono Nerd Font Mono"
     style: "Italic" 
   # Bold italic font face
   bold_italic:
-    family: "BlexMono NFM"
+    family: "BlexMono Nerd Font Mono"
     style: "Bold Italic" 
   # Font size
   size: 10

@@ -4,7 +4,7 @@ follow = mouse
 width = 280
 height = 80
 origin = top-right
-offset = 10x42
+offset = 10x30
 scale = 0
 indicate_hidden = yes
 shrink = no
@@ -16,7 +16,7 @@ horizontal_padding = 5
 frame_width = 1
 sort = no
 idle_threshold = 120
-font = BlexMono SemiBold 10
+font = BlexMono Nerd Font Mono 9
 markup = full
 format = %s\n%b
 alignment = left
@@ -37,18 +37,18 @@ class = Dunst
 
 [urgency_low]
 timeout = 2
-background = "#009933"
+background = "#e0af68"
 foreground = "#ffffff"
-frame_color = "#e0af68"
+frame_color = "#cc7a7a"
 
 [urgency_normal]
 timeout = 5
-background = "#039BE5"
-foreground = "#ffffff"
-frame_color = "#000000"
+background = "#749F82"
+foreground = "#000000"
+frame_color = "#b1cc7a"
 
 [urgency_critical]
 timeout = 0
-background = "#db4b4b"
-foreground = "#e0af68"
+background = "#cc7a7a"
+foreground = "#212126"
 frame_color = "#01579B"
