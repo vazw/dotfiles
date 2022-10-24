@@ -9,7 +9,7 @@ let's call this lice!
 ### Packages list to install:
 Desktop stuff
 `````sh
-sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro numlockx betterlockscreen cmake mpd mpc udiskie lxappearance breeze-gtk breeze-icons sv-netmount
+sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro numlockx betterlockscreen cmake mpd mpc udiskie lxappearance breeze-gtk breeze-icons sv-netmount xdg-utils
 `````
 Installation
 `````sh
@@ -77,72 +77,14 @@ sudo sv up NetworkManager
 | Super + e        | Emoji Menu  |
 | Super + f | Toggle Full Screen Mode |
 | Super + (1-9)        | Switch Workspace  |
-
+| Super + left click        | Move Window  |
+| Super + right click   | Resize window  |
 
 ## nody-greeter - more rice login screen
-
-
-```sh
-git clone --recursive https://github.com/JezerM/nody-greeter.git
-cd nody-greeter
-npm install
-npm run rebuild
-npm run build
-sudo node make install
-```
-
-This will rebuild **electron** along with **node-gtk**, compile typescript with `npx tsc`, and then build the package root directory inside `build/unpacked`. Later, install it with `node make install`.
-
-Also, you can package `build/unpacked` to whatever you want, like **.deb** with:
-```sh
-dpkg-deb --root-owner-group --build unpacked
-```
-
-Setting up with LightDM 
-
-Inside `/etc/lightdm/lightdm.conf`, below a Seat configuration, add:
-```
-greeter-session=nody-greeter
-```
-
-
 Install nody-greeter+Void-theme
-Run the next commands to build Void theme:
 
-```sh
-git clone https://github.com/JezerM/lightdm-void-theme.git
-cd lightdm-void-theme
-npm install
-npm run build
-```
-
-Then, copy the **dist** directory into `/usr/share/web-greeter/themes/`:
-
-```sh
-sudo cp -r ./dist /usr/share/web-greeter/themes/lightdm-void-theme
-```
-
-Afterwards, set your theme as `lightdm-void-theme` inside
-web-greeter/nody-greeter/sea-greeter's config file (`/etc/lightdm/web-greeter.yml`).
-
-
-```sh
-git clone https://github.com/JezerM/lightdm-void-theme.git
-cd lightdm-void-theme
-npm install
-npm run build
-```
-
-Then, copy the **dist** directory into `/usr/share/web-greeter/themes/`:
-
-```sh
-sudo cp -r ./dist /usr/share/web-greeter/themes/lightdm-void-theme
-```
-
-Afterwards, set your theme as `lightdm-void-theme` inside
-web-greeter/nody-greeter/sea-greeter's config file (`/etc/lightdm/web-greeter.yml`).
-
-[nody-greeter]: https://github.com/JezerM/nody-greeter "Nody Greeter"
+https://github.com/JezerM/nody-greeter
+https://github.com/JezerM/lightdm-void-theme
 
 ## VoidLinux shutdown | reboot
 
@@ -157,6 +99,23 @@ sudo visudo
 # find this line and add
 
 %wheel ALL=(ALL:ALL) NOPASSWD:/usr/bin/shutdown,/usr/bin/reboot,/usr/bin/suspend,/usr/bin/udiskie,/usr/bin/pkill,/usr/bin/zzz,/usr/bin/ZZZ,/usr/bin/halt,/usr/bin/poweroff
+
+# source : https://darknesscode.xyz/notes/shutdown-void-linux/?fbclid=IwAR0IWmTLqpQC8Yw8x14J1WiXOGdXRuCothJW9faM1PbS15S17afNXXBiY6U
+`````
+
+## VoidLinux shutdown | reboot
+
+Shutdown and Reboot solution
+
+### Warning: NEVER edit /etc/sudoers directly! Always use the visudo command. 
+`````sh
+# since VOidlinux don't have systemctl we neet to excute sudo for shutdown or reboot 
+# each time to be able to properly shutdown the machine
+# in root user
+sudo visudo
+# find this line and add
+
+%wheel ALL=(ALL:ALL) NOPASSWD:/usr/bin/shutdown,/usr/bin/reboot,/usr/bin/suspend,/usr/bin/pkill,/usr/bin/zzz,/usr/bin/ZZZ,/usr/bin/halt,/usr/bin/poweroff
 
 # source : https://darknesscode.xyz/notes/shutdown-void-linux/?fbclid=IwAR0IWmTLqpQC8Yw8x14J1WiXOGdXRuCothJW9faM1PbS15S17afNXXBiY6U
 `````

@@ -18,3 +18,51 @@ sudo visudo
 `````
 # if time problem 
 date --set="2 OCT 2022 22:20:00"
+
+
+
+for udiskie auto mount usb devices
+`````sh
+sudo nvim /etc/polkit-1/rules.d/50-udiskie.rules
+
+# then past the following rules
+
+polkit.addRule(function(action, subject) {
+  var YES = polkit.Result.YES;
+    // NOTE: there must be a comma at the end of each line except for the last:
+      var permission = {
+              // // required for udisks1:
+              "org.freedesktop.udisks.filesystem-mount": YES,
+              "org.freedesktop.udisks.luks-unlock": YES,
+              "org.freedesktop.udisks.drive-eject": YES,
+              "org.freedesktop.udisks.drive-detach": YES,
+              // required for udisks2:
+              "org.freedesktop.udisks2.filesystem-mount": YES,
+              "org.freedesktop.udisks2.encrypted-unlock": YES,
+              "org.freedesktop.udisks2.eject-media": YES,
+              "org.freedesktop.udisks2.power-off-drive": YES,
+              "org.freedesktop.udisks2.block-devices": YES,
+              // required for udisks2 if using udiskie from another seat (e.g. systemd):
+              // "org.freedesktop.udisks2.filesystem-mount-other-seat": YES,
+              // "org.freedesktop.udisks2.filesystem-unmount-others": YES,
+              // "org.freedesktop.udisks2.encrypted-unlock-other-seat": YES,
+              // "org.freedesktop.udisks2.eject-media-other-seat": YES,
+              // "org.freedesktop.udisks2.power-off-drive-other-seat": YES
+              };
+      return permission[action.id];
+});
+`````
+/etc/polkit-1/localauthority/50-local.d/10-udiskie.pkla
+[udisks]
+Identity=unix-group:plugdev
+Action=org.freedesktop.udisks.*
+ResultAny=yes
+[udisks2]
+Identity=unix-group:plugdev
+Action=org.freedesktop.udisks2.*
+ResultAny=yes
+[udisks3]
+Identity=unix-group:plugdev
+Action=org.freedesktop.UDisks2.*
+ResultAny=yes
+~
