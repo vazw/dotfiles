@@ -40,3 +40,5 @@ luac.out
 *.hex
 **/packer_compiled.lua
 **/__pycache__/**
+
+.Xresources.d/TODO
