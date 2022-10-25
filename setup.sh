@@ -34,6 +34,7 @@ install_themes() {
     { mkdir -p "$INSTALL_DIR"; cp -rf $DIR/files/* "$INSTALL_DIR"; }
     cp -rf "$DIR/.Xresources.d" "$HOME"
     cp -rf "$DIR/.Xresources" "$HOME"
+    cp -rf "$DIR/.screenlayout" "$HOME"
 
     if [[ -f "$INSTALL_DIR/bspwm/bspwmrc" ]]; then
         feh --bg-scale "${HOME}/.config/bspwm/wall.png"
