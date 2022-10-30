@@ -20,7 +20,7 @@ window:
   dynamic_title: true
   history: 10000
   multiplier: 3
-  opacity: 0 
+  opacity: 0
   background_opacity : 0
 # Cursor
 cursor:

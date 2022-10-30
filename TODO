@@ -66,3 +66,6 @@ Identity=unix-group:plugdev
 Action=org.freedesktop.UDisks2.*
 ResultAny=yes
 ~
+
+
+check for current screen bspc query -M --names

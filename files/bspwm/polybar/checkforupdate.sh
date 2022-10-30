@@ -8,7 +8,7 @@ _append ()
 {
     cat > ~/.config/bspwm/polybar/needupdate.ini <<EOF
     [needupdate]
-    amount = $upd
+    amount = "$upd "
 EOF
 }
 
@@ -20,10 +20,11 @@ then
     notify-send "Have $upd packages need to update"
 elif [[ "$upd" -eq 0 ]];
 then
-    upd=
+    upd=
     _append
     notify-send "System up-to-date $upd"
 fi
 
 
 exec ~/.config/bspwm/bin/bspbar
+exit 0
