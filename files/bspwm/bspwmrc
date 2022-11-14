@@ -91,5 +91,7 @@ bspdunst
 bspborder &
 bspfloat &
 
+brillo -c -S 2
+
 
 bash "$HOME/.config/bspwm/polybar/checkforupdate.sh" &

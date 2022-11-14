@@ -11,7 +11,7 @@ vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
 vim.opt.termguicolors = true
-vim.opt.scrolloff = 6
+vim.opt.scrolloff = 5
 vim.opt.relativenumber = true
 vim.opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 vim.opt.inccommand = "split"
@@ -23,7 +23,7 @@ vim.opt.wrap = true
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 vim.opt.wildignore:append({ "*/node_modules/*", "*/__pycache__/*", "*/env/*" })
-vim.opt.clipboard:append({ "unnamed", "unnamedplus" })
+vim.opt.clipboard = { "unnamed", "unnamedplus" }
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
@@ -46,3 +46,4 @@ vim.opt.whichwrap:append("<>[]hl")
 -- use mouse click
 vim.opt.mouse = "a"
 vim.opt.signcolumn = "yes"
+vim.api.nvim_set_option_value("colorcolumn", "80", {})

@@ -1,20 +1,20 @@
 # Font configuration
 font:
   normal:
-    family: "JetBrainsMono Nerd Font"
-    style: "Regular"
+    family: "Caskaydia Cove Nerd Font"
+    style: "SemiBold"
   # Bold font face
   bold:
-    family: "JetBrainsMono Nerd Font"
-    style: "SemiBold"
+    family: "Caskaydia Cove Nerd Font"
+    style: "Bold"
 
   # Italic font face
   italic:
-    family: "JetBrainsMono Nerd Font"
+    family: "Caskaydia Cove Nerd Font"
     style: "Italic" 
   # Bold italic font face
   bold_italic:
-    family: "JetBrainsMono Nerd Font"
+    family: "Caskaydia Cove Nerd Font"
     style: "Bold Italic" 
   # Font size
   size: 10
