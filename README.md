@@ -9,7 +9,7 @@ let's call this lice!
 ### Packages list to install:
 Desktop stuff
 `````sh
-sudo xbps-install wmname xorg xf86-video-amdgpu xf86-video-intel xf86-video-nouveau xf86-video-ati xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro numlockx betterlockscreen cmake mpd mpc udiskie lxappearance breeze-gtk breeze-icons sv-netmount xdg-utils arandr
+sudo xbps-install wmname xorg xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro cmake mpd mpc udiskie lxappearance breeze-gtk breeze-icons sv-netmount xdg-utils arandr
 `````
 Installation
 `````sh

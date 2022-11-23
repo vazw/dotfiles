@@ -1,0 +1,184 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+ 
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+
+/*
+Polar Night
+nord0  #2e3440
+nord1  #3b4252
+nord2  #434c5e
+nord3  #4c566a
+Snow Storm
+nord4  #d8dee9
+nord5  #e5e9f0
+nord6  #eceff4
+Frost
+nord7  #8fbcbb
+nord8  #88c0d0
+nord9  #81a1c1
+nord10 #5e81ac
+Aurora
+nord11 #bf616a
+nord12 #d08770
+nord13 #ebcb8b
+nord14 #a3be8c
+nord15 #b48ead
+*/
+
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+ 
+/* Reset all styles */
+
+* {
+    /* color: #eceff4; */
+    border: 0;
+    border-radius: 0;
+    padding: 0 0;
+    font-family:JetBrains Mono Nerd Font;
+    font-size: 12px;
+    margin-right: 1px;
+    margin-left: 1px;
+   }
+
+window#waybar {
+    background:#000000;
+}
+
+#workspaces button {
+    padding: 0px 0px;
+    border-bottom: 2px;
+    color: #eceff4;
+    border-color: #eceff4;
+    border-style: solid;
+}
+
+#workspaces button.focused {
+    color: #81a1c1;
+    border-color: #81a1c1;
+}
+
+#workspaces button.persistent {
+    color: #eceff4;
+    border-color: #000000;
+}
+
+#mode {
+    color: #ebcb8b;
+}
+
+#battery, #cpu, #memory, #temperature,#language, #backlight, #network, #pulseaudio, #mode, #window,#custom-launcher,#custom-power {
+    padding: 1 0px;
+    border-bottom: 2px;
+    border-style: solid;
+}
+ 
+#clock, #tray,#custom-pacman {
+    border-bottom: 2px;
+}
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+
+ 
+#clock {
+ color:#eceff4;
+}
+
+#backlight {
+    color: #ebcb8b;
+}
+
+#battery {
+    color: #d8dee9;
+}
+
+#battery.charging {
+    color: #81a1c1;
+}
+
+@keyframes blink {
+    to {
+        background-color: #eceff4;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background: #bf616a;
+    color: #eceff4;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu {
+    color:#a3be8c ;
+}
+
+#memory {
+    color: #d3869b;
+}
+
+#network.disabled {
+    color:#bf616a;
+}
+
+#network{
+    color:#a3be8c;
+}
+
+#network.disconnected {
+    color: #bf616a;
+}
+
+#pulseaudio {
+    color: #f37f97;
+}
+
+#pulseaudio.muted {
+    color: #3b4252;
+}
+
+#temperature {
+    color: #8fbcbb;
+}
+
+#temperature.critical {
+    color: #bf616a;
+}
+
+#idle_inhibitor {
+   color: #ebcb8b;
+}
+
+#tray {
+}
+
+#custom-launcher,#custom-power{
+    color : #ffffff;
+    border-color: #000000;
+}
+
+#window{
+    color: #a3be8c;
+    border-color: #000000;
+}    
+
+#language{
+   color:#d08770;
+}   
+
+
+
