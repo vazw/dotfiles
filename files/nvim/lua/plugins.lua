@@ -73,6 +73,12 @@ packer.startup(function(use)
 			require("nvterm").setup()
 		end,
 	})
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
+		},
+	})
 	use("saadparwaiz1/cmp_luasnip")
 	-- use({
 	-- 	"ThePrimeagen/refactoring.nvim",
@@ -81,6 +87,7 @@ packer.startup(function(use)
 	-- 		{ "nvim-treesitter/nvim-treesitter" },
 	-- 	},
 	-- })
+	use("ellisonleao/glow.nvim")
 	if packer_bootstrap then
 		require("packer").sync()
 	end

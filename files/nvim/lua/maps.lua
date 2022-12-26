@@ -33,7 +33,7 @@ keymap.set("n", "<ESC>", "<cmd> noh <CR>")
 
 -- RUN PYTHON
 keymap.set("n", "<F5>", function()
-	require("nvterm.terminal").send("source " .. "env/bin/activate" .. " && " .. "python " .. vim.fn.expand("%"))
+	require("nvterm.terminal").send("python " .. vim.fn.expand("%"))
 end)
 
 -- Select all
@@ -50,10 +50,10 @@ keymap.set("n", "sv", ":vsplit<Return><C-w>w")
 
 -- Move window
 -- keymap.set('n', '<Space>', '<C-w>w')
-keymap.set("", "sh", "<C-w>h")
-keymap.set("", "sk", "<C-w>k")
-keymap.set("", "sj", "<C-w>j")
-keymap.set("", "sl", "<C-w>l")
+-- keymap.set("", "sh", "<C-w>h")
+-- keymap.set("", "sk", "<C-w>k")
+-- keymap.set("", "sj", "<C-w>j")
+-- keymap.set("", "sl", "<C-w>l")
 
 -- Resize window (NOT WORKING)
 -- keymap.set('n', '<C-w><left>', '<C-w><')
@@ -80,3 +80,7 @@ end)
 vim.keymap.set("n", "<leader>[", function()
 	vim.diagnostic.goto_prev()
 end)
+
+-- nvim tree
+keymap.set("n", "<C-f>", ":NvimTreeToggle<CR>")
+keymap.set("n", "<leader>j", ":Glow<CR>")
