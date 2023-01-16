@@ -73,10 +73,27 @@ protocol.CompletionItemKind = {
 	"", -- TypeParameter
 }
 
-nvim_lsp.bashls.setup({})
+nvim_lsp.bashls.setup({
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		enable_format_on_save(client, bufnr)
+	end,
+	capabilities = capabilities,
+})
+
+nvim_lsp.ruff_lsp.setup({
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		enable_format_on_save(client, bufnr)
+	end,
+	capabilities = capabilities,
+})
 
 nvim_lsp.pyright.setup({
-	on_attach = on_attach,
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		enable_format_on_save(client, bufnr)
+	end,
 	capabilities = capabilities,
 	settings = {
 		python = {

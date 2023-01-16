@@ -1,12 +1,12 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 16,
+    "height": 20,
     //"width": 1350, // Waybar width
-    // Choose the order of the modules idle_inhibitor
+    // Choose the order of the modules , "temperature"
     "modules-left": ["custom/launcher","sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/pacman", "idle_inhibitor", "tray", "temperature",  "pulseaudio", "backlight", "sway/language", "battery"], 
+    "modules-right": ["custom/bitcoinprice", "custom/pacman", "idle_inhibitor", "custom/power_profile", "tray", "bluetooth", "pulseaudio", "backlight", "sway/language", "battery"], 
     
  // Modules configuration
  
@@ -20,9 +20,9 @@
 		"3": "",
 		"4": "",
 		"5": "龎",
-		"6": "",
+		"6": "",
 		"7": "",
-		"8": "",
+		"8": "",
 		"9": "",
 		"10": "",
         },
@@ -69,11 +69,11 @@
         "interval": 1
     },
     "cpu": {
-        "format": "﬙ {usage: >3}%",
+        "format": "﬙ {usage}%",
         "on-click": "alacritty -e htop"
     },
     "memory": {
-        "format": " {: >3}%",
+        "format": " {}%",
         "on-click": "alacritty -e htop"
     },
     "temperature": {
@@ -85,10 +85,10 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{icon} {percent: >3}%",
+        "format": "{icon} {percent}%",
         "format-icons": ["", ""],
-        "on-scroll-down": "brightnessctl -c backlight set 5%-",
-        "on-scroll-up": "brightnessctl -c backlight set +5%"
+        "on-scroll-down": "brillo -q -U 5",
+        "on-scroll-up": "brillo -q -A 5"
     },
     "battery": {
         "states": {
@@ -97,11 +97,14 @@
             "critical": 15
         },
         "format": "{icon}",
-        //"format": "{icon}{capacity: >3}%",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        //"format-icons": ["", "", "", "", ""]
-        "format-icons": ["", "", "", "", "", "", "", "", "", ""]
+        "full-at": 79,
+        //"format": "{icon}{capacity}%",
+        "format-charging": "{icon} {capacity}%",
+        "format-plugged": "{icon} ",
+        "format-full": "{icon} Charged",        
+        "format-icons": [" ", " ", " ", " ", " "],
+        /* "format-icons": ["", "", "", "", "", "", "", "", "", ""] */
+        "tooltip-format":"{capacity}% {timeTo}",
     },
      "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
@@ -112,10 +115,12 @@
         "on-click": "alacritty -e nmtui"
     },
     "pulseaudio": {
-        "scroll-step": 5,
-        "format": "{icon} {volume: >3}%",
-        "format-bluetooth": "{icon} {volume: >3}%",
-        "format-muted":" muted",
+        "scroll-step": 2,
+        "format": "{format_source} {icon} {volume}%",
+        "format-bluetooth": "{format_source}  {volume}%",
+        "format-muted":"{format_source} X",
+        "format-source":" {volume}%",
+        "format-source-muted":"",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
@@ -129,7 +134,7 @@
     },
      "custom/pacman": {
         "format": " {}",
-        "interval": 7200,                     // every two hours
+        "interval": 157600,                     // every two hours
         "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
         "exec-if": "exit 0",                  // always run; consider advanced run conditions
         "on-click": "alacritty -e sudo pacman -Syu", // update system
@@ -148,5 +153,22 @@
     	"format":"",
     	"on-click": "exec nwg-drawer -c 7 -is 70 -spacing 23",
     	"tooltip": false,
-},
+    },
+    "bluetooth": {
+        "format": "",
+        "format-off": "",
+        "on-click": "blueberry",
+        "tooltip-format": "{status}"
+    },
+    "custom/power_profile": {
+        "exec": "sleep 0.3 && ~/.config/waybar/scripts/powerprofilecycle.sh -m",
+        "interval": 120,
+        "on-click": "~/.config/waybar/scripts/powerprofilecycle.sh",
+        "exec-on-event": true
+    },
+    "custom/bitcoinprice": {
+        "exec": "sleep 0.3 && ~/.config/waybar/scripts/bitcoin.sh",
+        "interval": 60,
+      	"tooltip": false,
+    },
 }

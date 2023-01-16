@@ -15,6 +15,8 @@ set $term-float alacritty
 # on the original workspace that the command was run on.
 set $menu wofi -c ~/.config/wofi/config -I
 
+set $emojimenu bash ~/.config/sway/scripts/emoji.sh
+
 set $launcher nwg-drawer -c 7 -is 70 -spacing 23
 
 set $powermenu nwgbar
@@ -49,6 +51,9 @@ exec swayidle -w\
 
     # Start your launcher
     bindsym $mod+d exec $menu
+
+    # Emoji menu
+    bindsym $mod+i exec $emojimenu
 
     # Launcher
     bindsym $mod+Shift+d exec $launcher
@@ -171,7 +176,8 @@ mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
     # up will shrink the containers height
-    # down will grow the containers height
+    # down will grow the containers heightbrillo -q -A 5 && brillo | cut -d'.' -f1 > $SWAYSOCK.wob
+
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
@@ -202,7 +208,7 @@ bindsym --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 p
 bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob
 bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob
 bindsym XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob
-
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mic $(pactl get-source-mute @DEFAULT_SOURCE@)"
 #
 # Player
 #
@@ -213,13 +219,15 @@ bindsym XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo
 #
 # Backlight
 #
-    bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
-    bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+    bindsym XF86MonBrightnessUp exec brillo -q -A 5 && brillo | cut -d'.' -f1 > $SWAYSOCK.wob
+    bindsym XF86MonBrightnessDown exec brillo -q -U 5 && brillo | cut -d'.' -f1 > $SWAYSOCK.wob
 #
 # App shortcuts
 #
     bindsym $mod+n exec thunar
     bindsym $mod+o exec firedragon
+    bindsym $mod+m exec flatpak run me.aandrew.ytdownloader
+    bindsym XF86Launch1 exec $term-float -t btop -e btop 
 #
 # Screenshots
 #

@@ -44,9 +44,9 @@ nord15 #b48ead
     /* color: #eceff4; */
     border: 0;
     border-radius: 0;
-    padding: 0 0;
+    padding: 0 1;
     font-family:JetBrains Mono Nerd Font;
-    font-size: 12px;
+    font-size: 14px;
     margin-right: 1px;
     margin-left: 1px;
    }
@@ -77,9 +77,13 @@ window#waybar {
     color: #ebcb8b;
 }
 
+#custom-bitcoinprice {
+    color: #FF8C00;
+}
+
 #battery, #cpu, #memory, #temperature,#language, #backlight, #network, #pulseaudio, #mode, #window,#custom-launcher,#custom-power {
-    padding: 1 0px;
-    border-bottom: 2px;
+    padding: 1 4px;
+    /* border-bottom: 2px; */
     border-style: solid;
 }
  
@@ -96,7 +100,7 @@ window#waybar {
 }
 
 #backlight {
-    color: #ebcb8b;
+    color: #d8dee9;
 }
 
 #battery {
@@ -104,7 +108,7 @@ window#waybar {
 }
 
 #battery.charging {
-    color: #81a1c1;
+    color: #a3be8c;
 }
 
 @keyframes blink {
@@ -144,7 +148,7 @@ window#waybar {
 }
 
 #pulseaudio {
-    color: #f37f97;
+    color: #d8dee9;
 }
 
 #pulseaudio.muted {
@@ -160,10 +164,11 @@ window#waybar {
 }
 
 #idle_inhibitor {
-   color: #ebcb8b;
+   color: #d8dee9;
 }
 
 #tray {
+    padding: 1 4px;
 }
 
 #custom-launcher,#custom-power{
@@ -177,8 +182,10 @@ window#waybar {
 }    
 
 #language{
-   color:#d08770;
+   color:#d8dee9;
 }   
 
-
+#bluetooth{
+    padding: 1 4px;
+}
 

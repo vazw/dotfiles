@@ -21,7 +21,7 @@ exec tail -f $SWAYSOCK.wob | wob --border-color '#ffdcbb8c' --background-color '
 exec autotiling
 
 # Wlsunset
-exec ~/.config/sway/scripts/light.sh
+# exec ~/.config/sway/scripts/light.sh
 
 # nm-applet
 exec nm-applet --indicator
@@ -51,9 +51,8 @@ exec tracker daemon -s
 # Cheatsheet
 exec micro ~/.config/sway/cheatsheet
 
-# tlp
-
-exec tlp setcharge 60 80 BATT
+exec ~/.config/sway/scripts/sound.sh
+exec brillo -c -S 1
 
 # nwg-drawer
 exec_always nwg-drawer -r 

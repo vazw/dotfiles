@@ -18,15 +18,8 @@ end
 null_ls.setup({
 	sources = {
 		-- Python
-		null_ls.builtins.formatting.isort.with({
-			extra_args = { "--line-length", "79", "--profile", "black" },
-		}),
 		null_ls.builtins.formatting.black.with({
 			extra_args = { "--line-length", "79" },
-		}),
-		null_ls.builtins.diagnostics.flake8.with({
-			filetypes = { "python" },
-			extra_args = { "--extend-ignore", "E203, F841" },
 		}),
 
 		null_ls.builtins.diagnostics.shellcheck,
