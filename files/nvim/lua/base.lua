@@ -53,3 +53,5 @@ vim.opt.whichwrap:append("<>[]hl")
 vim.opt.mouse = "a"
 vim.opt.signcolumn = "yes"
 vim.api.nvim_set_option_value("colorcolumn", "80", {})
+
+vim.cmd([[set shell=/bin/fish]])

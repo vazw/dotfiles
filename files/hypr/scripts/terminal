@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
+##
+## launch terminal with alt config
+
+
+if [ "$1" == "-f" ]; then
+    alacritty --class='foot-float'
+elif [ "$1" == "-F" ]; then
+    alacritty --class='foot-full'
+elif [ "$1" == "-s" ]; then
+    alacritty --class='foot-float'
+else
+    alacritty
+fi

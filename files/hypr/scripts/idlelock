@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+swayidle -w\
+    timeout 1070 'brillo -O && sh ~/.config/hypr/scripts/lockscreen'\
+    timeout 770 'brillo -O && hyprctl dispatch dpms off' \
+    resume 'hyprctl dispatch dpms on && brillo -I' \
+    before-sleep 'brillo -O && sh ~/.config/hypr/scripts/lockscreen' &

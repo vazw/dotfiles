@@ -1,0 +1,5 @@
+state 0x10, keycode 152 (keysym 0x1008ff5d, XF86Explorer), same_screen YES,
+state 0x10, keycode 180 (keysym 0x1008ff18, XF86HomePage), same_screen YES,
+state 0x10, keycode 163 (keysym 0x1008ff19, XF86Mail), same_screen YES,
+state 0x10, keycode 148 (keysym 0x1008ff1d, XF86Calculator), same_screen YES,
+state 0x10, keycode 179 (keysym 0x1008ff81, XF86Tools), same_screen YES,

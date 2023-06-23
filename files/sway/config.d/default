@@ -1,5 +1,5 @@
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set $mod Mod4 
 
 # Home row direction keys, like vim
 set $left h
@@ -9,19 +9,20 @@ set $right l
 
 # Your preferred terminal emulators
 set $term-float alacritty
+set $foot ~/.config/hypr/scripts/terminal
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi -c ~/.config/wofi/config -I
-
-set $emojimenu bash ~/.config/sway/scripts/emoji.sh
+set $menu wofi -I
+set $music ~/.config/hypr/scripts/rofi_music
 
 set $launcher nwg-drawer -c 7 -is 70 -spacing 23
+# set $launcher wofi
 
-set $powermenu nwgbar
+set $powermenu nwgbar -f
 
-set $cheat $term-float -t cheatsheet -e nvim ~/.config/sway/cheatsheet.md
+set $cheat $term-float -t cheatsheet -e micro ~/.config/sway/cheatsheet.md
 
 ### Idle configuration
 exec swayidle -w\
@@ -36,6 +37,19 @@ exec swayidle -w\
 ## Lock Screen
  bindsym $mod+f1 exec ~/.config/sway/scripts/lockman.sh
 
+# Rotate output clockwise
+bindsym $mod+F9 output eDP-1 transform 0
+bindsym $mod+Ctrl+F9 output eDP-1 transform 90
+# Rotate output anticlockwise
+bindsym $mod+Shift+F9 output eDP-1 transform 180
+
+# Toggle between wallpapers
+bindsym $mod+Shift+b exec ~/.config/sway/scripts/background-swap.sh
+
+# Toggle background waybar
+bindsym $mod+Shift+w exec ~/.config/waybar/scripts/swap.sh
+
+
 ### Key bindings
 #
 # Basics:
@@ -45,16 +59,14 @@ exec swayidle -w\
 
     # Open the power menu
     bindsym $mod+Shift+e exec $powermenu
+    bindsym $mod+x exec $powermenu # ArchCraft shortcut
 
     # Kill focused window
     bindsym $mod+q kill
 
     # Start your launcher
+    # bindsym $mod+d exec $menu
     bindsym $mod+d exec $menu
-
-    # Emoji menu
-    bindsym $mod+i exec $emojimenu
-
     # Launcher
     bindsym $mod+Shift+d exec $launcher
 
@@ -129,6 +141,33 @@ exec swayidle -w\
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
+
+
+    # French keyboard
+    # Switch to workspace
+    bindsym $mod+ampersand workspace number 1
+    bindsym $mod+eacute workspace number 2
+    bindsym $mod+quotedbl workspace number 3
+    bindsym $mod+apostrophe workspace number 4
+    bindsym $mod+parenleft workspace number 5
+    bindsym $mod+minus workspace number 6
+    bindsym $mod+egrave workspace number 7
+    bindsym $mod+underscore workspace number 8
+    bindsym $mod+ccedilla workspace number 9
+    bindsym $mod+agrave workspace number 10
+
+    # Move focused container to workspace
+    bindsym $mod+Shift+ampersand move container to workspace number 1
+    bindsym $mod+Shift+eacute move container to workspace number 2
+    bindsym $mod+Shift+quotedbl move container to workspace number 3
+    bindsym $mod+Shift+apostrophe move container to workspace number 4
+    bindsym $mod+Shift+parenleft move container to workspace number 5
+    bindsym $mod+Shift+minus move container to workspace number 6
+    bindsym $mod+Shift+egrave move container to workspace number 7
+    bindsym $mod+Shift+underscore move container to workspace number 8
+    bindsym $mod+Shift+ccedilla move container to workspace number 9
+    bindsym $mod+Shift+agrave move container to workspace number 10
+
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 
@@ -153,7 +192,7 @@ exec swayidle -w\
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+    # bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
@@ -164,11 +203,22 @@ exec swayidle -w\
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    # bindsym $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    #bindsym $mod+minus scratchpad show
+
+    # My Keybinding
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+equal move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+equal scratchpad show
+
+
 #
 # Resizing containers:
 #
@@ -176,8 +226,7 @@ mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
     # up will shrink the containers height
-    # down will grow the containers heightbrillo -q -A 5 && brillo | cut -d'.' -f1 > $SWAYSOCK.wob
-
+    # down will grow the containers height
     bindsym $left resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
@@ -208,7 +257,7 @@ bindsym --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 p
 bindsym XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob
 bindsym XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob
 bindsym XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send "Mic $(pactl get-source-mute @DEFAULT_SOURCE@)"
+
 #
 # Player
 #
@@ -216,26 +265,22 @@ bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ to
     bindsym XF86AudioPause exec playerctl pause
     bindsym XF86AudioNext exec playerctl next
     bindsym XF86AudioPrev exec playerctl previous
+    bindsym $mod+m exec $music
 #
 # Backlight
 #
-    bindsym XF86MonBrightnessUp exec brillo -q -A 5 && brillo | cut -d'.' -f1 > $SWAYSOCK.wob
-    bindsym XF86MonBrightnessDown exec brillo -q -U 5 && brillo | cut -d'.' -f1 > $SWAYSOCK.wob
+    bindsym XF86MonBrightnessUp exec light -A 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob 
+    bindsym XF86MonBrightnessDown exec light -U 5 && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
 #
 # App shortcuts
 #
+    # bindsym $mod+n exec thunars
     bindsym $mod+n exec thunar
-    bindsym $mod+o exec firedragon
-    bindsym $mod+m exec flatpak run me.aandrew.ytdownloader
-    bindsym XF86Launch1 exec $term-float -t btop -e btop 
+    bindsym $mod+o exec google-chrome-stable
 #
 # Screenshots
 #
     bindsym print exec /usr/share/sway/scripts/grimshot --notify save output
     bindsym Shift+print exec ~/.config/sway/scripts/screenshot.sh
     bindsym Alt+print exec /usr/share/sway/scripts/grimshot --notify copy area
-
-# Touch Pad Toggle
-#
-    bindsym XF86TouchpadToggle exec swaymsg input type:touchpad events toggle
 

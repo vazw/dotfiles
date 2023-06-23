@@ -89,6 +89,29 @@ nvim_lsp.ruff_lsp.setup({
 	capabilities = capabilities,
 })
 
+nvim_lsp.rust_analyzer.setup({
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		enable_format_on_save(client, bufnr)
+	end,
+	capabilities = capabilities,
+})
+nvim_lsp.csharp_ls.setup({
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		enable_format_on_save(client, bufnr)
+	end,
+	capabilities = capabilities,
+})
+
+nvim_lsp.clangd.setup({
+	on_attach = function(client, bufnr)
+		on_attach(client, bufnr)
+		enable_format_on_save(client, bufnr)
+	end,
+	capabilities = capabilities,
+})
+
 nvim_lsp.pyright.setup({
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
@@ -108,7 +131,7 @@ nvim_lsp.pyright.setup({
 	},
 })
 
-nvim_lsp.sumneko_lua.setup({
+nvim_lsp.lua_ls.setup({
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
 		enable_format_on_save(client, bufnr)

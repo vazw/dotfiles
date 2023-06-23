@@ -3,8 +3,6 @@ for_window [class="Yad" instance="yad"] floating enable
 for_window [app_id="yad"] floating enable
 for_window [app_id="blueman-manager"] floating enable,  resize set width 40 ppt height 30 ppt
 
-for_window [app_id="blueberry"] floating enable
-for_window [app_id="azote"] floating enable
 # set floating (nontiling) for special apps:
 for_window [class="Xsane" instance="xsane"] floating enable
 for_window [app_id="pavucontrol" ] floating enable, resize set width 40 ppt height 30 ppt
@@ -27,9 +25,6 @@ for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, s
 for_window [title="Picture in picture"] floating enable, sticky enable
 for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
 for_window [title="htop"] floating enable, resize set width 50 ppt height 70 ppt
-for_window [title="btop"] floating enable, resize set width 80 ppt height 70 ppt
-for_window [title="Celluloid"] floating enable, resize set width 80 ppt height 70 ppt
-for_window [title="mn-connection-editor"] floating enable, resize set width 60 ppt height 60 ppt
 for_window [app_id="xsensors"] floating enable
 for_window [title="Save File"] floating enable
 for_window [app_id="firedragon" title="firedragon — Sharing Indicator"] kill

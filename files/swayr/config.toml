@@ -22,6 +22,7 @@ urgency_end = '</span>'
 html_escape = true
 icon_dirs = [
     '/usr/share/icons/hicolor/scalable/apps',
+    '/usr/share/icons/hicolor/128x128/apps',
     '/usr/share/icons/hicolor/64x64/apps',
     '/usr/share/icons/hicolor/48x48/apps',
     '/usr/share/icons/Adwaita/64x64/apps',

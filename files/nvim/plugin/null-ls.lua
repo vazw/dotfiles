@@ -19,8 +19,10 @@ null_ls.setup({
 	sources = {
 		-- Python
 		null_ls.builtins.formatting.black.with({
-			extra_args = { "--line-length", "79" },
+			extra_args = { "--line-length", "80" },
 		}),
+		null_ls.builtins.formatting.clang_format,
+		null_ls.builtins.formatting.rustfmt,
 
 		null_ls.builtins.diagnostics.shellcheck,
 		null_ls.builtins.formatting.beautysh,

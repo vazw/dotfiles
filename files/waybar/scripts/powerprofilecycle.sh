@@ -15,7 +15,7 @@ while getopts "mh" opt; do
         m)
             case $($PGET) in
                 power-saver)
-                    printf "\npower-saver"  && exit 0
+                    printf "󱈑\npower-saver"  && exit 0
                     ;;
                 balanced)
                     printf "\nbalanced" && exit 0
@@ -33,10 +33,10 @@ done
 
 case $($PGET) in
     power-saver)
-        $PSET balanced && printf "\nbalanced" && exit 0
+        $PSET balanced && notify-send "Power Profile: balanced " && exit 0
         ;;
     balanced)
-        $PSET power-saver && printf "\npower-saver"  && exit 0
+        $PSET power-saver && notify-send "Power Profile: power-saver 󱈑"  && exit 0
         ;;
 esac
 

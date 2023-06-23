@@ -4,6 +4,10 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # Desktop notifications
 exec mako
 
+# Pipewire
+exec rm /run/user/1000/pipewire-0.lock &
+exec pipewire
+exec systemctl --user restart pipewire.service 
 
 # GTK3 applications take a long time to start
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -15,7 +19,9 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
  
 # Wob
 exec mkfifo $SWAYSOCK.wob
-exec tail -f $SWAYSOCK.wob | wob --border-color '#ffdcbb8c' --background-color '#cc3a3a3a' --bar-color '#ffdcbb8c'
+# THIS DOESN'T WORK. --border-color etc. not valid
+# exec tail -f $SWAYSOCK.wob | wob --border-color '#ffdcbb8c' --background-color '#cc3a3a3a' --bar-color '#ffdcbb8c'
+exec tail -f $SWAYSOCK.wob | wob
 
 # Autotiling
 exec autotiling
@@ -50,9 +56,6 @@ exec tracker daemon -s
 
 # Cheatsheet
 exec micro ~/.config/sway/cheatsheet
-
-exec ~/.config/sway/scripts/sound.sh
-exec brillo -c -S 1
 
 # nwg-drawer
 exec_always nwg-drawer -r 
