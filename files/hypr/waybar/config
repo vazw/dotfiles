@@ -6,9 +6,9 @@
     "margin": "0 0 0 0",
     //"width": 1350, // Waybar width
     // Choose the order of the modules   # , "custom/swap", "network"
-    "modules-left": ["custom/launcher" ,"wlr/workspaces"],
+    "modules-left": ["wlr/workspaces", "custom/todolist"],
     // "modules-center": 
-    "modules-right": ["custom/bitcoinprice", "temperature", "custom/pacman", "backlight", "pulseaudio", "clock", "tray", "bluetooth", "idle_inhibitor", "battery"], 
+    "modules-right": ["custom/bitcoinprice", "temperature", "custom/pacman", "backlight", "clock", "tray", "bluetooth", "pulseaudio#sink", "pulseaudio#source", "idle_inhibitor", "battery"], 
     
  // Modules configuration
  
@@ -37,7 +37,7 @@
             "3": [],
             "10": [],
         },
-        "on-click": "activate",
+        "on-click": "none",
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -76,7 +76,7 @@
     },
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{icon}{percent: >3}%",
+        "format": "{icon} {percent}%",
         "format-icons": ["", ""],
         // "on-scroll-down": "brightnessctl -c backlight set 5%-",
         "on-scroll-down": "~/.config/hypr/scripts/brightness --dec",
@@ -91,11 +91,11 @@
         },       
         "format": "{icon} ",
         "full-at": 78,
-        //"format": "{icon}{capacity: >3}%",
-        "format-charging": "{icon} {capacity: >2}%",
+        //"format": "{icon}{capacity}%",
+        "format-charging": "{icon} {capacity}%",
         "format-plugged": "󰂄",
         "format-full": "{icon} ",        
-        "format-alt" : "{icon}{capacity: >3}%",
+        "format-alt" : "{icon} {capacity}%",
         "format-time": "{H}:{m} hours",        
         "format-icons": ["", "", "", "", ""],
         "on-click": "~/.config/waybar/scripts/powerprofilecycle.sh",
@@ -121,11 +121,11 @@
         "tooltip-format-enumerate-connected": "{device_alias}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%"
     },
-    "pulseaudio": {
+    "pulseaudio#sink": {
         "scroll-step": 1,
-        "format": "{icon}{volume}%",
-        "format-bluetooth": "{icon}{volume}%",
-        "format-muted":" muted",
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
+        "format-muted":"",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
@@ -133,14 +133,20 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["󰕿", "󰖀", "󰕾 ", " "]
+            "default": ["󰕿", "󰖀", "󰕾", ""]
         },
         "on-click": "pavucontrol",
         "on-scroll-up": "~/.config/hypr/scripts/volume --inc",
         "on-scroll-down": "~/.config/hypr/scripts/volume --dec"
     },
+    "pulseaudio#source": {
+    "format": "{format_source}",
+    "format-source": "",
+    "format-source-muted": "",
+    "on-click": "~/.config/hypr/scripts/volume --toggle-mic",
+    },
      "custom/pacman": {
-        "format": " {:>2}󰇚",
+        "format": " {}󰇚",
         "interval": 7200,                     // every two hours
         "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
         "exec-if": "exit 0",                  // always run; consider advanced run conditions
@@ -152,11 +158,9 @@
        	"on-click": "~/.config/hypr/scripts/rofi_powermenu",
       	"tooltip": false,
     },
-    "custom/launcher": {
-    	"format":" ",
-    	"on-click": "~/.config/hypr/scripts/rofi_launcher",
-       	"on-click-right": "~/.config/hypr/scripts/rofi_powermenu",
-    	"tooltip": false,
+    "custom/todolist": {
+        "exec": "cat ~/TODO | head -n 1 && cat ~/TODO | tail -n +2 | tr '\n' '\r'",
+        "interval": 60,
     },
     "custom/bitcoinprice": {
         "exec": "sleep 0.3 && ~/.config/waybar/scripts/bitcoin.sh",

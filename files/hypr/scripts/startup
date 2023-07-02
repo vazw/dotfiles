@@ -6,7 +6,7 @@
 ## Edited for Garuda Linux by yurihikari
 
 # Kill already running process
-_ps=(waybar mako)
+_ps=(waybar dunst)
 for _prs in "${_ps[@]}"; do
     if [[ `pidof ${_prs}` ]]; then
         killall -9 ${_prs}
@@ -23,7 +23,7 @@ exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ss
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Set wallpaper
-swaybg --output '*' --mode fill --image /home/vaz/.config/sway/backgrounds/the_valley.webp &
+swaybg --output '*' --mode fill --image /home/vaz/.config/sway/backgrounds/flatppuccin_4k_macchiato.png &
 
 # Apply themes
 # ~/.config/hypr/scripts/gtkthemes &

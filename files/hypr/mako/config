@@ -4,7 +4,7 @@
 # Edited for Garuda Linux by yurihikari
 
 # GLOBAL CONFIGURATION OPTIONS
-max-history=100
+max-history=10
 sort=-time
 
 # BINDING OPTIONS

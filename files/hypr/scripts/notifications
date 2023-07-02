@@ -2,10 +2,13 @@
 
 ## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
 ##
-## launch mako with alt config
+## launch dunst with alt config
 
-CONFIG="$HOME/.config/hypr/mako/config"
+CONFIG="$HOME/.config/hypr/dunst"
 
-if [[ ! `pidof mako` ]]; then
-	mako --config ${CONFIG}
+if [[ ! `pidof dunst` ]]; then
+    dunst -config ${CONFIG}
+else
+    pkill dunst
+    dunst -config ${CONFIG}
 fi
