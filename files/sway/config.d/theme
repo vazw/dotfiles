@@ -3,7 +3,8 @@ include catppuccin-mocha
 exec_always ~/.config/sway/scripts/import-gsettings
 
 # Set inner/outer gaps
-gaps inner 10
+gaps inner 0
+gaps outer 0
 
 # Hide titlebar on windows: 
 default_border pixel 2
@@ -13,7 +14,7 @@ default_border pixel 2
 font FiraSans Nerd Font 10
 
 # Thin borders:
-smart_borders off
+smart_borders on 
 
 # Set wallpaper:
 # exec ~/.azotebg
@@ -24,10 +25,10 @@ for_window [shell="x_wayland"] title_format "%class - %title"
 
 # Set gaps for windows with rounded corners
 for_window [class="^.*"] border pixel 2
-for_window [class="^.*"] border radius 30
+for_window [class="^.*"] border radius 90
 
 for_window [app_id="^.*"] border pixel 2
-for_window [app_id="^.*"] border radius 30
+for_window [app_id="^.*"] border radius 90
 
 set $opacity 1
 

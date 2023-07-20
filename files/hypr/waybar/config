@@ -26,18 +26,15 @@
             "4": "4",
             "5": "5",
             "6": "6",
-            "7": "7",
+            "7": "7󰯂",
             "8": "",
             "9": "9",
             "10":"",
             "urgent": "",
         },"persistent_workspaces": {
             "1": [],
-            "2": [],
-            "3": [],
-            "10": [],
         },
-        "on-click": "none",
+        "on-click": "activate",
     },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -90,7 +87,7 @@
             "critical": 30
         },       
         "format": "{icon} ",
-        "full-at": 78,
+        "full-at": 77,
         //"format": "{icon}{capacity}%",
         "format-charging": "{icon} {capacity}%",
         "format-plugged": "󰂄",

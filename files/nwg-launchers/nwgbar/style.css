@@ -1,6 +1,6 @@
 #bar {
-    margin: 30px; /* affects top/bottom & left/right alignment */
-    font-size: 24px;
+    margin: 10px; /* affects top/bottom & left/right alignment */
+    font-size: 16px;
     font-family: Product Sans;
 }
 
@@ -15,9 +15,9 @@ image {
 }
 
 button {
-    /* padding-top: 10px;
-    margin: 5px */
-    padding: 100px 80px;
+    /* padding-top: 10px; */
+    /* margin: 5px; */
+    padding: 10px 10px;
     margin: 20px;
     background: #24273a;
 }

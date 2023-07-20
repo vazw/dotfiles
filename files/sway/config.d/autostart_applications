@@ -2,7 +2,7 @@
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # Desktop notifications
-exec mako
+exec ~/.config/hypr/scripts/notifications
 
 # Pipewire
 exec rm /run/user/1000/pipewire-0.lock &
@@ -49,7 +49,11 @@ exec libinput-gestures-setup start
 exec kanshi
 
 # Xdg DEsktop Portal
-exec /usr/libexec/xdg-desktop-portal
+exec killall -e xdg-desktop-portal-hyprland
+exec killall -e xdg-desktop-portal-wlr
+exec killall xdg-desktop-portal
+exec /usr/lib/xdg-desktop-portal-wlr
+exec /usr/lib/xdg-desktop-portal
 
 # Tracker daemon for gnome apps
 exec tracker daemon -s

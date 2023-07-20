@@ -1,4 +1,4 @@
-indicator
+# indicator
 # no-unlock-indicator
 # daemonize
 indicator-caps-lock
@@ -8,8 +8,6 @@ scaling=fill
 # color=00000000
 screenshots
 clock
-effect-blur=7x5
-effect-vignette=0.5:0.5:0.5:0.5:0
 font=UbuntuMono
 font-size=20
 

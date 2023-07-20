@@ -148,6 +148,7 @@ alias tb='nc termbin.com 9999'
 alias vi='nvim'
 alias lg='lazygit'
 alias Env='source .venv/bin/activate.fish'
+alias Eenv='source env/bin/activate.fish'
 alias Dnv='deactivate'
 alias Cenv='virtualenv .venv'
 

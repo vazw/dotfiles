@@ -50,6 +50,12 @@ export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
 
 printf "true" > "$STATUS_FILE"
 
+ID="$(pactl get-source-mute @DEFAULT_SOURCE@ | grep yes | cut -f1)"
+if [[ -n $ID ]]; then
+    sleep 0.1
+else
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+fi
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY &
 exec hash dbus-update-activation-environment 2>/dev/null && \

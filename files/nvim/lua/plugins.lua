@@ -85,6 +85,7 @@ packer.startup(function(use)
 	-- 	},
 	-- })
 	use("ellisonleao/glow.nvim")
+	use("Bekaboo/dropbar.nvim") -- IDE like dropbar menu
 	if packer_bootstrap then
 		require("packer").sync()
 	end

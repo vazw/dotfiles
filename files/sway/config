@@ -10,7 +10,7 @@ include $HOME/.config/sway/config.d/*
 # xwayland disable
 
 # Set the background image
-output * bg /home/vaz/.config/sway/backgrounds/the_valley.webp fill
+output * bg /home/vaz/.config/sway/backgrounds/flatppuccin_4k_macchiato.png fill
 
 # Set the initial keyboard layout
 # For configuration Laptop Right, Monitor Left
