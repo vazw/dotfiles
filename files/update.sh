@@ -1,23 +1,10 @@
 #!/bin/bash
 
-files=(
-    "alacritty"
-    "btop"
-    "fish"
-    "hypr"
-    "lazygit"
-    "neofetch"
-    "nvim"
-    "ranger"
-    "sway"
-    "tmux"
-    "waybar"
-    "wob"
-    "wofi"
-    "xsettingsd"
-)
+FILES=(*)
 
-for item in ${files[@]} ;do
-    cp ~/.config/"$item"/ -ru .
-    echo "Updated $item"
+for UPDATE_PATH in "${FILES[@]}" ;do
+    if [[ $UPDATE_PATH != "update.sh" ]]; then
+        cp ~/.config/"$UPDATE_PATH"/ -ru .
+        echo "Updated $UPDATE_PATH"
+    fi
 done
