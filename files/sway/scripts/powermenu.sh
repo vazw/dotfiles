@@ -1,16 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-entries="⇠ Logout\n⏾ Suspend\n⭮ Reboot\n⏻ Shutdown"
+LAYOUT="$HOME/.config/wlogout/layout"
+STYLE="$HOME/.config/wlogout/style.css"
 
-selected=$(echo -e $entries|wofi --width 250 --height 210 --dmenu --cache-file /dev/null | awk '{print tolower($2)}')
-
-case $selected in
-    logout)
-        swaymsg exit ;;
-    suspend)
-        exec systemctl suspend ;;
-    reboot)
-        exec systemctl reboot ;;
-    shutdown)
-        exec systemctl poweroff -i ;;
-esac
+if [[ ! `pidof wlogout` ]]; then
+    wlogout --layout ${LAYOUT} --css ${STYLE} \
+        --buttons-per-row 5 \
+        --column-spacing 50 \
+        --row-spacing 50 \
+        --margin-top 390 \
+        --margin-bottom 390 \
+        --margin-left 150 \
+        --margin-right 150
+else
+    pkill wlogout
+fi

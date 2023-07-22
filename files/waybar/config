@@ -91,7 +91,7 @@
         //"format": "{icon}{capacity}%",
         "format-charging": "{icon} {capacity}%",
         "format-plugged": "󰂄",
-        "format-full": "{icon} ",        
+        "format-full": "󰂄",        
         "format-alt" : "{icon} {capacity}%",
         "format-time": "{H}:{m} hours",        
         "format-icons": ["", "", "", "", ""],

@@ -1,13 +1,10 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/vaz/Code/works/MYSALENG_Bot_Version_FastAPI
-- /home/vaz/Code/works/telegramBot/TelegramBot/MYSALENG_ASSISTANCE
-- /home/vaz/Code/works/Mysaleng_Strategy_Middleman_Service
-- /home/vaz/Code/works/BacktestWithYahooFinance
-- /home/vaz/Code/personal/stablediffusion/stable-diffusion-webui
-- /home/vaz/Code/personal/TelegramBot
-- /home/vaz/Code/works/MT4_MT5_EAs
+    - /home/vaz/Code/work/MYSALENG_Bot_Version_FastAPI
+    - /home/vaz/Templates/scripts/dotfiles
+    - /home/vaz/Templates/scripts
+    - /home/vaz/Code/personal/TelegramBot
 startuppopupversion: 5
 customcommandshistory:
-- q
+    - q
 hidecommandlog: false

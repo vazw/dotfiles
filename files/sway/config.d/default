@@ -9,14 +9,12 @@ set $up k
 set $right l
 
 # Your preferred terminal emulators
-set $term-float alacritty
-set $foot ~/.config/hypr/scripts/terminal
+set $term-float kitty
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu wofi -I
-set $music ~/.config/hypr/scripts/rofi_music
 
 # set $launcher nwg-drawer -c 7 -is 70 -spacing 23
 set $launcher wofi
@@ -55,174 +53,176 @@ $mybind $mod+Shift+w exec ~/.config/waybar/scripts/swap.sh
 #
 # Basics:
 #
-    # Start a floating terminal
-    $mybind $mod+Return exec $term-float
+# Start a floating terminal
+$mybind $mod+Return exec $term-float
 
-    # Open the power menu
-    $mybind $mod+Shift+e exec $powermenu
-    $mybind $mod+x exec $powermenu # ArchCraft shortcut
+# Open the power menu
+$mybind $mod+Shift+e exec $powermenu
+$mybind $mod+x exec $powermenu # ArchCraft shortcut
 
-    # Kill focused window
-    $mybind $mod+q kill
+# Kill focused window
+$mybind $mod+q kill
 
-    # Start your launcher
-    # $mybind $mod+d exec $menu
-    $mybind $mod+d exec $menu
-    # Launcher
-    $mybind $mod+Shift+d exec $launcher
+# Start your launcher
+# $mybind $mod+d exec $menu
+$mybind $mod+d exec $menu
+# Launcher
+$mybind $mod+Shift+d exec $launcher
 
-    # Activities
-    $mybind $mod+o exec swayr switch-window
+# Activities
+$mybind $mod+o exec swayr switch-window
 
-    # Activities and workspaces
-    $mybind $mod+Shift+O exec swayr switch-workspace-or-window
+# Activities and workspaces
+$mybind $mod+Shift+O exec swayr switch-workspace-or-window
 
-    # Switch to the last recently used window
-    $mybind $mod+Tab exec swayr switch-to-urgent-or-lru-window
+# Switch to the last recently used window
+$mybind $mod+Tab exec swayr switch-to-urgent-or-lru-window
 
-    # Cheatsheet
-    $mybind $mod+Shift+i exec $cheat
+# Cheatsheet
+$mybind $mod+Shift+i exec $cheat
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+#Color Picker
+$mybind $mod+c exec ~/.config/sway/scripts/colorpicker
 
-    # Reload the configuration file
-    $mybind $mod+Shift+c reload
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# Reload the configuration file
+$mybind $mod+Shift+c reload
 
 #
 # Moving around:
 #
-    # Move your focus around
-    $mybind $mod+$left focus left
-    $mybind $mod+$down focus down
-    $mybind $mod+$up focus up
-    $mybind $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    $mybind $mod+Left focus left
-    $mybind $mod+Down focus down
-    $mybind $mod+Up focus up
-    $mybind $mod+Right focus right
+# Move your focus around
+$mybind $mod+$left focus left
+$mybind $mod+$down focus down
+$mybind $mod+$up focus up
+$mybind $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+$mybind $mod+Left focus left
+$mybind $mod+Down focus down
+$mybind $mod+Up focus up
+$mybind $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
-    $mybind $mod+Shift+$left move left
-    $mybind $mod+Shift+$down move down
-    $mybind $mod+Shift+$up move up
-    $mybind $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    $mybind $mod+Shift+Left move left
-    $mybind $mod+Shift+Down move down
-    $mybind $mod+Shift+Up move up
-    $mybind $mod+Shift+Right move right
+# Move the focused window with the same, but add Shift
+$mybind $mod+Shift+$left move left
+$mybind $mod+Shift+$down move down
+$mybind $mod+Shift+$up move up
+$mybind $mod+Shift+$right move right
+# Ditto, with arrow keys
+$mybind $mod+Shift+Left move left
+$mybind $mod+Shift+Down move down
+$mybind $mod+Shift+Up move up
+$mybind $mod+Shift+Right move right
 #
 # Workspaces:
 #
-    # Switch to workspace
-    $mybind $mod+1 workspace number 1
-    $mybind $mod+2 workspace number 2
-    $mybind $mod+3 workspace number 3
-    $mybind $mod+4 workspace number 4
-    $mybind $mod+5 workspace number 5
-    $mybind $mod+6 workspace number 6
-    $mybind $mod+7 workspace number 7
-    $mybind $mod+8 workspace number 8
-    $mybind $mod+9 workspace number 9
-    $mybind $mod+0 workspace number 10
-    # Move focused container to workspace
-    $mybind $mod+Shift+1 move container to workspace number 1
-    $mybind $mod+Shift+2 move container to workspace number 2
-    $mybind $mod+Shift+3 move container to workspace number 3
-    $mybind $mod+Shift+4 move container to workspace number 4
-    $mybind $mod+Shift+5 move container to workspace number 5
-    $mybind $mod+Shift+6 move container to workspace number 6
-    $mybind $mod+Shift+7 move container to workspace number 7
-    $mybind $mod+Shift+8 move container to workspace number 8
-    $mybind $mod+Shift+9 move container to workspace number 9
-    $mybind $mod+Shift+0 move container to workspace number 10
+# Switch to workspace
+$mybind $mod+1 workspace number 1
+$mybind $mod+2 workspace number 2
+$mybind $mod+3 workspace number 3
+$mybind $mod+4 workspace number 4
+$mybind $mod+5 workspace number 5
+$mybind $mod+6 workspace number 6
+$mybind $mod+7 workspace number 7
+$mybind $mod+8 workspace number 8
+$mybind $mod+9 workspace number 9
+$mybind $mod+0 workspace number 10
+# Move focused container to workspace
+$mybind $mod+Shift+1 move container to workspace number 1
+$mybind $mod+Shift+2 move container to workspace number 2
+$mybind $mod+Shift+3 move container to workspace number 3
+$mybind $mod+Shift+4 move container to workspace number 4
+$mybind $mod+Shift+5 move container to workspace number 5
+$mybind $mod+Shift+6 move container to workspace number 6
+$mybind $mod+Shift+7 move container to workspace number 7
+$mybind $mod+Shift+8 move container to workspace number 8
+$mybind $mod+Shift+9 move container to workspace number 9
+$mybind $mod+Shift+0 move container to workspace number 10
 
 
-    # French keyboard
-    # Switch to workspace
-    $mybind $mod+ampersand workspace number 1
-    $mybind $mod+eacute workspace number 2
-    $mybind $mod+quotedbl workspace number 3
-    $mybind $mod+apostrophe workspace number 4
-    $mybind $mod+parenleft workspace number 5
-    $mybind $mod+minus workspace number 6
-    $mybind $mod+egrave workspace number 7
-    $mybind $mod+underscore workspace number 8
-    $mybind $mod+ccedilla workspace number 9
-    $mybind $mod+agrave workspace number 10
+# French keyboard
+# Switch to workspace
+$mybind $mod+ampersand workspace number 1
+$mybind $mod+eacute workspace number 2
+$mybind $mod+quotedbl workspace number 3
+$mybind $mod+apostrophe workspace number 4
+$mybind $mod+parenleft workspace number 5
+$mybind $mod+minus workspace number 6
+$mybind $mod+egrave workspace number 7
+$mybind $mod+underscore workspace number 8
+$mybind $mod+ccedilla workspace number 9
+$mybind $mod+agrave workspace number 10
 
-    # Move focused container to workspace
-    $mybind $mod+Shift+ampersand move container to workspace number 1
-    $mybind $mod+Shift+eacute move container to workspace number 2
-    $mybind $mod+Shift+quotedbl move container to workspace number 3
-    $mybind $mod+Shift+apostrophe move container to workspace number 4
-    $mybind $mod+Shift+parenleft move container to workspace number 5
-    $mybind $mod+Shift+minus move container to workspace number 6
-    $mybind $mod+Shift+egrave move container to workspace number 7
-    $mybind $mod+Shift+underscore move container to workspace number 8
-    $mybind $mod+Shift+ccedilla move container to workspace number 9
-    $mybind $mod+Shift+agrave move container to workspace number 10
+# Move focused container to workspace
+$mybind $mod+Shift+ampersand move container to workspace number 1
+$mybind $mod+Shift+eacute move container to workspace number 2
+$mybind $mod+Shift+quotedbl move container to workspace number 3
+$mybind $mod+Shift+apostrophe move container to workspace number 4
+$mybind $mod+Shift+parenleft move container to workspace number 5
+$mybind $mod+Shift+minus move container to workspace number 6
+$mybind $mod+Shift+egrave move container to workspace number 7
+$mybind $mod+Shift+underscore move container to workspace number 8
+$mybind $mod+Shift+ccedilla move container to workspace number 9
+$mybind $mod+Shift+agrave move container to workspace number 10
 
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
 
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    $mybind $mod+b splith
-    $mybind $mod+v splitv
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+$mybind $mod+b splith
+$mybind $mod+v splitv
 
-    # Switch the current container between different layout styles
-    $mybind $mod+s layout stacking
-    $mybind $mod+w layout tabbed
-    $mybind $mod+e layout toggle split
+# Switch the current container between different layout styles
+$mybind $mod+s layout stacking
+$mybind $mod+w layout tabbed
+$mybind $mod+e layout toggle split
 
-    # Make the current focus fullscreen
-    $mybind $mod+f fullscreen
+# Make the current focus fullscreen
+$mybind $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    $mybind $mod+space floating toggle
+# Toggle the current focus between tiling and floating mode
+$mybind $mod+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    # $mybind $mod+space focus mode_toggle
+# Swap focus between the tiling area and the floating area
+# $mybind $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    $mybind $mod+a focus parent
+# Move focus to the parent container
+$mybind $mod+a focus parent
 #
 # Scratchpad:
 #
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    # $mybind $mod+Shift+minus move scratchpad
+# Move the currently focused window to the scratchpad
+# $mybind $mod+Shift+minus move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    #$mybind $mod+minus scratchpad show
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+#$mybind $mod+minus scratchpad show
 
-    # My Keybinding
+# My Keybinding
 
-    # Move the currently focused window to the scratchpad
-    $mybind $mod+Shift+equal move scratchpad
+# Move the currently focused window to the scratchpad
+$mybind $mod+Shift+equal move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    $mybind $mod+equal scratchpad show
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+$mybind $mod+equal scratchpad show
 
 
-#
+
 # Resizing containers:
-#
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -252,46 +252,42 @@ $mybind --whole-window --border $mod+button5 resize grow height 5 px or 5 ppt
 $mybind --whole-window --border $mod+shift+button4 resize shrink width 5 px or 5 ppt
 $mybind --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 ppt
 
-#
 # Volume
-#
+
 $mybind XF86AudioRaiseVolume exec ~/.config/hypr/scripts/volume --inc && pamixer --get-volume > $SWAYSOCK.wob
 $mybind XF86AudioLowerVolume exec ~/.config/hypr/scripts/volume --dec && pamixer --get-volume > $SWAYSOCK.wob
 $mybind XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob
 $mybind XF86AudioMicMute exec ~/.config/hypr/scripts/volume --toggle-mic
 $mybind XF86Tools exec ~/.config/hypr/scripts/volume --toggle-mic
 
-#
 # Player
-#
-    $mybind XF86AudioPlay exec playerctl play
-    $mybind XF86AudioPause exec playerctl pause
-    $mybind XF86AudioNext exec playerctl next
-    $mybind XF86AudioPrev exec playerctl previous
-    $mybind $mod+m exec $music
-#
-# Backlight
-#
-    $mybind XF86MonBrightnessUp exec ~/.config/hypr/scripts/brightness --inc && light -G | cut -d'.' -f1 > $SWAYSOCK.wob 
-    $mybind XF86MonBrightnessDown exec ~/.config/hypr/scripts/brightness --dec && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
-    $mybind XF86HomePage exec ~/.config/hypr/scripts/brightness --inc && light -G | cut -d'.' -f1 > $SWAYSOCK.wob 
-    $mybind XF86Explorer exec ~/.config/hypr/scripts/brightness --dec && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
-#
-# App shortcuts
-#
-    # $mybind $mod+n exec thunars
-    $mybind $mod+n exec alacritty -e ranger
-    # $mybind $mod+o exec google-chrome-stable
-#
-# Screenshots
-#
-    $mybind $mod+p exec grimshot --notify save output
-    $mybind print exec ~/.config/sway/scripts/screenshot.sh
-    $mybind $mod+shift+P exec grimshot --notify copy area
 
-#
+$mybind XF86AudioPlay exec playerctl play
+$mybind XF86AudioPause exec playerctl pause
+$mybind XF86AudioNext exec playerctl next
+$mybind XF86AudioPrev exec playerctl previous
+
+# Backlight
+
+$mybind XF86MonBrightnessUp exec ~/.config/hypr/scripts/brightness --inc && light -G | cut -d'.' -f1 > $SWAYSOCK.wob 
+$mybind XF86MonBrightnessDown exec ~/.config/hypr/scripts/brightness --dec && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+$mybind XF86HomePage exec ~/.config/hypr/scripts/brightness --inc && light -G | cut -d'.' -f1 > $SWAYSOCK.wob 
+$mybind XF86Explorer exec ~/.config/hypr/scripts/brightness --dec && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+
+# App shortcuts
+
+$mybind $mod+n exec kitty ranger
+# $mybind $mod+o exec google-chrome-stable
+
+# Screenshots
+
+$mybind $mod+p exec grimshot --notify save output
+$mybind print exec ~/.config/sway/scripts/screenshot.sh
+$mybind $mod+shift+P exec grimshot --notify copy area
+
+
 ## Touchpad
-#
+
 $mybind XF86TouchpadToggle input type:touchpad events toggle enabled disabled 
 # Allow switching between workspaces with left and right swipes
 # bindgesture swipe:right workspace prev
