@@ -18,10 +18,10 @@ set $foot ~/.config/hypr/scripts/terminal
 set $menu wofi -I
 set $music ~/.config/hypr/scripts/rofi_music
 
-set $launcher nwg-drawer -c 7 -is 70 -spacing 23
-# set $launcher wofi
+# set $launcher nwg-drawer -c 7 -is 70 -spacing 23
+set $launcher wofi
 
-set $powermenu nwgbar -f
+set $powermenu ~/.config/sway/scripts/powermenu.sh
 
 set $cheat $term-float -t cheatsheet -e micro ~/.config/sway/cheatsheet.md
 
@@ -72,10 +72,10 @@ $mybind $mod+Shift+w exec ~/.config/waybar/scripts/swap.sh
     $mybind $mod+Shift+d exec $launcher
 
     # Activities
-    $mybind $mod+p exec swayr switch-window
+    $mybind $mod+o exec swayr switch-window
 
     # Activities and workspaces
-    $mybind $mod+Shift+p exec swayr switch-workspace-or-window
+    $mybind $mod+Shift+O exec swayr switch-workspace-or-window
 
     # Switch to the last recently used window
     $mybind $mod+Tab exec swayr switch-to-urgent-or-lru-window
@@ -255,8 +255,8 @@ $mybind --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 p
 #
 # Volume
 #
-$mybind XF86AudioRaiseVolume exec pamixer -ui 2 && pamixer --get-volume > $SWAYSOCK.wob
-$mybind XF86AudioLowerVolume exec pamixer -ud 2 && pamixer --get-volume > $SWAYSOCK.wob
+$mybind XF86AudioRaiseVolume exec ~/.config/hypr/scripts/volume --inc && pamixer --get-volume > $SWAYSOCK.wob
+$mybind XF86AudioLowerVolume exec ~/.config/hypr/scripts/volume --dec && pamixer --get-volume > $SWAYSOCK.wob
 $mybind XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob
 $mybind XF86AudioMicMute exec ~/.config/hypr/scripts/volume --toggle-mic
 $mybind XF86Tools exec ~/.config/hypr/scripts/volume --toggle-mic
@@ -280,19 +280,19 @@ $mybind XF86Tools exec ~/.config/hypr/scripts/volume --toggle-mic
 # App shortcuts
 #
     # $mybind $mod+n exec thunars
-    $mybind $mod+n exec thunar
-    $mybind $mod+o exec google-chrome-stable
+    $mybind $mod+n exec alacritty -e ranger
+    # $mybind $mod+o exec google-chrome-stable
 #
 # Screenshots
 #
-    $mybind print exec /usr/share/sway/scripts/grimshot --notify save output
-    $mybind Shift+print exec ~/.config/sway/scripts/screenshot.sh
-    $mybind Alt+print exec /usr/share/sway/scripts/grimshot --notify copy area
+    $mybind $mod+p exec grimshot --notify save output
+    $mybind print exec ~/.config/sway/scripts/screenshot.sh
+    $mybind $mod+shift+P exec grimshot --notify copy area
 
 #
 ## Touchpad
 #
 $mybind XF86TouchpadToggle input type:touchpad events toggle enabled disabled 
 # Allow switching between workspaces with left and right swipes
-bindgesture swipe:right workspace prev
-bindgesture swipe:left workspace next
+# bindgesture swipe:right workspace prev
+# bindgesture swipe:left workspace next

@@ -37,6 +37,8 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=sway
 export XDG_CURRENT_DESKTOP=sway
+# Path dir where wofi menu can find .desktop applications
+export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 
 # GTK
 export MOZ_ENABLE_WAYLAND=1             # only start firefox in wayland mode and no other GTK apps
@@ -68,6 +70,7 @@ export QT_QPA_PLATFORM=wayland
 
 . "$HOME/.cargo/env"
 
+# start sway with env when login as tty1
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-    sway
+    /usr/bin/env sway
 fi

@@ -145,10 +145,10 @@ window:
     y: 5
 font:
   normal:
-    family: JetbrainsMonoNL
+    family: JetbrainsMonoNL Nerd Font
     style: Regular
   size: 10
 live_config_reload: true
 dynamic_padding: true
 shell:
-   program: /bin/zsh
+   program: /bin/fish

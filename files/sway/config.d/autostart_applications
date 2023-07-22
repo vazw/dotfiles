@@ -57,12 +57,8 @@ exec /usr/lib/xdg-desktop-portal
 
 # Tracker daemon for gnome apps
 exec tracker daemon -s
+exec lxappearance-daemon
 
-# Cheatsheet
-exec micro ~/.config/sway/cheatsheet
-
-# nwg-drawer
-exec_always nwg-drawer -r 
 
 # swayrd
 exec_always swayrd
