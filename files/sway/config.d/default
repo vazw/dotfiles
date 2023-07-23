@@ -9,7 +9,7 @@ set $up k
 set $right l
 
 # Your preferred terminal emulators
-set $term-float kitty
+set $term-float alacritty
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -20,6 +20,8 @@ set $menu wofi -I
 set $launcher wofi
 
 set $powermenu ~/.config/sway/scripts/powermenu.sh
+
+set $emoji ~/.config/sway/scripts/emoji.sh
 
 set $cheat $term-float -t cheatsheet -e micro ~/.config/sway/cheatsheet.md
 
@@ -32,9 +34,6 @@ exec swayidle -w\
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-
-## Lock Screen
-$mybind $mod+f1 exec ~/.config/sway/scripts/lockman.sh
 
 # Rotate output clockwise
 $mybind $mod+F9 output eDP-1 transform 0
@@ -58,7 +57,6 @@ $mybind $mod+Return exec $term-float
 
 # Open the power menu
 $mybind $mod+Shift+e exec $powermenu
-$mybind $mod+x exec $powermenu # ArchCraft shortcut
 
 # Kill focused window
 $mybind $mod+q kill
@@ -277,6 +275,7 @@ $mybind XF86Explorer exec ~/.config/hypr/scripts/brightness --dec && light -G | 
 # App shortcuts
 
 $mybind $mod+n exec kitty ranger
+$mybind XF86Calculator exec alacritty --class "btop" -e btop 
 # $mybind $mod+o exec google-chrome-stable
 
 # Screenshots
@@ -292,3 +291,6 @@ $mybind XF86TouchpadToggle input type:touchpad events toggle enabled disabled
 # Allow switching between workspaces with left and right swipes
 # bindgesture swipe:right workspace prev
 # bindgesture swipe:left workspace next
+
+# Emoji Menu
+$mybind $mod+i exec $emoji

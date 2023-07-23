@@ -3,8 +3,8 @@ include catppuccin-mocha
 exec_always ~/.config/sway/scripts/import-gsettings
 
 # Set inner/outer gaps
-gaps inner 0
-gaps outer 0
+gaps inner 10
+gaps outer 5
 
 # Hide titlebar on windows: 
 default_border pixel 2
@@ -52,7 +52,7 @@ for_window [app_id=".*"] opacity $opacity
 # client.placeholder       $base     $base $text  $overlay0  $base
 # client.background        $base
 
-client.focused           $mauve    $base $text  $green $green
+client.focused           $green    $base $text  $green $green
 client.focused_inactive  $mantle       $base $text  $mantle $mantle
 client.unfocused         $mantle        $base $text  $mantle $mantle
 client.urgent            $peach        $base $peach $overlay0  $peach

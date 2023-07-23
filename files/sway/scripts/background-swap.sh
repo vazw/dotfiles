@@ -52,6 +52,7 @@ sed -i "s|^output \* bg.*|output \* bg $NEXT_BACKGROUND fill|" "$HOME/.config/sw
 # Update the background file path in the startup script
 sed -i "s|^swaybg --output '.*' --mode fill --image .*|swaybg --output '*' --mode fill --image $NEXT_BACKGROUND \&|" "$HOME/.config/hypr/scripts/startup"
 
+sed -i "s|^image=.*|image=$NEXT_BACKGROUND|" "$HOME/.config/swaylock/config"
+
 # Send a notification with the new background name with an icon from the current background
 notify-send -i $NEXT_BACKGROUND "Background changed" "$(basename $NEXT_BACKGROUND)"
-
