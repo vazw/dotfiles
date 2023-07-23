@@ -56,13 +56,13 @@
 }
 
 window#waybar {
-    border-bottom: 3px solid #000000;
-    /* border-bottom: 2px solid shade(alpha(@text, 1), 1.2); */
+    /* border-bottom: 3px solid #000000; */
     /* border-radius: 10px; */
     /* background:#2d2a2e; */
     /* background-color: rgba(36, 39, 58, 0.85); */
-    /* background-color: rgba(0, 0, 0, 0); */
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: #000000; */
+    /* background-color: transparent; */
 }
 
 #workspaces button {
@@ -90,9 +90,8 @@ window#waybar {
     border-style: solid;
     /* background-color: @base; */
     opacity: 1;
-    border-radius: 10px;
     background-color: shade(#24273A, 1);
-    border-radius: 0px 20px 0px 0px;
+    border-radius: 0px 0px 20px 0px;
     padding: 0px 10px 0px 5px;
     margin-top: 0;
     /* margin: 2px 6px 6px 8px; */
@@ -186,7 +185,7 @@ window#waybar {
     /* background-color:#a3be8c; */
     color: @blue;
     font-size: 14px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     /* margin: 2px 2px; */
 }
 
@@ -194,14 +193,10 @@ window#waybar {
     /* color: @teal; */
     font-size: 14px;
     color: @green;
-    /* border-bottom: 2px solid @yellow; */
-    /* border-radius: 10px 0 0 10px; */
 }
 
 #battery {
-    border-radius: 0px 0px 0px 0px;
     color: #d8dee9;
-    /* border-bottom: 2px solid #d8dee9; */
     /* border-radius: 0 10px 10px 0; */
     margin-right: 0px;
     margin-bottom: 0px;
@@ -210,19 +205,16 @@ window#waybar {
 
 #battery.charging {
     color: @green;
-    /* border-bottom: 2px solid #81a1c1; */
 }
 
 @keyframes blink {
     to {
         color: @red;
-        /* border-bottom: 2px solid @red; */
     }
 }
 
 #battery.critical:not(.charging) {
     color: #bf616a;
-    /* border-bottom: 2px solid #bf616a; */
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -232,7 +224,6 @@ window#waybar {
 
 #cpu {
     color: @sky;
-    /* border-bottom: 2px solid @sky; */
 }
 
 #cpu #cpu-icon {
@@ -245,19 +236,16 @@ window#waybar {
 
 #network.disabled {
     color: #bf616a;
-    /* border-bottom: 2px solid #bf616a; */
 }
 
 #network {
     color: @green;
-    /* border-bottom: 2px solid @green; */
     border-radius: 10px;
     margin-right: 5px;
 }
 
 #network.disconnected {
     color: #bf616a;
-    /* border-bottom: 2px solid #bf616a; */
 }
 
 #pulseaudio {
@@ -269,19 +257,16 @@ window#waybar {
 
 #pulseaudio.muted {
     color: #ffffff;
-    /* border-bottom: 2px solid #3b4252; */
 }
 
 #temperature {
     color: @yellow;
-    /* border-bottom: 2px solid @teal; */
     font-size: 14px;
     border-radius: 10px 0 0 10px;
 }
 
 #temperature.critical {
     color: @red;
-    /* border-bottom: 2px solid @red; */
 }
 
 #idle_inhibitor {
@@ -297,7 +282,7 @@ window#waybar {
 }
 
 #tray {
-    border-radius: 20px 0 0px 0px;
+    border-radius: 0px 0 0px 20px;
     padding: 0px 3px 0px 14px;
     margin-bottom: 0px;
     font-size: 9px;
@@ -305,7 +290,6 @@ window#waybar {
 
 #custom-todolist {
     color: @maroon;
-    /* border-bottom: 2px solid @teal; */
     font-size: 14px;
     font-family: "FiraCode Nerd Font";
     border-radius: 10px 0 0 10px;
