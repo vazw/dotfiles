@@ -3,7 +3,7 @@
 # daemonize
 indicator-caps-lock
 # datestr=%A
-image=$HOME/.config/sway/backgrounds/aesthetic.jpg
+image=/home/vaz/.config/sway/backgrounds/Murky peaks.jpg
 scaling=fill
 # color=00000000
 screenshots
