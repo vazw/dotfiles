@@ -78,10 +78,10 @@ end)
 -- close buffer
 keymap.set({ "n", "v" }, "<leader>x", "<ESC>:q<CR>")
 
-vim.keymap.set("n", "<leader>]", function()
+keymap.set("n", "<leader>]", function()
 	vim.diagnostic.goto_next()
 end)
-vim.keymap.set("n", "<leader>[", function()
+keymap.set("n", "<leader>[", function()
 	vim.diagnostic.goto_prev()
 end)
 
