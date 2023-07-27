@@ -1,0 +1,928 @@
+# Language support configuration.
+# See the languages documentation: https://docs.helix-editor.com/master/languages.html
+
+[[language]]
+name = "rust"
+scope = "source.rust"
+injection-regex = "rust"
+file-types = ["rs"]
+roots = ["Cargo.toml", "Cargo.lock"]
+auto-format = true
+comment-token = "//"
+language-server = { command = "rust-analyzer" }
+indent = { tab-width = 4, unit = "    " }
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+
+[language.debugger]
+name = "lldb-vscode"
+transport = "stdio"
+command = "lldb-vscode"
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { program = "{0}" }
+
+[[language.debugger.templates]]
+name = "binary (terminal)"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { program = "{0}", runInTerminal = true }
+
+[[language.debugger.templates]]
+name = "attach"
+request = "attach"
+completion = [ "pid" ]
+args = { pid = "{0}" }
+
+[[language.debugger.templates]]
+name = "gdbserver attach"
+request = "attach"
+completion = [ { name = "lldb connect url", default = "connect://localhost:3333" }, { name = "file", completion = "filename" }, "pid" ]
+args = { attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
+
+[[language]]
+name = "toml"
+scope = "source.toml"
+injection-regex = "toml"
+file-types = ["toml"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "protobuf"
+scope = "source.proto"
+injection-regex = "protobuf"
+file-types = ["proto"]
+roots = []
+comment-token = "//"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "elixir"
+scope = "source.elixir"
+injection-regex = "(elixir|ex)"
+file-types = ["ex", "exs", "mix.lock"]
+shebangs = ["elixir"]
+roots = []
+comment-token = "#"
+language-server = { command = "elixir-ls" }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "fish"
+scope = "source.fish"
+injection-regex = "fish"
+file-types = ["fish"]
+shebangs = ["fish"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "mint"
+scope = "source.mint"
+injection-regex = "mint"
+file-types = ["mint"]
+shebangs = []
+roots = []
+comment-token = "//"
+language-server = { command = "mint", args = ["ls"] }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "json"
+scope = "source.json"
+injection-regex = "json"
+file-types = ["json"]
+roots = []
+language-server = { command = "vscode-json-language-server", args = ["--stdio"] }
+auto-format = true
+config = { "provideFormatter" = true }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "c"
+scope = "source.c"
+injection-regex = "c"
+file-types = ["c"] # TODO: ["h"]
+roots = []
+comment-token = "//"
+language-server = { command = "clangd" }
+indent = { tab-width = 2, unit = "  " }
+
+[language.debugger]
+name = "lldb-vscode"
+transport = "stdio"
+command = "lldb-vscode"
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { console = "internalConsole", program = "{0}" }
+
+[[language.debugger.templates]]
+name = "attach"
+request = "attach"
+completion = [ "pid" ]
+args = { console = "internalConsole", pid = "{0}" }
+
+[[language.debugger.templates]]
+name = "gdbserver attach"
+request = "attach"
+completion = [ { name = "lldb connect url", default = "connect://localhost:3333" }, { name = "file", completion = "filename" }, "pid" ]
+args = { console = "internalConsole", attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
+
+[[language]]
+name = "cpp"
+scope = "source.cpp"
+injection-regex = "cpp"
+file-types = ["cc", "hh", "cpp", "hpp", "h", "ipp", "tpp", "cxx", "hxx", "ixx", "txx", "ino"]
+roots = []
+comment-token = "//"
+language-server = { command = "clangd" }
+indent = { tab-width = 2, unit = "  " }
+
+[language.debugger]
+name = "lldb-vscode"
+transport = "stdio"
+command = "lldb-vscode"
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { console = "internalConsole", program = "{0}" }
+
+[[language.debugger.templates]]
+name = "attach"
+request = "attach"
+completion = [ "pid" ]
+args = { console = "internalConsole", pid = "{0}" }
+
+[[language.debugger.templates]]
+name = "gdbserver attach"
+request = "attach"
+completion = [ { name = "lldb connect url", default = "connect://localhost:3333" }, { name = "file", completion = "filename" }, "pid" ]
+args = { console = "internalConsole", attachCommands = [ "platform select remote-gdb-server", "platform connect {0}", "file {1}", "attach {2}" ] }
+
+[[language]]
+name = "c-sharp"
+scope = "source.csharp"
+injection-regex = "c-?sharp"
+file-types = ["cs"]
+roots = ["sln", "csproj"]
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
+language-server = { command = "OmniSharp", args = [ "--languageserver", "--stdio" ] }
+
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["Gopkg.toml", "go.mod"]
+auto-format = true
+comment-token = "//"
+language-server = { command = "gopls" }
+# TODO: gopls needs utf-8 offsets?
+indent = { tab-width = 4, unit = "\t" }
+
+[language.debugger]
+name = "go"
+transport = "tcp"
+command = "dlv"
+args = ["dap"]
+port-arg = "-l 127.0.0.1:{}"
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [ { name = "entrypoint", completion = "filename", default = "." } ]
+args = { mode = "debug", program = "{0}" }
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { mode = "exec", program = "{0}" }
+
+[[language.debugger.templates]]
+name = "test"
+request = "launch"
+completion = [ { name = "tests", completion = "directory", default = "." } ]
+args = { mode = "test", program = "{0}" }
+
+[[language.debugger.templates]]
+name = "attach"
+request = "attach"
+completion = [ "pid" ]
+args = { mode = "local", processId = "{0}" }
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+injection-regex = "^(js|javascript)$"
+file-types = ["js", "jsx", "mjs"]
+shebangs = ["node"]
+roots = []
+comment-token = "//"
+# TODO: highlights-params
+language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "javascript" }
+indent = { tab-width = 2, unit = "  " }
+
+[language.debugger]
+name = "node-debug2"
+transport = "stdio"
+# args consisting of cmd (node) and path to adapter should be added to user's configuration
+quirks = { absolute-paths = true }
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [ { name = "main", completion = "filename", default = "index.js" } ]
+args = { program = "{0}" }
+
+[[language]]
+name = "jsx"
+scope = "source.jsx"
+injection-regex = "jsx"
+file-types = ["jsx"]
+roots = []
+comment-token = "//"
+language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "javascript" }
+indent = { tab-width = 2, unit = "  " }
+grammar = "javascript"
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+injection-regex = "^(ts|typescript)$"
+file-types = ["ts"]
+shebangs = []
+roots = []
+# TODO: highlights-params
+language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "typescript"}
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "tsx"
+scope = "source.tsx"
+injection-regex = "^(tsx)$" # |typescript
+file-types = ["tsx"]
+roots = []
+# TODO: highlights-params
+language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "typescriptreact" }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "css"
+scope = "source.css"
+injection-regex = "css"
+file-types = ["css", "scss"]
+roots = []
+language-server = { command = "vscode-css-language-server", args = ["--stdio"] }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "html"
+scope = "text.html.basic"
+injection-regex = "html"
+file-types = ["html"]
+roots = []
+language-server = { command = "vscode-html-language-server", args = ["--stdio"] }
+auto-format = true
+config = { "provideFormatter" = true }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py"]
+shebangs = ["python"]
+roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
+comment-token = "#"
+language-server = { command = "pylsp" }
+# TODO: pyls needs utf-8 offsets
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
+formatter = {command = 'black', args = ["-l", "80", "-q", "-"]}
+[language.config.pylsp.plugins]
+flake8 = {enabled = false}
+autopep8 = {enabled = false}
+mccabe = {enabled = false}
+pycodestyle = {enabled = false}
+pyflakes = {enabled = false}
+pylint = {enabled = false}
+yapf = {enabled = false}
+ruff = { enabled = true, ignore = ["F401"], lineLength = 80 }
+
+[[language]]
+name = "nix"
+scope = "source.nix"
+injection-regex = "nix"
+file-types = ["nix"]
+shebangs = []
+roots = []
+comment-token = "#"
+language-server = { command = "rnix-lsp" }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "ruby"
+scope = "source.ruby"
+injection-regex = "ruby"
+file-types = ["rb"]
+shebangs = ["ruby"]
+roots = []
+comment-token = "#"
+language-server = { command = "solargraph", args = ["stdio"] }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "bash"
+scope = "source.bash"
+injection-regex = "bash"
+file-types = ["sh", "bash", "zsh", ".bash_login", ".bash_logout", ".bash_profile", ".bashrc", ".profile", ".zshenv", ".zlogin", ".zlogout", ".zprofile", ".zshrc"]
+shebangs = ["sh", "bash", "dash"]
+roots = []
+comment-token = "#"
+language-server = { command = "bash-language-server", args = ["start"] }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "php"
+scope = "source.php"
+injection-regex = "php"
+file-types = ["php"]
+shebangs = ["php"]
+roots = ["composer.json", "index.php"]
+# language-server = { command = "intelephense", args = ["--stdio"] }
+language-server = { command = "phpactor", args = ["language-server"] }
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "twig"
+scope = "source.twig"
+injection-regex = "twig"
+file-types = ["twig"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "latex"
+scope = "source.tex"
+injection-regex = "tex"
+file-types = ["tex"]
+roots = []
+comment-token = "%"
+language-server = { command = "texlab" }
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "lean"
+scope = "source.lean"
+injection-regex = "lean"
+file-types = ["lean"]
+roots = [ "lakefile.lean" ]
+comment-token = "--"
+language-server = { command = "lean", args = [ "--server" ] }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "julia"
+scope = "source.julia"
+injection-regex = "julia"
+file-types = ["jl"]
+roots = []
+comment-token = "#"
+language-server = { command = "julia", args = [
+    "--startup-file=no",
+    "--history-file=no",
+    "--quiet",
+    "-e",
+    "using LanguageServer; runserver()",
+    ] }
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "java"
+scope = "source.java"
+injection-regex = "java"
+file-types = ["java"]
+roots = ["pom.xml"]
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "ledger"
+scope = "source.ledger"
+injection-regex = "ledger"
+file-types = ["ldg", "ledger", "journal"]
+roots = []
+comment-token = ";"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "ocaml"
+scope = "source.ocaml"
+injection-regex = "ocaml"
+file-types = ["ml"]
+shebangs = []
+roots = []
+comment-token = "(**)"
+language-server = { command = "ocamllsp" }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "ocaml-interface"
+scope = "source.ocaml.interface"
+file-types = ["mli"]
+shebangs = []
+roots = []
+comment-token = "(**)"
+language-server = { command = "ocamllsp" }
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "lua"
+scope = "source.lua"
+file-types = ["lua"]
+shebangs = ["lua"]
+roots = []
+comment-token = "--"
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "svelte"
+scope = "source.svelte"
+injection-regex = "svelte"
+file-types = ["svelte"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "svelteserver", args = ["--stdio"] }
+
+
+[[language]]
+name = "vue"
+scope = "source.vue"
+injection-regex = "vue"
+file-types = ["vue"]
+roots = ["package.json", "vue.config.js"]
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "vls" }
+
+[[language]]
+name = "yaml"
+scope = "source.yaml"
+file-types = ["yml", "yaml"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+injection-regex = "yml|yaml"
+
+[[language]]
+name = "haskell"
+scope = "source.haskell"
+injection-regex = "haskell"
+file-types = ["hs"]
+roots = []
+comment-token = "--"
+language-server = { command = "haskell-language-server-wrapper", args = ["--lsp"] }
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "zig"
+scope = "source.zig"
+injection-regex = "zig"
+file-types = ["zig"]
+roots = ["build.zig"]
+auto-format = true
+comment-token = "//"
+language-server = { command = "zls" }
+indent = { tab-width = 4, unit = "    " }
+
+
+[[language]]
+name = "prolog"
+scope = "source.prolog"
+roots = []
+file-types = ["pl", "prolog"]
+shebangs = ["swipl"]
+comment-token = "%"
+language-server = { command = "swipl", args = [
+    "-g", "use_module(library(lsp_server))",
+    "-g", "lsp_server:main",
+    "-t", "halt", "--", "stdio"] }
+
+[[language]]
+name = "tsq"
+scope = "source.tsq"
+file-types = ["scm"]
+roots = []
+comment-token = ";"
+injection-regex = "tsq"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "cmake"
+scope = "source.cmake"
+file-types = ["cmake", "CMakeLists.txt"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "cmake-language-server" }
+injection-regex = "cmake"
+
+
+[[language]]
+name = "make"
+scope = "source.make"
+file-types = ["Makefile", "makefile", "mk", "justfile", ".justfile"]
+roots =[]
+comment-token = "#"
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "glsl"
+scope = "source.glsl"
+file-types = ["glsl", "vert", "tesc", "tese", "geom", "frag", "comp" ]
+roots = []
+comment-token = "//"
+indent = { tab-width = 4, unit = "    " }
+injection-regex = "glsl"
+
+[[language]]
+name = "perl"
+scope = "source.perl"
+file-types = ["pl", "pm"]
+shebangs = ["perl"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "racket"
+scope = "source.rkt"
+roots = []
+file-types = ["rkt"]
+shebangs = ["racket"]
+comment-token = ";"
+language-server = { command = "racket", args = ["-l", "racket-langserver"] }
+
+[[language]]
+name = "comment"
+scope = "scope.comment"
+roots = []
+file-types = []
+injection-regex = "comment"
+
+[[language]]
+name = "wgsl"
+scope = "source.wgsl"
+file-types = ["wgsl"]
+roots = []
+comment-token = "//"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "llvm"
+scope = "source.llvm"
+roots = []
+file-types = ["ll"]
+comment-token = ";"
+indent = { tab-width = 2, unit = "  " }
+injection-regex = "llvm"
+
+[[language]]
+name = "llvm-mir"
+scope = "source.llvm_mir"
+roots = []
+file-types = []
+comment-token = ";"
+indent = { tab-width = 2, unit = "  " }
+injection-regex = "mir"
+
+
+[[language]]
+name = "llvm-mir-yaml"
+# TODO allow languages to point to their grammar like so:
+#
+scope = "source.yaml"
+roots = []
+file-types = ["mir"]
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "tablegen"
+scope = "source.tablegen"
+roots = []
+file-types = ["td"]
+comment-token = "//"
+indent = { tab-width = 2, unit = "  " }
+injection-regex = "tablegen"
+
+
+[[language]]
+name = "markdown"
+scope = "source.md"
+injection-regex = "md|markdown"
+file-types = ["md"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "dart"
+scope = "source.dart"
+file-types = ["dart"]
+roots = ["pubspec.yaml"]
+auto-format = true
+comment-token = "//"
+language-server = { command = "dart", args = ["language-server", "--client-id=helix"] }
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "scala"
+scope = "source.scala"
+roots = ["build.sbt", "pom.xml"]
+file-types = ["scala", "sbt"]
+comment-token = "//"
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "metals" }
+
+
+[[language]]
+name = "dockerfile"
+scope = "source.dockerfile"
+injection-regex = "docker|dockerfile"
+roots = ["Dockerfile"]
+file-types = ["Dockerfile", "dockerfile"]
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "docker-langserver", args = ["--stdio"] }
+
+
+[[language]]
+name = "git-commit"
+scope = "git.commitmsg"
+roots = []
+file-types = ["COMMIT_EDITMSG"]
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "git-diff"
+scope = "source.diff"
+roots = []
+file-types = ["diff"]
+injection-regex = "diff"
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "git-rebase"
+scope = "source.gitrebase"
+roots = []
+file-types = ["git-rebase-todo"]
+injection-regex = "git-rebase"
+comment-token = "#"
+indent = { tab-width = 2, unit = " " }
+
+
+[[language]]
+name = "regex"
+scope = "source.regex"
+injection-regex = "regex"
+file-types = ["regex"]
+roots = []
+
+
+[[language]]
+name = "git-config"
+scope = "source.gitconfig"
+roots = []
+# TODO: allow specifying file-types as a regex so we can read directory names (e.g. `.git/config`)
+file-types = [".gitmodules", ".gitconfig"]
+injection-regex = "git-config"
+comment-token = "#"
+indent = { tab-width = 4, unit = "\t" }
+
+
+[[language]]
+name = "graphql"
+scope = "source.graphql"
+injection-regex = "graphql"
+file-types = ["gql", "graphql"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "elm"
+scope = "source.elm"
+injection-regex = "elm"
+file-types = ["elm"]
+roots = ["elm.json"]
+auto-format = true
+comment-token = "--"
+language-server = { command = "elm-language-server" }
+indent = { tab-width = 4, unit = "    " }
+
+
+[[language]]
+name = "iex"
+scope = "source.iex"
+injection-regex = "iex"
+file-types = ["iex"]
+roots = []
+
+
+[[language]]
+name = "rescript"
+scope = "source.rescript"
+injection-regex = "rescript"
+file-types = ["res"]
+roots = ["bsconfig.json"]
+auto-format = true
+comment-token = "//"
+language-server = { command = "rescript-language-server", args = ["--stdio"] }
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "erlang"
+scope = "source.erlang"
+injection-regex = "erl(ang)?"
+file-types = ["erl", "hrl", "app", "rebar.config", "rebar.lock"]
+roots = ["rebar.config"]
+comment-token = "%%"
+indent = { tab-width = 4, unit = "    " }
+language-server = { command = "erlang_ls" }
+
+
+[[language]]
+name = "kotlin"
+scope = "source.kotlin"
+file-types = ["kt", "kts"]
+roots = ["settings.gradle", "settings.gradle.kts"]
+comment-token = "//"
+indent = { tab-width = 4, unit = "    " }
+language-server = { command = "kotlin-language-server" } 
+
+
+[[language]]
+name = "hcl"
+scope = "source.hcl"
+injection-regex = "(hcl|tf)"
+file-types = ["hcl", "tf", "tfvars"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "terraform-ls", args = ["serve"] }
+auto-format = true
+
+
+[[language]]
+name = "org"
+scope = "source.org"
+injection-regex = "org"
+file-types = ["org"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "solidity"
+scope = "source.sol"
+injection-regex = "^(sol|solidity)$"
+file-types = ["sol"]
+roots = []
+comment-token = "//"
+indent = { tab-width = 4, unit = "    " }
+language-server = { command = "solc", args = ["--lsp"] }
+
+
+[[language]]
+name = "gleam"
+scope = "source.gleam"
+injection-regex = "gleam"
+file-types = ["gleam"]
+roots = ["gleam.toml"]
+comment-token = "//"
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "ron"
+scope = "source.ron"
+injection-regex = "ron"
+file-types = ["ron"]
+roots = []
+comment-token = "//"
+indent = { tab-width = 4, unit = "    " }
+grammar = "rust"
+
+[[language]]
+name = "r"
+scope = "source.r"
+injection-regex = "(r|R)"
+file-types = ["r", "R"]
+shebangs = ["r", "R"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 2, unit = "  " }
+language-server = { command = "R", args = ["--slave", "-e", "languageserver::run()"] }
+
+
+[[language]]
+name = "rmarkdown"
+scope = "source.rmd"
+injection-regex = "(r|R)md"
+file-types = ["rmd", "Rmd"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+grammar = "markdown"
+language-server = { command = "R", args = ["--slave", "-e", "languageserver::run()"] }
+
+[[language]]
+name = "swift"
+scope = "source.swift"
+injection-regex = "swift"
+file-types = ["swift"]
+roots = [ "Package.swift" ]
+comment-token = "//"
+auto-format = true
+language-server = { command = "sourcekit-lsp" }
+
+[[language]]
+name = "erb"
+scope = "text.html.erb"
+injection-regex = "erb"
+file-types = ["erb"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+grammar = "embedded-template"
+
+[[language]]
+name = "ejs"
+scope = "text.html.ejs"
+injection-regex = "ejs"
+file-types = ["ejs"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+grammar = "embedded-template"
+
+
+[[language]]
+name = "eex"
+scope = "source.eex"
+injection-regex = "eex"
+file-types = ["eex"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "heex"
+scope = "source.heex"
+injection-regex = "heex"
+file-types = ["heex"]
+roots = []
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
+name = "sql"
+scope = "source.sql"
+file-types = ["sql"]
+roots = []
+comment-token = "--"
+indent = { tab-width = 4, unit = "    " }
+injection-regex = "sql"
+
+[[language]]
+name = "gdscript"
+scope = "source.gdscript"
+injection-regex = "gdscript"
+file-types = ["gd"]
+shebangs = []
+roots = ["project.godot"]
+auto-format = true
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+

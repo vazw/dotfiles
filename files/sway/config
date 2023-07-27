@@ -10,7 +10,7 @@ include $HOME/.config/sway/config.d/*
 # xwayland disable
 
 # Set the background image
-output * bg /home/vaz/.config/sway/backgrounds/Murky peaks.jpg fill
+output * bg /home/vaz/.config/sway/backgrounds/estrategy-minimal.png fill
 
 # Set the initial keyboard layout
 # For configuration Laptop Right, Monitor Left

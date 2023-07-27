@@ -23,7 +23,7 @@ exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ss
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # Set wallpaper
-swaybg --output '*' --mode fill --image /home/vaz/.config/sway/backgrounds/flatppuccin_4k_macchiato.png &
+swaybg --output '*' --mode fill --image /home/vaz/.config/sway/backgrounds/estrategy-minimal.png &
 
 # Apply themes
 # ~/.config/hypr/scripts/gtkthemes &
