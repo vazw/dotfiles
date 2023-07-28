@@ -1,4 +1,4 @@
-theme = "catppuccin_mocha"
+theme = "catppuccin_custom"
 
 [editor]
 line-number = "relative"
@@ -7,6 +7,7 @@ bufferline = "multiple"
 cursorline = true
 true-color = true
 scrolloff = 8
+rulers = [80]
 
 [editor.statusline]
 left = ["mode", "spinner", "file-name"]
@@ -19,7 +20,18 @@ separator = "│"
 
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
+tab =  "goto_next_buffer" 
+S-tab =  "goto_previous_buffer" 
+"}" = "goto_next_paragraph" 
+"{" = "goto_prev_paragraph"   
+S-o = ["open_above", "normal_mode"]    
+G = "goto_last_line"   
 
+
+[keys.normal.space]
+x =  ":bc" 
+o = ["open_below", "normal_mode"]
+  
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -27,7 +39,8 @@ select = "underline"
 
 [editor.lsp]
 display-messages = true
+display-inlay-hints = true
 
 [editor.indent-guides]
 render = true
-character = "|"
+character = ""
