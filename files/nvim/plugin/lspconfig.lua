@@ -95,6 +95,27 @@ nvim_lsp.rust_analyzer.setup({
 		enable_format_on_save(client, bufnr)
 	end,
 	capabilities = capabilities,
+	settings = {
+		["rust-analyzer"] = {
+			diagnostics = {
+				disabled = "inactive-code",
+			},
+			imports = {
+				granularity = {
+					group = "module",
+				},
+				prefix = "self",
+			},
+			cargo = {
+				buildScripts = {
+					enable = true,
+				},
+			},
+			procMacro = {
+				enable = true,
+			},
+		},
+	},
 })
 nvim_lsp.csharp_ls.setup({
 	on_attach = function(client, bufnr)

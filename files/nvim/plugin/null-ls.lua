@@ -22,7 +22,9 @@ null_ls.setup({
 			extra_args = { "--line-length", "80" },
 		}),
 		null_ls.builtins.formatting.clang_format,
-		null_ls.builtins.formatting.rustfmt,
+		null_ls.builtins.formatting.rustfmt.with({
+			extra_args = { "--config", "max_width=80" },
+		}),
 
 		null_ls.builtins.diagnostics.shellcheck,
 		null_ls.builtins.formatting.beautysh,

@@ -24,13 +24,11 @@ tab =  "goto_next_buffer"
 S-tab =  "goto_previous_buffer" 
 "}" = "goto_next_paragraph" 
 "{" = "goto_prev_paragraph"   
-S-o = ["open_above", "normal_mode"]    
 G = "goto_last_line"   
 
 
 [keys.normal.space]
-x =  ":bc" 
-o = ["open_below", "normal_mode"]
+x =  ":bc"  
   
 [editor.cursor-shape]
 insert = "bar"

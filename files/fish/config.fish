@@ -177,3 +177,4 @@ function fishfetch
 end
 
 starship init fish | source
+# silver init | source
