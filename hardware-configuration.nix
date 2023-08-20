@@ -14,12 +14,13 @@
       kernelModules = ["amdgpu"];
     };
     kernelModules = [ "kvm-amd" "88x2bu" "asus-wmi-sensors" ];
-    extraModulePackages = [
-  	(config.boot.kernelPackages.rtl88x2bu.overrideAttrs (old: {
+    extraModulePackages = with config.boot.kernelPackages; [
+  	(rtl88x2bu.overrideAttrs (old: {
 	  prePatch = old.prePatch + ''
 	    substituteInPlace Makefile --replace "CONFIG_CONCURRENT_MODE = n" "CONFIG_CONCURRENT_MODE = y"
 	    '';
 	}))
+	acpi_call
     ];
   };
 
@@ -56,4 +57,5 @@
     bluetooth.enable = true;
   };
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.cpufreq.max = lib.mkDefault 2900000;
 }
