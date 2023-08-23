@@ -173,7 +173,7 @@ file-types = ["rs"]
 roots = ["Cargo.toml", "Cargo.lock"]
 auto-format = true
 comment-token = "//"
-language-servers = [ "rust-analyzer" ]
+language-server = [ "rust-analyzer" ]
 indent = { tab-width = 4, unit = "\t" }
 formatter = { command = "rustfmt", args = ["--config-path", "rustfmt.toml"] }
 
