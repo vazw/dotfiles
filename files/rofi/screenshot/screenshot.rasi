@@ -16,7 +16,7 @@ configuration {
 window {
     transparency:                   "screenshot";
     border-radius:                  12px;
-    width:                          100px;
+    width:                          150px;
     location:                       east;
     x-offset:                       -15px;
     y-offset:                       0px;
@@ -46,7 +46,7 @@ element {
 element-text {
     background-color: 				inherit;
     text-color:       				inherit;
-	font:							"BlexMono NFM 20";
+	font:							"FiraCode Nerd Font Mono 50";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

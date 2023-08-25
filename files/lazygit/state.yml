@@ -1,10 +1,10 @@
 lastupdatecheck: 0
 recentrepos:
-    - /home/vaz/Code/work/MYSALENG_Bot_Version_FastAPI
-    - /home/vaz/Templates/scripts/dotfiles
-    - /home/vaz/Templates/scripts
-    - /home/vaz/Code/personal/TelegramBot
+- /home/vaz/Downloads/dotfiles
+- /home/vaz/Code/work/MYSALENG_Bot_Version_FastAPI
+- /home/vaz/Code/pers/stratawm
+- /home/vaz/Code/pers/binance_tv_rs
 startuppopupversion: 5
 customcommandshistory:
-    - q
+- q
 hidecommandlog: false

@@ -6,12 +6,12 @@ configuration {
 	me-accept-entry: [MousePrimary];
 }
 *{
-	font: "BlexMono Nerd Font 10";			//Font
+	font: "FiraCode Nerd Font Mono 15";			//Font
 	//Colors
-	foreground:#000000; 				//Text
-	background:#425F57; 				//Background
-	accent:#f8f8f2; 					//Highlight
-	foreground-selection:@foreground; 	//Selection_fg
+	foreground:#f8f8f2; 				//Text
+	background:#0A1229; 				//Background
+	accent:#e34039; 					//Highlight
+	foreground-selection:@accent; 	//Selection_fg
 	background-selection:#A8E890; 		//Selection_bg
 
 	transparent:					#ffffff00;
@@ -24,7 +24,7 @@ configuration {
 	urgent-foreground:           	@foreground;
 	alternate-urgent-background: 	@background;
 	active-foreground:           	@accent;
-	selected-active-foreground:  	#f00;
+	selected-active-foreground:  	@background-selection;
 	alternate-normal-foreground: 	@foreground;
 	alternate-active-background: 	@background;
 	bordercolor:                 	@background;
@@ -35,11 +35,10 @@ configuration {
 	alternate-urgent-foreground: 	@foreground;
 	selected-urgent-background:  	@accent;
 	alternate-active-foreground: 	@foreground;
-	selected-active-background:  	@background-selection;
+	selected-active-background:  	@transparent;
 	active-background:           	@transparent;
 }
 window {
-        transparency:                   "screenshot";
 	text-color:			@foreground;
 	background-color:	@background;
 	border-radius: 		6px;
@@ -53,11 +52,11 @@ textbox {
 	text-color: @foreground;
 }
 listview {
-	spacing:      	4px;
-	lines:			0;
-	fixed-height: 	0;
-	border: 		0;
-	scrollbar: 		false;
+	spacing:		4px;
+	dynamic:		true;
+	fixed-height:	false;
+	border:			0;
+	scrollbar:		false;
 	text-color:		@separatorcolor;
 }
 element {

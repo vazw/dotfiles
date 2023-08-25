@@ -21,7 +21,7 @@ configuration {
 
 /*****----- Global Properties -----*****/
 * {
-    font:                        "Iosevka Nerd Font 10";
+    font:                        "FiraCode Nerd Font 25";
 }
 
 /*****----- Main Window -----*****/
@@ -31,7 +31,7 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       800px;
+    width:                       1200px;
     x-offset:                    0px;
     y-offset:                    0px;
 

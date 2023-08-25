@@ -5,7 +5,7 @@
 * {
     background-color:       @background;
     text-color:             @foreground;
-	font:				 	"BlexMono 12";
+	font:				 	"FiraCode Nerd Font Mono 12";
 }
 
 window {

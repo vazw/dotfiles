@@ -9,9 +9,9 @@ msg() {
 }
 
 # Options
-screen=""
-area=""
-window=""
+screen="󰹑"
+area=""
+window=""
 
 # Variable passed to rofi
 options="$screen\n$area\n$window"
