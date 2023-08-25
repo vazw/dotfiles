@@ -24,7 +24,7 @@ bold_italic_font Iosevka NF ExtraBold Oblique
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 15
+font_size 24.0
 
 #: Font size (in pts)
 
@@ -355,8 +355,8 @@ font_features UnifontMedium +isol -medi -fina -init
 #: robustly with the ever-changing sea of bugs that is Cocoa is too
 #: much effort.
 
-url_color #0087bd
-url_style curly
+# url_color #0087bd
+# url_style curly
 
 #: The color and style for highlighting URLs on mouse-over. url_style
 #: can be one of: none, straight, double, curly, dotted, dashed.
@@ -1058,8 +1058,8 @@ confirm_os_window_close 0
 
 # background: #24273A
 # foreground: #F8F8F2
-# foreground #FFFFFF
-# background #24273A
+foreground #FFFFFF
+background #24273A
 
 #: The foreground and background colors.
 
@@ -1141,35 +1141,43 @@ confirm_os_window_close 0
 #: The 256 terminal colors. There are 8 basic colors, each color has a
 #: dull and bright version, for the first 16 colors. You can set the
 #: remaining 240 colors as color16 to color255.
-# color0 #212126
+
+color0 #212126
 # color8 #767676
 
 #: black
-# color1 #cc7a7a
+
+color1 #cc7a7a
 # color9 #f2201f
 
 #: red
-# color2  #b1cc7a
+
+color2  #b1cc7a
 # color10 #23fd00
 
 #: green
-# color3  #cca37a
+
+color3  #cca37a
 # color11 #fffd00
 
 #: yellow
-# color4  #7a96cc
+
+color4  #7a96cc
 # color12 #1a8fff
 
 #: blue
-# color5  #b886d1
+
+color5  #b886d1
 # color13 #fd28ff
 
 #: magenta
-# color6  #7ab1cc
+
+color6  #7ab1cc
 # color14 #14ffff
 
 #: cyan
-# color7  #f2e0ce
+
+color7  #f2e0ce
 # color15 #ffffff
 
 #: white
@@ -2331,9 +2339,3 @@ linux_display_server auto
 
 #: }}}
 
-
-
-# BEGIN_KITTY_THEME
-# Catppuccin-Mocha
-include current-theme.conf
-# END_KITTY_THEME

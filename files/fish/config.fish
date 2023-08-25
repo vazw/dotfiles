@@ -47,9 +47,6 @@ end
 # end
 
 
-## Advanced command-not-found hook
-source /usr/share/doc/find-the-command/ftc.fish
-
 
 ## Functions
 # Functions needed for !! and !$ https://github.com/oh-my-fish/plugin-bang-bang
@@ -167,14 +164,4 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 #    fastfetch --load-config neofetch
 # end
 
-function fish_greeting
-    fishfetch 
-end
-
-function fishfetch
-    clear
-    neofetch
-end
-
 starship init fish | source
-# silver init | source
