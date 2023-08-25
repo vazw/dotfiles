@@ -1,4 +1,2 @@
-require("base")
-require("highlights")
-require("plugins")
-require("maps")
+require("settings.core")
+require("settings.lazy")
