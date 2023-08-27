@@ -37,7 +37,7 @@
       ./hardware-configuration.nix
     ];
     # Use flakes
-  nix = {
+    nix = {
       package = pkgs.nixFlakes;
       extraOptions = "experimental-features = nix-command flakes";
       };
@@ -56,13 +56,19 @@
       ];
     };
     # Use the systemd-boot EFI boot loader.
-    boot.loader = {
+    boot = {
+      kernelParams = [
+	"button.lid_init_state=open"
+      ];
+      loader = {
+        timeout = 1;
 	grub = {
 	  enable = true;
 	  devices = ["nodev"];
 	  efiSupport = true;
-	  useOSProber = true;
+	  # useOSProber = true;
 	};
+      };
     };
 
   networking = {
@@ -72,6 +78,10 @@
     # Pick only one of the below networking options.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    nameservers = [
+      "1.1.1.1"
+      "9.9.9.9"
+    ];
   };
 
   # Set your time zone.
@@ -90,6 +100,7 @@
   security = {
     rtkit.enable = true;
     polkit.enable = true;
+    pam.services.vaz.enableGnomeKeyring = true;
     };
 
   fonts = {
@@ -126,12 +137,11 @@
       bspwm
       sxhkd
       polybarFull
+      picom
       xorg.xdpyinfo
       xorg.libX11
       xtitle
-      tree
-      alacritty
-      neofetch 
+      xautolock
       (rofi.override {plugins=[rofi-emoji];})
       xclip
       ranger 
@@ -140,17 +150,16 @@
       wmname
       scrot
       betterlockscreen
-      lightdm-gtk-greeter
+      helix
 
-      gnome.gnome-keyring
       pavucontrol
-      tlp
-      blueberry
+      tlp		# Power Management
+      blueberry		# Bluetooth GUI
       pamixer
-      nodejs_20
-      python3Full
-      keepassxc
-      dracula-theme
+      nodejs_20		# Node for LSP
+      python311Full
+      python311Packages.virtualenv
+      keepassxc   	# Offline Saved Passwords
       blender
       xdg-utils
       dconf
@@ -160,45 +169,53 @@
       btop
       mpd
       mpc-cli
-
-       # Video/Audio
+      tmux
+      firefox
+      gtk-engine-murrine
+      gtk_engines
+      cmake
+      unzip             # Zip Files
+      unrar             # Rar Files
+      zip               # Zip
+      # Video/Audio
       feh               # Image Viewer
       mpv               # Media Player
       vlc               # Media Player
-      dunst 
+      dunst 		# Notification
       gnome.adwaita-icon-theme
       kitty
-      chromium
+      qrencode
+      microsoft-edge
 
       # Apps
       appimage-run      # Runs AppImages on NixOS
-      librewolf-unwrapped
       remmina           # XRDP & VNC Client
       obs-studio
       telegram-desktop
-      lazygit
+      lazygit # Git Terminal Ui
       gtk3
       mongodb-compass
       mysql-workbench
 
       gnome.file-roller # Archive Manager
+      gimp
       okular            # PDF Viewer
+      libreoffice-still # OfficeSuit
       p7zip             # Zip Encryption
-      rsync             # Syncer - $ rsync -r dir1/ dir2/
-      unzip             # Zip Files
-      unrar             # Rar Files
-      zip               # Zip
       (catppuccin-gtk.override {
-        accents = ["blue"];
+        accents = ["green"];
         size = "compact";
+	tweaks = ["rimless"];
         variant = "mocha";
       })
-      catppuccin-cursors.mochaDark
       qbittorrent
-      xsettingsd
       lxappearance
       ueberzug
-      papirus-icon-theme
+      (catppuccin-papirus-folders.override {
+        flavor = "mocha";
+	accent = "green";
+	})
+      nil # nix language server
 
     ];
   };
@@ -206,6 +223,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment = {
+     sessionVariables = {
+       QT_AUTO_SCREEN_SET_FACTOR=1;
+       GDK_DPI_SCALE=0.8;
+       QT_QPA_PLATFORMTHEME="qt5ct";
+       QT_SCALE_FACTOR=1;
+       QT_FONT_DPI=170;
+     };
      systemPackages = with pkgs; [
        neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
        wget
@@ -214,26 +238,30 @@
        gcc
        zig
        exa
-       tmux
+       ta-lib
+       tree
        jq
-       libthai
        glib
-       libnotify
        curl
+       acpi
+       acpid
+
        man
-       cmake
-       unzip
        docker-compose
        virt-manager
-       libguestfs # needed to virt-sparsify qcow2 files
-       libvirt
        qemu_kvm
-       gtk-engine-murrine
-       gtk_engines
        upower
        shared-mime-info
        pcmanfm
        killall
+       xsettingsd
+       #lib
+       libvirt
+       libguestfs
+       libsecret
+       libthai
+       libnotify
+       rsync             # Syncer - $ rsync -r dir1/ dir2/
      ];
   };
 
@@ -286,7 +314,25 @@
 
 
   systemd = {
-    user.services.betterlockscreen = {
+    sleep.extraConfig = ''
+      AllowSuspend=yes
+      AllowHibernation=yes
+      AllowSuspendThenHibernate=yes 
+      AllowHybridSleep=yes 
+      SuspendMode=suspend 
+      HibernateMode=shutdown
+      HybridSleepMode=suspend  
+      SuspendState=mem 
+      HibernateState=disk 
+      HybridSleepState=disk
+      HibernateDelaySec=2h
+      SuspendEstimationSec=1h
+    '';
+  # services = {
+  #  };
+  # NOT WORKING
+  user.services = {
+    betterlockscreen = {
       description = "Lock screen when going to sleep/suspend";
       before = [ "sleep.target" "suspend.target" ];
       environment = { DISPLAY=":0";};
@@ -297,7 +343,25 @@
         };
       postStart = "${pkgs.coreutils}/bin/sleep 1";
       wantedBy = [ "sleep.target" "suspend.target" ];
-      };
+     };
+  # tmux = {
+  #    description = "tmux default session (detached)";
+  #    environment = { DISPLAY=":0";};
+  #    serviceConfig = {
+  #      Type = "forking";
+  #      ExecStart = ''
+  #        ${pkgs.tmux}/bin/tmux new-session -d
+  #        '';
+  #      ExecStop=''
+  #        /home/vaz/.config/tmux/plugins/tmux-resurrect/scripts/save.sh
+  #        ${pkgs.tmux}/bin/tmux kill-server
+  #        '';
+  #      KillMode="control-group";
+  #      RestartSec = 2;
+  #      };
+  #    wantedBy = [ "default.target"];
+  #   };
+    };
   };
 
   services = {
@@ -307,6 +371,15 @@
     dbus.enable = true;
     mpd.enable = true;
     gvfs.enable = true;
+    logind = {
+      lidSwitchExternalPower = "suspend-then-hibernate";
+      lidSwitchDocked = "ignore";
+      lidSwitch = "suspend-then-hibernate";
+      extraConfig = ''
+        IdleAction=lock
+        HandlePowerKey=hybrid-sleep
+      '';
+    };
     xserver = {
       enable = true;
       libinput = {
@@ -314,18 +387,16 @@
 	touchpad = { 
 	  naturalScrolling = true;
 	  accelSpeed = "0.5";
+	  disableWhileTyping = true;
 	  };
 	};
       layout = "us,th";
       xkbOptions = "grp:caps_toggle,grp_led:caps";
       upscaleDefaultCursor = true;
-      dpi = 192;
+      dpi = 170; # Defualt Resolution for Asus Zenbook 13 is 255
       displayManager = {
         lightdm = {
 	 enable = true;
-	 greeters.gtk = {
-	   enable = true;
-	   };
 	 };
       };
       windowManager = {
@@ -333,21 +404,33 @@
 	  enable = true;
 	};
       };
+      xautolock = {
+        enable = true;
+        locker = ''${pkgs.betterlockscreen}/bin/betterlockscreen --lock'';
+        time = 15;
+	extraOptions = [ "-detectsleep" "-lockaftersleep"];
+	notifier = "${pkgs.libnotify}/bin/notify-send 'Locking in 10 seconds'";
+	};
+      config = ''
+         Section "Extensions"
+             Option "DPMS" "off"
+         EndSection
+      '';
     };
 
     # power profiles
     tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC="powersave";
-      CPU_SCALING_GOVERNOR_ON_BAT="powersave";
-      START_CHARGE_THRESH_BAT0=0;
-      STOP_CHARGE_THRESH_BAT0=80;
-      USB_AUTOSUSPEND=0;
-      RUNTIME_PM_ON_AC="auto";
+      enable = true;
+      settings = {
+        # CPU_SCALING_GOVERNOR_ON_AC="performance";
+        CPU_SCALING_GOVERNOR_ON_BAT="powersave";
+        START_CHARGE_THRESH_BAT0=0;
+        STOP_CHARGE_THRESH_BAT0=80;
+        USB_AUTOSUSPEND=0;
+        RUNTIME_PM_ON_AC="auto";
+       };
      };
    };
-  };
 
 
   xdg.portal = {
