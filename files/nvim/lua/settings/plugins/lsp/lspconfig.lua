@@ -64,31 +64,31 @@ return {
             end
         end
         protocol.CompletionItemKind = {
-            "", -- Text
-            "", -- Method
-            "󰡱", -- Function
-            "", -- Constructor
-            "", -- Field
-            "󰫧", -- Variable
-            "", -- Class
-            "", -- Interface
-            "󰕳", -- Module
-            "", -- Property
-            "", -- Unit
-            "", -- Value
-            "", -- Enum
-            "", -- Keyword
-            "﬌", -- Snippet
-            "", -- Color
-            "", -- File
-            "", -- Reference
-            "", -- Folder
-            "", -- EnumMember
-            "", -- Constant
-            "", -- Struct
+            "󱌯 ", -- Text
+            "ƒ", -- Method
+            "󰡱 ", -- Function
+            " ", -- Constructor
+            " ", -- Field
+            "󰫧 ", -- Variable
+            " ", -- Class
+            " ", -- Interface
+            "󰕳 ", -- Module
+            " ", -- Property
+            " ", -- Unit
+            " ", -- Value
+            " ", -- Enum
+            " ", -- Keyword
+            " ", -- Snippet
+            " ", -- Color
+            " ", -- File
+            " ", -- Reference
+            " ", -- Folder
+            " ", -- EnumMember
+            " ", -- Constant
+            " ", -- Struct
             "", -- Event
-            "", -- Operator
-            "", -- TypeParameter
+            " ", -- Operator
+            " ", -- TypeParameter
         }
 
         lspconfig.bashls.setup({

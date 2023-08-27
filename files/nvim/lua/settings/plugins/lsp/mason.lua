@@ -20,19 +20,19 @@ return {
         mason_lspconfig.setup({
             -- list of servers for mason to install
             ensure_installed = {
-                "tsserver",
-                "html",
-                "cssls",
-                "tailwindcss",
-                "svelte",
-                "lua_ls",
-                "graphql",
-                "emmet_ls",
-                "prismals",
-                "bashls",
-                "ruff_lsp",
-                "pyright",
-                "nil_ls",
+                -- "tsserver",
+                -- "html",
+                -- "cssls",
+                -- "tailwindcss",
+                -- "svelte",
+                -- "lua_ls",
+                -- "graphql",
+                -- "emmet_ls",
+                -- "prismals",
+                -- "bashls",
+                -- "ruff_lsp",
+                -- "pyright",
+                -- "nil_ls",
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
@@ -41,15 +41,15 @@ return {
         mason_null_ls.setup({
             -- list of formatters & linters for mason to install
             ensure_installed = {
-                "prettier", -- ts/js formatter
-                "stylua",   -- lua formatter
-                "eslint_d", -- ts/js linter
-                "black",
-                "shellcheck",
-                "beautysh",
+                -- "prettier", -- ts/js formatter
+                -- "stylua",   -- lua formatter
+                -- "eslint_d", -- ts/js linter
+                -- "black",
+                -- "shellcheck",
+                -- "beautysh",
             },
             -- auto-install configured servers (with lspconfig)
-            automatic_installation = { exclude = { "rust_analyzer" } }
+            automatic_installation = false --{ exclude = { "rustfmt" } }
             -- automatic_installation = false,
         })
     end,
