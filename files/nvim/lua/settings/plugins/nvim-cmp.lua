@@ -7,7 +7,7 @@ return {
         "hrsh7th/cmp-path", -- source for file system paths
         "hrsh7th/cmp-nvim-lsp-signature-help",
         "onsails/lspkind.nvim",
-        "L3MON4D3/LuaSnip",         -- snippet engine
+        "L3MON4D3/LuaSnip",       -- snippet engine
         "saadparwaiz1/cmp_luasnip", -- for autocompletion
         "rafamadriz/friendly-snippets", -- useful snippets
     },
@@ -42,8 +42,10 @@ return {
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif require("luasnip").expand_or_jumpable() then
-                        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
-                            "")
+                        vim.fn.feedkeys(
+                            vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
+                            ""
+                        )
                     else
                         fallback()
                     end
@@ -67,9 +69,9 @@ return {
             -- sources for autocompletion
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
+                { name = "luasnip" }, -- For luasnip users.
                 { name = "buffer" },
                 { name = "path" },
-                { name = "luasnip" }, -- For luasnip users.
                 { name = "nvim_lsp_signature_help" },
             }),
             -- configure lspkind for vs-code like icons
