@@ -168,6 +168,7 @@ return {
                         useLibraryCodeForTypes = true,
                         typeCheckingMode = "off",
                         logLevel = "Error",
+                        autoImportCompletions = true,
                     },
                 },
             },
