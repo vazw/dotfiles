@@ -1,6 +1,6 @@
-dynamic_padding = true
+# dynamic_padding = true
 live_config_reload = true
-"window.opacity" = 0.9
+# "window.opacity" = 0.9
 
 [[colors.indexed_colors]]
 color = "#F5A97F"
@@ -62,9 +62,9 @@ foreground = "#CAD3F5"
 background = "#A6DA95"
 foreground = "#24273A"
 
-[colors.search.footer_bar]
-background = "#A5ADCB"
-foreground = "#24273A"
+# [colors.search.footer_bar]
+# background = "#A5ADCB"
+# foreground = "#24273A"
 
 [colors.search.matches]
 background = "#A5ADCB"
