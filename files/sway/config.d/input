@@ -22,6 +22,8 @@ input type:keyboard {
       xkb_layout us,th
       xkb_options grp:caps_toggle,grp_led:caps
       xkb_numlock enabled
+      repeat_delay 250
+      repeat_rate 50
 }
 
 # exec_always {

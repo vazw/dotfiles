@@ -32,6 +32,7 @@ for_window [title="nm-connection-editor"] floating enable,  resize set width 50 
 for_window [app_id="nm-connection-editor"] floating enable,  resize set width 50 ppt height 70 ppt
 for_window [title="htop"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [app_id="btop"] floating enable, resize set width 50 ppt height 70 ppt
+for_window [class="feh"] floating enable, resize set width 60 ppt height 90 ppt
 for_window [app_id="passw"] floating enable, resize set width 20 ppt height 30 ppt
 for_window [title="Bluetooth"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [app_id="xsensors"] floating enable
