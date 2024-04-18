@@ -1,8 +1,9 @@
-// Edited for Garuda Linux by yurihikari
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 14,
+    "output": ["*"],
+    // "output": ["eDP-1"],
     "margin": "0 0 0 0",
     //"width": 1350, // Waybar width
     // Choose the order of the modules   # , "custom/swap", "network"
@@ -19,6 +20,7 @@
         "format": "{icon}",
         "sort-by-number": true,
         "active-only": false,
+        "all-outputs": true,
         "format-icons": {
             "1": "",
             "2": "",
@@ -31,7 +33,8 @@
             "9": "9",
             "10":"",
             "urgent": "",
-        },"persistent_workspaces": {
+        },
+        "persistent_workspaces": {
             "1": [],
         },
         "on-click": "activate",
@@ -175,18 +178,6 @@
         "on-click": "~/.config/sway/scripts/volume --toggle-mic",
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
         "on-scroll-down": "~/.config/sway/scripts/volume --dec"
-    },
-    // "custom/pacman": {
-    //    "format": " {}󰇚",
-    //    "interval": 7200,                     // every two hours
-    //    "exec": "i=$(checkupdates); echo \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
-    //    "exec-if": "exit 0",                  // always run; consider advanced run conditions
-    //    "on-click": "alacritty -e garuda-update", // update system
-    //    "signal": 8
-    // },
-    "custom/todolist": {
-        "exec": "cat ~/TODO | head -n 1 && cat ~/TODO | tail -n +2 | tr '\n' '\r'",
-        "interval": 60,
     },
     "custom/bitcoinprice": {
         "exec": "sleep 0.3 && ~/.config/waybar/scripts/bitcoin.sh",
