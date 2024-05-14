@@ -1,0 +1,5 @@
+feh -B checks \
+-d \
+-N \
+--geometry 500x500 \
+--scale-down

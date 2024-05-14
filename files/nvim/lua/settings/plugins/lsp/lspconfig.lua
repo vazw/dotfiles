@@ -115,9 +115,9 @@ return {
             capabilities = capabilities,
             settings = {
                 ["rust-analyzer"] = {
-                    rustfmt = {
-                        overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
-                    },
+                    -- rustfmt = {
+                    --     overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
+                    -- },
                     diagnostics = {
                         disabled = "inactive-code",
                     },
@@ -128,6 +128,7 @@ return {
                         prefix = "self",
                     },
                     cargo = {
+                        allFeatures = true,
                         buildScripts = {
                             enable = true,
                         },

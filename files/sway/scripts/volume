@@ -9,20 +9,20 @@ notify_cmd='notify-send -h string:x-canonical-private-synchronous:sys-notify-vol
 
 # Get Volume
 get_volume() {
-    echo "`pamixer --get-volume | cut -d' ' -f1`"
+    printf "%'.0f\n" "$(echo "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2) *100" | bc -l)"
 }
 
 # Get icons
 get_icon() {
     current="$(get_volume)"
     if [[ "$current" -eq "0" ]]; then
-        icon="$iDIR/volume-mute.png"
+        icon="$iDIR/volume-mute.svg"
     elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
-        icon="$iDIR/volume-low.png"
+        icon="$iDIR/volume-low.svg"
     elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
-        icon="$iDIR/volume-mid.png"
+        icon="$iDIR/volume-mid.svg"
     elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
-        icon="$iDIR/volume-high.png"
+        icon="$iDIR/volume-high.svg"
     fi
 }
 
@@ -33,37 +33,43 @@ notify_user() {
 
 # Increase Volume
 inc_volume() {
-    [[ `pamixer --get-mute` == 1 ]] && pamixer --unmute
-    pamixer -ui 2 && get_icon && notify_user
+    ISMUTED="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED)"
+    if [[ -n $ISMUTED ]]; then
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    fi 
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && get_icon && notify_user 
 }
 
 # Decrease Volume
 dec_volume() {
-    [[ `pamixer --get-mute` == 1 ]] && pamixer --unmute
-    pamixer -ud 2 && get_icon && notify_user
+    ISMUTED="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED)"
+    if [[ -n $ISMUTED ]]; then
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    fi 
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && get_icon && notify_user
 }
 
 # Toggle Mute
 toggle_mute() {
-    if [[ `pamixer --get-mute` == 'false' ]]; then
-        pamixer --toggle-mute && ${notify_cmd} -i "$iDIR/volume-mute.png" "Mute"
+    if [[ -n $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED) ]]; then
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${notify_cmd} -i "$iDIR/volume-mute.svg" "Mute"
     else
-        pamixer --toggle-mute && get_icon && ${notify_cmd} -i "$icon" "Unmute"
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && get_icon && ${notify_cmd} -i "$icon" "Unmute"
     fi
 }
 
 # Toggle Mic
 toggle_mic() {
-    ID="`pactl get-source-mute @DEFAULT_SOURCE@ | grep yes | cut -f1`"
+    ID="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep MUTED)"
     if [[ -n $ID ]]; then
-        pactl set-source-mute @DEFAULT_SOURCE@ toggle && ${notify_cmd} -i "$iDIR/microphone.png" "Microphone Switched ON"
+        wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ${notify_cmd} -i "$iDIR/microphone.svg" "Microphone Switched ON" && echo 1 > /sys/class/leds/platform::micmute/brightness
     else
-        pactl set-source-mute @DEFAULT_SOURCE@ toggle && ${notify_cmd} -i "$iDIR/microphone-mute.png" "Microphone Switched OFF"
+        wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ${notify_cmd} -i "$iDIR/microphone-mute.svg" "Microphone Switched OFF" && echo 0 > /sys/class/leds/platform::micmute/brightness
     fi
 }
 
 # Execute accordingly
-if [[ -x `which pamixer` ]]; then
+if [[ -x $(which wpctl) ]]; then
     if [[ "$1" == "--get" ]]; then
         get_volume
     elif [[ "$1" == "--inc" ]]; then
@@ -75,8 +81,8 @@ if [[ -x `which pamixer` ]]; then
     elif [[ "$1" == "--toggle-mic" ]]; then
         toggle_mic
     else
-        echo $(get_volume)%
+        echo "$(get_volume)"%
     fi
 else
-    ${notify_cmd} "'pamixer' is not installed."
+    ${notify_cmd} "'WirePlumber' is not installed."
 fi

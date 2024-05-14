@@ -30,8 +30,8 @@ return {
 				--  to disable file types use
 				--  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
 				-- Python
-				formatting.black.with({
-					extra_args = { "--line-length", "80" },
+				formatting.isort.with({
+					extra_args = { ".", "--profile", "black" },
 				}),
 				formatting.clang_format,
 				formatting.rustfmt.with({

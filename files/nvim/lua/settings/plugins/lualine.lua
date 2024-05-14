@@ -40,7 +40,12 @@ return {
 					"encoding",
 					"location",
 				},
-				lualine_z = { "filetype" },
+				lualine_z = {
+					"filetype",
+					function()
+						return require("lsp-progress").progress()
+					end,
+				},
 			},
 			inactive_sections = {
 				lualine_a = {},
@@ -58,6 +63,13 @@ return {
 			},
 			tabline = {},
 			extensions = { "fugitive" },
+		})
+		-- listen lsp-progress event and refresh lualine
+		vim.api.nvim_create_augroup("lualine_augroup", { clear = true })
+		vim.api.nvim_create_autocmd("User", {
+			group = "lualine_augroup",
+			pattern = "LspProgressStatusUpdated",
+			callback = require("lualine").refresh,
 		})
 	end,
 }

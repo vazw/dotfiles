@@ -55,4 +55,4 @@ sed -i "s|^swaybg --output '.*' --mode fill --image .*|swaybg --output '*' --mod
 sed -i "s|^image=.*|image=$NEXT_BACKGROUND|" "$HOME/.config/swaylock/config"
 
 # Send a notification with the new background name with an icon from the current background
-notify-send -i $NEXT_BACKGROUND "Background changed" "$(basename $NEXT_BACKGROUND)"
+notify-send -h string:x-canonical-private-synchronous:background -i "$NEXT_BACKGROUND" "Background changed" "$(basename "$NEXT_BACKGROUND")"

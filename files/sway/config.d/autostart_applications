@@ -1,21 +1,25 @@
 # Desktop notifications
-exec ~/.config/sway/scripts/notifications
+exec ~/.config/sway/scripts/notifications &
+# exec /usr/share/asus-numberpad-driver/.env/bin/python3 /usr/share/asus-numberpad-driver/numberpad.py up5401ea &
+exec asus-numpad &
 
 # Pipewire
 exec rm /run/user/1000/pipewire-0.lock &
 exec pipewire
+exec easyeffects -wl 'External Speaker'
+exec pactl set-default-sink alsa_output.pci-0000_03_00.6.analog-stereo
+exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+# exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+# nm-applet
+exec nm-applet --indicator
+exec blueman-applet
 exec nostr-relay-tray
 
 exec thunar --daemon
-# GTK3 applications take a long time to start
+
 # Sway Fader
 # exec python3 ~/.config/sway/scripts/swayfader.py     
  
-# Wob
-exec mkfifo $SWAYSOCK.wob
-# THIS DOESN'T WORK. --border-color etc. not valid
-# exec tail -f $SWAYSOCK.wob | wob --border-color '#ffdcbb8c' --background-color '#cc3a3a3a' --bar-color '#ffdcbb8c'
-exec tail -f $SWAYSOCK.wob | wob
 
 # Autotiling
 exec autotiling
@@ -23,9 +27,6 @@ exec autotiling
 # Wlsunset
 # exec ~/.config/sway/scripts/light.sh
 
-# nm-applet
-exec nm-applet --indicator
-exec blueman-applet
 
 # Welcome
 # exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
@@ -35,10 +36,11 @@ exec blueman-applet
 exec wl-paste -t text --watch clipman store
 
 # Gnome Keyring
-# exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
+exec /usr/libexec/polkit-gnome-authentication-agent-1
+exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
 
 # for Touchpad gestures
-exec libinput-gestures-setup start
+# exec libinput-gestures-setup start
 
 # Outputs
 # exec kanshi
@@ -50,7 +52,8 @@ exec /usr/libexec/xdg-desktop-portal-wlr
 # Tracker daemon for gnome apps
 # exec lxappearance-daemon
 
-exec pkexec brillo -c -S 1
+exec pkexec brillo -c 1
+exec ~/.config/sway/scripts/restorebrightness.sh
 
 # swayrd
 exec_always swayrd

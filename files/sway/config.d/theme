@@ -3,15 +3,15 @@ include catppuccin-mocha
 exec_always ~/.config/sway/scripts/import-gsettings
 
 # Set inner/outer gaps
-gaps inner 10
-gaps outer 5
+gaps inner 0
+gaps outer 0
 
 # Hide titlebar on windows: 
-default_border pixel 2
+default_border pixel 0
 
 # Default Font
 # font pango:Noto Sans Regular 10
-font FiraSans Nerd Font 10
+font pango:"Hack Nerd Font Propo" Regular 8
 
 # Thin borders:
 smart_borders on 

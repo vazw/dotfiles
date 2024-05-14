@@ -9,12 +9,12 @@ set $up k
 set $right l
 
 # Your preferred terminal emulators
-set $term-float alacritty
+set $term-float kitty
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi -I
+set $menu sirula
 
 # set $launcher nwg-drawer -c 7 -is 70 -spacing 23
 set $launcher wofi
@@ -23,7 +23,7 @@ set $powermenu ~/.config/sway/scripts/powermenu.sh
 
 set $emoji ~/.config/sway/scripts/emoji.sh
 
-set $cheat $term-float -t cheatsheet -e micro ~/.config/sway/cheatsheet.md
+set $cheat $term-float -t cheatsheet -e nvim ~/.config/sway/cheatsheet.md
 
 ### Idle configuration
 exec swayidle -w\
@@ -52,8 +52,7 @@ $mybind $mod+Shift+w exec ~/.config/waybar/scripts/swap.sh
 #
 # Basics:
 #
-# Start a floating terminal
-$mybind $mod+Return exec $term-float
+$mybind $mod+Return exec alacritty
 
 # Open the power menu
 $mybind $mod+Shift+e exec $powermenu
@@ -72,9 +71,6 @@ $mybind $mod+o exec swayr switch-window
 
 # Activities and workspaces
 $mybind $mod+Shift+O exec swayr switch-workspace-or-window
-
-# Switch to the last recently used window
-$mybind $mod+Tab exec swayr switch-to-urgent-or-lru-window
 
 # Cheatsheet
 $mybind $mod+Shift+i exec $cheat
@@ -145,28 +141,28 @@ $mybind $mod+Shift+0 move container to workspace number 10
 
 # French keyboard
 # Switch to workspace
-$mybind $mod+ampersand workspace number 1
-$mybind $mod+eacute workspace number 2
-$mybind $mod+quotedbl workspace number 3
-$mybind $mod+apostrophe workspace number 4
-$mybind $mod+parenleft workspace number 5
-$mybind $mod+minus workspace number 6
-$mybind $mod+egrave workspace number 7
-$mybind $mod+underscore workspace number 8
-$mybind $mod+ccedilla workspace number 9
-$mybind $mod+agrave workspace number 10
+# $mybind $mod+ampersand workspace number 1
+# $mybind $mod+eacute workspace number 2
+# $mybind $mod+quotedbl workspace number 3
+# $mybind $mod+apostrophe workspace number 4
+# $mybind $mod+parenleft workspace number 5
+# $mybind $mod+minus workspace number 6
+# $mybind $mod+egrave workspace number 7
+# $mybind $mod+underscore workspace number 8
+# $mybind $mod+ccedilla workspace number 9
+# $mybind $mod+agrave workspace number 10
 
 # Move focused container to workspace
-$mybind $mod+Shift+ampersand move container to workspace number 1
-$mybind $mod+Shift+eacute move container to workspace number 2
-$mybind $mod+Shift+quotedbl move container to workspace number 3
-$mybind $mod+Shift+apostrophe move container to workspace number 4
-$mybind $mod+Shift+parenleft move container to workspace number 5
-$mybind $mod+Shift+minus move container to workspace number 6
-$mybind $mod+Shift+egrave move container to workspace number 7
-$mybind $mod+Shift+underscore move container to workspace number 8
-$mybind $mod+Shift+ccedilla move container to workspace number 9
-$mybind $mod+Shift+agrave move container to workspace number 10
+# $mybind $mod+Shift+ampersand move container to workspace number 1
+# $mybind $mod+Shift+eacute move container to workspace number 2
+# $mybind $mod+Shift+quotedbl move container to workspace number 3
+# $mybind $mod+Shift+apostrophe move container to workspace number 4
+# $mybind $mod+Shift+parenleft move container to workspace number 5
+# $mybind $mod+Shift+minus move container to workspace number 6
+# $mybind $mod+Shift+egrave move container to workspace number 7
+# $mybind $mod+Shift+underscore move container to workspace number 8
+# $mybind $mod+Shift+ccedilla move container to workspace number 9
+# $mybind $mod+Shift+agrave move container to workspace number 10
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
@@ -191,8 +187,12 @@ $mybind $mod+f fullscreen
 # Toggle the current focus between tiling and floating mode
 $mybind $mod+space floating toggle
 
+
+# Switch to the last recently used window
+$mybind $mod+Tab focus mode_toggle
+
 # Swap focus between the tiling area and the floating area
-# $mybind $mod+space focus mode_toggle
+$mybind $mod+Shift+space exec swayr switch-to-urgent-or-lru-window
 
 # Move focus to the parent container
 $mybind $mod+a focus parent
@@ -252,9 +252,9 @@ $mybind --whole-window --border $mod+shift+button5 resize grow width 5 px or 5 p
 
 # Volume
 
-$mybind XF86AudioRaiseVolume exec ~/.config/sway/scripts/volume --inc && pamixer --get-volume > $SWAYSOCK.wob
-$mybind XF86AudioLowerVolume exec ~/.config/sway/scripts/volume --dec && pamixer --get-volume > $SWAYSOCK.wob
-$mybind XF86AudioMute exec pamixer --toggle-mute && ( pamixer --get-mute && echo 0 > $SWAYSOCK.wob ) || pamixer --get-volume > $SWAYSOCK.wob
+$mybind XF86AudioRaiseVolume exec ~/.config/sway/scripts/volume --inc  
+$mybind XF86AudioLowerVolume exec ~/.config/sway/scripts/volume --dec 
+$mybind XF86AudioMute exec ~/.config/sway/scripts/volume --toggle
 $mybind XF86AudioMicMute exec ~/.config/sway/scripts/volume --toggle-mic
 $mybind XF86Tools exec ~/.config/sway/scripts/volume --toggle-mic
 
@@ -267,15 +267,17 @@ $mybind XF86AudioPrev exec playerctl previous
 
 # Backlight
 
-$mybind XF86MonBrightnessUp exec ~/.config/sway/scripts/brightness --inc && light -G | cut -d'.' -f1 > $SWAYSOCK.wob 
-$mybind XF86MonBrightnessDown exec ~/.config/sway/scripts/brightness --dec && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
-$mybind XF86HomePage exec ~/.config/sway/scripts/brightness --inc && light -G | cut -d'.' -f1 > $SWAYSOCK.wob 
-$mybind XF86Explorer exec ~/.config/sway/scripts/brightness --dec && light -G | cut -d'.' -f1 > $SWAYSOCK.wob
+$mybind XF86MonBrightnessUp exec ~/.config/sway/scripts/brightness --inc
+$mybind XF86MonBrightnessDown exec ~/.config/sway/scripts/brightness --dec
+$mybind XF86HomePage exec ~/.config/sway/scripts/brightness --inc 
+$mybind XF86Explorer exec ~/.config/sway/scripts/brightness --dec
 
 # App shortcuts
 
 $mybind $mod+n exec kitty ranger
 $mybind XF86Calculator exec alacritty --class "btop" -e btop 
+$mybind XF86Launch1 exec alacritty --class "btop" -e btop 
+$mybind XF86WebCam exec cheese 
 # $mybind $mod+o exec google-chrome-stable
 
 # Screenshots
@@ -289,8 +291,10 @@ $mybind $mod+shift+P exec grimshot --notify copy area ~/Pictures/ScreenShots/$(d
 
 $mybind XF86TouchpadToggle input type:touchpad events toggle enabled disabled 
 # Allow switching between workspaces with left and right swipes
-# bindgesture swipe:right workspace prev
-# bindgesture swipe:left workspace next
+bindgesture swipe:up workspace prev
+bindgesture swipe:down workspace next
+bindgesture swipe:right focus left
+bindgesture swipe:left focus right
 
 # Emoji Menu
 $mybind $mod+i exec $emoji

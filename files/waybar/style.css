@@ -47,9 +47,9 @@
   padding: 0 0;
   /* font-family: UbuntuMono; */
   /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
-  font-family: "FiraCode Nerd Font";
-  font-size: 18px;
-  font-weight: normal;
+  font-family: "Hack Nerd Font Propo";
+  font-size: 14px;
+  font-weight: 500;
   /* padding-bottom:4px;
       padding-top: 4px; */
   transition: all 0.5s ease;
@@ -60,30 +60,27 @@ window#waybar {
   /* border-radius: 10px; */
   /* background:#2d2a2e; */
   /* background-color: rgba(36, 39, 58, 0.85); */
-  /* background-color: rgba(0, 0, 0, 0.45); */
   /* background-color: #000000; */
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: alpha(#2e3440, 0.8);
 }
 
 #workspaces button {
   color: @base;
   border-radius: 50%;
   /* background-color: @base; */
-  margin: 0px 5px 0px 5px;
-  padding: 0px 6px 2px 0px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
 }
 
 #workspaces button:hover * {
-  color: @pink;
-}
-
-#workspaces button:hover {
   color: @pink;
   border-radius: 20px;
 }
 
 #workspaces * {
   color: whitesmoke;
+  font-weight: 800;
 }
 
 #workspaces {
@@ -92,7 +89,7 @@ window#waybar {
   opacity: 1;
   background-color: shade(#24273a, 1);
   border-radius: 0px 0px 20px 0px;
-  padding: 0px 10px 0px 5px;
+  padding: 0px 8px 0px 5px;
   margin-top: 0;
   /* margin: 2px 6px 6px 8px; */
 }
@@ -103,14 +100,14 @@ window#waybar {
 }
 
 #workspaces button.focused * {
-  color: @red;
+  color: @green;
 }
 
-#workspaces button.peristent {
-  color: @green;
+#workspaces button.urgent {
+  color: @red;
 }
 #workspaces button.peristent * {
-  color: @green;
+  color: whitesmoke;
 }
 
 #mode {
@@ -130,6 +127,7 @@ window#waybar {
 #temperature,
 #custom-power_profile,
 #backlight,
+#wireplumber,
 #network,
 #pulseaudio,
 #mode,
@@ -137,6 +135,7 @@ window#waybar {
 #custom-pacman,
 #tray,
 #language,
+#custom-screenrecorder,
 #mpd {
   padding: 0px 8px;
   border-style: solid;
@@ -160,7 +159,7 @@ window#waybar {
 
 #custom-bitcoinprice {
   border-radius: 10px;
-  color: @peach;
+  color: #ffffff;
   padding: 0px 8px 0px 8px;
   margin: 0px 0px 0px;
   font-size: 14px;
@@ -194,11 +193,14 @@ window#waybar {
 #backlight {
   /* color: @teal; */
   font-size: 14px;
-  color: @green;
-  padding-right: 12px;
+  color: white;
+  padding-left: 12px;
+  border-radius: 0px 0 0px 20px;
+  background-color: #24273a;
 }
 #backlight-slider {
   padding-right: 8px;
+  background-color: #24273a;
   padding-left: 8px;
 }
 #backlight-slider slider {
@@ -213,12 +215,13 @@ window#waybar {
   min-height: 14px;
   min-width: 50px;
   border-radius: 5px;
-  background-color: black;
+  background-color: #494d64;
+  color: green;
 }
 #backlight-slider highlight {
   min-width: 5px;
   border-radius: 5px;
-  background-color: red;
+  background-color: green;
 }
 
 #battery {
@@ -226,7 +229,7 @@ window#waybar {
   /* border-radius: 0 10px 10px 0; */
   margin-right: 0px;
   margin-bottom: 0px;
-  padding: 0px 8px 0px 8px;
+  padding: 0px 2px 0px 8px;
 }
 
 #battery.charging {
@@ -275,10 +278,12 @@ window#waybar {
 }
 
 #pulseaudio {
-  padding: 0px 8px 0px 8px;
+  padding: 0px 8px 0px 2px;
   margin-bottom: 0px;
   /* background-color: #24273a; */
   color: red;
+  background-color: #24273a;
+  border-radius: 0px 0px 0px 0px;
 }
 
 #pulseaudio.source-muted {
@@ -287,9 +292,20 @@ window#waybar {
 #pulseaudio.muted {
   color: #ffffff;
 }
+#wireplumber {
+  color: #ffffff;
+  background-color: #24273a;
+  padding-left: 2px;
+  padding-right: 12px;
+  border-radius: 0px 0px 20px 0px;
+}
+#wireplumber.muted {
+  color: #ffffff;
+}
 #pulseaudio-slider {
   padding-right: 8px;
   padding-left: 8px;
+  background-color: #24273a;
 }
 #pulseaudio-slider slider {
   min-height: 0px;
@@ -303,19 +319,13 @@ window#waybar {
   min-height: 14px;
   min-width: 50px;
   border-radius: 5px;
-  background-color: red;
+  background-color: #494d64;
   color: green;
 }
 #pulseaudio-slider highlight {
   min-width: 5px;
   border-radius: 5px;
   background-color: green;
-}
-
-#temperature {
-  color: @yellow;
-  font-size: 14px;
-  border-radius: 10px 0 0 10px;
 }
 
 #temperature.critical {
@@ -325,28 +335,15 @@ window#waybar {
 #idle_inhibitor {
   background-color: #24273a;
   color: #ffffff;
-  padding: 0px 8px 0px 8px;
+  padding: 0px 3px 0px 3px;
   margin-bottom: 0px;
-}
-
-#custom-pacman {
-  color: @green;
-  font-size: 14px;
 }
 
 #tray {
   border-radius: 0px 0 0px 20px;
-  padding: 0px 3px 0px 14px;
+  padding: 0px 3px 0px 10px;
   margin-bottom: 0px;
   font-size: 9px;
-}
-
-#custom-todolist {
-  color: @maroon;
-  font-size: 14px;
-  font-family: "FiraCode Nerd Font";
-  border-radius: 10px 0 0 10px;
-  padding: 0px 0px 0px 8px;
 }
 
 #window {
@@ -361,7 +358,55 @@ window#waybar {
   margin-bottom: 3px;
 }
 
+#custom-screenrecorder {
+  padding-left: 3px;
+  padding-right: 0px;
+  background-color: #24273a;
+  color: white;
+}
+
 #language {
   color: white;
   background-color: #24273a;
+  font-weight: 800;
+}
+
+#taskbar {
+  color: @base;
+  border-radius: 50%;
+  /* background-color: @base; */
+  margin: 0px 5px 0px 5px;
+  padding: 0px 6px 2px 0px;
+}
+
+#taskbar button {
+  color: @base;
+  border-radius: 50%;
+  /* background-color: @base; */
+  margin: 0px 5px 0px 5px;
+  padding: 0px 6px 2px 0px;
+}
+
+#taskbar * {
+  color: whitesmoke;
+}
+
+#taskbar {
+  border-style: solid;
+  /* background-color: @base; */
+  opacity: 1;
+  background-color: shade(#24273a, 1);
+  border-radius: 0px 0px 20px 0px;
+  padding: 0px 10px 0px 5px;
+  margin-top: 0;
+  /* margin: 2px 6px 6px 8px; */
+}
+
+#taskbar button.active {
+  border-radius: 20px;
+  /* background-color: @flamingo; */
+}
+
+#taskbar button.active * {
+  color: @red;
 }

@@ -1,15 +1,15 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 14,
+    "height": 20,
     "output": ["*"],
     // "output": ["eDP-1"],
     "margin": "0 0 0 0",
     //"width": 1350, // Waybar width
     // Choose the order of the modules   # , "custom/swap", "network"
-    "modules-left": ["sway/workspaces", "custom/bitcoinprice"],
-    "modules-center": ["backlight","backlight/slider", "pulseaudio#source", "pulseaudio/slider", "pulseaudio#sink"],
-    "modules-right": ["custom/blockheight", "clock", "tray", "sway/language", "idle_inhibitor", "battery"], 
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["group/light", "pulseaudio#source", "wireplumber"],
+    "modules-right": ["group/btc", "clock", "tray", "custom/screenrecorder", "sway/language", "idle_inhibitor", "battery"], 
     
  // Modules configuration
  
@@ -22,28 +22,22 @@
         "active-only": false,
         "all-outputs": true,
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7󰯂",
-            "8": "",
-            "9": "9",
-            "10":"",
+        //     "1": "",
+        //     "2": "",
+        //     "3": "",
+        //     "4": "4",
+        //     "5": "5",
+        //     "6": "6",
+        //     "7": "7󰯂",
+        //     "8": "",
+        //     "9": "9",
+        //     "10":"",
             "urgent": "",
         },
-        "persistent_workspaces": {
+        "persistent-workspaces": {
             "1": [],
         },
         "on-click": "activate",
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/window": {
-        "format": "~ {app_id}",
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -52,8 +46,18 @@
             "deactivated": "󰌪"
         }
     },
+    "wlr/taskbar": {
+        // "all-outputs": true,
+        // "format": "{icon} {title} {short_state}",
+        "format": "{icon}",
+        "icon-theme": "Papirus-Dark",
+        "tooltip-format": "{title} | {app_id}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "on-click-right": "fullscreen"
+    },
     "tray": {
-        "icon-size": 18,
+        "icon-size": 15,
         "spacing": 10
     },
     "clock": {
@@ -103,7 +107,7 @@
         "on-scroll-up": "~/.config/sway/scripts/brightness --inc"
     },
     "backlight/slider": {
-        "min": 1,
+        "min": 0,
         "max": 100,
         "orientation": "horizontal",
         "on-scroll-down": "~/.config/sway/scripts/brightness --dec",
@@ -177,6 +181,19 @@
         "format-source-muted": "",
         "on-click": "~/.config/sway/scripts/volume --toggle-mic",
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
+        "on-scroll-down": "~/.config/sway/scripts/volume --dec",
+        "ignored-sinks": ["Easy Effects Sink"],
+    },
+    "wireplumber": {
+        "format": "{icon}",
+        "format-muted": "",
+        "on-click": "pavucontrol",
+        "max-volume": 100,
+        "scroll-step": 1,
+        "format-muted":"",
+        "format-icons": ["󰕿", "󰖀", "󰕾", ""],
+        "on-click": "pavucontrol-qt",
+        "on-scroll-up": "~/.config/sway/scripts/volume --inc",
         "on-scroll-down": "~/.config/sway/scripts/volume --dec"
     },
     "custom/bitcoinprice": {
@@ -190,7 +207,39 @@
       	"tooltip": false,
     },
     "sway/language": {
-    "format": "{shortDescription}",
-    "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+        "format": "{shortDescription}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+    },
+    "group/light": {
+        "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "transition-left-to-right": true,
+    },
+    "modules": [
+        "backlight", // First element is the "group leader" and won't ever be hidden
+        "backlight/slider",
+    ]
+    },
+    "group/btc": {
+        "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "transition-left-to-right": false,
+    },
+    "modules": [
+        "custom/blockheight", // First element is the "group leader" and won't ever be hidden
+        "custom/bitcoinprice",
+    ]
+    },
+    "custom/screenrecorder": {
+        "exec": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder status",
+        "interval": "once",
+        "signal": 1,
+        "return-type": "json",
+        "tooltip": true,
+        "format": "{}",
+        "on-click": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle fullscreen",
+        "on-click-right": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle region"
     },
 }

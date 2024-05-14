@@ -6,9 +6,9 @@
 
 CONFIG="$HOME/.config/sway/dunst"
 
-if [[ ! `pidof dunst` ]]; then
-    dunst -config ${CONFIG}
-else
-    pkill dunst
-    dunst -config ${CONFIG}
+if [[ ! $(pidof dunst) ]]; then
+    dunst -config "${CONFIG}" &
+else                        
+    pkill dunst             
+    dunst -config "${CONFIG}" &
 fi
