@@ -1,4 +1,4 @@
 return {
-    -- "Bekaboo/dropbar.nvim",
-    -- priority = 1000,
+	"Bekaboo/dropbar.nvim",
+	priority = 1000,
 }

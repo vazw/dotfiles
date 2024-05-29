@@ -9,6 +9,9 @@ return {
             config = true,
         },
     },
+    opts = {
+        inlay_hints = { enabled = true },
+    },
     config = function()
         local lspconfig = require("lspconfig")
         local protocol = require("vim.lsp.protocol")
@@ -36,8 +39,11 @@ return {
                 vim.api.nvim_buf_set_keymap(bufnr, ...)
             end
 
-            local function buf_set_option(...)
-                vim.api.nvim_buf_set_option(bufnr, ...)
+            local function buf_set_option(name, func)
+                vim.api.nvim_set_option_value(name, func, { buf = bufnr })
+            end
+            if client.server_capabilities.inlayHintProvider then
+                vim.lsp.inlay_hint.enable(true)
             end
 
             --Enable completion triggered by <c-x><c-o>
@@ -54,13 +60,13 @@ return {
             buf_set_keymap("n", "<C-k>", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
             if client.name == "tsserver" then
                 opts.desc = "Rename file and update file imports"
-                keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
+                vim.keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
 
                 opts.desc = "Rename file and update file imports"
-                keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
+                vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
 
                 opts.desc = "Remove unused imports"
-                keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
+                vim.keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
             end
         end
         protocol.CompletionItemKind = {
@@ -115,8 +121,14 @@ return {
             capabilities = capabilities,
             settings = {
                 ["rust-analyzer"] = {
-                    -- rustfmt = {
-                    --     overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
+                    rustfmt = {
+                        overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
+                    },
+                    -- Add clippy lints for Rust.
+                    -- checkOnSave = {
+                    --     allFeatures = true,
+                    --     command = "clippy",
+                    --     extraArgs = { "--no-deps" },
                     -- },
                     diagnostics = {
                         disabled = "inactive-code",
@@ -129,12 +141,16 @@ return {
                     },
                     cargo = {
                         allFeatures = true,
-                        buildScripts = {
-                            enable = true,
-                        },
+                        loadOutDirsFromCheck = true,
+                        runBuildScripts = true,
                     },
                     procMacro = {
                         enable = true,
+                        ignored = {
+                            ["async-trait"] = { "async_trait" },
+                            ["napi-derive"] = { "napi" },
+                            ["async-recursion"] = { "async_recursion" },
+                        },
                     },
                 },
             },
@@ -251,6 +267,10 @@ return {
             capabilities = capabilities,
             on_attach = on_attach,
         })
+        lspconfig.zls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
 
         vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
             underline = true,
@@ -277,7 +297,7 @@ return {
             },
             update_in_insert = true,
             float = {
-                source = "always", -- Or "always"
+                source = "if_many", -- Or "always"
                 -- namespace = 1,
             },
         })
