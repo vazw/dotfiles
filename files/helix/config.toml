@@ -1,0 +1,71 @@
+theme = "catppuccin_custom"
+
+[editor]
+line-number = "relative"
+mouse = true
+bufferline = "multiple"
+cursorline = true
+true-color = true
+scrolloff = 8
+rulers = [80]
+auto-completion = true
+completion-timeout = 5
+completion-trigger-len = 1
+undercurl = true
+color-modes = true
+text-width = 80
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name"]
+center = []
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+tab =  "goto_next_buffer" 
+S-tab =  "goto_previous_buffer" 
+"}" = "goto_next_paragraph" 
+"{" = "goto_prev_paragraph"   
+G = "goto_last_line"
+V = ["select_mode", "extend_line_below"]
+
+
+[keys.insert]
+C-h = "move_char_left"
+C-l = "move_char_right"
+C-j = "move_line_down"
+C-k = "move_line_up"
+
+[keys.select]
+V = "extend_to_line_bounds"
+"}" = "goto_next_paragraph" 
+"{" = "goto_prev_paragraph"   
+
+
+[keys.normal.space]
+x =  ":bc"  
+  
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+# match = "underline"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+
+[editor.indent-guides]
+render = true
+character = "⸽"
+skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+max-indent-retain = 0
+
