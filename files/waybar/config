@@ -120,7 +120,7 @@
             "warning": 40,
             "critical": 30
         },       
-        "format": "{icon} ",
+        "format": "{icon}",
         "full-at": 77,
         //"format": "{icon}{capacity}%",
         "format-charging": "{icon} {capacity}%",
@@ -192,7 +192,6 @@
         "scroll-step": 1,
         "format-muted":"",
         "format-icons": ["󰕿", "󰖀", "󰕾", ""],
-        "on-click": "pavucontrol-qt",
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
         "on-scroll-down": "~/.config/sway/scripts/volume --dec"
     },
