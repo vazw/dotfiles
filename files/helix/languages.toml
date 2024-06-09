@@ -8,7 +8,6 @@ use-grammars = { except = [ "hare", "wren", "gemini" ] }
 als = { command = "als" }
 ada-language-server = { command = "ada_language_server" }
 ada-gpr-language-server = {command = "ada_language_server", args = ["--language-gpr"]}
-angular = {command = "ngserver", args = ["--stdio", "--tsProbeLocations", ".", "--ngProbeLocations", ".",]}
 awk-language-server = { command = "awk-language-server" }
 bash-language-server = { command = "bash-language-server", args = ["start"] }
 bass = { command = "bass", args = ["--lsp"] }
@@ -63,7 +62,6 @@ nls = { command = "nls" }
 nu-lsp = { command = "nu", args = [ "--lsp" ] }
 ocamllsp = { command = "ocamllsp" }
 ols = { command = "ols", args = [] }
-omnisharp = { command = "OmniSharp", args = [ "--languageserver" ] }
 openscad-lsp = { command = "openscad-lsp", args = ["--stdio"] }
 pasls = { command = "pasls", args = [] }
 pbkit = { command = "pb", args = [ "lsp" ] }
@@ -76,7 +74,6 @@ qmlls = { command = "qmlls" }
 r = { command = "R", args = ["--no-echo", "-e", "languageserver::run()"] }
 racket = { command = "racket", args = ["-l", "racket-langserver"] }
 regols = { command = "regols" }
-leptosfmt = { command = "leptosfmt", args= ["--stdin", "--rustfmt"]}
 rescript-language-server = { command = "rescript-language-server", args = ["--stdio"] }
 robotframework_ls = { command = "robotframework_ls" }
 serve-d = { command = "serve-d" }
@@ -86,7 +83,6 @@ solc = { command = "solc", args = ["--lsp"] }
 sourcekit-lsp = { command = "sourcekit-lsp" }
 svlangserver = { command = "svlangserver", args = [] }
 swipl = { command = "swipl", args = [ "-g", "use_module(library(lsp_server))", "-g", "lsp_server:main", "-t", "halt", "--", "stdio" ] }
-tailwindcss-ls = { command = "tailwindcss-language-server", args = ["--stdio"] }
 taplo = { command = "taplo", args = ["lsp", "stdio"] }
 templ = { command = "templ", args = ["lsp"] }
 terraform-ls = { command = "terraform-ls", args = ["serve"] }
@@ -108,7 +104,33 @@ pkgbuild-language-server = { command = "pkgbuild-language-server" }
 helm_ls = { command = "helm_ls", args = ["serve"] }
 ember-language-server = { command = "ember-language-server", args = ["--stdio"] }
 
- [language-server.ansible-language-server]
+[language-server.csharpls]
+command = "csharp-ls"
+
+[language-server.omnisharp]
+command = "omnisharp"
+args = ["--languageserver"]
+
+[language-server.angular]
+command = "ngserver"
+roots = ["angular.json", "nx.json"]
+args = [ "--stdio", "--tsProbeLocations", "$(npm -g root)", "--ngProbeLocations", "$(npm -g root)", ]
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+validate = "on"
+experimental = { useFlatConfig = false }
+rulesCustomizations = []
+run = "onType"
+problems = { shortenToSingleLine = false }
+nodePath = ""
+format = false
+codeAction = { disableRuleComment = { enable = true, location = 'separateLine' }, showDocumentation = { enable = true } }
+
+[language-server.ansible-language-server]
 command = "ansible-language-server"
 args = ["--stdio"]
 
@@ -168,7 +190,7 @@ args = ["server", "-q", "--preview"]
 command = "rust-analyzer"
 
 [language-server.rust-analyzer.config]
-check.command = "clippy"
+# check.command = "clippy"
 inlayHints.bindingModeHints.enable = false
 inlayHints.closingBraceHints.minLines = 10
 inlayHints.closureReturnTypeHints.enable = "with_block"
@@ -183,13 +205,7 @@ cargo.loadOutDirsFromCheck = true
 cargo.runBuildScripts = true
 procMacro.enable = true
 procMacro.ignored = { async-trait = ["async_trait"], napi-derive = ["napi"], async-recursion = ["async_recursion"], leptos_macro = ["component", "server"]}
-rustfmt.overrideCommand = [
- "leptosfmt",
- "--stdin",
- "--rustfmt",
-]
-
-
+rustfmt.overrideCommand = [ "leptosfmt", "--stdin", "--rustfmt" ]
 
 [language-server.typescript-language-server]
 command = "typescript-language-server"
@@ -256,6 +272,15 @@ enable = true
 [language-server.vscode-eslint-language-server.config.workingDirectory]
 mode = "location"
 
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[language-server.tailwindcss-rust]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+config = {userLanguages = { rust = "html", "*.rs" = "html" } }
+
  [[language]]
 name = "rust"
 scope = "source.rust"
@@ -270,12 +295,14 @@ block-comment-tokens = [
   { start = "/**", end = "*/" },
   { start = "/*!", end = "*/" },
 ]
-language-servers = ["rust-analyzer"]
+language-servers = [ "rust-analyzer", "tailwindcss-rust" ]
 # indent = { tab-width = 4, unit = "    " }
 persistent-diagnostic-sources = ["rustc", "clippy"]
 
 [language.formatter]
 command = "rustfmt"
+# command = "leptosfmt"
+# args = ["--stdin"]
 
 [language.auto-pairs]
 '(' = ')'
@@ -315,6 +342,7 @@ args = { attachCommands = [ "platform select remote-gdb-server", "platform conne
 
 [[grammar]]
 name = "rust"
+# source = { path = "/home/vaz/Code/Personal/tree-sitter-rstml/rust_with_rstml" }
 source = { git = "https://github.com/tree-sitter/tree-sitter-rust", rev = "04352146022062c101b8ddd853adf17eadd8cf56" }
 
 [[language]]
@@ -812,7 +840,7 @@ language-id = "typescriptreact"
 file-types = ["tsx"]
 comment-token = "//"
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "typescript-language-server" ]
+language-servers = [ "typescript-language-server" , "tailwindcss-ls"  ]
 indent = { tab-width = 2, unit = "  " }
 
 [[grammar]]
@@ -825,7 +853,7 @@ scope = "source.css"
 injection-regex = "css"
 file-types = ["css", "scss"]
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "vscode-css-language-server" ]
+language-servers = [ "vscode-css-language-server" , "tailwindcss-ls"  ]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 
@@ -839,7 +867,7 @@ scope = "source.scss"
 injection-regex = "scss"
 file-types = ["scss"]
 block-comment-tokens = { start = "/*", end = "*/" }
-language-servers = [ "vscode-css-language-server" ]
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls"  ]
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 
@@ -851,10 +879,12 @@ source = { git = "https://github.com/serenadeai/tree-sitter-scss", rev = "c478c6
 name = "html"
 scope = "text.html.basic"
 injection-regex = "html"
-file-types = ["html", "htm", "shtml", "xhtml", "xht", "jsp", "asp", "aspx", "jshtm", "volt", "rhtml"]
+file-types = ["html", "htm", "shtml", "xhtml", "xht", "jsp", "asp", "aspx", "jshtm", "volt", "rhtml", "liquid"]
 block-comment-tokens = { start = "<!--", end = "-->" }
-language-servers = [ "vscode-html-language-server" ]
+formatter = { command = 'prettier', args = ["--stdin-filepath=lol.liquid"]}
+roots = ["package.json", "index.html"]
 auto-format = true
+language-servers = ["vscode-html-language-server", "tailwindcss-ls"]
 indent = { tab-width = 2, unit = "  " }
 
 [[grammar]]
@@ -872,7 +902,7 @@ comment-token = "#"
 language-servers = [ {name = "pyright", except-features=["diagnostics"]}, "ruff" ]
 indent = { tab-width = 4, unit = "    " }
 auto-format = true
-formatter =  { command = "bash", args = ["-c", "ruff format --line-length 80 -q . && black --line-length 80 -q -"] }
+formatter =  { command = "ruff", args = ["format", "--line-length", "80", "-"] }
 
 
 [[grammar]]
@@ -3730,3 +3760,28 @@ grammar = "typescript"
 "{" = "}"
 "(" = ")"
 '"' = '"'
+
+[[language]]
+name = "json"
+formatter = { command = 'prettier', args = ["--stdin-filepath=lol.json"] }
+auto-format = true
+
+[[language]]
+name = "css"
+formatter = { command = 'prettier', args = ["--stdin-filepath=lol.css"] }
+auto-format = true
+
+[[language]]
+name = "scss"
+formatter = { command = 'prettier', args = ["--stdin-filepath=lol.cscc"] }
+auto-format = true
+[[language]]
+name = "c-sharp"
+scope = "source.csharp"
+formatter = { command = "dotnet", args = ["csharpier"] }
+injection-regex = "c-?sharp"
+file-types = ["cs"]
+roots = ["sln", "csproj"]
+indent = { tab-width = 2, unit = "  " }
+auto-format = true
+language-servers = ["omnisharp"]

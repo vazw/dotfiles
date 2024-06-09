@@ -91,14 +91,15 @@
 "ui.text.focus" = { fg = "text", bg = "surface0" }
 
 "ui.virtual" = "overlay0"
-"ui.virtual.ruler" = { bg = "cursorline" }
+"ui.virtual.ruler" = { bg = "crust"}
 "ui.virtual.indent-guide" = "overlay0"
 "ui.virtual.inlay-hint" = { fg = "surface1", bg = "base" }
 
 "ui.selection" = { bg = "surface1" }
 
-"ui.cursor" = { fg = "base", bg = "secondary_cursor" }
-"ui.cursor.primary" = { fg = "crust", bg = "subtext0" }
+"ui.cursor" = { fg = "dark", bg = "secondary_cursor" , modifiers = ["slow_blink"] }
+"ui.cursor.normal" = { fg = "dark", bg = "secondary_cursor" , modifiers = ["slow_blink"] }
+"ui.cursor.primary" = { fg = "dark", bg = "subtext0", modifiers = ["slow_blink"] }
 "ui.cursor.primary.select" = { fg = "crust", bg = "subtext0" , underline = {color = "peach", style = "line"} , modifiers = ["bold"]}
 "ui.cursor.select" = { fg = "base", bg = "flamingo", underline = {color = "peach", style = "line"}}
 "ui.cursor.match" = { fg = "peach", modifiers = ["bold"] }

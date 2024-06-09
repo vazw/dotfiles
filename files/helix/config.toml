@@ -7,7 +7,7 @@ bufferline = "multiple"
 cursorline = true
 true-color = true
 scrolloff = 8
-rulers = [80]
+# rulers = [80]
 auto-completion = true
 completion-timeout = 5
 completion-trigger-len = 1
@@ -43,7 +43,8 @@ C-k = "move_line_up"
 [keys.select]
 V = "extend_to_line_bounds"
 "}" = "goto_next_paragraph" 
-"{" = "goto_prev_paragraph"   
+"{" = "goto_prev_paragraph"
+G = ["goto_last_line", "extend_to_line_bounds"]
 
 
 [keys.normal.space]
