@@ -1,6 +1,7 @@
 # my personal config files
 
 ## Config are on differents branch
+currenly using [Voidlinux](https://voidlinux.org)
 
 ## Screenshot
 
