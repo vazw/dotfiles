@@ -1,37 +1,20 @@
 {
     "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
+    "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 24,
     "output": ["*"],
-    // "output": ["eDP-1"],
     "margin": "0 0 0 0",
-    //"width": 1350, // Waybar width
-    // Choose the order of the modules   # , "custom/swap", "network"
-    "modules-left": ["sway/workspaces"],
-    "modules-center": ["group/light", "pulseaudio#source", "wireplumber"],
-    "modules-right": ["group/btc", "clock", "tray", "custom/screenrecorder", "sway/language", "idle_inhibitor", "battery"], 
+    "modules-left": ["custom/screenrecorder", "pulseaudio#source", "wireplumber", "group/light", "tray"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["sway/language", "idle_inhibitor", "battery", "custom/blockheight", "clock"], 
     
- // Modules configuration
  
-    // for sway
     "sway/workspaces": { 
-    // for hyprland
-    // "wlr/workspaces": {
         "format": "{icon}",
         "sort-by-number": true,
         "active-only": false,
         "all-outputs": true,
         "format-icons": {
-        //     "1": "",
-        //     "2": "",
-        //     "3": "",
-        //     "4": "4",
-        //     "5": "5",
-        //     "6": "6",
-        //     "7": "7󰯂",
-        //     "8": "",
-        //     "9": "9",
-        //     "10":"",
             "urgent": "",
         },
         "persistent-workspaces": {
@@ -46,23 +29,12 @@
             "deactivated": "󰌪"
         }
     },
-    "wlr/taskbar": {
-        // "all-outputs": true,
-        // "format": "{icon} {title} {short_state}",
-        "format": "{icon}",
-        "icon-theme": "Papirus-Dark",
-        "tooltip-format": "{title} | {app_id}",
-        "on-click": "activate",
-        "on-click-middle": "close",
-        "on-click-right": "fullscreen"
-    },
     "tray": {
         "icon-size": 18,
-        "spacing": 10
+        "spacing": 8
     },
     "clock": {
         "format": "{:%H:%M}",
-        // "format-alt": "{:%A, %B %d, %Y (%R)}  ",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "timezone": "Asia/Bangkok",
         "locale": "en_US.UTF-8",
@@ -88,21 +60,9 @@
                     "on-scroll-down": "shift_down"
                     }
     },
-    "temperature": {
-        // "thermal-zone": 2,
-        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
-        "critical-threshold": 70,
-        // "format-critical": "{temperatureC}°C ",
-        "format": "{temperatureC: >2}°C",
-        "on-click": "alacritty --class 'foot-float' -e btop",
-        "interval": 2
-    },
     "backlight": {
-        // "device": "acpi_video1",
         "format": "{icon}",
         "format-icons": ["", ""],
-        // "on-scroll-down": "brightnessctl -c backlight set 5%-",
-        // "on-scroll-up": "brightnessctl -c backlight set +5%"
         "on-scroll-down": "~/.config/sway/scripts/brightness --dec",
         "on-scroll-up": "~/.config/sway/scripts/brightness --inc"
     },
@@ -112,45 +72,21 @@
         "orientation": "horizontal",
         "on-scroll-down": "~/.config/sway/scripts/brightness --dec",
         "on-scroll-up": "~/.config/sway/scripts/brightness --inc"
-    // "device": "intel_backlight"
     },
     "battery": {
         "states": {
-            // "good": 95,
-            "warning": 40,
+            // "warning": 40,
             "critical": 30
         },       
         "format": "{icon}",
         "full-at": 77,
-        //"format": "{icon}{capacity}%",
-        "format-charging": "{icon} {capacity}%",
-        "format-plugged": "󰂄",
-        "format-full": "󰂄",        
+        "format-charging": "{icon}⚡{capacity}%",
+        "format-plugged": "{icon}⚡",
+        "format-full": "{icon}⚡",        
         "format-alt" : "{icon} {capacity}%",
         "format-time": "{H}:{m} hours",        
         "format-icons": ["", "", "", "", ""],
         "on-click": "~/.config/waybar/scripts/powerprofilecycle.sh",
-        //"format-icons": ["", "", "", "", "", "", "", "", "", ""]
-    },
-     "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format": "⚠  Disabled",
-        "format-wifi": "  {essid}",
-        // "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
-        "format-ethernet": "  Wired",
-        "format-disconnected": "⚠  Disconnected",
-        // "on-click": "alacritty -e nmtui"
-        "on-click": "nm-connection-editor"
-    },
-    "bluetooth": {
-        "format": "",
-        "format-off": "󰂲",
-        "on-click": "blueberry",
-        // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
-        "tooltip-format": "{controller_alias}\t{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%"
     },
     "pulseaudio/slider": {
     "min": 0,
@@ -177,7 +113,7 @@
     },
     "pulseaudio#source": {
         "format": "{format_source}",
-        "format-source": "",
+        "format-source": "<span color='#FF0000'><b></b></span>",
         "format-source-muted": "",
         "on-click": "~/.config/sway/scripts/volume --toggle-mic",
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
@@ -195,15 +131,10 @@
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
         "on-scroll-down": "~/.config/sway/scripts/volume --dec"
     },
-    "custom/bitcoinprice": {
-        "exec": "sleep 0.3 && ~/.config/waybar/scripts/bitcoin.sh",
-        "interval": 60,
-      	"tooltip": false,
-    },
     "custom/blockheight": {
         "exec": "sleep 0.3 && ~/.config/waybar/scripts/blockheight.sh",
         "interval": 60,
-      	"tooltip": false,
+        "tooltip": true,
     },
     "sway/language": {
         "format": "{shortDescription}",
@@ -216,19 +147,8 @@
         "transition-left-to-right": true,
     },
     "modules": [
-        "backlight", // First element is the "group leader" and won't ever be hidden
+        "backlight",
         "backlight/slider",
-    ]
-    },
-    "group/btc": {
-        "orientation": "inherit",
-    "drawer": {
-        "transition-duration": 500,
-        "transition-left-to-right": false,
-    },
-    "modules": [
-        "custom/blockheight", // First element is the "group leader" and won't ever be hidden
-        "custom/bitcoinprice",
     ]
     },
     "custom/screenrecorder": {
@@ -242,3 +162,4 @@
         "on-click-right": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle region"
     },
 }
+

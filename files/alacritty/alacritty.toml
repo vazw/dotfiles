@@ -5,7 +5,7 @@ import = [
 # live_config_reload = true
 
 [font]
-size = 12
+size = 11.25
 
 [font.bold]
 family = "ComicShannsMono Nerd Font Mono"
