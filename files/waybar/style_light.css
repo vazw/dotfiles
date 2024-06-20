@@ -1,0 +1,177 @@
+@import "machiatto.css";
+* {
+  color: #131313;
+  /* color: whitesmoke; */
+  border: 0;
+  border-radius: 0;
+  padding: 0 0;
+  font-family: "Hack Nerd Font Propo", "ComicShannsMono Nerd Font Mono";
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.5s ease;
+  /* background-color: #131313; */
+  background-color: #e9e9e9;
+}
+
+#workspaces button {
+  color: @base;
+  border-radius: 50%;
+  /* background-color: @base; */
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+}
+
+#workspaces button:hover * {
+  color: @pink;
+  border-radius: 20px;
+}
+
+#workspaces * {
+  color: @surface2;
+  font-weight: 800;
+  font-size: 16px;
+  font-family: "ComicShannsMono Nerd Font Mono";
+}
+
+#workspaces {
+  border-style: solid;
+  /* background-color: @base; */
+  opacity: 1;
+  padding: 0px 0px 0px 0px;
+  margin-top: 0;
+  font-size: 14px;
+  font-family: "ComicShannsMono Nerd Font Mono";
+  /* margin: 2px 6px 6px 8px; */
+}
+
+#workspaces button.focused {
+  border-radius: 20px;
+  /* background-color: @flamingo; */
+}
+
+#workspaces button.focused * {
+  /* color: @green; */
+  color: #131313;
+}
+
+#workspaces button.urgent {
+  color: @red;
+}
+#workspaces button.peristent * {
+  color: @surface2;
+}
+
+#backlight {
+  /* color: @teal; */
+  font-size: 14px;
+  color: #131313;
+  border-style: solid;
+  /* background-color: shade(@base, 1.1); */
+  opacity: 1;
+  margin: 0px 0px 0px;
+  padding: 0 0 0 8px;
+}
+#backlight-slider {
+  background-color: transparent;
+  padding: 0 8px;
+}
+#backlight-slider slider {
+  min-height: 0px;
+  min-width: 0px;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 8px;
+}
+#backlight-slider trough {
+  min-height: 14px;
+  min-width: 50px;
+  border-radius: 8px;
+  background-color: #494d64;
+  color: green;
+}
+#backlight-slider highlight {
+  min-width: 5px;
+  border-radius: 8px;
+  background-color: green;
+}
+
+#tray {
+  padding: 0px 3px 0px 10px;
+  margin-bottom: 0px;
+  font-size: 9px;
+  padding: 0 8px;
+}
+#clock,
+#custom-blockheight,
+#custom-swap,
+#custom-background,
+#custom-cava-internal,
+#battery,
+#bluetooth,
+#cpu,
+#memory,
+#idle_inhibitor,
+#temperature,
+#custom-power_profile,
+#backlight,
+#wireplumber,
+#network,
+#pulseaudio,
+#mode,
+#custom-power,
+#custom-pacman,
+#tray,
+#language,
+#custom-screenrecorder,
+#mpd {
+  padding: 0px 8px;
+  border-style: solid;
+  opacity: 1;
+  margin: 0px 0px 0px;
+}
+#clock,
+#language,
+#custom-blockheight {
+  font-family: "ComicShannsMono Nerd Font Mono";
+  font-size: 16px;
+}
+#pulseaudio {
+  /* background-color: #24273a; */
+  color: #131313;
+}
+
+#pulseaudio.source-muted {
+  color: #131313;
+}
+#pulseaudio.muted {
+  color: #131313;
+}
+
+#battery {
+  color: #131313;
+  /* color: #d8dee9; */
+  /* border-radius: 0 10px 10px 0; */
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+@keyframes blink {
+  to {
+    color: @red;
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #bf616a;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
