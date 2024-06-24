@@ -6,10 +6,10 @@ g.mapleader = " "
 -- Basic motion
 
 -- Resize window (NOT WORKING)
--- keymap.set('n', '<C-w><left>', '<C-w><')
--- keymap.set('n', '<C-w><right>', '<C-w>>')
--- keymap.set('n', '<C-w><up>', '<C-w>+')
--- keymap.set('n', '<C-w><down>', '<C-w>-')
+keymap.set("n", "<C-w><left>", "<C-w><")
+keymap.set("n", "<C-w><right>", "<C-w>>")
+keymap.set("n", "<C-w><up>", "<C-w>+")
+keymap.set("n", "<C-w><down>", "<C-w>-")
 
 -- move in insert mode
 keymap.set("i", "<C-h>", "<Left>")
@@ -90,9 +90,6 @@ end)
 
 -- nvim tree
 keymap.set("n", "<C-f>", ":NvimTreeToggle<CR>")
-keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
-keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
-keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
 
 keymap.set("n", "<leader>j", ":Glow<CR>")
 
@@ -111,7 +108,8 @@ keymap.set("n", "gl", "<Cmd>Lspsaga show_line_diagnostics<CR>", opts)
 keymap.set("n", "K", "<Cmd>Lspsaga hover_doc<CR>", opts)
 keymap.set("n", "gd", "<Cmd>Lspsaga finder<CR>", opts)
 keymap.set("n", "gt", "<Cmd>Lspsaga goto_type_definition<CR>", opts)
--- vim.keymap.set('i', '<C-k>', '<Cmd>Lspsaga signature_help<CR>', opts)
+-- keymap.set("i", "<C-k>", "<Cmd>Lspsaga signature_help<CR>", opts)
+keymap.set("n", "<C-k>", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 keymap.set("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 keymap.set("n", "gp", "<Cmd>Lspsaga peek_definition<CR>", opts)
 keymap.set("n", "gr", "<Cmd>Lspsaga rename<CR>", opts)
