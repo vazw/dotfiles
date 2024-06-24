@@ -1,7 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 24,
+    "height": 30,
     "output": ["*"],
     "margin": "0 0 0 0",
     "modules-left": ["custom/screenrecorder", "pulseaudio#source", "wireplumber", "group/light", "tray"],
@@ -30,7 +30,7 @@
         }
     },
     "tray": {
-        "icon-size": 18,
+        "icon-size": 16,
         "spacing": 8
     },
     "clock": {
@@ -39,7 +39,7 @@
         "timezone": "Asia/Bangkok",
         "locale": "en_US.UTF-8",
         "calendar": {
-                    "mode"          : "year",
+                    "mode"          : "month",
                     "mode-mon-col"  : 3,
                     "weeks-pos"     : "right",
                     "on-scroll"     : 1,
@@ -118,7 +118,7 @@
         "on-click": "~/.config/sway/scripts/volume --toggle-mic",
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
         "on-scroll-down": "~/.config/sway/scripts/volume --dec",
-        "ignored-sinks": ["Easy Effects Sink"],
+        "ignored-sinks": ["Easy Effects Sink", "alsa_output.pci-0000_03_00.6.analog-stereo.monitor", "bluez_output.78_4E_57_74_A8_64.1.monitor", "bluez_input.78:4E:57:74:A8:64"],
     },
     "wireplumber": {
         "format": "{icon}",
