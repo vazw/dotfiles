@@ -1,4 +1,5 @@
 # my personal config files for Voidlinux
+
 A combination between rice + light : <br />
 let's call this lice!
 
@@ -7,99 +8,105 @@ let's call this lice!
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/1.png">
 
 ### Packages list to install:
-Desktop stuff
-`````sh
-sudo xbps-install wmname xorg xsetroot xwinwrap feh xsettingsd polkit python python3-pip python3-dbus dbus python3-Cython nodejs lightdm lightdm-webkit2-greeter bspwm sxhkd NetworkManager polybar ranger ueberzug rofi rofi-emoji dunst picom alacritty zsh scrot xclip acpi light nerd-fonts font-awesome pulseaudio apulse pavucontrol pamixer neovim git firefox htop neofetch unzip obs tmux xz curl gcc clang gobject-introspection pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro cmake mpd mpc udiskie lxappearance breeze-gtk breeze-icons sv-netmount xdg-utils arandr
-`````
-Installation
-`````sh
-# clone this repo
-git clone https://github.com/vazw/dotfiles
-cd dotfiles
-./setup.sh
-`````
 
+#### Assume you've fresh installed Voidlinux and reboot into tty1
 
-zsh oh my zsh
-`````sh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-`````
+you may have to setup your network first if you got wifi connect it with wpa-supplicant config
+
+```sh
+wpa_passphrase your-ESSID your-passphrase | sudo tee /etc/wpa_supplicant.conf
+sudo wpa_supplicant -c /etc/wpa_supplicant.conf -i your-NIC
+```
+
+if it's ethernet cable just check if dhcpcd is running and it's connected to Internet
+
+#### Desktop stuff
+
+this is my daily device (Asus Zenbook) usage config applications if you're on desktop-PC you may not want `acpi` or `light` stuff consider remove them as you needed
+
+most important piece are `dbus` `sway` `waybar` `polkit` `wlogout` for windows manager `pipewire` `wireplumber` `pavucontrol` for audio system `kitty` or `alacritty` for Terminal or pick your prefer. `rofi` for App Launcher
+if you want to use `pulse-audio` instead take a look at [Voidlinux Documents](https://docs.voidlinux.org/)
+
+```sh
+sudo xbps-install feh polkit python python3-pip python3-dbus dbus python3-Cython nodejs sway NetworkManager waybar ranger ueberzug rofi rofi-emoji dunst alacritty acpi light nerd-fonts font-awesome pipewire wireplumber pavucontrol pamixer neovim git firefox btop fastfetch unzip obs tmux xz curl gcc clang pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro cmake lxappearance breeze-gtk breeze-icons sv-netmount xdg-utils fish wdisplays kitty wlogout slurp wf-recorder wl-copy wl-clipboard
+```
 
 ## runit
-Void runit service control
-`````sh
+
+Void using `runit` service control instead of `systemd` this is how to replace `dhcpcd` with `NetworkManager`
+
+```sh
 # avalable service list
 
 ls /etc/sv/
-`````
-`````sh
+```
+
+```sh
 # service that we're using list
 
 ls /var/service/
-`````
-`````sh
+```
+
+```sh
 # to link avalable service to use
 
 sudo ln -s /etc/sv/<service-we-wanted> /var/service/
-`````
-`````sh
+```
+
+```sh
 # if you don't want auto-startup but need service
 
 sudo touch /etc/sv/<service>/down
-`````
+```
 
 to tell runit use the following commands with 'root' or 'sudo'
-`````sh
+
+```sh
 # sv up <services>
 # sv down <services>
 # sv restart <services>
 # sv status <services>
-`````
+```
 
 Example : Use NetworkManager instead of dhcpcd
-`````sh
+
+```sh
 sudo rm /var/service/dhcpcd
 sudo ln -s /etc/sv/NetworkManager /var/service/
 sudo sv up NetworkManager
-`````
+```
+
+## Installation
+
+```sh
+# clone this repo
+git clone https://github.com/vazw/dotfiles
+cd dotfiles
+git checkout Void(wayland)
+cp dotprofile ~/.profile
+cp files/* ~/.config/
+# then logout or restart
+# Next login will auto trigger sway from tty1
+```
 
 ## Keybind?
 
-| Keybinds       | Uses        |
-| -------------- | ----------- |
-| Super + Enter    | Terminal    |
-| Super + Space    | Toggle Window Mode      |
-| Super + c        | Close a Window     |
-| Super + x        | PowerMenu  |
-| Super + w        | App Launcher  |
-| Super + s        | Screen Menu  |
-| Super + n        | Network Menu  |
-| Super + e        | Emoji Menu  |
-| Super + f | Toggle Full Screen Mode |
-| Super + (1-9)        | Switch Workspace  |
-| Super + left click        | Move Window  |
-| Super + right click   | Resize window  |
+| Keybinds            | Uses                    |
+| ------------------- | ----------------------- |
+| Super + Enter       | Terminal                |
+| Super + Space       | Toggle Window Mode      |
+| Super + q           | Close a Window          |
+| Super + e           | PowerMenu               |
+| Super + d           | App Launcher            |
+| Super + p           | Screen Menu             |
+| Super + n           | Thunar                  |
+| Super + i           | Emoji Menu              |
+| Super + f           | Toggle Full Screen Mode |
+| Super + (1-0)       | Switch Workspace (1-10) |
+| Super + left click  | Move Window             |
+| Super + right click | Resize window           |
+| Super + p           | screenshot              |
+| Super + Shift + p   | area-screenshot         |
 
-## nody-greeter - more rice login screen
-Install nody-greeter+Void-theme
-
-https://github.com/JezerM/nody-greeter <br />
-https://github.com/JezerM/lightdm-void-theme
-
-## VoidLinux shutdown | reboot
-
-Shutdown and Reboot solution
-
-!!!!Warning: NEVER edit /etc/sudoers directly! Always use the visudo command. 
-`````sh
-# since VOidlinux don't have systemctl we neet to excute sudo for shutdown or reboot 
-# each time to be able to properly shutdown the machine
-# in root user
-sudo visudo
-# find this line and add
-
-%wheel ALL=(ALL:ALL) NOPASSWD:/usr/bin/shutdown,/usr/bin/reboot,/usr/bin/suspend,/usr/bin/udiskie,/usr/bin/pkill,/usr/bin/zzz,/usr/bin/ZZZ,/usr/bin/halt,/usr/bin/poweroff
-
-# source : https://darknesscode.xyz/notes/shutdown-void-linux/?fbclid=IwAR0IWmTLqpQC8Yw8x14J1WiXOGdXRuCothJW9faM1PbS15S17afNXXBiY6U
-`````
-more info about some I have problem done read TODO file.
+and more customize can be done at `~/.config/sway/config.d/default`
+many of them are my custom keyboard config try remove them if it's not suit your need
