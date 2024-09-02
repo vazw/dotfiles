@@ -105,31 +105,54 @@ return {
             capabilities = capabilities,
         })
 
-        lspconfig.ruff_lsp.setup({
-            on_attach = function(client, bufnr)
-                on_attach(client, bufnr)
-                enable_format_on_save(client, bufnr)
-            end,
-            capabilities = capabilities,
-        })
+        local util = require("lspconfig/util")
 
-        lspconfig.rust_analyzer.setup({
-            on_attach = function(client, bufnr)
-                on_attach(client, bufnr)
-                enable_format_on_save(client, bufnr)
-            end,
-            capabilities = capabilities,
-            settings = {
+        -- Function to load settings from the .nvim/settings.json file
+        -- JSON EXAMPLE:
+        -- {
+        --   "rust.target": "bpfel-unknown-none",
+        --   "rust.all_targets": false
+        -- }
+
+        local function load_project_settings()
+            local settings_file = util.root_pattern("Cargo.toml")(vim.fn.getcwd()) .. "/.nvim/settings.json"
+            if vim.fn.filereadable(settings_file) == 1 then
+                local file = io.open(settings_file, "r")
+                if file ~= nil then
+                    local content = file:read("*a")
+                    file:close()
+                    local settings = vim.fn.json_decode(content)
+                    return settings
+                else
+                    return nil
+                end
+            else
+                return nil
+            end
+        end
+
+        -- Check if Cargo.toml exists for Rust Project
+        local cargo_toml_path = util.root_pattern("Cargo.toml")(vim.fn.getcwd())
+        if cargo_toml_path then
+            -- Load project-specific settings
+            local project_rust_analyzer_settings = load_project_settings()
+
+            -- Setup rust_analyzer with project-specific settings if available
+            local rust_analyzer_settings = {
                 ["rust-analyzer"] = {
-                    rustfmt = {
-                        overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
-                    },
-                    -- Add clippy lints for Rust.
-                    -- checkOnSave = {
-                    --     allFeatures = true,
-                    --     command = "clippy",
-                    --     extraArgs = { "--no-deps" },
+                    -- rustfmt = {
+                    -- 	overrideCommand = { "leptosfmt", "--stdin", "--rustfmt" },
                     -- },
+                    -- Add clippy lints for Rust.
+                    check = {
+                        allTarget = false,
+                    },
+                    checkOnSave = {
+                        allFeatures = true,
+                        command = "clippy",
+                        allTarget = false,
+                        extraArgs = { "--no-deps", "--bins" },
+                    },
                     diagnostics = {
                         disabled = "inactive-code",
                     },
@@ -153,14 +176,57 @@ return {
                         },
                     },
                 },
-            },
-        })
+            }
+
+            if project_rust_analyzer_settings then
+                if project_rust_analyzer_settings["rust.target"] then
+                    rust_analyzer_settings["rust-analyzer"].cargo.target = project_rust_analyzer_settings["rust.target"]
+                end
+                if project_rust_analyzer_settings["rust.all_targets"] ~= nil then
+                    rust_analyzer_settings["rust-analyzer"].cargo.allTargets =
+                        project_rust_analyzer_settings["rust.all_targets"]
+                end
+                print("Final rust-analyzer settings: " .. vim.inspect(rust_analyzer_settings))
+            end
+
+            lspconfig.rust_analyzer.setup({
+                on_attach = function(client, bufnr)
+                    on_attach(client, bufnr)
+                    enable_format_on_save(client, bufnr)
+                end,
+                capabilities = capabilities,
+                filetypes = { "rust" },
+                root_dir = util.root_pattern("Cargo.toml"),
+                settings = rust_analyzer_settings,
+            })
+
+            -- Check and load project-specific configuration for rust_analyzer
+            local project_config_path = cargo_toml_path .. "/.nvim/rust_analyzer_config.lua"
+            if vim.fn.filereadable(project_config_path) == 1 then
+                dofile(project_config_path)
+            end
+        end
+
         lspconfig.csharp_ls.setup({
             on_attach = function(client, bufnr)
                 on_attach(client, bufnr)
                 enable_format_on_save(client, bufnr)
             end,
             capabilities = capabilities,
+        })
+
+        lspconfig.ruff.setup({
+            on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
+                enable_format_on_save(client, bufnr)
+            end,
+            capabilities = capabilities,
+        })
+        lspconfig.typst_lsp.setup({
+            settings = {
+                exportPdf = "onSave", -- Choose onType, onSave or never.
+                -- serverPath = "" -- Normally, there is no need to uncomment it.
+            },
         })
 
         lspconfig.clangd.setup({
@@ -234,6 +300,7 @@ return {
         lspconfig["tailwindcss"].setup({
             capabilities = capabilities,
             on_attach = on_attach,
+            filetypes = { "html", "css", "rust", "javascript" },
         })
 
         -- configure svelte server
@@ -297,7 +364,7 @@ return {
             },
             update_in_insert = true,
             float = {
-                source = "if_many", -- Or "always"
+                source = true, -- Or "always"
                 -- namespace = 1,
             },
         })
