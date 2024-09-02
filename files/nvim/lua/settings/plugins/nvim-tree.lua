@@ -16,7 +16,7 @@ return {
         nvimtree.setup({
             disable_netrw = false,
             hijack_cursor = false,
-            hijack_netrw = true,
+            hijack_netrw = false,
             hijack_unnamed_buffer_when_opening = false,
             reload_on_bufenter = false,
             sort_by = "case_sensitive",
