@@ -19,7 +19,7 @@ get_icon() {
     if [[ ("$current" -ge "0") && ("$current" -le "20") ]]; then
         icon="$iDIR"/brightness-20.svg
     elif [[ ("$current" -ge "20") && ("$current" -le "40") ]]; then
-        icon="$iDIR"/brightness-60.svg
+        icon="$iDIR"/brightness-40.svg
     elif [[ ("$current" -ge "40") && ("$current" -le "60") ]]; then
         icon="$iDIR"/brightness-60.svg
     elif [[ ("$current" -ge "60") && ("$current" -le "80") ]]; then
@@ -36,12 +36,12 @@ notify_user() {
 
 # Increase brightness
 inc_backlight() {
-    brillo -u 50000 -q -A 10 && get_icon && notify_user
+    brillo -q -A 10 && get_icon && notify_user
 }
 
 # Decrease brightness
 dec_backlight() {
-    brillo -u 80000 -q -U 10 && get_icon && notify_user
+    brillo -q -U 5 && get_icon && notify_user
 }
 
 # Execute accordingly

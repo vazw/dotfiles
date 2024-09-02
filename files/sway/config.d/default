@@ -9,7 +9,7 @@ set $up k
 set $right l
 
 # Your preferred terminal emulators
-set $term-float kitty
+set $term-float alacritty
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -23,7 +23,7 @@ set $powermenu ~/.config/sway/scripts/powermenu.sh
 
 set $emoji ~/.config/sway/scripts/emoji.sh
 
-set $cheat $term-float -t cheatsheet -e nvim ~/.config/sway/cheatsheet.md
+# set $cheat $term-float -t cheatsheet -e nvim ~/.config/sway/cheatsheet.md
 
 ### Idle configuration
 exec swayidle -w\
@@ -52,7 +52,8 @@ $mybind $mod+Shift+w exec ~/.config/waybar/scripts/swap.sh
 #
 # Basics:
 #
-$mybind $mod+Return exec alacritty
+$mybind $mod+Return exec kitty
+$mybind $mod+Shift+Return exec $term-float
 
 # Open the power menu
 $mybind $mod+Shift+e exec $powermenu
@@ -73,7 +74,7 @@ $mybind $mod+o exec swayr switch-window
 $mybind $mod+Shift+O exec swayr switch-workspace-or-window
 
 # Cheatsheet
-$mybind $mod+Shift+i exec $cheat
+# $mybind $mod+Shift+i exec $cheat
 
 #Color Picker
 $mybind $mod+c exec ~/.config/sway/scripts/colorpicker
@@ -126,6 +127,18 @@ $mybind $mod+7 workspace number 7
 $mybind $mod+8 workspace number 8
 $mybind $mod+9 workspace number 9
 $mybind $mod+0 workspace number 10
+# Move workspace to currently focused Monitor
+#
+bindsym $mod+Ctrl+1 [workspace="^1$"] move workspace to output current; workspace number 1
+bindsym $mod+Ctrl+2 [workspace="^2$"] move workspace to output current; workspace number 2
+bindsym $mod+Ctrl+3 [workspace="^3$"] move workspace to output current; workspace number 3
+bindsym $mod+Ctrl+4 [workspace="^4$"] move workspace to output current; workspace number 4
+bindsym $mod+Ctrl+5 [workspace="^5$"] move workspace to output current; workspace number 5
+bindsym $mod+Ctrl+6 [workspace="^6$"] move workspace to output current; workspace number 6
+bindsym $mod+Ctrl+7 [workspace="^7$"] move workspace to output current; workspace number 7
+bindsym $mod+Ctrl+8 [workspace="^8$"] move workspace to output current; workspace number 8
+bindsym $mod+Ctrl+9 [workspace="^9$"] move workspace to output current; workspace number 9
+bindsym $mod+Ctrl+0 [workspace="^10$"] move workspace to output current; workspace number 10
 # Move focused container to workspace
 $mybind $mod+Shift+1 move container to workspace number 1
 $mybind $mod+Shift+2 move container to workspace number 2
@@ -274,7 +287,7 @@ $mybind XF86Explorer exec ~/.config/sway/scripts/brightness --dec
 
 # App shortcuts
 
-$mybind $mod+n exec kitty ranger
+$mybind $mod+n exec Thunar
 $mybind XF86Calculator exec alacritty --class "btop" -e btop 
 $mybind XF86Launch1 exec alacritty --class "btop" -e btop 
 $mybind XF86WebCam exec cheese 

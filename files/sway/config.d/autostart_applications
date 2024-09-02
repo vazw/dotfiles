@@ -2,6 +2,11 @@
 exec ~/.config/sway/scripts/notifications &
 # exec /usr/share/asus-numberpad-driver/.env/bin/python3 /usr/share/asus-numberpad-driver/numberpad.py up5401ea &
 exec asus-numpad &
+# exec pkexec sfw -i wlp1s0 -c /etc/fwcfg.yaml &
+#
+# ntfy listening
+exec ntfy sub -C &
+exec /usr/share/localsend_app/localsend_app &
 
 # Pipewire
 exec rm /run/user/1000/pipewire-0.lock &
@@ -14,6 +19,7 @@ exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
 exec nm-applet --indicator
 exec blueman-applet
 exec nostr-relay-tray
+# exec ~/.config/sway/scripts/nostr.sh &
 
 exec thunar --daemon
 
@@ -56,4 +62,6 @@ exec pkexec brillo -c 1
 exec ~/.config/sway/scripts/restorebrightness.sh
 
 # swayrd
-exec_always swayrd
+# exec_always swayrd
+# exec_always duplicated any services(Spawning new instance)
+exec swayrd
