@@ -1,8 +1,9 @@
+[
 {
     "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30,
-    "output": ["*"],
+    "output": ["eDP-1"],
     "margin": "0 0 0 0",
     "modules-left": ["custom/screenrecorder", "pulseaudio#source", "wireplumber", "group/light", "tray"],
     "modules-center": ["sway/workspaces"],
@@ -17,8 +18,169 @@
         "format-icons": {
             "urgent": "",
         },
-        "persistent-workspaces": {
-            "1": [],
+        // "persistent-workspaces": {
+        //     "1": [],
+        // },
+        "on-click": "activate",
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+       "format-icons": {
+            "activated": "󱋙",
+            "deactivated": "󰌪"
+        }
+    },
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "timezone": "Asia/Bangkok",
+        "locale": "en_US.UTF-8",
+        "calendar": {
+                    "mode"          : "month",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "on-click-right": "mode",
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-click-forward": "tz_up",
+                    "on-click-backward": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+    "backlight": {
+        "format": "{icon}",
+        "format-icons": ["", ""],
+        "on-scroll-down": "~/.config/sway/scripts/brightness --dec",
+        "on-scroll-up": "~/.config/sway/scripts/brightness --inc"
+    },
+    "backlight/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal",
+        "on-scroll-down": "~/.config/sway/scripts/brightness --dec",
+        "on-scroll-up": "~/.config/sway/scripts/brightness --inc"
+    },
+    "battery": {
+        "states": {
+            // "warning": 40,
+            "critical": 30
+        },       
+        "format": "{icon}",
+        "full-at": 77,
+        "format-charging": "{icon}⚡{capacity}%",
+        "format-plugged": "{icon}⚡",
+        "format-full": "{icon}⚡",        
+        "format-alt" : "{icon} {capacity}%",
+        "format-time": "{H}:{m} hours",        
+        "format-icons": ["", "", "", "", ""],
+        "on-click": "~/.config/waybar/scripts/powerprofilecycle.sh",
+    },
+    "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+    },
+    "pulseaudio#sink": {
+        "scroll-step": 1,
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
+        "format-muted":"",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["󰕿", "󰖀", "󰕾", ""]
+        },
+        "on-click": "pavucontrol",
+        "on-scroll-up": "~/.config/sway/scripts/volume --inc",
+        "on-scroll-down": "~/.config/sway/scripts/volume --dec"
+    },
+    "pulseaudio#source": {
+        "format": "{format_source}",
+        "format-source": "<span color='#FF0000'><b></b></span>",
+        "format-source-muted": "",
+        "on-click": "~/.config/sway/scripts/volume --toggle-mic",
+        "on-scroll-up": "~/.config/sway/scripts/volume --inc",
+        "on-scroll-down": "~/.config/sway/scripts/volume --dec",
+        "ignored-sinks": ["Easy Effects Sink", "alsa_output.pci-0000_03_00.6.analog-stereo.monitor", "bluez_output.78_4E_57_74_A8_64.1.monitor", "bluez_input.78:4E:57:74:A8:64"],
+    },
+    "wireplumber": {
+        "format": "{icon}",
+        "format-muted": "",
+        "on-click": "pavucontrol",
+        "max-volume": 100,
+        "scroll-step": 1,
+        "format-muted":"",
+        "format-icons": ["󰕿", "󰖀", "󰕾", ""],
+        "on-scroll-up": "~/.config/sway/scripts/volume --inc",
+        "on-scroll-down": "~/.config/sway/scripts/volume --dec"
+    },
+    "custom/blockheight": {
+        "exec": "sleep 0.3 && ~/.config/waybar/scripts/blockheight.sh",
+        "interval": 60,
+        "tooltip": true,
+    },
+    "sway/language": {
+        "format": "{shortDescription}",
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+    },
+    "group/light": {
+        "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "transition-left-to-right": true,
+    },
+    "modules": [
+        "backlight",
+        "backlight/slider",
+    ]
+    },
+    "custom/screenrecorder": {
+        "exec": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder status",
+        "interval": "once",
+        "signal": 1,
+        "return-type": "json",
+        "tooltip": true,
+        "format": "{}",
+        "on-click": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle fullscreen",
+        "on-click-right": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle region"
+    },
+},
+{
+    "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 20,
+    "output": ["DP-3"],
+    "margin": "0 0 0 0",
+    "modules-left": ["custom/screenrecorder", "pulseaudio#source", "wireplumber", "group/light", "tray"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["sway/language", "idle_inhibitor", "battery", "custom/blockheight", "clock"], 
+    
+ 
+    "sway/workspaces": { 
+        "format": "{icon}",
+        "sort-by-number": true,
+        "active-only": false,
+        "all-outputs": true,
+        "format-icons": {
+            "urgent": "",
         },
         "on-click": "activate",
     },
@@ -161,5 +323,5 @@
         "on-click": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle fullscreen",
         "on-click-right": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle region"
     },
-}
-
+  }
+]
