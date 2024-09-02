@@ -37,6 +37,11 @@ if test -d ~/Applications/depot_tools
 end
 
 
+set fzf_preview_dir_cmd eza --all --color=always
+set fzf_fd_opts --hidden --max-depth 5
+set fzf_git_log_format "%H %s"
+set fzf_diff_highlighter diff-so-fancy
+set fzf_history_time_format %d-%m-%y
 ## Starship prompt
 # if status --is-interactive
 #    source ("/usr/bin/starship" init fish --print-full-init | psub)
@@ -87,7 +92,7 @@ function backup --argument filename
 end
 
 # Copy DIR1 DIR2
-function copy
+function cp
     set count (count $argv | tr -d \n)
     if test "$count" = 2; and test -d "$argv[1]"
         set from (echo $argv[1] | trim-right /)
@@ -143,14 +148,14 @@ alias gcf='cd $HOME/.config'
 alias gdl='cd $HOME/Downloads'
 alias install='sudo xbps-install -S'
 alias update='sudo xbps-install -Suy'
-alias remove='sudo xbps-remove'
+alias remove='sudo xbps-remove -Oo'
 alias l='exa -ll --color=always --group-directories-first'
 alias df='df -h'
 alias free='free -h'
+alias fzf="fzf --preview='cat {}'"
+alias fvi="nvim \$(fzf --preview='cat {}')"
 # Dotfiles & Files
-alias vi="hx"
 alias gc="git clone"
-alias lg='lazygitt'
 alias reboot="loginctl reboot"
 
 # Cleanup orphaned packages
