@@ -110,7 +110,7 @@ keymap.set("n", "gd", "<Cmd>Lspsaga finder<CR>", opts)
 keymap.set("n", "gt", "<Cmd>Lspsaga goto_type_definition<CR>", opts)
 -- keymap.set("i", "<C-k>", "<Cmd>Lspsaga signature_help<CR>", opts)
 keymap.set("n", "<C-k>", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
-keymap.set("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+keymap.set("i", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 keymap.set("n", "gp", "<Cmd>Lspsaga peek_definition<CR>", opts)
 keymap.set("n", "gr", "<Cmd>Lspsaga rename<CR>", opts)
 
