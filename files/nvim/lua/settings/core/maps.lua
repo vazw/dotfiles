@@ -59,10 +59,6 @@ keymap.set("n", "sv", ":vsplit<Return><C-w>w")
 keymap.set("n", "<leader>o", "o<ESC>", { silent = true })
 keymap.set("n", "<leader>O", "O<ESC>", { silent = true })
 
--- toggle comment
-keymap.set("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>")
-keymap.set("v", "<leader>/", "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>")
-
 -- toggle terminal
 local toggle_modes = { "n", "t" }
 keymap.set(toggle_modes, "<leader>ht", function()
@@ -110,7 +106,7 @@ keymap.set("n", "gd", "<Cmd>Lspsaga finder<CR>", opts)
 keymap.set("n", "gt", "<Cmd>Lspsaga goto_type_definition<CR>", opts)
 -- keymap.set("i", "<C-k>", "<Cmd>Lspsaga signature_help<CR>", opts)
 keymap.set("n", "<C-k>", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
-keymap.set("i", "<C-K>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+keymap.set("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 keymap.set("n", "gp", "<Cmd>Lspsaga peek_definition<CR>", opts)
 keymap.set("n", "gr", "<Cmd>Lspsaga rename<CR>", opts)
 

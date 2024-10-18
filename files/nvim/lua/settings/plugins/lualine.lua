@@ -42,9 +42,6 @@ return {
 				},
 				lualine_z = {
 					"filetype",
-					function()
-						return require("lsp-progress").progress()
-					end,
 				},
 			},
 			inactive_sections = {
