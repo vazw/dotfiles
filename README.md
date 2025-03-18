@@ -7,7 +7,10 @@ let's call this lice!
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/3.png">
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/1.png">
 
-### Packages list to install:
+### Packages list to install
+
+[Void Linux installation (NVMe, btrfs, LVM, full disk encryption using LUKS, 2FA-ish, SSD TRIM)](https://gist.github.com/tobi-wan-kenobi/bff3af81eac27e210e1dc88ba660596e)
+[Graphics Drivers](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html)
 
 #### Assume you've fresh installed Voidlinux and reboot into tty1
 
@@ -24,11 +27,11 @@ if it's ethernet cable just check if dhcpcd is running and it's connected to Int
 
 this is my daily device (Asus Zenbook) usage config applications if you're on desktop-PC you may not want `acpi` or `light` stuff consider remove them as you needed
 
-most important piece are `dbus` `sway` `waybar` `polkit` `wlogout` for windows manager `pipewire` `wireplumber` `pavucontrol` for audio system `kitty` or `alacritty` for Terminal or pick your prefer. `rofi` for App Launcher
+most important piece are `dbus` `sway` `waybar` `polkit` `wlogout` `elogind` for windows manager `pipewire` `wireplumber` `pavucontrol` for audio system `kitty` or `alacritty` for Terminal or pick your prefer. `rofi`,`sirula` for App Launcher
 if you want to use `pulse-audio` instead take a look at [Voidlinux Documents](https://docs.voidlinux.org/)
 
 ```sh
-sudo xbps-install feh polkit python python3-pip python3-dbus dbus python3-Cython nodejs sway NetworkManager waybar ranger ueberzug rofi rofi-emoji dunst alacritty acpi light nerd-fonts font-awesome pipewire wireplumber pavucontrol pamixer neovim git firefox btop fastfetch unzip obs tmux xz curl gcc clang pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro cmake lxappearance breeze-gtk breeze-icons sv-netmount xdg-utils fish wdisplays kitty wlogout slurp wf-recorder wl-copy wl-clipboard
+sudo xbps-install feh polkit python python3-pip python3-dbus dbus python3-Cython nodejs sway NetworkManager waybar ranger ueberzug rofi rofi-emoji dunst alacritty acpi light nerd-fonts font-awesome pipewire wireplumber pavucontrol pamixer neovim git firefox btop fastfetch unzip obs tmux xz curl gcc clang pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro cmake lxappearance breeze-gtk breeze-icons sv-netmount xdg-utils fish wdisplays kitty wlogout slurp wf-recorder wl-copy wl-clipboard elogind Thunar
 ```
 
 ## runit
@@ -91,22 +94,30 @@ cp files/* ~/.config/
 
 ## Keybind?
 
-| Keybinds            | Uses                    |
-| ------------------- | ----------------------- |
-| Super + Enter       | Terminal                |
-| Super + Space       | Toggle Window Mode      |
-| Super + q           | Close a Window          |
-| Super + e           | PowerMenu               |
-| Super + d           | App Launcher            |
-| Super + p           | Screen Menu             |
-| Super + n           | Thunar                  |
-| Super + i           | Emoji Menu              |
-| Super + f           | Toggle Full Screen Mode |
-| Super + (1-0)       | Switch Workspace (1-10) |
-| Super + left click  | Move Window             |
-| Super + right click | Resize window           |
-| Super + p           | screenshot              |
-| Super + Shift + p   | area-screenshot         |
+| Keybinds              | Uses                      |
+| --------------------- | ------------------------- |
+| Super + <hjkl>        | Focus Window Vim Motion   |
+| Super + Enter         | Terminal                  |
+| Super + Shift + Enter | Floating Terminal         |
+| Super + Space         | Toggle Window Mode        |
+| Super + q             | Close a Window            |
+| Super + w             | Stack Horizontal Tab Mode |
+| Super + s             | Stack Vertical Tab Mode   |
+| Super + e             | Tile Mode                 |
+| Super + Shift + e     | PowerMenu                 |
+| Super + d             | App Launcher              |
+| Super + n             | Thunar                    |
+| Super + i             | Emoji Menu                |
+| Super + f             | Toggle Full Screen Mode   |
+| Super + (1-0)         | Switch Workspace (1-10)   |
+| Super + left click    | Move Window               |
+| Super + right click   | Resize window             |
+| Super + p             | screenshot                |
+| Super + Shift + p     | area-screenshot           |
 
 and more customize can be done at `~/.config/sway/config.d/default`
 many of them are my custom keyboard config try remove them if it's not suit your need
+
+## Auto-Mount USB Drive
+
+- enable Thunar Volume Management in Advanced Setting Tab
