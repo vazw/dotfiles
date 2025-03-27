@@ -1,0 +1,57 @@
+# Desktop notifications
+exec ~/.config/sway/scripts/notifications &
+exec asus-numpad &
+#
+# ntfy listening
+# exec ntfy sub -C &
+
+# Pipewire
+exec rm /run/user/1000/pipewire-0.lock &
+exec pipewire
+exec pactl set-default-sink alsa_output.pci-0000_03_00.6.analog-stereo
+exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
+# nm-applet
+exec nm-applet --indicator
+exec blueman-applet
+# exec nostr-relay-tray
+# exec ~/.config/sway/scripts/nostr.sh &
+
+exec thunar --daemon
+
+# Sway Fader / unfocused
+exec ~/.config/sway/scripts/swayfader.py &
+# exec ~/.config/sway/scripts/unfocused.py &
+
+# Autotiling
+exec autotiling-rs
+
+# Wlsunset
+# exec ~/.config/sway/scripts/light.sh
+
+
+# Welcome
+exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+
+# Clipman
+# exec clipman restore
+exec wl-paste -t text --watch clipman store
+
+# Gnome Keyring
+exec /usr/libexec/polkit-gnome-authentication-agent-1
+exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
+
+# Xdg DEsktop Portal
+exec /usr/libexec/xdg-desktop-portal
+exec /usr/libexec/xdg-desktop-portal-wlr
+
+exec pkexec brillo -c 1
+exec ~/.config/sway/scripts/restorebrightness.sh
+
+exec podman restart pihole
+
+# swayrd
+# exec_always swayrd
+# exec_always duplicated any services(Spawning new instance)
+exec swayrd
+
+exec darkman run &

@@ -175,14 +175,4 @@ return {
       })
     end,
   },
-  -- formatting
-  -- {
-  --   "stevearc/conform.nvim",
-  --   opts = {
-  --     default_format_opts = {
-  --       timeout_ms = 10000,
-  --       async = true,
-  --     },
-  --   },
-  -- },
 }

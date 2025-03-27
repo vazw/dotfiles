@@ -60,7 +60,7 @@ vim.opt.formatoptions:append({ "r" })
 -- when cursor reaches end/beginning of line
 vim.opt.whichwrap:append("<>[]hl")
 
--- use mouse click
+-- use mouse click but disable when typing
 vim.opt.mouse = "nvch"
 vim.opt.signcolumn = "yes"
 vim.api.nvim_set_option_value("colorcolumn", "80", {})
@@ -69,7 +69,7 @@ vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.wildoptions = "pum"
 vim.opt.pumblend = 5
-vim.opt.background = "dark"
+-- vim.opt.background = "dark"
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd([[

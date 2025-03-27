@@ -18,6 +18,13 @@ output DP-2 position 1602,1080
 
 exec_always ~/.config/sway/scripts/monitor.sh
 
+### Idle configuration
+exec swayidle -w \
+    timeout 1070 'brillo -O && swaylock -f -C ~/.config/swaylock/config' \
+    timeout 770 'brillo -O && swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on" && brillo -I' \
+    before-sleep 'brillo -O && swaylock'
+
 # 3 monitors
 # output eDP-1 mode 2880x1800 position 1920,0 scale 1.66
 # output DP-3 position 0,0
@@ -25,13 +32,14 @@ exec_always ~/.config/sway/scripts/monitor.sh
 # output DP-2 position 3655,0
 
 
-workspace 1 output [DP-3, eDP-1]
-workspace 2 output [DP-3, eDP-1]
-workspace 3 output [DP-3, eDP-1]
-workspace 4 output [DP-3, eDP-1]
-workspace 5 output [DP-3, eDP-1]
-workspace 6 output [DP-3, eDP-1]
-workspace 7 output [DP-3, eDP-1]
-workspace 8 output [DP-3, eDP-1]
-workspace 9 output [DP-3, eDP-1]
-workspace 10 output [DP-3, eDP-1]
+# Map all possible display
+workspace 1 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 2 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 3 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 4 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 5 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 6 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 7 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 8 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 9 output  [DP-1,DP-2,DP-3, eDP-1]
+workspace 10 output [DP-1,DP-2,DP-3, eDP-1]
