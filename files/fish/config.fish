@@ -4,8 +4,6 @@ set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT 1
 # set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
-
-
 ## Export variable need for qt-theme
 if type qtile >>/dev/null 2>&1
     set -x QT_QPA_PLATFORMTHEME qt5ct
@@ -14,7 +12,6 @@ end
 # Set settings for https://github.com/franciscolourenco/done
 set -U __done_min_cmd_duration 10000
 set -U __done_notification_urgency_level low
-
 
 ## Environment setup
 # Apply .profile: use this to put fish compatible .profile stuff in
@@ -36,7 +33,6 @@ if test -d ~/Applications/depot_tools
     end
 end
 
-
 set fzf_preview_dir_cmd eza --all --color=always
 set fzf_fd_opts --hidden --max-depth 5
 set fzf_git_log_format "%H %s"
@@ -47,10 +43,8 @@ set fzf_history_time_format %d-%m-%y
 #    source ("/usr/bin/starship" init fish --print-full-init | psub)
 # end
 
-
 ## Advanced command-not-found hook
 # source /usr/share/doc/find-the-command/ftc.fish
-
 
 ## Functions
 # Functions needed for !! and !$ https://github.com/oh-my-fish/plugin-bang-bang
@@ -138,10 +132,10 @@ alias hw='hwinfo --short' # Hardware Info
 alias tb='nc termbin.com 9999'
 alias vi='nvim'
 alias lg='lazygit'
-alias Env='source .venv/bin/activate.fish'
+alias Env='source .env/bin/activate.fish'
 alias Eenv='source env/bin/activate.fish'
 alias Dnv='deactivate'
-alias Cenv='virtualenv .venv'
+alias Cenv='virtualenv .env'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias gcf='cd $HOME/.config'
@@ -165,6 +159,9 @@ alias cleanup='sudo xbps-remove -Oo'
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
+function kitty-reload
+    kill -SIGUSR1 $(pidof kitty)
+end
 
 ## Run fastfetch if session is interactive
 # if status --is-interactive && type -q fastfetch
