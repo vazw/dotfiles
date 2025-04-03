@@ -1,5 +1,19 @@
 # my personal config files for Voidlinux
 
+<!--toc:start-->
+
+- [my personal config files for Voidlinux](#my-personal-config-files-for-voidlinux)
+  - [Packages list to install](#packages-list-to-install)
+    - [Assume you've fresh installed Voidlinux and reboot into tty1](#assume-youve-fresh-installed-voidlinux-and-reboot-into-tty1)
+    - [Desktop stuff](#desktop-stuff)
+  - [runit](#runit)
+  - [Installation](#installation)
+  - [Keybind?](#keybind)
+  - [Auto-Mount USB Drive](#auto-mount-usb-drive)
+  - [Dark Theme](#dark-theme)
+  - [Autologin](#autologin)
+  <!--toc:end-->
+
 A combination between rice + light : <br />
 let's call this lice!
 
@@ -7,7 +21,7 @@ let's call this lice!
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/3.png">
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/1.png">
 
-### Packages list to install
+## Packages list to install
 
 [Void Linux installation (NVMe, btrfs, LVM, full disk encryption using LUKS, 2FA-ish, SSD TRIM)](https://gist.github.com/tobi-wan-kenobi/bff3af81eac27e210e1dc88ba660596e)
 [Graphics Drivers](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html)
@@ -121,3 +135,21 @@ many of them are my custom keyboard config try remove them if it's not suit your
 ## Auto-Mount USB Drive
 
 - enable Thunar Volume Management in Advanced Setting Tab
+
+## Dark Theme
+
+- install `darkman`
+
+define XDG_DATA_DIRS to `.local/share`
+
+```bash
+export XDG_DATA_DIRS=$HOME/.local/share:$XDG_DATA_DIRS
+```
+
+then copy `darkman/dark-mode.d/` and `darkman/light-mode.d` to `~/.local/share`
+
+when execute `darkman toggle` darkman will trigger script inside `dark-mode.d` and `light-mode.d` to manipulate your gtk config
+
+## Autologin
+
+[check agetty conf](https://man.voidlinux.org/agetty.8)

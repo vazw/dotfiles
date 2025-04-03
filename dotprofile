@@ -10,44 +10,76 @@
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-        . "$HOME/.bashrc"
-    fi
+	# include .bashrc if it exists
+	if [ -f "$HOME/.bashrc" ]; then
+		. "$HOME/.bashrc"
+	fi
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+	PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ]; then
+	PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/.pub-cache/bin" ]; then
+	PATH="$HOME/.pub-cache/bin:$PATH"
+fi
+
+# set PATH so it includes user's go bin if it exists
+if [ -d "/usr/local/go/bin" ]; then
+	PATH="/usr/local/go/bin:$PATH"
+fi
+
+
+# set PATH so it includes user's go bin if it exists
+if [ -d "$HOME/go/bin" ]; then
+	PATH="$HOME/go/bin:$PATH"
+fi
+
+# set PATH so it includes user's flutter bin if it exists
+if [ -d "$HOME/Code/flutter/bin" ]; then
+	PATH="$HOME/Code/flutter/bin:$PATH"
+fi
+
+if [ -d "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
+
+# export HELIX_RUNTIME="$HOME/Code/helix/runtime"
+export STARSHIP_CONFIG=~/.config/starship.toml
+export VISUAL=nvim
 export EDITOR=nvim
-export BROWSER=firefox
+export BROWSER=vivaldi-stable
 export TERM=alacritty
 export MAIL=geary
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Session
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=sway
 export XDG_CURRENT_DESKTOP=sway
 # Path dir where wofi menu can find .desktop applications
-export XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:$XDG_DATA_DIRS
+export XDG_DATA_DIRS=/usr/local/share:/usr/share:$XDG_DATA_DIRS
+export XDG_DATA_DIRS=.local/share:$XDG_DATA_DIRS
 # export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
+# Vulkan
+export WLR_RENDERER=vulkan
+export VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_validation
+export RADV_PERFTEST=video_decode,video_encode
+
 # GTK
-export MOZ_ENABLE_WAYLAND=1             # only start firefox in wayland mode and no other GTK apps
-export MOZ_DBUS_REMOTE=1                # fixes firefox is already running, but is not responding
-#export GDK_BACKEND=wayland             # this can prevent programs from starting (e.g. chromium and electron apps). therefore, this should be set per app instead of globally.
+export MOZ_ENABLE_WAYLAND=1 # only start firefox in wayland mode and no other GTK apps
+export MOZ_DBUS_REMOTE=1    # fixes firefox is already running, but is not responding
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export GDK_SCALE=1.8
 
 # clutter
 #export CLUTTER_BACKEND=wayland          # this can prevent programs from starting. therefore, this should be set per app instead of globally.
-
 
 # elementary
 export ECORE_EVAS_ENGINE=wayland-egl
@@ -55,24 +87,32 @@ export ELM_ENGINE=wayland_egl
 export ELM_DISPLAY=wl
 #export ELM_ACCEL=gl
 
+# export WGPU_BACKEND=gl
 # java
+export JAVA_HOME=/opt/android-studio/jbr
 export _JAVA_AWT_WM_NONREPARENTING=1
+# export _JAVA_OPTIONS="-Djava.net.preferIPv6Addresses=true"
 export NO_AT_BRIDGE=1
 export BEMENU_BACKEND=wayland
 
 # sdl
-export SDL_VIDEODRIVER=wayland	         # this can prevent programs from starting old sdl games. therefore, this should be set per app instead of globally.
+export SDL_VIDEODRIVER=wayland # this can prevent programs from starting old sdl games. therefore, this should be set per app instead of globally.
 
 # Qt
-export QT_QPA_PLATFORM=wayland-egl
+export QT_QPA_PLATFORM="wayland;xcb"
 # export QT_QPA_PLATFORM=wayland
 #export QT_WAYLAND_FORCE_DPI=physical
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_FONT_DPI=96
 
+# PATH to XDEB package
 export XDEB_PKGROOT=${HOME}/.config/xdeb
+
+# JavaScripts Heap Memory config
+export NODE_OPTIONS=--max_old_space_size=4096
 
 # start sway with env when login as tty1
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
-    dbus-run-session sway
+	dbus-run-session sway
 fi
