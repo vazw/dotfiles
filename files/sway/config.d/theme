@@ -5,18 +5,16 @@ exec_always ~/.config/sway/scripts/import-gsettings
 # Set inner/outer gaps
 gaps inner 0
 gaps outer 0
-# gaps bottom 10
-# gaps left 10
-# gaps right 10
 
 # Hide titlebar on windows: 
 default_border pixel 2
 default_floating_border none
-smart_borders on 
-smart_gaps on
-# set $border pixel 2
-# set $opacity 1
-# Thin borders:
+titlebar_border_thickness 1
+smart_borders on
+set $border pixel 2
+# smart_gaps on
+set $opacity 1
+exec_always swaymsg split none, layout tabbed 
 
 
 # Default Font
@@ -32,11 +30,11 @@ for_window [shell="xdg_shell"] title_format "%title (%app_id)"
 for_window [shell="x_wayland"] title_format "%class - %title"
 
 # Set gaps for windows with rounded corners
-# for_window [class="^.*"] border $border
-# for_window [app_id="^.*"] border $border
+for_window [class="^.*"] border $border
+for_window [app_id="^.*"] border $border
 
-# for_window [class="^.*"] opacity $opacity
-# for_window [app_id="^.*"] opacity $opacity
+for_window [class="^.*"] opacity $opacity
+for_window [app_id="^.*"] opacity $opacity
 
 
 ## Window decoration
@@ -56,6 +54,7 @@ for_window [shell="x_wayland"] title_format "%class - %title"
 # client.background        $base
 
 client.focused           $green    $base $text  $green $green
+client.focused_tab_title           $green    $base $text  $green $green
 client.focused_inactive  $mantle       $base $text  $mantle $mantle
 client.unfocused         $mantle        $base $text  $mantle $mantle
 client.urgent            $peach        $base $peach $overlay0  $peach

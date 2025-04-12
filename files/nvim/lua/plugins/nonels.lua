@@ -30,14 +30,22 @@ return {
       -- configure null_ls
       null_ls.setup({
         -- setup formatters & linters
+        --   opts.sources = opts.sources or {}
         sources = {
+          -- Python
           formatting.black,
+          -- C
           formatting.clang_format,
+          -- Rust - Leptos FrameWork
           formatting.leptosfmt --[[ .with({ extra_args = { "-r" } }) ]],
+          -- Bash
           formatting.shfmt,
+          -- Nvim
           completion.nvim_snippets,
           completion.tags,
-          formatting.shfmt,
+          -- PHP
+          diagnostics.phpcs,
+          formatting.phpcsfixer,
         },
         -- configure format on save
         on_attach = function(current_client, bufnr)

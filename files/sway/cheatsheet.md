@@ -1,83 +1,93 @@
-# Garuda Sway-WM CheatSheet LightCrimson #
+# Garuda Sway-WM CheatSheet LightCrimson
 
-   = Super Key
+ = Super Key
 
 # common operations
-           Return      *term* (`alacritty`)
-           q           *quit* (kill focused window)
-           p           *show activities*
-           d           *show app menu (i3 like)* (`rofi`)
-    Shift  d           *show app menu (mac like)* (`...`)
-    Shift  e           *show power menu* (lock/suspend/logout/reboot/shutdown)
-    Shift  c           *reload config files* (`sway reload`)
-           f1          *lock screen* (`swaylock`)
+
+ Return _term_ (`alacritty`)
+ q _quit_ (kill focused window)
+ p _show activities_
+ d _show app menu (i3 like)_ (`rofi`)
+ Shift d _show app menu (mac like)_ (`...`)
+ Shift e _show power menu_ (lock/suspend/logout/reboot/shutdown)
+ Shift c _reload config files_ (`sway reload`)
+ f1 _lock screen_ (`swaylock`)
 
 # screenshot
+
             PrintSrc    *full screenshot*
      Shift  PrintSrc    *screenshot options*
 
 # application shortcuts
-           n           *file manager* (`thunar`)
-           o           *browser* (`I use google chrome, pick your own`)
+
+ n _file manager_ (`thunar`)
+ o _browser_ (`I use google chrome, pick your own`)
 
 # container layout
-           b           *split horizontally* (on next open)
-           v           *split vertically*   (on next open)
-           s           *layout stacked*
-           w           *layout tabbed*
-           e           *toggle split* (?)
-           f           *toggle fullscreen*
-   Shift   Space       *toggle tiling/floating mode*
-           Space       *toggle tiling/floating focus* (`focus mode_toggle`?)
-           a           *focus parent container*
 
-     left mouse button *move floating window*
-    right mouse button *resize floating window*
+ b _split horizontally_ (on next open)
+ v _split vertically_ (on next open)
+ s _layout stacked_
+ w _layout tabbed_
+ e _toggle split_ (?)
+ f _toggle fullscreen_
+ Shift Space _toggle tiling/floating mode_
+ Space _toggle tiling/floating focus_ (`focus mode_toggle`?)
+ a _focus parent container_
+
+ left mouse button _move floating window_
+ right mouse button _resize floating window_
 
 # window focus and location
-           h / Left    *focus left*
-           j / Down    *focus down*
-           k / Up      *focus up*
-           l / Right   *focus right*
-    Shift  h / Left    *move left*
-    Shift  j / Down    *move down*
-    Shift  k / Up      *move up*
-    Shift  l / Right   *move right*
+
+ h / Left _focus left_
+ j / Down _focus down_
+ k / Up _focus up_
+ l / Right _focus right_
+ Shift h / Left _move left_
+ Shift j / Down _move down_
+ Shift k / Up _move up_
+ Shift l / Right _move right_
 
 # window size
-           r           *toggle resize mode*
-            h / Left
-            j / Down
-            k / Up
-            l / Right
-       Return / Escape  *return to default mode*
+
+ r _toggle resize mode_
+h / Left
+j / Down
+k / Up
+l / Right
+Return / Escape _return to default mode_
 
 # scratchpad
-           Equal       *cycle scratchpad*
-    Shift  Equal       *move scratchpad*
+
+ Equal _cycle scratchpad_
+ Shift Equal _move scratchpad_
 
 # workspaces
-           1 .. 0      *switch to workspace 1 .. 10*
-    Shift  1 .. 0      *move container to workspace 1 .. 10*
+
+ 1 .. 0 _switch to workspace 1 .. 10_
+ Shift 1 .. 0 _move container to workspace 1 .. 10_
 
 # multimedia keys
-  - may not work for every keyboard
-  - may need to hold down the function (`fn`) key
+
+- may not work for every keyboard
+- may need to hold down the function (`fn`) key
 
 # custom keybindings
-    Shift  b           *switch between wallpapers*
-    Shift  w           *switch between waybar background/less*
+
+ Shift b _switch between wallpapers_
 
 # notes
-  - *Sway* is documented through man pages unlike i3.
-    To get a overview of what to expect you can read `man 5 sway`.
-    The pages are then spilt into topics - some the important ones 
-    are listed at the bottom of the document. 
-  - *Waybar* is also documented through man pages - `man 5 waybar`. 
 
-  - User configuration files are in `~/.config/`.
-  - Sway configuration files are in `~/.config/sway/config.d/`.
-    `~/.config/sway/config` only includes the files in `config.d`.
-    The file structure is spilt for easier use, where filenames refer 
-    to the part they play - for example `output` for output devices.
-  - Similarly, Waybar configuration is in `~/.config/waybar`.
+- _Sway_ is documented through man pages unlike i3.
+  To get a overview of what to expect you can read `man 5 sway`.
+  The pages are then spilt into topics - some the important ones
+  are listed at the bottom of the document.
+- _Waybar_ is also documented through man pages - `man 5 waybar`.
+
+- User configuration files are in `~/.config/`.
+- Sway configuration files are in `~/.config/sway/config.d/`.
+  `~/.config/sway/config` only includes the files in `config.d`.
+  The file structure is spilt for easier use, where filenames refer
+  to the part they play - for example `output` for output devices.
+- Similarly, Waybar configuration is in `~/.config/waybar`.

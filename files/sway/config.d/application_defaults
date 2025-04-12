@@ -1,4 +1,5 @@
 # set floating (nontiling)for apps needing it:
+# for_window [all] title_format "<b>%title</b> (%app_id)"
 for_window [class="Yad" instance="yad"] floating enable
 for_window [app_id="yad"] floating enable
 
@@ -21,16 +22,16 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [app_id="thunar"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [window_role="About"] floating enable
-for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
-for_window [class="Vivaldi" title="Library"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
-for_window [class="Vivaldi-stable" title="Sign in - Google Account"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
-for_window [class="Vivaldi-stable" title="Post to Facebook"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
+for_window [class="Vivaldi" title="Library"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
+for_window [class="Vivaldi-stable" title="Sign in - Google Account"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
+for_window [class="Vivaldi-stable" title="Post to Facebook"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
 for_window [class="Vivaldi-stable" title="Save Image"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
 for_window [class="Vivaldi-stable" title="Alby Extension - Vivaldi"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
 for_window [class="Vivaldi-stable" title="Alby - Nostr Wallet Connect - Vivaldi"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 60 ppt
-for_window [app_id="Firefox" title="Library"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
-for_window [app_id="Firefox" title="Sign in - Google Account -- Mozilla Firefox"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
-for_window [app_id="Firefox" title="Post to Facebook -- Mozilla Firefox"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="Firefox" title="Library"] floating enable, border pixel 1, sticky enable, resize set width 60 ppt height 80 ppt
+for_window [app_id="Firefox" title="Sign in - Google Account -- Mozilla Firefox"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
+for_window [app_id="Firefox" title="Post to Facebook -- Mozilla Firefox"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
 for_window [app_id="Firefox" title="Save Image"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
 for_window [app_id="Firefox" title="Extension:"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
 for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
@@ -46,6 +47,7 @@ for_window [app_id="passw"] floating enable, resize set width 20 ppt height 30 p
 for_window [app_id="blueman-manager" title="Bluetooth"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [title="Nostr Relay Tray"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [app_id="xsensors"] floating enable
+for_window [app_id="Waydroid"] floating enable
 for_window [app_id="Alacritty"] floating enable , resize set width 90 ppt height 80 ppt
 for_window [title="Save File"] floating enable
 

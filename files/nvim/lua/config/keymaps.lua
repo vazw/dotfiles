@@ -20,7 +20,7 @@ keymap.set("i", "<C-h>", "<Left>")
 keymap.set("i", "<C-l>", "<Right>")
 keymap.set("i", "<C-j>", "<Down>")
 keymap.set("i", "<C-k>", "<Up>")
-keymap.set("t", "<ESC>", "<C-\\><C-n>", opts)
+-- keymap.set("t", "<C-ESC>", "<C-\\><C-n>", opts)
 
 -- Fast shift move
 keymap.set("n", "H", "<S-Left>")
@@ -46,7 +46,7 @@ keymap.set("n", "<ESC>", "<cmd> noh <CR>")
 keymap.set("n", "<C-a>", "gg<S-v>G")
 
 -- Save with root permission
-vim.api.nvim_create_user_command("W", "w !pkexec tee > /dev/null %", {})
+vim.api.nvim_create_user_command("SaveAsRoot", "w !pkexec tee > /dev/null %", {})
 
 -- New tab
 keymap.set("n", "te", ":tabedit ")
@@ -64,13 +64,10 @@ keymap.set({ "n", "v" }, "<leader>x", "<ESC>:q<CR>", { desc = "Close" })
 keymap.set("n", "<leader>cw", "<cmd>cd %:p:h <CR>", { desc = "Set as working Dir" })
 keymap.set("n", "<leader>cW", "<cmd>lcd %:p:h <CR>", { desc = "Set local working Dir" })
 
-keymap.set("n", "<leader>]", function()
-  vim.diagnostic.goto_next()
-end, { desc = "Go to Next Diagnostic" })
-keymap.set("n", "<leader>[", function()
-  vim.diagnostic.goto_prev()
-end, { desc = "Go to Previous Diagnostic" })
-
-keymap.set("n", "<leader>i", function()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "Toggle inlay_hint" })
+-- keymap.set("n", "sf", "<cmd>TermExec cmd=lf dir=%:p:h<CR>", { desc = "LF Files Explorer" })
+keymap.set("n", "sf", function()
+  local path = vim.fn.expand("%:p:h")
+  local cmd = string.format("cd %s & lf", path)
+  require("toggleterm").exec(cmd, 1, 0, path, "float", "lf", true, true)
+end, { desc = "LF Files Explorer" })
+keymap.set("n", "sF", "<cmd>FZF<CR>", { desc = "FZF Files Finder" })

@@ -26,9 +26,8 @@ get_icon() {
 	fi
 }
 
-# Notify
 notify_user() {
-	${notify_cmd} -i "$icon" "Volume : $(get_volume)%"
+	get_volume >"$SWAYSOCK.wob"
 }
 
 # Increase Volume
@@ -37,7 +36,7 @@ inc_volume() {
 	if [[ -n $ISMUTED ]]; then
 		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 	fi
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && get_icon && notify_user
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && notify_user
 }
 
 # Decrease Volume
@@ -46,12 +45,13 @@ dec_volume() {
 	if [[ -n $ISMUTED ]]; then
 		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 	fi
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && get_icon && notify_user
+	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && notify_user
 }
 
 # Toggle Mute
 toggle_mute() {
-	if [[ -n $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED) ]]; then
+	VOLUME="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED)"
+	if [[ -n $VOLUME ]]; then
 		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${notify_cmd} -i "$iDIR/volume-mute.svg" "Mute"
 	else
 		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && get_icon && ${notify_cmd} -i "$icon" "Unmute"

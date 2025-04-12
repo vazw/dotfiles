@@ -4,7 +4,7 @@
 -- vim.cmd("autocmd!")
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
-vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 vim.wo.number = true
 
@@ -14,8 +14,6 @@ vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
-vim.opt.expandtab = true
-vim.opt.termguicolors = true
 vim.opt.scrolloff = 5
 vim.opt.shell = "fish"
 vim.opt.relativenumber = true
@@ -86,3 +84,22 @@ vim.cmd([[
 vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
 -- vim.g.lazyvim_rust_diagnostics = "bacon-ls"
 vim.g.lazyvim_picker = "snacks"
+
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = "expr"
+vim.o.foldtext = ""
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({ fold = " " })
+-- Default to treesitter folding
+vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- Prefer LSP folding if client supports it
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client and client:supports_method("textDocument/foldingRange") then
+      local win = vim.api.nvim_get_current_win()
+      vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+    end
+  end,
+})

@@ -13,6 +13,7 @@ exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
 # nm-applet
 exec nm-applet --indicator
 exec blueman-applet
+exec firewalld-applet &
 # exec nostr-relay-tray
 # exec ~/.config/sway/scripts/nostr.sh &
 
@@ -23,7 +24,7 @@ exec ~/.config/sway/scripts/swayfader.py &
 # exec ~/.config/sway/scripts/unfocused.py &
 
 # Autotiling
-exec autotiling-rs
+exec autotiling
 
 # Wlsunset
 # exec ~/.config/sway/scripts/light.sh
@@ -47,8 +48,8 @@ exec /usr/libexec/xdg-desktop-portal-wlr
 exec pkexec brillo -c 1
 exec ~/.config/sway/scripts/restorebrightness.sh
 
-exec podman restart pihole
-
+exec mkfifo $SWAYSOCK.wob
+exec tail -f $SWAYSOCK.wob | wob &
 # swayrd
 # exec_always swayrd
 # exec_always duplicated any services(Spawning new instance)

@@ -32,6 +32,8 @@ S-tab =  "goto_previous_buffer"
 "{" = "goto_prev_paragraph"   
 G = "goto_last_line"
 V = ["select_mode", "extend_line_below"]
+"+" = "increment"
+"minus" = "decrement"
 
 
 [keys.insert]
@@ -45,6 +47,8 @@ V = "extend_to_line_bounds"
 "}" = "goto_next_paragraph" 
 "{" = "goto_prev_paragraph"
 G = ["goto_last_line", "extend_to_line_bounds"]
+"+" = "increment"
+"minus" = "decrement"
 
 
 [keys.normal.space]

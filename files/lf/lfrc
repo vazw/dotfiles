@@ -1,0 +1,279 @@
+# lf config by: vazw <github.com/vazw>
+# ------- Config Options ----------
+# interpreter for shell commands
+set shell bash
+
+# set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+set shellopts '-e'
+
+# set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+set info size:time
+set dircounts
+set drawbox
+set roundbox
+set reverse
+set number 
+set icons
+set relativenumber
+set history false
+set scrolloff 10
+set sortby time
+set ratios 2:5
+set preview!
+
+# Use the `dim` attribute instead of underline for the cursor in the preview pane
+set cursorpreviewfmt "\033[7;2m"
+
+set previewer ~/.config/lf/previewer
+set cleaner ~/.config/lf/cleaner
+
+# ------- COMMAND ----------
+
+# extract the current file with the right command
+# (xkcd link: https://xkcd.com/1168/)
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+
+# compress current file or selected files with tar and gunzip
+cmd tar ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    tar czf $1.tar.gz $1
+    rm -rf $1
+}}
+
+# compress current file or selected files with zip
+cmd zip ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    zip -r $1.zip $1
+    rm -rf $1
+}}
+
+# --------- MAP ----------
+map <enter> open
+
+# show the result of execution of previous commands
+map ` !true
+
+# execute current file (must be executable)
+map x $$f
+map X !$f
+
+# dedicated keys for file opener actions
+map U ${{
+    du -sh * | fzf --preview-window hidden \
+    --delimiter " " \
+    --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed "$PATH_ESCAPE")\"")'
+}}
+map i $LESSOPEN='| ~/.config/lf/less %s' less -R $f
+
+
+# define a custom 'open' command
+# This command is called when current file is not a directory. You may want to
+# use either file extensions and/or mime types here. Below uses an editor for
+# text files and a file opener for the rest.
+cmd open &{{
+    case $(file --mime-type -Lb $f) in
+        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
+
+# mkdir command. See wiki if you want it to select created dir
+map a :push %mkdir<space>
+
+# define a custom 'rename' command without prompt for overwrite
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+map r push :rename<space>
+
+## Ripgrep + fzf
+cmd ripgrep ${{
+    rm -f /tmp/rg-fzf-{r,f}
+    cmd="rg --column --line-number --no-heading --color=always --smart-case"
+    fzf --ansi --disabled --delimiter=: --border-label ' Ripgrep ' \
+        --bind="start:reload([ -n {q} ] && $cmd -- {q} || true)" \
+        --bind="change:reload([ -n {q} ] && $cmd -- {q} || true)" \
+        --bind 'ctrl-t:transform:[[ ! $FZF_PROMPT =~ ripgrep ]] &&
+        echo "rebind(change)+change-prompt(1. ripgrep> )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r" ||
+        echo "unbind(change)+change-prompt(2. fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' \
+        --color "hl:-1:underline,hl+:-1:underline:reverse" \
+        --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed "$PATH_ESCAPE")\"" | nvim {1} +{2})' \
+        --preview='bat --color=always --highlight-line={2} -- {1}' \
+        --preview-window 'up,60%,+{2}+3/3,~3,wrap'
+}}
+map F ripgrep
+
+cmd jump ${{
+    res="$(fd . $1 --hidden 2>/dev/null | fzf --border-label ' Jump ')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed "$PATH_ESCAPE")"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map <c-f> push :jump<space>
+# fzf open
+map o ${{
+    fzf --border-label ' Vim Open ' \
+        --preview-window 'up,60%,wrap' \
+        --bind="enter:become($EDITOR {})"
+}}
+# fzf jump home
+cmd jump-home ${{
+    res="$(fd . ~/ --hidden 2>/dev/null | fzf --border-label ' Jump Home ')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed "$PATH_ESCAPE")"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map J jump-home
+map f ${{
+    res="$(fd . --hidden 2>/dev/null | fzf --border-label ' Find in current directory ')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed "$PATH_ESCAPE")"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+
+## Custom Tag Jump + Delete Tags Binding
+cmd jump-tag ${{
+    cwd="$(printf "%s" "$f" | sed "$PATH_ESCAPE")"
+    fzf --border-label ' Jump Tags ' \
+        --bind='ctrl-x:reload(lf -remote "send tag-del \"$(printf "%s" {1} | sed "$PATH_ESCAPE")\"" | sleep 2 | cat ~/.local/share/lf/tags)' \
+        --bind="start:reload(cat ~/.local/share/lf/tags)" \
+        --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed "$PATH_ESCAPE")\"")' \
+        --bind="esc:become(lf -remote \"send $id :select \"$cwd\"\")" \
+        --delimiter ":" \
+        --preview-window 'up,60%,wrap' \
+        --preview='fzf-preview {1}'
+}}
+cmd tag-clear :tag; tag-toggle; unselect
+cmd tag-del &{{
+    res="$(printf '%s' "$1" | sed "$PATH_ESCAPE")"
+    lf -remote "send toggle \"$res\""
+    lf -remote "send tag-clear"
+}}
+
+# ---- TRASH ----------
+# make sure trash folder exists
+%mkdir -p ~/.trash
+
+# move current file or selected files to trash folder
+# (also see 'man mv' for backup/overwrite options)
+cmd trash %set -f; mv -t ~/.trash $fx
+
+# define a custom 'delete' command
+cmd delete ${{
+    set -f
+    printf "$fx\n"
+    printf "delete?[y/n]"
+    read ans
+    [ "$ans" = "y" ] && rm -rf $fx
+}}
+
+# use '<delete>' key for either 'trash' or 'delete' command
+map <delete> trash
+map <s-delete> delete
+
+# promptfmt (string) 
+# (default \033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m)
+# Format string of the prompt shown in the top line. Special expansions
+# are provided, 
+# %u as the user name, 
+# %h as the hostname,
+# %w as the working directory,
+# %d as the working directory with a trailing path separator,
+# %f as the file name,
+# %F as the current filter. 
+# %S may be used once
+# and will provide a spacer so that the following parts are right aligned
+# on the screen. The home folder is shown as ~ in the working directory
+# expansion. Directory names are automatically shortened to a single
+# character starting from the leftmost parent when the prompt does not fit
+# the screen.
+cmd on-cd &{{
+    # display repository status in your prompt
+    if [ -d .git ] || [ -f .git ]; then
+        branch="$(git branch --show-current 2>/dev/null)" || true
+        remote="$(git config --get "branch.$branch.remote" 2>/dev/null)" || true
+        url="$(git remote get-url "$remote" 2>/dev/null)" || true
+        fmt="\033[32;1m%h\033[0m:\033[34;1m%w\033[0m\033[33;1m [GIT BRANCH:> $branch >> $url]\033[0m"
+    elif [ -d .hg ]; then
+        hg="$(hg branch 2>/dev/null)" || true
+        fmt="\033[32;1m%h\033[0m:\033[34;1m%w\033[0m\033[33;1m [HG BRANCH:> $hg]\033[0m"
+    elif [ -d .svn ]; then
+        svn="$(svn info 2>/dev/null | awk '/^URL: /{print $2}')" || true
+        fmt="\033[32;1m%h\033[0m:\033[34;1m%w\033[0m\033[33;1m [SVN URL:> $svn]\033[0m"
+    else
+        fmt="\033[32;1m%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
+    fi
+    lf -remote "send $id set promptfmt \"$fmt\""
+}}
+
+cmd on-select &{{
+    lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f" | sed "$PATH_ESCAPE")\""
+}}
+
+cmd history_clear $clear
+map \! :history_clear ; shell-wait
+map T push :tag<space>
+map <c-t> :jump-tag
+
+# Quick Note
+map <f-2> $$EDITOR ~/Documents/TODO.md
+map <f-3> $fish
+
+
+map <f-12> $btop
+map <esc> %lf -remote "send $id set statfmt \"$(date '+%Y-%M-%d %H:%M:%S')\""
+
+cmap <tab> cmd-menu-complete
+cmap <backtab> cmd-menu-complete-back
+
+cmd toggle-preview %{{
+    if [ "$lf_preview" = true ]; then
+        lf -remote "send $id :set preview false"
+    else
+        lf -remote "send $id :set preview true"
+    fi
+}}
+
+map <c-p> toggle-preview

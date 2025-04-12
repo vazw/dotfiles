@@ -81,6 +81,9 @@ return {
           },
         },
         html = {},
+        phpactor = {
+          enabled = true,
+        },
         gradle_ls = {},
         yamlls = {
           settings = {

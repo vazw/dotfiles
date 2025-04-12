@@ -11,6 +11,48 @@ return {
         incremental = true,
       },
     },
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+      {
+        "<c-s>",
+        mode = { "c" },
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle Flash Search",
+      },
+    },
   },
 
   {
@@ -130,33 +172,11 @@ return {
         end,
         desc = "Lists Function names, variables, from Treesitter",
       },
-      {
-        "sf",
-        function()
-          local telescope = require("telescope")
-
-          local function telescope_buffer_dir()
-            return vim.fn.expand("%:p:h")
-          end
-
-          telescope.extensions.file_browser.file_browser({
-            path = "%:p:h",
-            cwd = telescope_buffer_dir(),
-            respect_gitignore = false,
-            hidden = true,
-            grouped = true,
-            previewer = false,
-            initial_mode = "normal",
-            layout_config = { height = 40 },
-          })
-        end,
-        desc = "Open File Browser with the path of the current buffer",
-      },
     },
     opts = function(_, opts)
       local telescope = require("telescope")
-      local actions = require("telescope.actions")
-      local fb_actions = require("telescope").extensions.file_browser.actions
+      -- local actions = require("telescope.actions")
+      -- local fb_actions = require("telescope").extensions.file_browser.actions
 
       if not opts.defaults then
         opts.defaults = {
@@ -192,38 +212,38 @@ return {
         },
       }
       opts.extensions = {
-        file_browser = {
-          theme = "dropdown",
-          -- disables netrw and use telescope-file-browser in its place
-          hijack_netrw = true,
-          mappings = {
-            -- your custom insert mode mappings
-            ["n"] = {
-              -- your custom normal mode mappings
-              ["N"] = fb_actions.create,
-              ["h"] = fb_actions.goto_parent_dir,
-              ["/"] = function()
-                vim.cmd("startinsert")
-              end,
-              ["<C-u>"] = function(prompt_bufnr)
-                for i = 1, 10 do
-                  actions.move_selection_previous(prompt_bufnr)
-                end
-              end,
-              ["<C-d>"] = function(prompt_bufnr)
-                for i = 1, 10 do
-                  actions.move_selection_next(prompt_bufnr)
-                end
-              end,
-              ["<PageUp>"] = actions.preview_scrolling_up,
-              ["<PageDown>"] = actions.preview_scrolling_down,
-            },
-          },
-        },
+        -- file_browser = {
+        --   theme = "dropdown",
+        --   -- disables netrw and use telescope-file-browser in its place
+        --   hijack_netrw = true,
+        --   mappings = {
+        --     -- your custom insert mode mappings
+        --     ["n"] = {
+        --       -- your custom normal mode mappings
+        --       ["N"] = fb_actions.create,
+        --       ["h"] = fb_actions.goto_parent_dir,
+        --       ["/"] = function()
+        --         vim.cmd("startinsert")
+        --       end,
+        --       ["<C-u>"] = function(prompt_bufnr)
+        --         for i = 1, 10 do
+        --           actions.move_selection_previous(prompt_bufnr)
+        --         end
+        --       end,
+        --       ["<C-d>"] = function(prompt_bufnr)
+        --         for i = 1, 10 do
+        --           actions.move_selection_next(prompt_bufnr)
+        --         end
+        --       end,
+        --       ["<PageUp>"] = actions.preview_scrolling_up,
+        --       ["<PageDown>"] = actions.preview_scrolling_down,
+        --     },
+        --   },
+        -- },
       }
       telescope.setup(opts)
       require("telescope").load_extension("fzf")
-      require("telescope").load_extension("file_browser")
+      -- require("telescope").load_extension("file_browser")
     end,
   },
 
@@ -266,5 +286,11 @@ return {
       { "<F11>", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" } },
     },
   },
-  { "wakatime/vim-wakatime", lazy = false },
+  -- { "wakatime/vim-wakatime", lazy = false },
+  {
+    "behzade/lf.nvim",
+    dependencies = {
+      "samjwill/nvim-unception",
+    },
+  },
 }

@@ -14,18 +14,6 @@
   "modules": [
     {
       "type": "custom",
-      "format": "\u001b[90m┌────────────────────────────────────────────────────────────┐",
-    },
-    {
-      "type": "title",
-      "keyWidth": 10,
-    },
-    {
-      "type": "custom",
-      "format": "\u001b[90m└────────────────────────────────────────────────────────────┘",
-    },
-    {
-      "type": "custom",
       "format": " \u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m  \u001b[38m  \u001b[39m       \u001b[38m  \u001b[37m  \u001b[36m  \u001b[35m  \u001b[34m  \u001b[33m  \u001b[32m  \u001b[31m  \u001b[90m",
     },
     {
@@ -33,88 +21,43 @@
       "format": "\u001b[90m┌────────────────────────────────────────────────────────────┐",
     },
     {
-      "type": "os",
-      "key": " OS",
-      "keyColor": "yellow",
-    },
-    {
-      "type": "kernel",
-      "key": "│ ├",
-      "keyColor": "yellow",
-    },
-    {
-      "type": "packages",
-      "key": "│ ├󰏖",
-      "keyColor": "yellow",
-    },
-    {
-      "type": "shell",
-      "key": "│ └",
-      "keyColor": "yellow",
-    },
-    {
-      "type": "wm",
-      "key": " DE/WM",
-      "keyColor": "blue",
-    },
-    {
-      "type": "lm",
-      "key": "│ ├󰧨",
-      "keyColor": "blue",
-    },
-    {
-      "type": "wmtheme",
-      "key": "│ ├󰉼",
-      "keyColor": "blue",
-    },
-    {
-      "type": "icons",
-      "key": "│ ├󰀻",
-      "keyColor": "blue",
-    },
-    {
-      "type": "terminal",
-      "key": "│ ├",
-      "keyColor": "blue",
-    },
-    {
-      "type": "wallpaper",
-      "key": "│ └󰸉",
-      "keyColor": "blue",
-    },
-    {
       "type": "host",
       "key": "󰌢 PC",
       "keyColor": "green",
     },
     {
+      "type": "uptime",
+      "key": "│ ├󰅐Uptime",
+      "keyColor": "green",
+    },
+    {
       "type": "cpu",
-      "key": "│ ├󰻠",
+      "key": "│ ├󰻠CPU",
       "keyColor": "green",
     },
     {
       "type": "gpu",
-      "key": "│ ├󰍛",
+      "key": "│ ├󰍛GPU",
       "keyColor": "green",
     },
     {
       "type": "disk",
-      "key": "│ ├",
+      "key": "│ ├disk",
       "keyColor": "green",
     },
     {
       "type": "memory",
-      "key": "│ ├󰑭",
+      "key": "│ ├󰑭ram",
       "keyColor": "green",
     },
     {
       "type": "swap",
-      "key": "│ ├󰓡",
+      "key": "│ ├󰓡swap",
       "keyColor": "green",
     },
     {
-      "type": "uptime",
-      "key": "│ ├󰅐",
+      "type": "sound",
+      "key": "│ ├Sound",
       "keyColor": "green",
     },
     {
@@ -123,19 +66,29 @@
       "keyColor": "green",
     },
     {
-      "type": "sound",
-      "key": " SND",
-      "keyColor": "cyan",
+      "type": "os",
+      "key": " OS",
+      "keyColor": "yellow",
     },
     {
-      "type": "player",
-      "key": "│ ├󰥠",
-      "keyColor": "cyan",
+      "type": "kernel",
+      "key": "  ├",
+      "keyColor": "yellow",
     },
     {
-      "type": "media",
-      "key": "│ └󰝚",
-      "keyColor": "cyan",
+      "type": "packages",
+      "key": "  ├󰏖",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "shell",
+      "key": "  ├",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "terminal",
+      "key": "  └",
+      "keyColor": "yellow",
     },
     {
       "type": "custom",

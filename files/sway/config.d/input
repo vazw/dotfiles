@@ -10,6 +10,7 @@ input type:touchpad {
       natural_scroll enabled
       accel_profile "adaptive"
       pointer_accel 0.2
+      scroll_factor 0.7
 }
 
 input type:pointer {

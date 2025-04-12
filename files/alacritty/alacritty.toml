@@ -31,10 +31,9 @@ mods = "Control|Shift"
 [terminal]
 shell = "/bin/fish"
 
-[ env ]
+[env]
 TERM = "xterm-256color"
 
 [window]
 padding.x = 0
 padding.y = 5
-

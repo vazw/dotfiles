@@ -12,7 +12,7 @@
 #
 # Nomal 1-2 monitors
 output DP-3 position 0,0
-output eDP-1 mode 2880x1800 scale 1.8 position 0,1080
+output eDP-1 mode 1920x1200 scale 1.2 position 0,1080
 output DP-1 position 0,0
 output DP-2 position 1602,1080
 

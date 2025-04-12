@@ -137,6 +137,7 @@ return {
       scope = { enabled = false },
       scroll = { enabled = false },
       words = { enabled = false },
+      explorer = { enabled = false },
     },
     keys = {
       { "<leader><space>", false },
