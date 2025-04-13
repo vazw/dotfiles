@@ -11,7 +11,7 @@ include $HOME/.config/sway/config.d/*
 # xwayland disable
 
 # Set the background image
-output * bg /home/vaz/.config/sway/backgrounds/115.png fill
+output * bg /home/vaz/.config/sway/backgrounds/gruvbox-wall.png fill
 
 
 # Status Bar:

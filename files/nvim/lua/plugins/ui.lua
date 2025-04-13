@@ -18,14 +18,18 @@ return {
       timeout = 5000,
     },
   },
-
-  -- {
-  --   "snacks.nvim",
-  --   keys = {
-  --     -- { "<leader><space>", false },
-  --     -- { "<leader>/", false },
-  --   },
-  -- },
+  {
+    "folke/which-key.nvim",
+    keys = {
+      {
+        "<leader>?",
+        function()
+          vim.cmd("Telescope keymaps")
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
 
   -- buffer line
   {

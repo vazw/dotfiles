@@ -24,6 +24,8 @@ vim.opt.numberwidth = 5
 vim.opt.ignorecase = true
 -- wrap lines
 vim.opt.wrap = true
+-- Note Pad Style Wrap
+vim.cmd("set wrap lbr")
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 vim.opt.wildignore:append({ "*/node_modules/*", "*/__pycache__/*", "*/env/*" })
@@ -85,6 +87,7 @@ vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
 -- vim.g.lazyvim_rust_diagnostics = "bacon-ls"
 vim.g.lazyvim_picker = "snacks"
 
+-- Folding
 vim.o.foldenable = true
 vim.o.foldlevel = 99
 vim.o.foldmethod = "expr"

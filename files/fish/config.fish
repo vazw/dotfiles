@@ -1,5 +1,4 @@
 starship init fish | source
-fzf --fish | source
 set fish_greeting
 set VIRTUAL_ENV_DISABLE_PROMPT 1
 
@@ -40,7 +39,7 @@ set fzf_history_time_format %d-%m-%y
 set FZF_COMPLETE 3
 set -U FZF_LEGACY_KEYBINDINGS 0
 set FZF_CTRL_R_OPTS "--style minimal --scheme=history --layout=reverse --preview-window hidden"
-set FZF_DEFAULT_OPTS $(echo "
+set FZF_DEFAULT_OPTS (echo "
     --style full --padding 1,2 --info=inline --border --margin=1 \
     --input-label ' Search ' --layout=reverse \
     --preview-window 'wrap,60%'  \
@@ -49,8 +48,9 @@ set FZF_DEFAULT_OPTS $(echo "
     --color='preview-border:#9999cc,preview-label:#ccccff' \
     --color='list-border:#669966,list-label:#99cc99' \
     --color='input-border:#996666,input-label:#ffcccc' \
-    --color='header-border:#6699cc,header-label:#99ccff' \
+    --color='header-border:#6699cc,header-label:#99ccff'
 ")
+fzf --fish | source
 
 ## Advanced command-not-found hook
 # source /usr/share/doc/find-the-command/ftc.fish
@@ -158,7 +158,7 @@ end
 
 function vi --wraps="nvim" --description="vi with fzf if argv is empty"
     if test (count $argv) -eq 0
-        set result $(fd . $1 --hidden 2>/dev/null | fzf --border-label ' Jump ')
+        set result $(fd . $1 --hidden 2>/dev/null | fzf --border-label ' Jump ' --preview-window 'wrap,60%,up')
         if test $result && test $result != ""
             set file_path "$result"
             set git_path $(find_git "$file_path")
@@ -181,7 +181,7 @@ end
 bind ctrl-o 'set old_tty (stty -g); stty sane; vi; stty $old_tty; commandline -f repaint'
 
 function _fzf_jump
-    set target $(fd . $1 --hidden 2>/dev/null | fzf --border-label ' Jump ')
+    set target $(fd . $1 --hidden 2>/dev/null | fzf --border-label ' Jump ' --preview-window 'wrap,60%,up')
     if test "$target" != ""
         if test -d $target
             cd $target
@@ -263,7 +263,6 @@ function kitty-reload
     kill -SIGUSR1 $(pidof kitty)
 end
 
-function fishfetch
+function fish_greeting
     clear
-    fastfetch
 end

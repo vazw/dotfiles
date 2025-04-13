@@ -64,10 +64,10 @@ keymap.set({ "n", "v" }, "<leader>x", "<ESC>:q<CR>", { desc = "Close" })
 keymap.set("n", "<leader>cw", "<cmd>cd %:p:h <CR>", { desc = "Set as working Dir" })
 keymap.set("n", "<leader>cW", "<cmd>lcd %:p:h <CR>", { desc = "Set local working Dir" })
 
--- keymap.set("n", "sf", "<cmd>TermExec cmd=lf dir=%:p:h<CR>", { desc = "LF Files Explorer" })
 keymap.set("n", "sf", function()
+  local count = vim.v.count1
   local path = vim.fn.expand("%:p:h")
   local cmd = string.format("cd %s & lf", path)
-  require("toggleterm").exec(cmd, 1, 0, path, "float", "lf", true, true)
+  require("toggleterm").exec(cmd, count, 0, path, "float", "lf", true, true)
 end, { desc = "LF Files Explorer" })
 keymap.set("n", "sF", "<cmd>FZF<CR>", { desc = "FZF Files Finder" })

@@ -85,11 +85,20 @@ map X !$f
 
 # dedicated keys for file opener actions
 map U ${{
-    du -sh * | fzf --preview-window hidden \
-    --delimiter " " \
-    --bind='enter:become(lf -remote "send $id select \"$(printf "%s" {1} | sed "$PATH_ESCAPE")\"")'
+    res=$(du -sh * | fzf --preview-window hidden \
+    --bind="enter:become(echo {} | awk '{print \$2}')")
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else
+        cmd="select"
+    fi
+    res="$(printf '%s' "$res" | sed "$PATH_ESCAPE")"
+    lf -remote "send $id $cmd \"$res\""
+
 }}
 map i $LESSOPEN='| ~/.config/lf/less %s' less -R $f
+
+map c :clear; unselect
 
 
 # define a custom 'open' command
@@ -99,6 +108,7 @@ map i $LESSOPEN='| ~/.config/lf/less %s' less -R $f
 cmd open &{{
     case $(file --mime-type -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        */javascript) lf -remote "send $id \$$EDITOR \$fx";;
         *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
@@ -128,7 +138,7 @@ cmd ripgrep ${{
 map F ripgrep
 
 cmd jump ${{
-    res="$(fd . $1 --hidden 2>/dev/null | fzf --border-label ' Jump ')"
+    res="$(fd . $1 --hidden 2>/dev/null | fzf --border-label ' Jump ' --preview-window 'up,60%,wrap')"
     if [ -n "$res" ]; then
         if [ -d "$res" ]; then
             cmd="cd"
@@ -148,7 +158,7 @@ map o ${{
 }}
 # fzf jump home
 cmd jump-home ${{
-    res="$(fd . ~/ --hidden 2>/dev/null | fzf --border-label ' Jump Home ')"
+    res="$(fd . ~/ --hidden 2>/dev/null | fzf --border-label ' Jump Home ' --preview-window 'up,60%,wrap')"
     if [ -n "$res" ]; then
         if [ -d "$res" ]; then
             cmd="cd"
@@ -161,7 +171,7 @@ cmd jump-home ${{
 }}
 map J jump-home
 map f ${{
-    res="$(fd . --hidden 2>/dev/null | fzf --border-label ' Find in current directory ')"
+    res="$(fd . --hidden 2>/dev/null | fzf --border-label ' Find in current directory ' --preview-window 'up,60%,wrap')"
     if [ -n "$res" ]; then
         if [ -d "$res" ]; then
             cmd="cd"
@@ -249,7 +259,9 @@ cmd on-cd &{{
 }}
 
 cmd on-select &{{
-    lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f" | sed "$PATH_ESCAPE")\""
+    stat=$(eza -ld --color=always "$f")
+    mime=$(file --mime-type "$f" | awk '{print $2}')
+    lf -remote "send $id set statfmt \"$(echo "$stat | $mime" | sed "$PATH_ESCAPE")\""
 }}
 
 cmd history_clear $clear

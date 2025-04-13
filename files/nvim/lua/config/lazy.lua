@@ -95,17 +95,16 @@ require("lazy").setup({
 })
 
 -- Set ColorScheme
+-- Run command
 local handle = io.popen("darkman get")
 if handle then
-  local result = handle:read("*l")
+  -- Read Result from handle
+  local result = tostring(handle:read("*l"))
+  -- Close command handle
   handle:close()
-  result = string.format(result)
   if result == "dark" then
     vim.cmd([[colorscheme catppuccin]])
-  -- elseif result == "light" then
   else
     vim.cmd([[colorscheme catppuccin-latte]])
-    -- else
-    --   vim.cmd([[colorscheme catppuccin]])
   end
 end
