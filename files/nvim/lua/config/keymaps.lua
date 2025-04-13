@@ -70,4 +70,12 @@ keymap.set("n", "sf", function()
   local cmd = string.format("cd %s & lf", path)
   require("toggleterm").exec(cmd, count, 0, path, "float", "lf", true, true)
 end, { desc = "LF Files Explorer" })
+
 keymap.set("n", "sF", "<cmd>FZF<CR>", { desc = "FZF Files Finder" })
+
+keymap.set("n", "<leader>gg", function()
+  local count = vim.v.count1
+  local path = vim.fn.expand("%:p:h")
+  local cmd = string.format("cd %s & lazygit", path)
+  require("toggleterm").exec(cmd, count, 0, path, "float", "lazygit", true, true)
+end, { desc = "Lazygit Toggle" })

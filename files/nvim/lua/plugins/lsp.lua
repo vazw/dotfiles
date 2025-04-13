@@ -16,6 +16,12 @@ return {
         "taplo",
       })
     end,
+    keys = {
+      {
+        "<leader>gg",
+        false,
+      },
+    },
   },
 
   -- lsp servers
