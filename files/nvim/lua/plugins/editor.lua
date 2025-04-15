@@ -280,12 +280,6 @@ return {
       })
     end,
   },
-  {
-    "szw/vim-maximizer",
-    keys = {
-      { "<F11>", "<cmd>MaximizerToggle<CR>", { desc = "Maximize/minimize a split" } },
-    },
-  },
   -- { "wakatime/vim-wakatime", lazy = false },
   {
     "behzade/lf.nvim",

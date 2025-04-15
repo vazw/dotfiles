@@ -37,13 +37,13 @@ keymap.set("x", "p", 'p:let @+=@0<CR>:let @"=@0<CR>', { silent = true })
 
 -- Delete a word backwards
 keymap.set("n", "dw", 'vb"_d')
-keymap.set("n", "x", '"_x')
 keymap.set("v", "d", '"_d')
+keymap.set("n", "x", '"_x')
 
 -- NO highlight find
 keymap.set("n", "<ESC>", "<cmd> noh <CR>")
 
-keymap.set("n", "<C-a>", "gg<S-v>G")
+keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select All" })
 
 -- Save with root permission
 vim.api.nvim_create_user_command("SaveAsRoot", "w !pkexec tee > /dev/null %", {})

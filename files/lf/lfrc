@@ -289,3 +289,4 @@ cmd toggle-preview %{{
 }}
 
 map <c-p> toggle-preview
+map <c-g> $lazygit
