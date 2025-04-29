@@ -1,16 +1,9 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.lang.clangd",
-    "lazyvim.plugins.extras.lang.kotlin",
-    "lazyvim.plugins.extras.lang.php",
-    "lazyvim.plugins.extras.lang.sql",
-    "lazyvim.plugins.extras.lang.toml",
-    "lazyvim.plugins.extras.ui.indent-blankline"
+
   ],
-  "install_version": 8,
   "news": {
-    "NEWS.md": "10960",
-    "doc/news.txt": "24170"
+    "NEWS.md": "10960"
   },
   "version": 8
 }

@@ -42,7 +42,7 @@ set FZF_CTRL_R_OPTS "--style minimal --scheme=history --layout=reverse --preview
 set FZF_DEFAULT_OPTS (echo "
     --style full --padding 1,2 --info=inline --border --margin=1 \
     --input-label ' Search ' --layout=reverse \
-    --preview-window 'wrap,60%'  \
+    --preview-window 'up,wrap,60%'  \
     --preview 'fzf-preview {}' \
     --color='border:#aaaaaa,label:#cccccc' \
     --color='preview-border:#9999cc,preview-label:#ccccff' \
@@ -87,7 +87,7 @@ end
 
 bind ctrl-f 'set old_tty (stty -g); stty sane; lfcd; stty $old_tty; commandline -f repaint'
 bind ctrl-g 'set old_tty (stty -g); stty sane; _fzf_jump; stty $old_tty; commandline -f repaint'
-bind ctrl-O 'set old_tty (stty -g); stty sane; _rfv; stty $old_tty; commandline -f repaint'
+bind ctrl-n 'set old_tty (stty -g); stty sane; _rfv; stty $old_tty; commandline -f repaint'
 
 # Fish command history
 function history
@@ -130,7 +130,8 @@ function find_git --description="find .git in the parent dir of given path"
         end
         set parent_dir (dirname "$parent_dir")
     end
-    echo $(dirname "$input_file")
+    # echo $(dirname "$input_file")
+    echo "$parent_dir"
 end
 
 function _rfv --wraps="nvim" --description="vi with fzf+ripgrep if argv is empty"
@@ -191,7 +192,7 @@ function _fzf_jump
     end
 end
 
-# set -x MANPAGER 'manpager '
+set -x MANPAGER 'nvim +Man!'
 
 ## Useful aliases
 # Replace ls with exa
@@ -201,7 +202,7 @@ alias ll='exa -l --color=always --group-directories-first --icons' # long format
 alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
 alias l.='exa -ald --color=always --group-directories-first --icons .*' # show only dotfiles
 alias ip='ip -color'
-alias man=manpager
+# alias man=manpager
 
 # Replace some more things with better alternatives
 alias cat='bat --style header --style snip --style changes'

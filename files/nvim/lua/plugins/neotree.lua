@@ -1,0 +1,21 @@
+return {
+  "nvim-neo-tree/neo-tree.nvim",
+  branch = "v3.x",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+  },
+  lazy = false, -- neo-tree will lazily load itself
+  keys = {
+    { "<leader>fe", ":Neotree left toggle<CR>", desc = "File Exploror" },
+    { "sf", ":Neotree float<CR>", desc = "File File" },
+  },
+  ---@module "neo-tree"
+  ---@type neotree.Config?
+  opts = {
+    window = { -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
+      -- possible options. These can also be functions that return these options.
+      position = "float", -- left, right, top, bottom, float, current
+    },
+  },
+}

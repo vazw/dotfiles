@@ -1,0 +1,200 @@
+font-size = 13
+font-thicken = true
+font-thicken-strength = 255
+
+font-family = "IosevkaTermSlab NFM SemiBold"
+font-family-bold = "IosevkaTermSlab NFM Bold"
+font-family-italic = "IosevkaTermSlab NFM SemiBold Italic"
+font-family-bold-italic = "IosevkaTermSlab NFM Bold Italic"
+
+grapheme-width-method = unicode
+freetype-load-flags = hinting,force-autohint,monochrome,autohint
+# Map Thai Font
+font-synthetic-style = bold,italic,bold-italic
+font-feature = "+calt,+liga,+dlig"
+font-codepoint-map = "U+0E00-U+0E7F=Noto Sans Thai Looped SemiBold"
+
+alpha-blending = native
+
+adjust-cell-width = 1
+adjust-cell-height = 0
+adjust-font-baseline = 0
+adjust-underline-position = 2
+adjust-strikethrough-position = 2
+adjust-overline-position = 2
+
+theme = "light:catppuccin-latte,dark:catppuccin-mocha"
+
+minimum-contrast = 1
+cursor-style = block
+cursor-style-blink = true
+cursor-click-to-move = true
+cursor-opacity = 1
+# cursor-color = #d7d7d7
+# cursor-text = #252525
+
+mouse-hide-while-typing = true
+
+mouse-scroll-multiplier = 1
+background-opacity = 1
+background-blur = false
+unfocused-split-opacity = 0.7
+# background = #252525
+
+command = "fish"
+
+
+wait-after-command = false
+abnormal-command-exit-runtime = 250
+scrollback-limit = 10000000
+
+
+link-url = true
+maximize = false
+fullscreen = false
+
+# working-directory =
+
+window-padding-x = 1
+window-padding-y = 1
+window-padding-balance = true
+window-padding-color = background
+
+window-inherit-working-directory = true
+window-inherit-font-size = false
+
+window-decoration = true
+
+window-subtitle = false
+window-theme = ghostty
+window-colorspace = srgb
+
+window-height = 0
+window-width = 0
+
+window-save-state = never
+window-step-resize = false
+
+window-new-tab-position = current
+
+resize-overlay = after-first
+resize-overlay-position = center
+resize-overlay-duration = 750ms
+focus-follows-mouse = false
+
+clipboard-read = ask
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+
+clipboard-paste-protection = true
+clipboard-paste-bracketed-safe = true
+
+title-report = false
+
+image-storage-limit = 320000000
+
+copy-on-select = true
+
+click-repeat-interval = 0
+
+config-default-files = true
+confirm-close-surface = true
+
+initial-window = true
+
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.2
+quick-terminal-autohide = true
+quick-terminal-space-behavior = move
+
+shell-integration = detect
+shell-integration-features = cursor,no-sudo,title
+
+osc-color-report-format = 16-bit
+
+vt-kam-allowed = false
+custom-shader-animation = false
+
+app-notifications = clipboard-copy
+
+linux-cgroup = never
+linux-cgroup-hard-fail = false
+
+gtk-opengl-debug = false
+gtk-gsk-renderer = opengl
+gtk-single-instance = desktop
+gtk-titlebar = false
+gtk-tabs-location = top
+gtk-titlebar-hide-when-maximized = false
+
+# adw-toolbar-style = flat
+
+gtk-wide-tabs = true
+gtk-adwaita = false
+
+desktop-notifications = true
+bold-is-bright = true
+
+term = xterm-kitty
+
+# ------------------- KEYBIND ------------------
+
+keybind = ctrl+comma=unbind
+keybind = ctrl+shift+comma=reload_config
+keybind = ctrl+tab=unbind
+
+keybind = shift+insert=paste_from_selection
+keybind = ctrl+shift+v=paste_from_clipboard
+
+keybind = ctrl+shift+a=select_all
+
+keybind = shift+up=adjust_selection:up
+keybind = shift+left=adjust_selection:left
+keybind = shift+right=adjust_selection:right
+keybind = shift+down=adjust_selection:down
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+minus=decrease_font_size:1
+
+keybind = shift+page_up=scroll_page_up
+keybind = shift+page_down=scroll_page_down
+keybind = shift+end=scroll_to_bottom
+
+keybind = ctrl+shift+page_down=jump_to_prompt:1
+keybind = ctrl+shift+page_up=jump_to_prompt:-1
+
+keybind = ctrl+insert=copy_to_clipboard
+
+keybind = ctrl+equal=increase_font_size:1
+keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+zero=reset_font_size
+
+keybind = ctrl+shift+w=close_tab
+keybind = ctrl+shift+t=new_tab
+
+keybind = alt+one=goto_tab:1
+keybind = alt+two=goto_tab:2
+keybind = alt+three=goto_tab:3
+keybind = alt+four=goto_tab:4
+keybind = alt+five=goto_tab:5
+keybind = alt+six=goto_tab:6
+keybind = alt+seven=goto_tab:7
+keybind = alt+eight=goto_tab:8
+keybind = alt+nine=last_tab
+
+keybind = alt+q=close_surface
+
+keybind = ctrl+alt+k=goto_split:up
+keybind = ctrl+alt+h=goto_split:left
+keybind = ctrl+alt+l=goto_split:right
+keybind = ctrl+alt+j=goto_split:down
+
+keybind = ctrl+alt+up=resize_split:up,10
+keybind = ctrl+alt+left=resize_split:left,10
+keybind = ctrl+alt+down=resize_split:down,10
+keybind = ctrl+alt+right=resize_split:right,10
+
+keybind = ctrl+enter=toggle_split_zoom
+
+keybind = ctrl+shift+o=new_split:right
+keybind = ctrl+shift+e=new_split:down

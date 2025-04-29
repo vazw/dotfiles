@@ -1,7 +1,3 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
--- vim.cmd("autocmd!")
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 -- vim.g.loaded_netrw = 1
@@ -69,23 +65,15 @@ vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.wildoptions = "pum"
 vim.opt.pumblend = 5
--- vim.opt.background = "dark"
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
-vim.cmd([[
-  augroup highlight_yank
-  autocmd!
-  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=100})
-  augroup END
-]])
+-- vim.cmd([[
+  -- augroup highlight_yank
+  -- autocmd!
+  -- au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=100})
+  -- augroup END
+-- ]])
 
--- LSP Server to use for Rust.
--- Set to "bacon-ls" to use bacon-ls instead of rust-analyzer.
--- only for diagnostics. The rest of LSP support will still be
--- provided by rust-analyzer.
-vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
--- vim.g.lazyvim_rust_diagnostics = "bacon-ls"
-vim.g.lazyvim_picker = "snacks"
 
 -- Folding
 vim.o.foldenable = true
