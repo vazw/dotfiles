@@ -13,6 +13,8 @@ exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
 # nm-applet
 exec nm-applet --indicator
 exec blueman-applet
+exec easyeffects --gapplication-service
+
 exec firewalld-applet &
 # exec nostr-relay-tray
 # exec ~/.config/sway/scripts/nostr.sh &
@@ -20,11 +22,13 @@ exec firewalld-applet &
 exec thunar --daemon
 
 # Sway Fader / unfocused
-exec ~/.config/sway/scripts/swayfader.py &
+# exec ~/.config/sway/scripts/swayfader.py &
 # exec ~/.config/sway/scripts/unfocused.py &
 
 # Autotiling
 exec autotiling
+# exec pkexec warp-svc & 
+exec warp-taskbar &
 
 # Wlsunset
 # exec ~/.config/sway/scripts/light.sh
@@ -45,7 +49,8 @@ exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ss
 exec /usr/libexec/xdg-desktop-portal
 exec /usr/libexec/xdg-desktop-portal-wlr
 
-exec pkexec brillo -c 1
+# Set Minimun Screen Brightness so the screen won't going black on 0
+exec brillo -c -S 8
 exec ~/.config/sway/scripts/restorebrightness.sh
 
 exec mkfifo $SWAYSOCK.wob

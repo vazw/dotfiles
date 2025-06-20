@@ -46,11 +46,12 @@ keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select All" })
 
 -- New tab
 keymap.set("n", "te", ":tabedit ")
-keymap.set("n", "<tab>", ":tabnext<Return>", opts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
+keymap.set("n", "<tab>", ":tabnext<CR>", opts)
+keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 -- Split window
-keymap.set("n", "ss", ":split .<Return>", opts)
-keymap.set("n", "sv", ":vsplit .<Return>", opts)
+keymap.set("n", "ss", ":split<Return>", opts)
+keymap.set("n", "sv", ":vsplit<Return>", opts)
+keymap.set("n", "fe", ":Lexplore<CR>", { silent = true, desc = "netrw Lexplorer" })
 
 keymap.set("n", "<leader>o", "o<ESC>", { silent = true, desc = "Create New Line Below" })
 keymap.set("n", "<leader>O", "O<ESC>", { silent = true, desc = "Create New Line Above" })
@@ -76,4 +77,4 @@ vim.api.nvim_create_user_command("InlayHint", function()
 end, {})
 
 -- Save with root permission
-vim.api.nvim_create_user_command("SaveAsRoot", "w !pkexec tee > /dev/null %", {})
+vim.api.nvim_create_user_command("SaveAsRoot", "w !pkexec tee > /dev/null %:p", {})

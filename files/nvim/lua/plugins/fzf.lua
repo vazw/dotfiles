@@ -3,13 +3,13 @@ return {
   dependencies = { "echasnovski/mini.icons" },
   event = "VeryLazy",
   keys = {
-    -- {
-    --   "sf",
-    --   function()
-    --     require("fzf-lua").files({ resume = true })
-    --   end,
-    --   desc = "File File",
-    -- },
+    {
+      "sf",
+      function()
+        require("fzf-lua").files({ resume = true })
+      end,
+      desc = "File File",
+    },
     {
       ";r",
       function()
@@ -17,13 +17,13 @@ return {
       end,
       desc = "Live Grep",
     },
-    -- {
-    --   ";e",
-    --   function()
-    --     require("fzf-lua").lsp_document_diagnostics()
-    --   end,
-    --   desc = "Document Diagnostics",
-    -- },
+    {
+      ";;",
+      function()
+        require("fzf-lua").lsp_document_diagnostics()
+      end,
+      desc = "Document Diagnostics",
+    },
     {
       ";e",
       function()
@@ -37,7 +37,12 @@ return {
         require("fzf-lua").lsp_code_actions()
       end,
       desc = "Code Action",
+      silent = true,
     },
   },
   opts = {},
+  config = function()
+    -- register FzfLua to handle vim.ui.select
+    vim.cmd("FzfLua register_ui_select")
+  end,
 }

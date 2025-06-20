@@ -1,7 +1,5 @@
 #!/bin/env sh
 
-if [ "$(swaymsg -t get_outputs | grep -c DP)" -gt 1 ]; then
-    xrandr --output "$(xrandr | awk '/1920x1080/ {print $1}' | head -n 1)" --primary
-else
-    xrandr --output eDP-1 --primary
-fi
+swaymsg -t get_outputs -p | grep -E "Output DP-(1|2|3)" >/dev/null &&
+	xrandr --output "$(swaymsg -t get_outputs -p | grep -E "Output DP-(1|2|3)" | awk '{print $2}' | head -n 1)" --primary ||
+	xrandr --output eDP-1 --primary

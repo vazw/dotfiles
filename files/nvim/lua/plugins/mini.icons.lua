@@ -1,6 +1,6 @@
 return {
   "echasnovski/mini.icons",
-  lazy = true,
+  event = "VeryLazy",
   opts = {
     file = {
       [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
@@ -16,5 +16,7 @@ return {
       return package.loaded["nvim-web-devicons"]
     end
   end,
+  config = function(_, opts)
+    require("mini.icons").setup(opts)
+  end,
 }
-

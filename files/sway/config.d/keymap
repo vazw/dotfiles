@@ -281,6 +281,8 @@ $bindcode XF86MonBrightnessDown exec ~/.config/sway/scripts/brightness --dec
 $bindcode XF86HomePage exec ~/.config/sway/scripts/brightness --inc 
 $bindcode XF86Explorer exec ~/.config/sway/scripts/brightness --dec
 
+$bindcode XF86Mail exec ghostty -e nvim ~/Documents/TODAY.md
+
 # App shortcuts
 
 $bindcode $mod+f exec Thunar

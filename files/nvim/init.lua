@@ -4,8 +4,11 @@ if vim.g.neovide then
 end
 
 -- Load Keymap and Options
-require("config")
+require("config.autocmds")
+require("config.keymaps")
+require("config.options")
 
+-- Load Lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -51,7 +54,7 @@ require("lazy").setup({
     rtp = {
       disabled_plugins = {
         "gzip",
-        "netrwPlugin",
+        -- "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
@@ -72,4 +75,6 @@ if handle then
   else
     vim.cmd([[colorscheme catppuccin-latte]])
   end
+else
+  vim.cmd([[colorscheme catppuccin]])
 end

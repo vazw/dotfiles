@@ -1,3 +1,4 @@
 #!/bin/bash
 
-man "$@" | col -bx | bat --style changes -l man -p
+# man "$@" | col -bx | bat --style changes -l man -p
+col -bx | bat --style changes -l man -p

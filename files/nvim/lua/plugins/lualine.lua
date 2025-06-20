@@ -1,6 +1,9 @@
 return {
   "nvim-lualine/lualine.nvim",
   lazy = false,
+  dependencies = {
+    "mini.icons",
+  },
   config = function()
     require("lualine").setup({
       options = {
@@ -77,16 +80,16 @@ return {
           },
         },
         lualine_x = {
+          {
+            require("lazy.status").updates,
+            cond = require("lazy.status").has_updates,
+          },
           "encoding",
           "fileformat",
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
         },
         lualine_y = {
           "progress",
-          {
-            require("lazy.status").updates,
-            cond = require("lazy.status").has_updates,
-          },
         },
         lualine_z = {
           "location",

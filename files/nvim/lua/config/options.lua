@@ -1,8 +1,14 @@
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
+vim.wo.number = true
+
+-- # DISABLE netrwPlugin
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
-vim.wo.number = true
+vim.g.netrw_preview = 1
+vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize = 30
+vim.g.netrw_bufsettings = "noma nomod nu nobl wrap ro nornu"
 
 vim.opt.title = true
 vim.opt.hlsearch = true
@@ -19,9 +25,10 @@ vim.opt.numberwidth = 5
 -- Case insensitive searching UNLESS /C or capital in search
 vim.opt.ignorecase = true
 -- wrap lines
-vim.opt.wrap = true
+vim.opt.wrap = false
 -- Note Pad Style Wrap
 vim.cmd("set wrap lbr")
+
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.path:append({ "**" }) -- Finding files - Search down into subfolders
 vim.opt.wildignore:append({ "*/node_modules/*", "*/__pycache__/*", "*/env/*" })
@@ -68,12 +75,11 @@ vim.opt.pumblend = 5
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 -- vim.cmd([[
-  -- augroup highlight_yank
-  -- autocmd!
-  -- au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=100})
-  -- augroup END
+-- augroup highlight_yank
+-- autocmd!
+-- au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=100})
+-- augroup END
 -- ]])
-
 
 -- Folding
 vim.o.foldenable = true

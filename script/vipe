@@ -1,0 +1,10 @@
+#!/bin/sh
+
+file="/tmp/$(date '+%s').vipe"
+touch $file
+
+while read -r text; do
+	echo "$text" | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g" >>"$file"
+done
+
+$EDITOR $file && cat $file

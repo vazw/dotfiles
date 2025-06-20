@@ -98,7 +98,7 @@ copy-on-select = true
 click-repeat-interval = 0
 
 config-default-files = true
-confirm-close-surface = true
+confirm-close-surface = false
 
 initial-window = true
 

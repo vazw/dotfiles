@@ -21,7 +21,9 @@ input type:pointer {
 #
 input type:keyboard {
       xkb_layout us,th
-      xkb_options grp:caps_toggle,grp_led:caps
+      # xkb_options grp:ctrl_shift_toggle,grp_led:caps
+      xkb_options caps:escape_shifted_capslock,grp:toggle,grp_led:caps
+      # xkb_options grp:caps_toggle,grp_led:caps
       xkb_numlock enabled
       repeat_delay 250
       repeat_rate 50

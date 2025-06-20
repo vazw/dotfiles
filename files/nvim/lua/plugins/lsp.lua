@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    lazy = true,
+    lazy = false,
     dependencies = {
       "mason.nvim",
       { "williamboman/mason-lspconfig.nvim", config = function() end },
@@ -99,7 +99,46 @@ return {
 
           cssls = {},
           vtsls = { enabled = true },
-          rust_analyzer = {},
+          bacon_ls = { enabled = true },
+          rust_analyzer = {
+            enabled = false,
+            settings = {
+              -- rust-analyzer language server configuration
+              ["rust-analyzer"] = {
+                cargo = {
+                  allFeatures = true,
+                  loadOutDirsFromCheck = true,
+                  buildScripts = {
+                    enable = true,
+                  },
+                },
+                checkOnSave = true,
+                procMacro = {
+                  enable = true,
+                  ignored = {
+                    ["async-trait"] = { "async_trait" },
+                    ["napi-derive"] = { "napi" },
+                    ["async-recursion"] = { "async_recursion" },
+                    leptos = { "server", "component" },
+                  },
+                },
+                files = {
+                  excludeDirs = {
+                    ".direnv",
+                    ".git",
+                    ".github",
+                    ".gitlab",
+                    "bin",
+                    "node_modules",
+                    "target",
+                    "venv",
+                    ".venv",
+                    "registry",
+                  },
+                },
+              },
+            },
+          },
           tailwindcss = {
             root_dir = function(...)
               return require("lspconfig.util").root_pattern("tailwind.config.js")(...)
@@ -111,10 +150,10 @@ return {
             -- to fully override the default_config, change the below
             -- filetypes = {}
             init_options = {
-              userLanguages = {
-                rust = "html",
-                ["*.rs"] = "html",
-              },
+              -- userLanguages = {
+              --   rust = "html",
+              --   ["*.rs"] = "html",
+              -- },
               tailwindCSS = {
                 includeLanguages = {
                   rust = "html",
@@ -155,6 +194,42 @@ return {
               },
             },
           },
+          clangd = {
+            keys = {
+              { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+            },
+            root_dir = function(fname)
+              return require("lspconfig.util").root_pattern(
+                "Makefile",
+                "configure.ac",
+                "configure.in",
+                "config.h.in",
+                "meson.build",
+                "meson_options.txt",
+                "build.ninja"
+              )(fname) or require("lspconfig.util").root_pattern(
+                "compile_commands.json",
+                "compile_flags.txt"
+              )(fname) or require("lspconfig.util").find_git_ancestor(fname)
+            end,
+            capabilities = {
+              offsetEncoding = { "utf-16" },
+            },
+            cmd = {
+              "clangd",
+              "--background-index",
+              "--clang-tidy",
+              "--header-insertion=iwyu",
+              "--completion-style=detailed",
+              "--function-arg-placeholders",
+              "--fallback-style=llvm",
+            },
+            init_options = {
+              usePlaceholders = true,
+              completeUnimported = true,
+              clangdFileStatus = true,
+            },
+          },
 
           html = {},
           phpactor = {
@@ -170,7 +245,7 @@ return {
           },
 
           lua_ls = {
-            -- enabled = false,
+            enabled = true,
             single_file_support = true,
             settings = {
               Lua = {
@@ -265,6 +340,7 @@ return {
         if server_opts.enabled == false then
           return
         end
+
         require("lspconfig")[server].setup(server_opts)
       end
 
@@ -292,6 +368,7 @@ return {
 
       if have_mason then
         mlsp.setup({
+          automatic_installation = true,
           ensure_installed = ensure_installed,
           handlers = { setup },
         })
@@ -330,6 +407,102 @@ return {
           end
         end
       end)
+    end,
+  },
+  -- pin to v1 for now
+  { "mason-org/mason.nvim", version = "^1.0.0" },
+  { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
+
+  -- RUST
+  {
+    "Saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    opts = {
+      completion = {
+        crates = {
+          enabled = true,
+        },
+      },
+      lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
+    },
+  },
+
+  {
+    "mrcjkb/rustaceanvim",
+    version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or false,
+    ft = { "rust" },
+    opts = {
+      server = {
+        on_attach = function(_, bufnr)
+          vim.keymap.set("n", "<leader>cR", function()
+            vim.cmd.RustLsp("codeAction")
+          end, { desc = "Code Action", buffer = bufnr })
+          vim.keymap.set("n", "<leader>dr", function()
+            vim.cmd.RustLsp("debuggables")
+          end, { desc = "Rust Debuggables", buffer = bufnr })
+        end,
+        default_settings = {
+          -- rust-analyzer language server configuration
+          ["rust-analyzer"] = {
+            cargo = {
+              allFeatures = true,
+              loadOutDirsFromCheck = true,
+              buildScripts = {
+                enable = true,
+              },
+            },
+            checkOnSave = false,
+            diagnostics = { enable = false },
+            procMacro = {
+              enable = true,
+              ignored = {
+                ["async-trait"] = { "async_trait" },
+                ["napi-derive"] = { "napi" },
+                ["async-recursion"] = { "async_recursion" },
+                leptos = { "server", "component" },
+              },
+            },
+            files = {
+              excludeDirs = {
+                ".direnv",
+                ".git",
+                ".github",
+                ".gitlab",
+                "bin",
+                "node_modules",
+                "target",
+                "venv",
+                ".venv",
+                "registry",
+              },
+            },
+          },
+        },
+      },
+    },
+    config = function(_, opts)
+      local have_mason, _ = pcall(require, "mason-lspconfig")
+      if have_mason then
+        local package_path = require("mason-registry").get_package("codelldb"):get_install_path()
+        local codelldb = package_path .. "/extension/adapter/codelldb"
+        local library_path = package_path .. "/extension/lldb/lib/liblldb.dylib"
+        local uname = io.popen("uname"):read("*l")
+        if uname == "Linux" then
+          library_path = package_path .. "/extension/lldb/lib/liblldb.so"
+        end
+        opts.dap = {
+          adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb, library_path),
+        }
+      end
+      vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
+      if vim.fn.executable("rust-analyzer") == 0 then
+        print("**rust-analyzer** not found in PATH, please install it.\nhttps://rust-analyzer.github.io/")
+      end
     end,
   },
 }
