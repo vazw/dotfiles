@@ -1,102 +1,139 @@
 @import "machiatto.css";
+
 * {
-  color: whitesmoke;
-  border: 0;
-  border-radius: 0;
-  padding: 0 0;
-  font-family: "Hack Nerd Font Propo", "ComicShannsMono Nerd Font Mono";
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.5s ease;
-  background-color: #131313;
+    color: whitesmoke;
+    border: 0;
+    border-radius: 0;
+    padding: 0 0;
+    font-family: "Hack Nerd Font Propo", "ComicShannsMono Nerd Font Mono";
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.5s ease;
+    background-color: #131313;
 }
 
 #workspaces button {
-  color: @base;
-  border-radius: 50%;
-  /* background-color: @base; */
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
+    color: @base;
+    border-radius: 50%;
+    /* background-color: @base; */
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 #workspaces button:hover * {
-  color: @pink;
-  border-radius: 20px;
+    color: @pink;
+    border-radius: 20px;
 }
 
 #workspaces * {
-  color: whitesmoke;
-  font-family: "ComicShannsMono Nerd Font Mono";
+    color: whitesmoke;
+    font-family: "ComicShannsMono Nerd Font Mono";
 }
 
 #workspaces {
-  border-style: solid;
-  /* background-color: @base; */
-  opacity: 1;
-  padding: 0px 0px 0px 0px;
-  margin-top: 0;
-  font-size: 16px;
-  font-family: "ComicShannsMono Nerd Font Mono";
-  /* margin: 2px 6px 6px 8px; */
+    border-style: solid;
+    /* background-color: @base; */
+    opacity: 1;
+    padding: 0px 0px 0px 0px;
+    margin-top: 0;
+    font-size: 16px;
+    font-family: "ComicShannsMono Nerd Font Mono";
+    /* margin: 2px 6px 6px 8px; */
 }
 
 #workspaces button.focused * {
-  color: green;
-  border-radius: 20px;
-  font-weight: 800;
-  font-size: 18px;
+    color: green;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 18px;
 }
 
 #workspaces button.urgent * {
-  color: @red;
+    color: @red;
 }
+
 #workspaces button.peristent * {
-  color: #131313;
+    color: #131313;
 }
 
 #backlight {
-  /* color: @teal; */
-  font-size: 16px;
-  color: white;
-  border-style: solid;
-  /* background-color: shade(@base, 1.1); */
-  opacity: 1;
-  margin: 0px 0px 0px;
-  padding: 0 0 0 8px;
-}
-#backlight-slider {
-  background-color: transparent;
-  padding: 0 8px;
-}
-#backlight-slider slider {
-  min-height: 0px;
-  min-width: 0px;
-  opacity: 0;
-  background-image: none;
-  border: none;
-  box-shadow: none;
-  border-radius: 8px;
-  background-color: whitesmoke;
-}
-#backlight-slider trough {
-  min-height: 14px;
-  min-width: 50px;
-  border-radius: 8px;
-  background-color: #494d64;
-  color: green;
-}
-#backlight-slider highlight {
-  min-width: 5px;
-  border-radius: 8px;
-  background-color: green;
+    /* color: @teal; */
+    font-size: 16px;
+    color: white;
+    border-style: solid;
+    /* background-color: shade(@base, 1.1); */
+    opacity: 1;
+    margin: 0px 0px 0px;
+    padding: 0 0 0 8px;
 }
 
-#tray {
-  padding: 0px 3px 0px 10px;
-  margin-bottom: 0px;
-  font-size: 9px;
-  padding: 0 8px;
+#backlight-slider {
+    background-color: transparent;
+    padding: 0 8px;
 }
+
+#backlight-slider slider {
+    min-height: 0px;
+    min-width: 0px;
+    opacity: 0;
+    background-image: none;
+    border: none;
+    box-shadow: none;
+    border-radius: 8px;
+    background-color: whitesmoke;
+}
+
+#backlight-slider trough {
+    min-height: 14px;
+    min-width: 50px;
+    border-radius: 8px;
+    background-color: #494d64;
+    color: green;
+}
+
+#backlight-slider highlight {
+    min-width: 5px;
+    border-radius: 8px;
+    background-color: green;
+}
+
+/* #pulseaudio-slider { */
+/*     background-color: transparent; */
+/*     padding: 0 8px; */
+/* } */
+/**/
+/* #pulseaudio-slider slider { */
+/*     min-height: 0px; */
+/*     min-width: 0px; */
+/*     opacity: 0; */
+/*     background-image: none; */
+/*     border: none; */
+/*     box-shadow: none; */
+/*     border-radius: 8px; */
+/*     background-color: whitesmoke; */
+/* } */
+/**/
+/* #pulseaudio-slider trough { */
+/*     min-height: 14px; */
+/*     min-width: 50px; */
+/*     border-radius: 8px; */
+/*     background-color: #494d64; */
+/*     color: green; */
+/* } */
+/**/
+/* #pulseaudio-slider highlight { */
+/*     min-width: 5px; */
+/*     border-radius: 8px; */
+/*     background-color: green; */
+/* } */
+
+#tray {
+    padding: 0px 3px 0px 10px;
+    margin-bottom: 0px;
+    font-size: 9px;
+    padding: 0 8px;
+}
+
 #clock,
 #custom-blockheight,
 #custom-swap,
@@ -121,54 +158,55 @@
 #custom-screenrecorder,
 #custom-notification,
 #mpd {
-  padding: 0px 8px;
-  border-style: solid;
-  opacity: 1;
-  margin: 0px 0px 0px;
+    padding: 0px 8px;
+    border-style: solid;
+    opacity: 1;
+    margin: 0px 0px 0px;
 }
 
 #clock,
 #language,
 #custom-blockheight {
-  font-family: "ComicShannsMono Nerd Font Mono";
-  font-size: 18px;
+    font-family: "ComicShannsMono Nerd Font Mono";
+    font-size: 18px;
 }
 
 #pulseaudio {
-  /* background-color: #24273a; */
-  font-size: 18px;
-  color: #ffffff;
+    /* background-color: #24273a; */
+    font-size: 18px;
+    color: #ffffff;
 }
 
 #pulseaudio.source-muted {
-  color: #ffffff;
+    color: #ffffff;
 }
+
 #pulseaudio.muted {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 #battery {
-  color: #d8dee9;
-  /* border-radius: 0 10px 10px 0; */
-  margin-right: 0px;
-  margin-bottom: 0px;
+    color: #d8dee9;
+    /* border-radius: 0 10px 10px 0; */
+    margin-right: 0px;
+    margin-bottom: 0px;
 }
 
 #battery.charging {
-  color: @green;
+    color: @green;
 }
 
 #battery.critical:not(.charging) {
-  color: #bf616a;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+    color: #bf616a;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 @keyframes blink {
-  to {
-    color: @red;
-  }
+    to {
+        color: @red;
+    }
 }

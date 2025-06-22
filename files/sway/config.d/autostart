@@ -27,7 +27,7 @@ exec thunar --daemon
 
 # Autotiling
 exec autotiling
-# exec pkexec warp-svc & 
+
 exec warp-taskbar &
 
 # Wlsunset

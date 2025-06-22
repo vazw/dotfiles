@@ -19,7 +19,7 @@ keymap.set("i", "<C-h>", "<Left>")
 keymap.set("i", "<C-l>", "<Right>")
 keymap.set("i", "<C-j>", "<Down>")
 keymap.set("i", "<C-k>", "<Up>")
--- keymap.set("t", "<C-ESC>", "<C-\\><C-n>", opts)
+keymap.set("t", "<C-ESC>", "<C-\\><C-n>", opts)
 
 -- Fast shift move
 keymap.set("n", "H", "<S-Left>")
@@ -51,7 +51,7 @@ keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
-keymap.set("n", "fe", ":Lexplore<CR>", { silent = true, desc = "netrw Lexplorer" })
+keymap.set("n", "fe", "<cmd>cd %:p:h <CR><cmd>Lexplore<CR>", { silent = true, desc = "netrw Lexplorer" })
 
 keymap.set("n", "<leader>o", "o<ESC>", { silent = true, desc = "Create New Line Below" })
 keymap.set("n", "<leader>O", "O<ESC>", { silent = true, desc = "Create New Line Above" })
@@ -68,6 +68,9 @@ keymap.set("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 keymap.set("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 keymap.set("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+
+-- Macro norm!
+keymap.set("v", "m", ":norm! _", { desc = "norm!" })
 
 -- Format
 vim.api.nvim_create_user_command("Format", ":lua vim.lsp.buf.format()", { desc = "Manaul Format" })

@@ -71,10 +71,10 @@ if handle then
   local result = tostring(handle:read("*l"))
   handle:close()
   if result == "dark" then
-    vim.cmd([[colorscheme catppuccin]])
+    vim.cmd([[colorscheme jellybeans-muted]])
   else
-    vim.cmd([[colorscheme catppuccin-latte]])
+    vim.cmd([[colorscheme jellybeans-muted-light]])
   end
 else
-  vim.cmd([[colorscheme catppuccin]])
+  vim.cmd([[colorscheme jellybeans-muted]])
 end

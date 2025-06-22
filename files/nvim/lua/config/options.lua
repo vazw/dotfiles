@@ -8,7 +8,7 @@ vim.wo.number = true
 vim.g.netrw_preview = 1
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize = 30
-vim.g.netrw_bufsettings = "noma nomod nu nobl wrap ro nornu"
+vim.g.netrw_bufsettings = "noma nomod nu nobl nowrap ro nornu"
 
 vim.opt.title = true
 vim.opt.hlsearch = true
@@ -100,3 +100,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+-- vim.diagnostic.opt.update_in_insert = true

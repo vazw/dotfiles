@@ -44,7 +44,7 @@ return {
         ---@type vim.diagnostic.Opts
         diagnostics = {
           underline = true,
-          update_in_insert = false,
+          update_in_insert = true,
           virtual_text = {
             spacing = 4,
             source = "if_many",
@@ -96,10 +96,38 @@ return {
         -- LSP Server Settings
         ---@type lspconfig.options
         servers = {
-
+          pyright = {
+            settings = {
+              pyright = {
+                -- Using Ruff's import organizer
+                disableOrganizeImports = true,
+              },
+              python = {
+                analysis = {
+                  -- Ignore all files for analysis to exclusively use Ruff for linting
+                  ignore = { "*" },
+                },
+              },
+            },
+          },
           cssls = {},
+
+          ruff = {
+            on_attach = function(client, bufnr)
+              if client.name == "ruff_lsp" then
+                -- Disable hover in favor of Pyright
+                client.server_capabilities.hoverProvider = false
+              end
+            end,
+          },
           vtsls = { enabled = true },
-          bacon_ls = { enabled = true },
+          bacon_ls = {
+            enabled = true,
+            init_options = {
+              updateOnSave = true,
+              updateOnSaveWaitMillis = 1000,
+            },
+          },
           rust_analyzer = {
             enabled = false,
             settings = {
@@ -242,6 +270,15 @@ return {
                 keyOrdering = false,
               },
             },
+          },
+          tinymist = {
+            single_file_support = true,
+            settings = {
+              exportPdf = "onSave",
+            },
+          },
+          typos_lsp = {
+            filetypes = "typst",
           },
 
           lua_ls = {
@@ -434,7 +471,8 @@ return {
 
   {
     "mrcjkb/rustaceanvim",
-    version = vim.fn.has("nvim-0.10.0") == 0 and "^4" or false,
+    version = "^6", -- Recommended
+    lazy = false, -- This plugin is already lazy
     ft = { "rust" },
     opts = {
       server = {

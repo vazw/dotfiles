@@ -15,7 +15,7 @@ return {
       direction = "horizontal",
     },
     keys = {
-      { "<c-/>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>', desc = "Toogle Term" },
+      { "<c-/>", '<Cmd>exe v:count1 . "ToggleTerm"<CR>', desc = "Toggle Term" },
     },
   },
 }

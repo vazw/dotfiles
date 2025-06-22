@@ -32,7 +32,7 @@
     },
     "tray": {
         "icon-size": 18,
-        "spacing": 8
+        "spacing": 10
     },
     "clock": {
         "format": "{:%H:%M}",
@@ -68,7 +68,7 @@
         "on-scroll-up": "~/.config/sway/scripts/brightness --inc"
     },
     "backlight/slider": {
-        "min": 0,
+        "min": 8,
         "max": 100,
         "orientation": "horizontal",
         "on-scroll-down": "~/.config/sway/scripts/brightness --dec",
@@ -90,9 +90,11 @@
         "on-click": "~/.config/waybar/scripts/powerprofilecycle.sh",
     },
     "pulseaudio/slider": {
-    "min": 0,
-    "max": 100,
-    "orientation": "horizontal"
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal",
+        "on-scroll-up": "~/.config/sway/scripts/volume --inc",
+        "on-scroll-down": "~/.config/sway/scripts/volume --dec"
     },
     "pulseaudio#sink": {
         "scroll-step": 1,
@@ -133,6 +135,17 @@
         "format-icons": ["󰕿", "󰖀", "󰕾", ""],
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
         "on-scroll-down": "~/.config/sway/scripts/volume --dec"
+    },
+    "group/sound": {
+        "orientation": "inherit",
+    "drawer": {
+        "transition-duration": 500,
+        "transition-left-to-right": true,
+    },
+    "modules": [
+        "wireplumber",
+        "pulseaudio/slider",
+    ]
     },
     "custom/blockheight": {
         "exec": "sleep 0.3 && ~/.config/waybar/scripts/blockheight.sh",
