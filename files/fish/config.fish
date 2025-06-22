@@ -256,11 +256,6 @@ alias cleanup='sudo xbps-remove -Oo'
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
-## Alias Custom SSH
-alias antwall="ssh -i ~/.ssh/bangmodp jakkaphat.j@10.100.254.23"
-alias antnalytics="ssh -i ~/.ssh/bangmodp jakkaphat.j@10.100.8.30"
-alias antwallt="ssh -i ~/.ssh/bangmodp jakkaphat.j@10.100.254.25"
-
 function kitty-reload
     kill -SIGUSR1 $(pidof kitty)
 end

@@ -30,31 +30,36 @@ if [ -d "$HOME/.pub-cache/bin" ]; then
 	PATH="$HOME/.pub-cache/bin:$PATH"
 fi
 
-# set PATH so it includes user's go bin if it exists
 if [ -d "/usr/local/go/bin" ]; then
 	PATH="/usr/local/go/bin:$PATH"
 fi
 
-
-# set PATH so it includes user's go bin if it exists
 if [ -d "$HOME/go/bin" ]; then
 	PATH="$HOME/go/bin:$PATH"
 fi
 
-# set PATH so it includes user's flutter bin if it exists
 if [ -d "$HOME/Code/flutter/bin" ]; then
 	PATH="$HOME/Code/flutter/bin:$PATH"
 fi
 
-if [ -d "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
+if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
+	PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 fi
+
+if [ -d "$HOME/.cargo" ]; then
+	. "$HOME/.cargo/env"
+fi
+
+export PATH=$PATH
 
 # export HELIX_RUNTIME="$HOME/Code/helix/runtime"
 export STARSHIP_CONFIG=~/.config/starship.toml
-export VISUAL=nvim
+
 export EDITOR=nvim
-export BROWSER=vivaldi-stable
+export VISUAL="$EDITOR"
+export LESS="-R"
+eval $(dircolors -b)
+export BROWSER=firefox
 export TERM=alacritty
 export MAIL=geary
 
@@ -63,20 +68,28 @@ export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=sway
 export XDG_CURRENT_DESKTOP=sway
 # Path dir where wofi menu can find .desktop applications
-export XDG_DATA_DIRS=/usr/local/share:/usr/share:$XDG_DATA_DIRS
-export XDG_DATA_DIRS=.local/share:$XDG_DATA_DIRS
+export XDG_DATA_DIRS=$HOME/.local/share:/usr/local/share:/usr/share:$XDG_DATA_DIRS
+export XDG_CONFIG_HOME="$HOME/.config"
 # export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
 # Vulkan
 export WLR_RENDERER=vulkan
 export VK_INSTANCE_LAYERS=VK_LAYER_KHRONOS_validation
 export RADV_PERFTEST=video_decode,video_encode
-
 # GTK
-export MOZ_ENABLE_WAYLAND=1 # only start firefox in wayland mode and no other GTK apps
-export MOZ_DBUS_REMOTE=1    # fixes firefox is already running, but is not responding
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GDK_SCALE=1.8
+export GDK_SCALE=1.2
+
+# sdl
+export SDL_VIDEODRIVER=wayland # this can prevent programs from starting old sdl games. therefore, this should be set per app instead of globally.
+
+# export WGPU_BACKEND=gl
+
+# Qt
+export QT_QPA_PLATFORM="wayland;xcb"
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_FONT_DPI=96
 
 # clutter
 #export CLUTTER_BACKEND=wayland          # this can prevent programs from starting. therefore, this should be set per app instead of globally.
@@ -86,25 +99,12 @@ export ECORE_EVAS_ENGINE=wayland-egl
 export ELM_ENGINE=wayland_egl
 export ELM_DISPLAY=wl
 #export ELM_ACCEL=gl
-
-# export WGPU_BACKEND=gl
 # java
 export JAVA_HOME=/opt/android-studio/jbr
 export _JAVA_AWT_WM_NONREPARENTING=1
 # export _JAVA_OPTIONS="-Djava.net.preferIPv6Addresses=true"
 export NO_AT_BRIDGE=1
 export BEMENU_BACKEND=wayland
-
-# sdl
-export SDL_VIDEODRIVER=wayland # this can prevent programs from starting old sdl games. therefore, this should be set per app instead of globally.
-
-# Qt
-export QT_QPA_PLATFORM="wayland;xcb"
-# export QT_QPA_PLATFORM=wayland
-#export QT_WAYLAND_FORCE_DPI=physical
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_FONT_DPI=96
 
 # PATH to XDEB package
 export XDEB_PKGROOT=${HOME}/.config/xdeb
