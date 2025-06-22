@@ -45,7 +45,7 @@ most important piece are `dbus` `sway` `waybar` `polkit` `wlogout` `elogind` for
 if you want to use `pulse-audio` instead take a look at [Voidlinux Documents](https://docs.voidlinux.org/)
 
 ```sh
-sudo xbps-install feh polkit python python3-pip python3-dbus dbus python3-Cython nodejs sway NetworkManager waybar ranger ueberzug rofi rofi-emoji dunst alacritty acpi light nerd-fonts font-awesome pipewire wireplumber pavucontrol pamixer neovim git firefox btop fastfetch unzip obs tmux xz curl gcc clang pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro cmake lxappearance breeze-gtk breeze-icons sv-netmount xdg-utils fish wdisplays kitty wlogout slurp wf-recorder wl-copy wl-clipboard elogind Thunar
+sudo xbps-install feh polkit python python3-pip python3-dbus dbus python3-Cython nodejs sway NetworkManager waybar lf rofi rofi-emoji swaync alacritty acpi light nerd-fonts font-awesome pipewire wireplumber pavucontrol pamixer neovim git firefox btop fastfetch unzip obs tmux xz curl gcc clang pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro cmake nwg-look sv-netmount xdg-utils wdisplays ghostty wlogout slurp wf-recorder wl-copy wl-clipboard elogind Thunar noto-fonts-cjk noto-fonts-emoji fonts-nanum-ttf font-emoji-one-color font-weather-icons tlp typst upower mpv mypaint nftables nmap NetworkManager-openvpn
 ```
 
 ## runit
@@ -93,6 +93,15 @@ sudo ln -s /etc/sv/NetworkManager /var/service/
 sudo sv up NetworkManager
 ```
 
+NetworkManager.conf
+```conf
+[main]
+dns=dnsmasq
+plugins=keyfile
+
+[keyfile]
+```
+
 ## Installation
 
 ```sh
@@ -110,7 +119,7 @@ cp files/* ~/.config/
 
 | Keybinds              | Uses                      |
 | --------------------- | ------------------------- |
-| Super + <hjkl>        | Focus Window Vim Motion   |
+| Super + \<hjkl>        | Focus Window Vim Motion   |
 | Super + Enter         | Terminal                  |
 | Super + Shift + Enter | Floating Terminal         |
 | Super + Space         | Toggle Window Mode        |
