@@ -5,7 +5,7 @@ for_window [app_id="yad"] floating enable
 
 # set floating (nontiling) for special apps:
 for_window [class="Xsane" instance="xsane"] floating enable
-for_window [app_id="pavucontrol" ] floating enable, resize set width 50 ppt height 60 ppt
+for_window [app_id="pavucontrol" ] floating enable, resize set width 50ppt height 40ppt, move position 0 620
 for_window [class="qt5ct" instance="qt5ct"] floating enable, resize set width 60 ppt height 50 ppt
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [app_id="pamac-manager"] floating enable, resize set width 80 ppt height 70 ppt
@@ -36,21 +36,21 @@ for_window [app_id="Firefox" title="Save Image"] floating enable, border pixel 1
 for_window [app_id="Firefox" title="Extension:"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
 for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
 for_window [title="Picture in picture"] floating enable, sticky enable
-for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
-for_window [title="nm-connection-editor"] floating enable,  resize set width 50 ppt height 70 ppt
-for_window [app_id="nm-connection-editor"] floating enable,  resize set width 50 ppt height 70 ppt
+for_window [title="nmtui"] floating enable, resize set width 30ppt height 30ppt, move position 0 720
+for_window [title="nm-connection-editor"] floating enable, resize set width 30ppt height 30ppt, move position 0 720
+for_window [app_id="nm-connection-editor"] floating enable, resize set width 30ppt height 30ppt, move position 0 720
 for_window [title="htop"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [app_id="btop"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [app_id="float"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [class="feh"] floating enable, resize set width 60 ppt height 90 ppt
 for_window [app_id="passw"] floating enable, resize set width 20 ppt height 30 ppt
-for_window [app_id="blueman-manager" title="Bluetooth"] floating enable, resize set width 50 ppt height 70 ppt
+for_window [app_id="blueman-manager" title="Bluetooth"] floating enable, resize set width 30ppt height 30ppt, move position 0 720
 for_window [title="Nostr Relay Tray"] floating enable, resize set width 50 ppt height 70 ppt
 for_window [app_id="xsensors"] floating enable
 for_window [app_id="Waydroid"] floating enable
 for_window [app_id="Alacritty"] floating enable , resize set width 90 ppt height 80 ppt
 for_window [title="Save File"] floating enable
-
+for_window [title="Syncthing Tray"] floating enable, border pixel 1, sticky enable, resize set width 30ppt height 30ppt, move position 0 720
 # Inhibit idle
 for_window [app_id="Firefox"] inhibit_idle fullscreen
 for_window [app_id="Chromium"] inhibit_idle fullscreen

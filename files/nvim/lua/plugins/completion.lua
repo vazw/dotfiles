@@ -1,7 +1,7 @@
 return {
   {
     "saghen/blink.cmp",
-    dependencies = { "rafamadriz/friendly-snippets", "moyiz/blink-emoji.nvim" },
+    dependencies = { "rafamadriz/friendly-snippets", "moyiz/blink-emoji.nvim", "L3MON4D3/LuaSnip" },
     version = "1.*",
     opts = {
       -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)

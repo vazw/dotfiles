@@ -41,7 +41,7 @@ background-blur = false
 unfocused-split-opacity = 0.7
 # background = #252525
 
-command = "fish"
+command = "bash"
 
 
 wait-after-command = false
@@ -136,7 +136,7 @@ gtk-adwaita = false
 desktop-notifications = true
 bold-is-bright = true
 
-term = xterm-kitty
+term = xterm
 
 # ------------------- KEYBIND ------------------
 

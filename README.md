@@ -45,7 +45,7 @@ most important piece are `dbus` `sway` `waybar` `polkit` `wlogout` `elogind` for
 if you want to use `pulse-audio` instead take a look at [Voidlinux Documents](https://docs.voidlinux.org/)
 
 ```sh
-sudo xbps-install feh polkit python python3-pip python3-dbus dbus python3-Cython nodejs sway NetworkManager waybar lf rofi rofi-emoji swaync alacritty acpi light nerd-fonts font-awesome pipewire wireplumber pavucontrol pamixer neovim git firefox btop fastfetch unzip obs tmux xz curl gcc clang pkg-config font-iosevka make Font-TLWG font-adobe-source-code-pro cmake nwg-look sv-netmount xdg-utils wdisplays ghostty wlogout slurp wf-recorder wl-copy wl-clipboard elogind Thunar noto-fonts-cjk noto-fonts-emoji fonts-nanum-ttf font-emoji-one-color font-weather-icons tlp typst upower mpv mypaint nftables nmap NetworkManager-openvpn
+sudo xbps-install feh polkit python python3-pip python3-dbus dbus python3-Cython nodejs sway NetworkManager Waybar lf wofi SwayNotificationCenter acpi light nerd-fonts fonts-awesome pipewire wireplumber pavucontrol pamixer neovim git firefox btop fastfetch unzip obs tmux xz curl gcc clang pkg-config font-iosevka make Fonts-TLWG cmake nwg-look sv-netmount xdg-utils wdisplays ghostty wlogout slurp wf-recorder wl-clipboard elogind Thunar noto-fonts-cjk noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-emoji fonts-nanum-ttf font-emoji-one-color font-weather-icons tlp typst upower mpv mypaint nftables nmap NetworkManager-openvpn
 ```
 
 ## runit
@@ -94,12 +94,22 @@ sudo sv up NetworkManager
 ```
 
 NetworkManager.conf
+using dnsmasq for dns cache and using cloned-mac-address as stable per connection
+`scan-rand-mac-address` will random a mac-address on scan
 ```conf
 [main]
 dns=dnsmasq
 plugins=keyfile
 
 [keyfile]
+
+[device]
+wifi.scan-rand-mac-address=yes
+
+[connection]
+wifi.cloned-mac-address=stable
+ethernet.cloned-mac-address=stable
+connection.stable-id=${CONNECTION}/${BOOT}
 ```
 
 ## Installation
@@ -113,6 +123,11 @@ cp dotprofile ~/.profile
 cp files/* ~/.config/
 # then logout or restart
 # Next login will auto trigger sway from tty1
+cat <<EOF | sudo tee -a /etc/profile
+if [ -f "$HOME/.profile" ]; then
+    source "$HOME/.profile"
+fi
+EOF
 ```
 
 ## Keybind?
@@ -131,14 +146,15 @@ cp files/* ~/.config/
 | Super + d             | App Launcher              |
 | Super + n             | Thunar                    |
 | Super + i             | Emoji Menu                |
-| Super + f             | Toggle Full Screen Mode   |
+| Super + f             | Thunar File Manager   |
+| Super + F             | Toggle Full Screen Mode   |
 | Super + (1-0)         | Switch Workspace (1-10)   |
 | Super + left click    | Move Window               |
 | Super + right click   | Resize window             |
 | Super + p             | screenshot                |
 | Super + Shift + p     | area-screenshot           |
 
-and more customize can be done at `~/.config/sway/config.d/default`
+and more customize can be done at `~/.config/sway/config.d/keymap`
 many of them are my custom keyboard config try remove them if it's not suit your need
 
 ## Auto-Mount USB Drive

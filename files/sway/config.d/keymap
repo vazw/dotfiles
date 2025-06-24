@@ -9,21 +9,18 @@ set $up k
 set $right l
 
 # Your preferred terminal emulators
-set $term-float alacritty
+set $term-float ghostty --class="ghostty.float"
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu sirula
 
-# set $launcher nwg-drawer -c 7 -is 70 -spacing 23
-set $launcher wofi
-
 set $powermenu ~/.config/sway/scripts/powermenu.sh
 
 set $emoji ~/.config/sway/scripts/emoji.sh
 
-set $cheat $term-float -t cheatsheet -e nvim ~/.config/sway/cheatsheet.md
+set $cheat $term-float -e nvim ~/.config/sway/cheatsheet.md
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -292,8 +289,8 @@ $bindcode $mod+n exec swaync-client -t -sw
 $bindcode $mod+shift+n exec swaync-client -C
 
 
-$bindcode XF86Calculator exec alacritty --class "btop" -e btop 
-$bindcode XF86Launch1 exec alacritty --class "btop" -e btop 
+$bindcode XF86Calculator exec ghostty --class="ghostty.float" -e btop 
+$bindcode XF86Launch1 exec ghostty --class="ghostty.float -e btop 
 $bindcode XF86WebCam exec cheese 
 # $bindcode $mod+o exec google-chrome-stable
 

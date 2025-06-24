@@ -5,7 +5,8 @@
     "height": 30,
     "output": ["*"],
     "margin": "0 0 0 0",
-    "modules-left": ["custom/screenrecorder", "pulseaudio#source", "wireplumber", "group/light", "tray"],
+   //  "modules-left": ["pulseaudio#source", "wireplumber", "group/light", "tray"],
+    "modules-left": ["pulseaudio#source", "wireplumber", "backlight", "tray"],
     "modules-center": ["sway/workspaces"],
     "modules-right": ["sway/language", "idle_inhibitor", "battery", "custom/blockheight", "clock", "custom/notification"], 
     
