@@ -1,8 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    event = "VeryLazy",
     enabled = true,
+    event = "VeryLazy",
     config = function()
       -- When in diff mode, we want to use the default
       -- vim text objects c & C instead of the treesitter ones.
@@ -28,6 +28,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    enabled = true,
     priority = 1000,
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
@@ -37,14 +38,14 @@ return {
     config = function()
       -- import nvim-treesitter plugin
       local treesitter = require("nvim-treesitter.configs")
-      require("ts_context_commentstring").setup({})
+      -- require("ts_context_commentstring").setup({})
       -- configure treesitter
-      ---@type TSConfig
       ---@diagnostic disable-next-line: missing-fields
       treesitter.setup({
         -- enable syntax highlighting
         highlight = {
-          enable = true,
+          enable = false,
+          additional_vim_regex_highlighting = true,
         },
         -- enable indentation
         indent = { enable = true },
@@ -90,11 +91,12 @@ return {
           },
         },
       })
-      vim.g.skip_ts_context_commentstring_module = true
+      -- vim.g.skip_ts_context_commentstring_module = true
     end,
   },
   {
     "rayliwell/tree-sitter-rstml",
+    enabled = true,
     dependencies = { "nvim-treesitter" },
     build = ":TSUpdate",
     ft = { "rust" },

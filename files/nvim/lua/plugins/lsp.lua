@@ -2,7 +2,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    lazy = false,
     dependencies = {
       "mason.nvim",
       { "williamboman/mason-lspconfig.nvim", config = function() end },
@@ -75,7 +74,7 @@ return {
         -- Be aware that you also will need to properly configure your LSP server to
         -- provide the code lenses.
         codelens = {
-          enabled = false,
+          enabled = true,
         },
         -- add any global capabilities here
         capabilities = {
@@ -91,7 +90,7 @@ return {
         -- but can be also overridden when specified
         format = {
           formatting_options = nil,
-          timeout_ms = nil,
+          timeout_ms = 1000,
         },
         -- LSP Server Settings
         ---@type lspconfig.options
@@ -273,12 +272,13 @@ return {
           },
           tinymist = {
             single_file_support = true,
+            filetypes = "typst",
             settings = {
               exportPdf = "onSave",
             },
           },
           typos_lsp = {
-            filetypes = "typst",
+            -- filetypes = "typst",
           },
 
           lua_ls = {
@@ -290,10 +290,10 @@ return {
                   checkThirdParty = false,
                   library = vim.api.nvim_get_runtime_file("", true),
                 },
-                completion = {
-                  workspaceWord = true,
-                  callSnippet = "Both",
-                },
+                -- completion = {
+                --   callSnippet = 'Disable',
+                --   keywordSnippet = 'Disable',
+                -- },
                 misc = {
                   parameters = {
                     -- "--log-level=trace",
@@ -338,7 +338,7 @@ return {
                   unusedLocalExclude = { "_*" },
                 },
                 format = {
-                  enable = false,
+                  enable = true,
                   defaultConfig = {
                     indent_style = "space",
                     indent_size = "2",
@@ -419,7 +419,31 @@ return {
     build = ":MasonUpdate",
     opts = {
       ensure_installed = {
+        "black",
+        "clang-format",
+        "codelldb",
+        "stylua",
+        "prettierd",
+        "prettier",
+        "isort",
+        -- "bacon",
+        -- "bacon-ls",
+        "clangd",
+        "codespell",
+        "css-lsp",
+        "gradle-language-server",
+        "html-lsp",
+        "lua-language-server",
+        "markdownlint",
+        "phpactor",
+        "pyright",
+        "ruff",
         "shfmt",
+        "tailwindcss-language-server",
+        "tinymist",
+        "typos-lsp",
+        "vtsls",
+        "yaml-language-server",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
@@ -473,7 +497,7 @@ return {
     "mrcjkb/rustaceanvim",
     version = "^6", -- Recommended
     lazy = false, -- This plugin is already lazy
-    ft = { "rust" },
+    -- ft = { "rust" },
     opts = {
       server = {
         on_attach = function(_, bufnr)
@@ -484,6 +508,8 @@ return {
             vim.cmd.RustLsp("debuggables")
           end, { desc = "Rust Debuggables", buffer = bufnr })
         end,
+        offset_encoding = "utf-16",
+
         default_settings = {
           -- rust-analyzer language server configuration
           ["rust-analyzer"] = {
@@ -493,6 +519,10 @@ return {
               buildScripts = {
                 enable = true,
               },
+            },
+            check = {
+              command = "clippy",
+              extraArgs = { "--no-deps", "--workspace" },
             },
             checkOnSave = false,
             diagnostics = { enable = false },
@@ -505,6 +535,11 @@ return {
                 leptos = { "server", "component" },
               },
             },
+            -- completion = {
+            --   capable = {
+            --     snippets = 'add_parenthesis'
+            --   }
+            -- },
             files = {
               excludeDirs = {
                 ".direnv",
@@ -524,19 +559,19 @@ return {
       },
     },
     config = function(_, opts)
-      local have_mason, _ = pcall(require, "mason-lspconfig")
-      if have_mason then
-        local package_path = require("mason-registry").get_package("codelldb"):get_install_path()
-        local codelldb = package_path .. "/extension/adapter/codelldb"
-        local library_path = package_path .. "/extension/lldb/lib/liblldb.dylib"
-        local uname = io.popen("uname"):read("*l")
-        if uname == "Linux" then
-          library_path = package_path .. "/extension/lldb/lib/liblldb.so"
-        end
-        opts.dap = {
-          adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb, library_path),
-        }
-      end
+      -- local have_mason, _ = pcall(require, "mason-lspconfig")
+      -- if have_mason then
+      --   local package_path = require("mason-registry").get_package("codelldb"):get_install_path()
+      --   local codelldb = package_path .. "/extension/adapter/codelldb"
+      --   local library_path = package_path .. "/extension/lldb/lib/liblldb.dylib"
+      --   local uname = io.popen("uname"):read("*l")
+      --   if uname == "Linux" then
+      --     library_path = package_path .. "/extension/lldb/lib/liblldb.so"
+      --   end
+      --   opts.dap = {
+      --     adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb, library_path),
+      --   }
+      -- end
       vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
       if vim.fn.executable("rust-analyzer") == 0 then
         print("**rust-analyzer** not found in PATH, please install it.\nhttps://rust-analyzer.github.io/")

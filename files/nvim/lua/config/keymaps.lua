@@ -69,11 +69,19 @@ keymap.set("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
 keymap.set("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
 keymap.set("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
+-- Comment String
+keymap.set("n", "<C-c>", ":norm gcc<CR>", opts)
+keymap.set({ 'x', 'o' }, '<C-c>', 'gc', { remap = true })
+
 -- Macro norm!
 keymap.set("v", "m", ":norm! _", { desc = "norm!" })
 
+-- better indenting
+keymap.set("v", "<", "<gv")
+keymap.set("v", ">", ">gv")
+
 -- Format
-vim.api.nvim_create_user_command("Format", ":lua vim.lsp.buf.format()", { desc = "Manaul Format" })
+vim.api.nvim_create_user_command("Format", ":lua vim.lsp.buf.format()", { desc = "Manual Format" })
 
 vim.api.nvim_create_user_command("InlayHint", function()
   require("utils.lsp").toggleInlayHints()

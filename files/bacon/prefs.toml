@@ -53,7 +53,8 @@
 # on_change_strategy = "wait_then_restart"
 
 [jobs.bacon-ls]
-command = [ "cargo", "clippy", "--workspace", "--tests", "--all-targets", "--all-features", "--message-format", "json-diagnostic-rendered-ansi" ]
+# command = [ "cargo", "clippy", "--workspace", "--tests", "--all-targets", "--all-features", "--message-format", "json-diagnostic-rendered-ansi" ]
+command = [ "cargo", "clippy", "--no-deps", "--workspace", "--tests", "--message-format", "json-diagnostic-rendered-ansi" ]
 analyzer = "cargo_json"
 need_stdout = true
 

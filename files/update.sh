@@ -1,9 +1,11 @@
 #!/bin/bash
 
 FILES=(*)
+IGNORE="update.sh go $@"
+echo "Ignored: $IGNORE"
 
 for UPDATE_PATH in "${FILES[@]}"; do
-	if [[ $UPDATE_PATH != "update.sh" ]]; then
+	if [[ ! " ${IGNORE[*]} " =~ [[:space:]]$UPDATE_PATH[[:space:]] ]]; then
 		if [[ -f $UPDATE_PATH ]]; then
 			cp "$HOME/.config/$UPDATE_PATH" .
 			echo "Copied $UPDATE_PATH"

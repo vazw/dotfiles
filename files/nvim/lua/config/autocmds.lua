@@ -132,3 +132,17 @@ autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+autocmd({ "BufWritePre" }, {
+  group = augroup("conform_format"),
+  callback = function(event)
+    require("conform").format({ bufnr = event.buf })
+  end,
+})
+
+-- autocmd({ "BufWritePre" }, {
+--   group = augroup("auto_format"),
+--   callback = function()
+--     vim.lsp.buf.format()
+--   end,
+-- })

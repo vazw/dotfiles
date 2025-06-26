@@ -2,12 +2,29 @@ return {
   "nvim-lualine/lualine.nvim",
   lazy = false,
   dependencies = {
-    "mini.icons",
+    {
+      'echasnovski/mini.icons',
+      version = '*',
+      config = function()
+        local MiniIcons = require("mini.icons")
+        MiniIcons.setup({
+          file = {
+            [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
+            ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
+          },
+          filetype = {
+            dotenv = { glyph = "", hl = "MiniIconsYellow" },
+          },
+        })
+        MiniIcons.mock_nvim_web_devicons()
+        MiniIcons.tweak_lsp_kind("replace")
+      end
+    },
   },
   config = function()
     require("lualine").setup({
       options = {
-        icons_enabled = false,
+        icons_enabled = true,
         theme = "auto",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
@@ -25,6 +42,7 @@ return {
           winbar = 100,
         },
       },
+
       sections = {
         lualine_a = { "mode" },
         lualine_b = {
@@ -52,21 +70,42 @@ return {
           },
         },
         lualine_c = {
+          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           {
             "filename",
-            file_status = true, -- Displays file status (readonly status, modified status)
+            file_status = true,    -- Displays file status (readonly status, modified status)
             newfile_status = true, -- Display new file status (new file means no write after created)
             path = 4,
             symbols = {
-              modified = "[+]", -- Text to show when the file is modified.
-              readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
-              unnamed = "[No Name]", -- Text to show for unnamed buffers.
-              newfile = "[New]", -- Text to show for newly created file before first write
+              modified = "",
+              readonly = "󰷊",
+              unnamed = "󰩋[unnamed]",
+              newfile = "",
             },
+            padding = { left = 0, right = 1 }
           },
+        },
+        lualine_x = {
+          {
+            require("lazy.status").updates,
+            cond = require("lazy.status").has_updates,
+          },
+          { "encoding", separator = "", padding = 1, icon = { '[Encoding]', align = 'left' } },
+          {
+            'fileformat',
+            symbols = {
+              unix = 'unix', -- e712
+              dos = 'dos', -- e70f
+              mac = '', -- e711
+            },
+            icon = { '[EOL]', align = 'left' },
+            padding = { left = 0, right = 1 }
+          }
+        },
+        lualine_y = {
           {
             "lsp_status",
-            icon = "", -- f013
+            icon = "",
             symbols = {
               -- Standard unicode symbols to cycle through for LSP progress:
               spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
@@ -76,36 +115,14 @@ return {
               separator = " ",
             },
             -- List of LSP names to ignore (e.g., `null-ls`):
-            ignore_lsp = { "null-ls" },
+            ignore_lsp = { "null-ls", "typos_lsp" },
           },
-        },
-        lualine_x = {
-          {
-            require("lazy.status").updates,
-            cond = require("lazy.status").has_updates,
-          },
-          "encoding",
-          "fileformat",
-          { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-        },
-        lualine_y = {
-          "progress",
         },
         lualine_z = {
+          { "progress", separator = "", padding = 0 },
           "location",
         },
       },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { "filename" },
-        lualine_x = { "location" },
-        lualine_y = {},
-        lualine_z = {},
-      },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
       extensions = { "lazy" },
     })
   end,

@@ -37,7 +37,8 @@ style = "fg:#1C3A5E bg:#FCF392"
 
 [git_metrics]
 disabled = false
-format="([+$added]($added_style))|([-$deleted]($deleted_style) )"
+format="([+$added]($added_style) )([-$deleted]($deleted_style) )"
+# only_nonzero_diffs = true
 
 [nodejs]
 format = "via [$symbol($version )]($style)"
