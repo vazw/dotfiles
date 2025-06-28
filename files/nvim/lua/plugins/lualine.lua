@@ -3,8 +3,8 @@ return {
   lazy = false,
   dependencies = {
     {
-      'echasnovski/mini.icons',
-      version = '*',
+      "echasnovski/mini.icons",
+      version = "*",
       config = function()
         local MiniIcons = require("mini.icons")
         MiniIcons.setup({
@@ -18,7 +18,7 @@ return {
         })
         MiniIcons.mock_nvim_web_devicons()
         MiniIcons.tweak_lsp_kind("replace")
-      end
+      end,
     },
   },
   config = function()
@@ -73,7 +73,7 @@ return {
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
           {
             "filename",
-            file_status = true,    -- Displays file status (readonly status, modified status)
+            file_status = true, -- Displays file status (readonly status, modified status)
             newfile_status = true, -- Display new file status (new file means no write after created)
             path = 4,
             symbols = {
@@ -82,7 +82,7 @@ return {
               unnamed = "󰩋[unnamed]",
               newfile = "",
             },
-            padding = { left = 0, right = 1 }
+            padding = { left = 0, right = 1 },
           },
         },
         lualine_x = {
@@ -90,17 +90,17 @@ return {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
           },
-          { "encoding", separator = "", padding = 1, icon = { '[Encoding]', align = 'left' } },
+          { "encoding", separator = "", padding = 1, icon = { "[Encoding]", align = "left" } },
           {
-            'fileformat',
+            "fileformat",
             symbols = {
-              unix = 'unix', -- e712
-              dos = 'dos', -- e70f
-              mac = '', -- e711
+              unix = "unix", -- e712
+              dos = "dos", -- e70f
+              mac = "", -- e711
             },
-            icon = { '[EOL]', align = 'left' },
-            padding = { left = 0, right = 1 }
-          }
+            icon = { "[EOL]", align = "left" },
+            padding = { left = 0, right = 1 },
+          },
         },
         lualine_y = {
           {
@@ -115,7 +115,7 @@ return {
               separator = " ",
             },
             -- List of LSP names to ignore (e.g., `null-ls`):
-            ignore_lsp = { "null-ls", "typos_lsp" },
+            ignore_lsp = { "bacon_ls", "typos_lsp" },
           },
         },
         lualine_z = {

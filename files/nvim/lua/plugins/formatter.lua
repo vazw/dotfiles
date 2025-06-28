@@ -1,10 +1,9 @@
-vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+-- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 return {
   "stevearc/conform.nvim",
-  cmd = { "ConformInfo" },
+  lazy = false,
   keys = {
     {
-      -- Customize or remove this keymap to your liking
       "<leader>cf",
       function()
         require("conform").format({ async = true })
@@ -17,7 +16,19 @@ return {
     -- Define your formatters
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { "prettierd", "prettier", stop_after_first = true },
+      -- angular, css, flow, graphql, html, json, jsx, javascript, less, markdown, scss, typescript, vue, yaml
+      angular = { "prettierd", stop_after_first = true },
+      javascript = { "prettierd", stop_after_first = true },
+      html = { "prettierd", stop_after_first = true },
+      typescript = { "prettierd", stop_after_first = true },
+      css = { "prettierd", stop_after_first = true },
+      scss = { "prettierd", stop_after_first = true },
+      json = { "prettierd", stop_after_first = true },
+      vue = { "prettierd", stop_after_first = true },
+      yaml = { "prettierd", stop_after_first = true },
+      graphql = { "prettierd", stop_after_first = true },
+      markdown = { "markdown-toc", "prettierd" },
+
       rust = { "rustfmt", "leptosfmt" },
       -- You can use a function here to determine the formatters dynamically
       python = function(bufnr)
@@ -27,25 +38,26 @@ return {
           return { "isort", "black" }
         end
       end,
-      markdown = { "markdownlint" },
       c = { "clang_format" },
       bash = { "shfmt" },
       typst = { "prettypst" },
       zig = { "zigfmt" },
-      ["*"] = { "codespell" },
-      ["_"] = { "trim_whitespace" },
+      -- ["*"] = { "codespell" },
+      -- ["_"] = { "trim_whitespace" },
     },
     -- Set default options
     default_format_opts = {
       lsp_format = "fallback",
-      timeout_ms = 3000,
+      timeout_ms = 2000,
       async = true,
-      quiet = false,
+      quiet = true,
     },
     -- Set up format-on-save
     format_on_save = {
-      timeout_ms = 3000,
       lsp_format = "fallback",
+      timeout_ms = 2000,
+      async = false,
+      quiet = false,
     },
     -- Customize formatters
     formatters = {
@@ -60,4 +72,8 @@ return {
       },
     },
   },
+  init = function()
+    -- If you want the formatexpr, here is the place to set it
+    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+  end,
 }

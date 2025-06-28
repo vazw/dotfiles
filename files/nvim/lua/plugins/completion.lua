@@ -1,17 +1,17 @@
 return {
   {
     "saghen/blink.cmp",
+    lazy = false,
     dependencies = {
       "rafamadriz/friendly-snippets",
-      "moyiz/blink-emoji.nvim",
+      -- "moyiz/blink-emoji.nvim",
       {
         "saghen/blink.compat",
         optional = true, -- make optional so it's only enabled if any extras need it
         opts = {},
-      }
+      },
     },
     version = "1.*",
-    event = "InsertEnter",
     opts = {
       -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
       -- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -42,7 +42,7 @@ return {
       },
       cmdline = {
         enabled = true,
-        sources = { 'buffer', 'cmdline' },
+        sources = { "buffer", "cmdline" },
         { completion = { ghost_text = { enabled = true } } },
         keymap = {
           preset = "inherit",
@@ -83,36 +83,39 @@ return {
             from_bottom = true,
           },
           selection = {
-            auto_insert = true,
+            auto_insert = false,
             -- or a function
-            preselect = false,
+            preselect = function(ctx)
+              return not require("blink.cmp").snippet_active({ direction = 1 })
+            end,
           },
         },
         trigger = {
           show_on_keyword = true,
+          show_in_snippet = true,
         },
         ghost_text = { enabled = true, show_with_menu = true },
       },
       signature = { enabled = true, window = { winblend = vim.o.winblend } },
 
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", "emoji" },
+        default = { "lsp", "path", "snippets", "buffer" },
         providers = {
-          emoji = {
-            name = "Emoji",
-            module = "blink-emoji",
-
-            score_offset = 15,        -- Tune by preference
-            opts = { insert = true }, -- Insert emoji (default) or complete its name
-            should_show_items = function()
-              return vim.tbl_contains(
-              -- Enable emoji completion only for git commits and markdown.
-              -- By default, enabled for all file-types.
-                { "gitcommit", "markdown", "html", "_", "" },
-                vim.o.filetype
-              )
-            end,
-          },
+          -- emoji = {
+          --   name = "Emoji",
+          --   module = "blink-emoji",
+          --
+          --   score_offset = 15, -- Tune by preference
+          --   opts = { insert = true }, -- Insert emoji (default) or complete its name
+          --   should_show_items = function()
+          --     return vim.tbl_contains(
+          --       -- Enable emoji completion only for git commits and markdown.
+          --       -- By default, enabled for all file-types.
+          --       { "gitcommit", "markdown", "html", "_", "" },
+          --       vim.o.filetype
+          --     )
+          --   end,
+          -- },
 
           lsp = {
             name = "LSP",
@@ -120,18 +123,18 @@ return {
 
             --- NOTE: All of these options may be functions to get dynamic behavior
             --- See the type definitions for more information
-            enabled = true,           -- Whether or not to enable the provider
-            async = false,            -- Whether we should show the completions before this provider returns, without waiting for it
-            timeout_ms = 2000,        -- How long to wait for the provider to return before showing completions and treating it as asynchronous
-            transform_items = nil,    -- Function to transform the items before they're returned
+            enabled = true, -- Whether or not to enable the provider
+            async = false, -- Whether we should show the completions before this provider returns, without waiting for it
+            timeout_ms = 2000, -- How long to wait for the provider to return before showing completions and treating it as asynchronous
+            transform_items = nil, -- Function to transform the items before they're returned
             should_show_items = true, -- Whether or not to show the items
-            max_items = nil,          -- Maximum number of items to display in the menu
-            min_keyword_length = 0,   -- Minimum number of characters in the keyword to trigger the provider
+            max_items = nil, -- Maximum number of items to display in the menu
+            min_keyword_length = 0, -- Minimum number of characters in the keyword to trigger the provider
             -- If this provider returns 0 items, it will fallback to these providers.
             -- If multiple providers fallback to the same provider, all of the providers must return 0 items for it to fallback
             fallbacks = {},
             score_offset = 99, -- Boost/penalize the score of the items
-            override = nil,    -- Override the source's functions
+            override = nil, -- Override the source's functions
           },
         },
       },

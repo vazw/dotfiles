@@ -6,7 +6,15 @@ return {
     {
       "sf",
       function()
-        require("fzf-lua").files({ resume = true })
+        require("fzf-lua").files()
+      end,
+      desc = "File File",
+    },
+    {
+      "sF",
+      function()
+        -- require("fzf-lua").files({ cwd = vim.fn.getcwd() })
+        require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
       end,
       desc = "File File",
     },
@@ -40,9 +48,19 @@ return {
       silent = true,
     },
   },
-  opts = {},
-  config = function()
+  opts = {
+    files = {
+      actions = {
+        ["ctrl-u"] = function(_, opts)
+          local parent = vim.fn.fnamemodify(opts.cwd or vim.uv.cwd() or vim.fn.getcwd(), ":h")
+          require("fzf-lua").files({ cwd = parent })
+        end,
+      },
+    },
+  },
+  config = function(_, opts)
     -- register FzfLua to handle vim.ui.select
+    require("fzf-lua").setup(opts)
     vim.cmd("FzfLua register_ui_select")
   end,
 }

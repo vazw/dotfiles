@@ -6,7 +6,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- Turn off paste mode when leaving insert
 autocmd("InsertLeave", {
-  group = augroup("inser_leave"),
+  group = augroup("insert_leave"),
   pattern = "*",
   command = "set nopaste",
 })
@@ -133,16 +133,18 @@ autocmd({ "BufWritePre" }, {
   end,
 })
 
-autocmd({ "BufWritePre" }, {
-  group = augroup("conform_format"),
-  callback = function(event)
-    require("conform").format({ bufnr = event.buf })
-  end,
-})
-
 -- autocmd({ "BufWritePre" }, {
 --   group = augroup("auto_format"),
 --   callback = function()
 --     vim.lsp.buf.format()
 --   end,
 -- })
+
+autocmd({ "InsertLeave" }, {
+  group = augroup("disable_snippet"),
+  callback = function()
+    if vim.snippet then
+      vim.snippet.stop()
+    end
+  end,
+})

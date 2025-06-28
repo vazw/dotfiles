@@ -1,0 +1,10 @@
+{
+  "spell": {
+    "prefix": "spell",
+    "body": ["spellchecker:disable-line"]
+  },
+  "block-spell": {
+    "prefix": "spel",
+    "body": ["spellchecker:${1:on|off}"]
+  }
+}

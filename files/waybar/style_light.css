@@ -91,12 +91,6 @@
   background-color: green;
 }
 
-#tray {
-  padding: 0px 3px 0px 10px;
-  margin-bottom: 0px;
-  font-size: 9px;
-  padding: 0 8px;
-}
 #clock,
 #custom-blockheight,
 #custom-swap,
@@ -135,6 +129,12 @@
 #pulseaudio {
   font-size: 18px;
   color: #131313;
+}
+#tray {
+  padding: 0px 4px 0px 4px;
+  margin-bottom: 0px;
+  font-size: 9px;
+  padding: 0 8px;
 }
 
 #pulseaudio.source-muted {

@@ -51,15 +51,15 @@ keymap.set("n", "<s-tab>", ":tabprev<CR>", opts)
 -- Split window
 keymap.set("n", "ss", ":split<Return>", opts)
 keymap.set("n", "sv", ":vsplit<Return>", opts)
-keymap.set("n", "fe", "<cmd>cd %:p:h <CR><cmd>Lexplore<CR>", { silent = true, desc = "netrw Lexplorer" })
+keymap.set("n", "fe", "<cmd>Lexplore<CR>", { silent = true, desc = "netrw Lexplorer" })
 
 keymap.set("n", "<leader>o", "o<ESC>", { silent = true, desc = "Create New Line Below" })
 keymap.set("n", "<leader>O", "O<ESC>", { silent = true, desc = "Create New Line Above" })
 
 keymap.set({ "n", "v" }, "<leader>x", "<ESC>:q<CR>", { desc = "Close" })
 
-keymap.set("n", "<leader>cw", "<cmd>cd %:p:h <CR>", { desc = "Set as working Dir" })
-keymap.set("n", "<leader>cW", "<cmd>lcd %:p:h <CR>", { desc = "Set local working Dir" })
+keymap.set("n", "<leader>cw", "<cmd>lcd %:p:h <CR>:cd ..<CR>", { desc = "Set local working Dir" })
+keymap.set("n", "<leader>cW", "<cmd>cd %:p:h <CR>", { desc = "Set as working Dir" })
 
 -- Move Lines
 keymap.set("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
@@ -71,7 +71,7 @@ keymap.set("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv
 
 -- Comment String
 keymap.set("n", "<C-c>", ":norm gcc<CR>", opts)
-keymap.set({ 'x', 'o' }, '<C-c>', 'gc', { remap = true })
+keymap.set({ "x", "o" }, "<C-c>", "gc", { remap = true })
 
 -- Macro norm!
 keymap.set("v", "m", ":norm! _", { desc = "norm!" })
@@ -86,6 +86,7 @@ vim.api.nvim_create_user_command("Format", ":lua vim.lsp.buf.format()", { desc =
 vim.api.nvim_create_user_command("InlayHint", function()
   require("utils.lsp").toggleInlayHints()
 end, {})
+keymap.set("n", "<leader>ch", ":InlayHint", { desc = "Toggle InlayHints" })
 
 -- Save with root permission
 vim.api.nvim_create_user_command("SaveAsRoot", "w !pkexec tee > /dev/null %:p", {})

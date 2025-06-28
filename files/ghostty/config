@@ -2,10 +2,10 @@ font-size = 13
 font-thicken = true
 font-thicken-strength = 255
 
-font-family = "IosevkaTermSlab NFM SemiBold"
-font-family-bold = "IosevkaTermSlab NFM Bold"
-font-family-italic = "IosevkaTermSlab NFM SemiBold Italic"
-font-family-bold-italic = "IosevkaTermSlab NFM Bold Italic"
+font-family = "Iosevka NFM SemiBold"
+font-family-bold = "Iosevka NFM Bold"
+font-family-italic = "Iosevka NFM SemiBold Italic"
+font-family-bold-italic = "Iosevka NFM Bold Italic"
 
 grapheme-width-method = unicode
 freetype-load-flags = hinting,force-autohint,monochrome,autohint

@@ -4,6 +4,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "mason.nvim",
+      { "williamboman/mason-lspconfig.nvim", config = function() end },
     },
     keys = {
       {
@@ -38,6 +39,7 @@ return {
     opts = function()
       ---@class PluginLspOpts
       local ret = {
+        -- options for vim.diagnostic.config()
         ---@type vim.diagnostic.Opts
         diagnostics = {
           underline = true,
@@ -61,7 +63,20 @@ return {
             },
           },
         },
-
+        -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
+        -- Be aware that you also will need to properly configure your LSP server to
+        -- provide the inlay hints.
+        inlay_hints = {
+          enabled = true,
+          exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
+        },
+        -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
+        -- Be aware that you also will need to properly configure your LSP server to
+        -- provide the code lenses.
+        codelens = {
+          enabled = true,
+        },
+        -- add any global capabilities here
         capabilities = {
           workspace = {
             fileOperations = {
@@ -249,6 +264,7 @@ return {
             enabled = true,
           },
           marksman = {},
+          gradle_ls = {},
           yamlls = {
             settings = {
               yaml = {
@@ -347,30 +363,8 @@ return {
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
-      local have_mason, mason = pcall(require, "mason")
-      mason.setup({
-        ui = {
-          icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
-          },
-        },
-      })
-      local mr = require("mason-registry")
-      mr:on("package:install:success", function()
-        vim.defer_fn(function()
-          -- trigger FileType event to possibly load this newly installed LSP server
-          require("lazy.core.handler.event").trigger({
-            event = "FileType",
-            buf = vim.api.nvim_get_current_buf(),
-          })
-        end, 100)
-      end)
-
       local servers = opts.servers
       local has_blink, blink = pcall(require, "blink.cmp")
-
       local capabilities = vim.tbl_deep_extend(
         "force",
         {},
@@ -395,58 +389,125 @@ return {
         require("lspconfig")[server].setup(server_opts)
       end
 
-      local ensure_installed = {
-        "black",
-        "clang-format",
-        "stylua",
-        "prettierd",
-        "isort",
-        "phpactor",
-        "shfmt",
-        "markdown-toc",
-        "bacon",
-        "bacon-ls",
-        "black",
-        "clang-format",
-        "clangd",
-        "css-lsp",
-        "html-lsp",
-        "isort",
-        "lua-language-server",
-        "markdown-toc",
-        "marksman",
-        "phpactor",
-        "prettierd",
-        "pyright",
-        "ruff",
-        "shfmt",
-        "stylua",
-        "tailwindcss-language-server",
-        "tinymist",
-        "typos-lsp",
-        "vtsls",
-        "yaml-language-server",
-        "prettypst",
-      }
+      -- get all the servers that are available through mason-lspconfig
+      local have_mason, mlsp = pcall(require, "mason-lspconfig")
+      local all_mslp_servers = {}
       if have_mason then
-        mr.refresh(function()
-          for _, tool in ipairs(ensure_installed) do
-            local p = mr.get_package(tool)
-            if not p:is_installed() then
-              p:install()
-            end
-          end
-        end)
+        all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings").get_mason_map().lspconfig_to_package)
       end
 
+      local ensure_installed = {} ---@type string[]
       for server, server_opts in pairs(servers) do
         if server_opts then
           server_opts = server_opts == true and {} or server_opts
           if server_opts.enabled ~= false then
-            setup(server)
+            -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
+            if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
+              setup(server)
+            else
+              ensure_installed[#ensure_installed + 1] = server
+            end
           end
         end
       end
+
+      if have_mason then
+        mlsp.setup({
+          ensure_installed = ensure_installed,
+          automatic_enable = false,
+        })
+        for _, server in ipairs(ensure_installed) do
+          setup(server)
+        end
+      end
     end,
+  },
+
+  -- bacon
+  -- bacon-ls
+  -- black
+  -- clang-format
+  -- clangd
+  -- cssls
+  -- gradle_ls
+  -- html
+  -- isort
+  -- lua_ls
+  -- markdown-toc
+  -- marksman
+  -- phpactor
+  -- prettierd
+  -- pyright
+  -- ruff
+  -- shfmt
+  -- stylua
+  -- tailwindcss
+  -- tinymist
+  -- typos_lsp
+  -- vtsls
+  -- yamlls
+
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "black",
+        "clang-format",
+        "stylua",
+        "prettierd",
+        "isort",
+        "phpactor",
+        "shfmt",
+        "markdown-toc",
+      },
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
+        },
+      },
+    },
+    config = function(_, opts)
+      require("mason").setup(opts)
+      local mr = require("mason-registry")
+      mr:on("package:install:success", function()
+        vim.defer_fn(function()
+          -- trigger FileType event to possibly load this newly installed LSP server
+          require("lazy.core.handler.event").trigger({
+            event = "FileType",
+            buf = vim.api.nvim_get_current_buf(),
+          })
+        end, 100)
+      end)
+
+      mr.refresh(function()
+        for _, tool in ipairs(opts.ensure_installed) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            p:install()
+          end
+        end
+      end)
+    end,
+  },
+
+  -- RUST
+  {
+    "Saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    opts = {
+      completion = {
+        crates = {
+          enabled = true,
+        },
+      },
+      lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
+    },
   },
 }
