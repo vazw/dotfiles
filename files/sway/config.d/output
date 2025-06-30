@@ -20,10 +20,10 @@ exec_always ~/.config/sway/scripts/monitor.sh
 
 ### Idle configuration
 exec swayidle -w \
-    timeout 1070 'brillo -O && swaylock -f -C ~/.config/swaylock/config' \
+    timeout 1070 'brillo -O && swaylock' \
     timeout 770 'brillo -O && swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on" && brillo -I' \
-    before-sleep 'brillo -O && swaylock -f -C ~/.config/swaylock/config'
+    before-sleep 'brillo -O && swaylock'
 
 # 3 monitors
 # output eDP-1 mode 2880x1800 position 1920,0 scale 1.66
