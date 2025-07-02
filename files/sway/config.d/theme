@@ -14,7 +14,8 @@ smart_borders on
 set $border pixel 2
 # smart_gaps on
 set $opacity 1
-exec_always swaymsg split none, layout tabbed 
+exec_always swaymsg split none
+# exec_always swaymsg split none, layout tabbed 
 
 
 # Default Font
