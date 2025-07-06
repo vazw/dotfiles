@@ -69,7 +69,7 @@
         "on-scroll-up": "~/.config/sway/scripts/brightness --inc"
     },
     "backlight/slider": {
-        "min": 8,
+        "min": 1,
         "max": 100,
         "orientation": "horizontal",
         "on-scroll-down": "~/.config/sway/scripts/brightness --dec",
