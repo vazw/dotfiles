@@ -25,7 +25,7 @@ button {
 	border-radius: 10px;
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: 30%;
+	background-size: 50%;
 }
 
 button:focus, button:active, button:hover {
@@ -39,12 +39,12 @@ button:focus, button:active, button:hover {
     background-image: image(url("icons/lock.png"), url("/usr/share/wlogout/icons/lock.png"));
 }
 
-#logout {
-    background-image: image(url("icons/logout.png"), url("/usr/share/wlogout/icons/logout.png"));
-}
-
 #suspend {
     background-image: image(url("icons/suspend.png"), url("/usr/share/wlogout/icons/suspend.png"));
+}
+
+#logout {
+    background-image: image(url("icons/logout.png"), url("/usr/share/wlogout/icons/logout.png"));
 }
 
 #hibernate {

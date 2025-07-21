@@ -154,7 +154,6 @@ keybind = shift+left=adjust_selection:left
 keybind = shift+right=adjust_selection:right
 keybind = shift+down=adjust_selection:down
 keybind = ctrl+shift+c=copy_to_clipboard
-keybind = ctrl+minus=decrease_font_size:1
 
 keybind = shift+page_up=scroll_page_up
 keybind = shift+page_down=scroll_page_down
@@ -165,8 +164,10 @@ keybind = ctrl+shift+page_up=jump_to_prompt:-1
 
 keybind = ctrl+insert=copy_to_clipboard
 
-keybind = ctrl+equal=increase_font_size:1
-keybind = ctrl+plus=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+shift+plus=increase_font_size:1
+keybind = ctrl+equal=unbind
+# keybind = ctrl+plus=increase_font_size:1
 keybind = ctrl+zero=reset_font_size
 
 keybind = ctrl+shift+w=close_tab

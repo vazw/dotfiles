@@ -1,6 +1,7 @@
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4 
 set $bindcode bindsym --to-code
+set $mod Mod4 
+set $alt Mod1 
 
 # Home row direction keys, like vim
 set $left h
@@ -10,6 +11,7 @@ set $right l
 
 # Your preferred terminal emulators
 set $term-float ghostty --class="ghostty.float"
+# set $term-float kitty --class "float"
 
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -44,10 +46,11 @@ $bindcode $mod+Shift+b exec ~/.config/sway/scripts/background-swap.sh
 # Basics:
 #
 $bindcode $mod+Return exec ghostty
-$bindcode $mod+Shift+Return exec $term-float
+$bindcode $mod+Shift+Return exec kitten quick-access-terminal
+$bindcode $mod+Ctrl+Return exec $term-float
 
 # Open the power menu
-$bindcode $mod+Shift+e exec $powermenu
+# $bindcode $mod+Shift+e exec $powermenu
 
 # Kill focused window
 $bindcode $mod+q kill
@@ -224,10 +227,9 @@ $bindcode $mod+Shift+equal move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 $bindcode $mod+equal scratchpad show
 
-
-
+set $mode_resize <small><b>Resize:</b> <b>H/L</b>-grow/shrink width,<b>J/K</b>-grow/shrink height</small>
 # Resizing containers:
-mode "resize" {
+mode --pango_markup "$mode_resize" {
     # left will shrink the containers width
     # right will grow the containers width
     # up will shrink the containers height
@@ -248,7 +250,7 @@ mode "resize" {
     $bindcode Escape mode "default"
     $bindcode $mod+r mode "default"
 }
-$bindcode $mod+r mode "resize"
+$bindcode $mod+r mode "$mode_resize"
 
 # Resize floating windows with mouse scroll:
 $bindcode --whole-window --border $mod+button4 resize shrink height 5 px or 5 ppt
@@ -278,7 +280,7 @@ $bindcode XF86MonBrightnessDown exec ~/.config/sway/scripts/brightness --dec
 $bindcode XF86HomePage exec ~/.config/sway/scripts/brightness --inc 
 $bindcode XF86Explorer exec ~/.config/sway/scripts/brightness --dec
 
-$bindcode XF86Mail exec ghostty -e nvim ~/Documents/TODAY.md
+$bindcode XF86Mail exec $term-float -e nvim ~/Documents/TODAY.md
 
 # App shortcuts
 
@@ -289,8 +291,8 @@ $bindcode $mod+n exec swaync-client -t -sw
 $bindcode $mod+shift+n exec swaync-client -C
 
 
-$bindcode XF86Calculator exec ghostty --class="ghostty.float" -e btop 
-$bindcode XF86Launch1 exec ghostty --class="ghostty.float -e btop 
+$bindcode XF86Calculator exec $term-float -e btop 
+$bindcode XF86Launch1 exec $term-float -e btop 
 $bindcode XF86WebCam exec cheese 
 # $bindcode $mod+o exec google-chrome-stable
 
@@ -312,3 +314,58 @@ bindgesture swipe:left focus right
 
 # Emoji Menu
 $bindcode $mod+i exec $emoji
+
+set $mode_shutdown <small><b>Shutdown?</b> <b>Y</b>es/<b>N</b>o </small>
+mode --pango_markup "$mode_shutdown" {
+    bindsym y exec "loginctl poweroff", mode "default"
+    bindsym n mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_reboot <small><b>Reboot?</b> <b>Y</b>es/<b>N</b>o </small>
+mode --pango_markup "$mode_reboot" {
+    bindsym y exec "loginctl reboot", mode "default"
+    bindsym n mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_hibernate <small><b>Hibernate?</b> <b>Y</b>es/<b>N</b>o </small>
+mode --pango_markup "$mode_hibernate" {
+    bindsym y exec "loginctl hibernate", mode "default"
+    bindsym n mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_Logout <small><b>Logout?</b> <b>Y</b>es/<b>N</b>o </small>
+mode --pango_markup "$mode_Logout" {
+    bindsym y exec "loginctl terminate-session $(loginctl session-status | grep $(whoami) | awk '{print $1}')", mode "default"
+    bindsym n mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_suspend <small><b>Suspend?</b> <b>Y</b>es/<b>N</b>o </small>
+mode --pango_markup "$mode_suspend" {
+    bindsym y exec "loginctl suspend-then-hibernate", mode "default"
+    bindsym n mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_system <small><b>Power Menu: </b><b>L</b>ock, <b>E</b>xit, <b>S</b>uspend, <b>H</b>ibernate, <b>R</b>eboot, <b>⇧+S</b>hutdown</small>
+$bindcode XF86PowerOff mode "$mode_system"
+$bindcode $mod+shift+e mode "$mode_system"
+mode --pango_markup "$mode_system" {
+
+    bindsym l exec "playerctl pause; swaylock", mode "default"
+    bindsym s mode "$mode_suspend"
+    bindsym e mode "$mode_Logout"
+    bindsym h mode "$mode_hibernate"
+    bindsym r mode "$mode_reboot"
+    bindsym Shift+s mode "$mode_shutdown"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# Clipboard
+$bindcode $mod+u exec clipman pick -t wofi -T'--show dmenu -i'

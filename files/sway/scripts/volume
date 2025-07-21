@@ -9,7 +9,7 @@ notify_cmd='notify-send -h string:x-canonical-private-synchronous:sys-notify-vol
 
 # Get Volume
 get_volume() {
-	printf "%'.0f\n" "$(echo "$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2) *100" | bc -l)"
+  printf "%'.0f\n" "$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | sed 's/\%//')"
 }
 
 # Get icons
@@ -32,44 +32,44 @@ notify_user() {
 
 # Increase Volume
 inc_volume() {
-	ISMUTED="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED)"
+	ISMUTED="$(pactl get-sink-mute @DEFAULT_SINK@ | grep yes)"
 	if [[ -n $ISMUTED ]]; then
-		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+		pactl set-sink-mute @DEFAULT_SINK@ toggle
 	fi
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && notify_user
+	pactl set-sink-volume @DEFAULT_SINK@ +2% && notify_user
 }
 
 # Decrease Volume
 dec_volume() {
-	ISMUTED="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED)"
+	ISMUTED="$(pactl get-sink-mute @DEFAULT_SINK@ | grep yes)"
 	if [[ -n $ISMUTED ]]; then
-		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+		pactl set-sink-mute @DEFAULT_SINK@ toggle
 	fi
-	wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && notify_user
+	pactl set-sink-volume @DEFAULT_SINK@ -2% && notify_user
 }
 
 # Toggle Mute
 toggle_mute() {
-	VOLUME="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep MUTED)"
-	if [[ -n $VOLUME ]]; then
-		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ${notify_cmd} -i "$iDIR/volume-mute.svg" "Mute"
+	ISMUTED="$(pactl get-sink-mute @DEFAULT_SINK@ | grep yes)"
+	if [[ -n $ISMUTED ]]; then
+      pactl set-sink-mute @DEFAULT_SINK@ toggle && get_icon && ${notify_cmd} -i "$icon" "Unmute"
 	else
-		wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && get_icon && ${notify_cmd} -i "$icon" "Unmute"
+      pactl set-sink-mute @DEFAULT_SINK@ toggle && ${notify_cmd} -i "$iDIR/volume-mute.svg" "Mute"
 	fi
 }
 
 # Toggle Mic
 toggle_mic() {
-	ID="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep MUTED)"
-	if [[ -n $ID ]]; then
-		wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ${notify_cmd} -i "$iDIR/microphone.svg" "Microphone Switched ON" && echo 1 >/sys/class/leds/platform::micmute/brightness
+	ISMUTED="$(pactl get-source-mute @DEFAULT_SOURCE@ | grep yes)"
+	if [[ -n $ISMUTED ]]; then
+		pactl set-source-mute @DEFAULT_SOURCE@ toggle && ${notify_cmd} -i "$iDIR/microphone.svg" "Microphone Switched ON" && echo 1 >/sys/class/leds/platform::micmute/brightness
 	else
-		wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && ${notify_cmd} -i "$iDIR/microphone-mute.svg" "Microphone Switched OFF" && echo 0 >/sys/class/leds/platform::micmute/brightness
+		pactl set-source-mute @DEFAULT_SOURCE@ toggle && ${notify_cmd} -i "$iDIR/microphone-mute.svg" "Microphone Switched OFF" && echo 0 >/sys/class/leds/platform::micmute/brightness
 	fi
 }
 
 # Execute accordingly
-if [[ -x $(which wpctl) ]]; then
+if [[ -x $(which pactl) ]]; then
 	if [[ "$1" == "--get" ]]; then
 		get_volume
 	elif [[ "$1" == "--inc" ]]; then

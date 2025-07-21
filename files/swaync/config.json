@@ -2,26 +2,29 @@
   "$schema": "/etc/xdg/swaync/configSchema.json",
   "positionX": "right",
   "positionY": "bottom",
-  "control-center-margin-top": 10,
-  "control-center-margin-bottom": 10,
-  "control-center-margin-right": 10,
+  "layer": "overlay",
+  "control-center-margin-top": 5,
+  "control-center-margin-bottom": 20,
+  "control-center-margin-right": 5,
   "notification-icon-size": 64,
+  "fit-to-screen": true,
   "notification-body-image-height": 100,
   "notification-body-image-width": 200,
+  "notification-inline-replies": true,
+  "notification-window-width": 500,
+  "control-center-height": 900,
+  "notification-2fa-action": true,
+  "layer-shell": true,
   "timeout": 15,
   "timeout-low": 10,
   "timeout-critical": 20,
-  "fit-to-screen": false,
-  "control-center-width": 500,
-  "control-center-height": 900,
-  "notification-window-width": 500,
   "keyboard-shortcuts": true,
   "image-visibility": "when-available",
   "transition-time": 200,
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
-  "widgets": ["buttons-grid", "volume", "backlight"],
+  "widgets": ["title", "dnd", "notifications", "mpris", "buttons-grid", "volume", "backlight"],
   "widget-config": {
     "title": {
       "text": "Notification Center",
@@ -30,10 +33,6 @@
     },
     "dnd": {
       "text": "Do Not Disturb"
-    },
-    "label": {
-      "max-lines": 1,
-      "text": "Notification Center"
     },
     "mpris": {
       "image-size": 96,
@@ -50,30 +49,94 @@
     "buttons-grid": {
       "actions": [
         {
-          "label": "󰌾",
-          "command": "swaylock"
-        },
-        {
-          "label": "󰕾",
-          "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-          "type": "toggle"
-        },
-        {
-          "label": "󰍬",
-          "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-          "type": "toggle"
-        },
-        {
           "label": "󰖩",
-          "command": "nm-connection-editor"
+          "type": "toggle",
+          "active":true,
+          "update-command": "bash -c '$HOME/.config/swaync/scripts/wifi.sh --check'",
+          "command": "bash -c '$HOME/.config/swaync/scripts/wifi.sh --toggle'"
         },
         {
           "label": "󰂯",
-          "command": "blueman-manager"
+          "type": "toggle",
+          "active":true,
+          "update-command": "bash -c '$HOME/.config/swaync/scripts/bluetooth.sh --check'",
+          "command": "bash -c '$HOME/.config/swaync/scripts/bluetooth.sh --toggle'"
         },
         {
-          "label": "󰆴",
-          "command": "swaync-client -C"
+          "label": "󰕾",
+          "type": "toggle",
+          "active":true,
+          "update-command": "sh -c '$HOME/.config/swaync/scripts/sink.sh --check'",
+          "command": "sh -c '$HOME/.config/swaync/scripts/sink.sh --toggle'"
+        },
+
+        {
+          "label": "󰍬",
+          "type": "toggle",
+          "active":true,
+          "update-command": "bash -c '$HOME/.config/swaync/scripts/source.sh --check'",
+          "command": "bash -c '$HOME/.config/swaync/scripts/source.sh --toggle'"
+        },
+
+        {
+          "label": "󰹑",
+          "type": "normal",
+          "active": false,
+          "command": "sh -c 'swaync-client -t -sw;home/vaz/.config/sway/scripts/screenshot.sh'"
+        },
+        {
+          "label": "󱎴",
+          "type": "normal",
+          "active": false,
+          "command": "sh -c 'swaync-client -t -sw;swayr switch-window'"
+        },
+        {
+          "label": "󱑞",
+          "type": "normal",
+          "active": false,
+          "command": "sh -c 'swaync-client -t -sw;swaync-client -R'"
+        },
+        {
+          "label": "",
+          "type": "normal",
+          "active": false,
+          "command": "sh -c 'swaync-client -t -sw;kitty --class float -e btop'"
+        },
+        {
+          "label": "󰌾",
+          "type": "normal",
+          "active": false,
+          "command": "bash -c 'swaync-client -t -sw;$HOME/.config/wlogout/actions --lock'"
+        },
+        {
+          "label": "",
+          "type": "normal",
+          "active": false,
+          "command": "bash -c 'swaync-client -t -sw;$HOME/.config/wlogout/actions --reboot'"
+        },
+        {
+          "label": "󰛧",
+          "type": "normal",
+          "active": false,
+          "command": "bash -c 'swaync-client -t -sw;$HOME/.config/wlogout/actions --suspend'"
+        },
+        {
+          "label": "󰒲",
+          "type": "normal",
+          "active": false,
+          "command": "bash -c 'swaync-client -t -sw;$HOME/.config/wlogout/actions --hibernate'"
+        },
+        {
+          "label": "󰍃",
+          "type": "normal",
+          "active": false,
+          "command": "bash -c 'swaync-client -t -sw;$HOME/.config/wlogout/actions --logout'"
+        },
+        {
+          "label": "⏻",
+          "type": "normal",
+          "active": false,
+          "command": "bash -c 'swaync-client -t -sw;$HOME/.config/wlogout/actions --shutdown'"
         }
       ]
     }

@@ -31,21 +31,20 @@ elif [[ "$1" == '--hibernate' ]]; then
     exit
   fi
 elif [[ "$1" == '--lock' ]]; then
+  playerctl pause
   swaylock
 elif [[ "$1" == '--suspend' ]]; then
   cdialog
   if [[ "$?" == 0 ]]; then
-    mpc -q pause
-    pulsemixer --mute
-    ~/.config/hypr/scripts/lockscreen
-    loginctl suspend
+    playerctl pause
+    loginctl hybrid-sleep
   else
     exit
   fi
 elif [[ "$1" == '--logout' ]]; then
   cdialog
   if [[ "$?" == 0 ]]; then
-    swaymsg exit
+    loginctl terminate-session $(loginctl session-status | grep $(whoami) | awk '{print $1}')
   else
     exit
   fi

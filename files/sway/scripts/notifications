@@ -1,8 +1,5 @@
 #!/usr/bin/bash
 
-if [[ ! $(pidof swaync) ]]; then
-	swaync &
-else
-	pkill swaync
-	swaync &
-fi
+pidof swaync && pkill swaync
+sleep 1
+swaync

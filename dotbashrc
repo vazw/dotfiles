@@ -1,0 +1,11 @@
+# .bashrc
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+if [ -d "$HOME"/.config/bash_config/ ]; then
+  for f in "$HOME"/.config/bash_config/*.sh; do
+		[ -r "$f" ] && . "$f"
+	done
+	unset f
+fi

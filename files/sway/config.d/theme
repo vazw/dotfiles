@@ -1,6 +1,6 @@
 include catppuccin-mocha
 # Apply gtk theming
-exec_always ~/.config/sway/scripts/import-gsettings
+exec_always nwg-look -a
 
 # Set inner/outer gaps
 gaps inner 0

@@ -34,17 +34,17 @@ if [ -d "/usr/local/go/bin" ]; then
 	PATH="/usr/local/go/bin:$PATH"
 fi
 
-if [ -d "$HOME/go/bin" ]; then
-	PATH="$HOME/go/bin:$PATH"
+if [ -d "$HOME/.go/bin" ]; then
+	PATH="$HOME/.go/bin:$PATH"
 fi
 
 if [ -d "$HOME/Code/flutter/bin" ]; then
 	PATH="$HOME/Code/flutter/bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
-	PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-fi
+# if [ -d "$HOME/.local/share/nvim/mason/bin" ]; then
+# 	PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+# fi
 
 if [ -d "$HOME/.cargo" ]; then
 	. "$HOME/.cargo/env"
@@ -58,19 +58,18 @@ export STARSHIP_CONFIG=~/.config/starship.toml
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 export LESS="-R"
-eval $(dircolors -b)
 export BROWSER=firefox
-export TERM=alacritty
-export MAIL=geary
+# export MAIL=geary
+
+eval $(dircolors -b)
 
 # Session
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=sway
 export XDG_CURRENT_DESKTOP=sway
-# Path dir where wofi menu can find .desktop applications
 export XDG_DATA_DIRS=$HOME/.local/share:/usr/local/share:/usr/share:$XDG_DATA_DIRS
 export XDG_CONFIG_HOME="$HOME/.config"
-# export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
 # Vulkan
 export WLR_RENDERER=vulkan
@@ -86,7 +85,7 @@ export SDL_VIDEODRIVER=wayland # this can prevent programs from starting old sdl
 # export WGPU_BACKEND=gl
 
 # Qt
-export QT_QPA_PLATFORM="wayland;xcb"
+export QT_QPA_PLATFORM="wayland-egl;xcb"
 export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_FONT_DPI=96
@@ -107,10 +106,13 @@ export NO_AT_BRIDGE=1
 export BEMENU_BACKEND=wayland
 
 # PATH to XDEB package
-export XDEB_PKGROOT=${HOME}/.config/xdeb
+export XDEB_PKGROOT=$HOME/.config/xdeb
 
 # JavaScripts Heap Memory config
 export NODE_OPTIONS=--max_old_space_size=4096
+export LIBGUESTFS_PATH=/usr/lib/guestfs
+
+export SVDIR=$HOME/.local/services
 
 # start sway with env when login as tty1
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then

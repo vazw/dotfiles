@@ -208,7 +208,8 @@
 
 .widget-dnd > switch {
   border-radius: 5px;
-  background: #7aa2f7;
+  background: #404040;
+  border: 1px solid #7aa2f7;
 }
 
 .widget-dnd > switch:checked {

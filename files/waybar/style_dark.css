@@ -4,7 +4,7 @@
   border: 0;
   border-radius: 0;
   padding: 0 0;
-  font-family: "Hack Nerd Font Propo", "ComicShannsMono Nerd Font Mono";
+  font-family: "Hack Nerd Font Propo", "Iosevka NFP SemiBold";
   font-size: 16px;
   font-weight: 500;
   transition: all 0.5s ease;
@@ -26,7 +26,7 @@
 
 #workspaces * {
   color: whitesmoke;
-  font-family: "ComicShannsMono Nerd Font Mono";
+  font-family: "Iosevka NFP SemiBold";
 }
 
 #workspaces {
@@ -36,7 +36,7 @@
   padding: 0px 0px 0px 0px;
   margin-top: 0;
   font-size: 16px;
-  font-family: "ComicShannsMono Nerd Font Mono";
+  font-family: "Iosevka NFP SemiBold";
   /* margin: 2px 6px 6px 8px; */
 }
 
@@ -124,7 +124,7 @@
 #clock,
 #language,
 #custom-blockheight {
-  font-family: "ComicShannsMono Nerd Font Mono";
+  font-family: "Iosevka NFP SemiBold";
   font-size: 18px;
 }
 
@@ -172,4 +172,10 @@
   to {
     color: @red;
   }
+}
+
+tooltip * {
+  color: #ffffff;
+  text-shadow: none;
+  font-family: "Iosevka NFP SemiBold";
 }

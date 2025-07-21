@@ -1,16 +1,19 @@
-[
 {
     "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30,
     "output": ["*"],
-    "margin": "0 0 0 0",
+    "margin": 0,
    //  "modules-left": ["pulseaudio#source", "wireplumber", "group/light", "tray"],
-    "modules-left": ["pulseaudio#source", "wireplumber", "backlight", "tray"],
-    "modules-center": ["sway/workspaces"],
+    "modules-left": ["pulseaudio#source", "tray"],
+    "modules-center": ["sway/mode","custom/app_drawer", "sway/workspaces"],
     "modules-right": ["sway/language", "idle_inhibitor", "battery", "custom/blockheight", "clock", "custom/notification"], 
     
  
+    "sway/mode": {
+        "format": "[Mode] {}",
+        "max-length": 200
+    },
     "sway/workspaces": { 
         "format": "{icon}",
         "sort-by-number": true,
@@ -32,12 +35,12 @@
         }
     },
     "tray": {
-        "icon-size": 18,
+        "icon-size": 22,
         "spacing": 10
     },
     "clock": {
         "format": "{:%H:%M}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "{calendar}",
         "timezone": "Asia/Bangkok",
         "locale": "en_US.UTF-8",
         "calendar": {
@@ -47,11 +50,11 @@
                     "on-scroll"     : 1,
                     "on-click-right": "mode",
                     "format": {
-                              "months":     "<span color='#ffead3'><b>{}</b></span>",
-                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              "months":     "<span color='#ffead3'>{}</span>",
+                              "days":       "<span color='#ecc6d9'>{}</span>",
+                              "weeks":      "<span color='#99ffdd'>W{}</span>",
+                              "weekdays":   "<span color='#ffcc66'>{}</span>",
+                              "today":      "<span size='14pt' color='#ff6699' font='Hack Nerd Font Propo ExtraBold'><b>{}</b></span>"
                               }
                     },
         "actions":  {
@@ -81,7 +84,7 @@
             "critical": 30
         },       
         "format": "{icon}",
-        "full-at": 77,
+        "full-at": 100,
         "format-charging": "{icon}⚡{capacity}%",
         "format-plugged": "{icon}⚡",
         "format-full": "{icon}⚡",        
@@ -120,11 +123,11 @@
         "format": "{format_source}",
         "format-source": "<span color='#FF0000'><b></b></span>",
         "format-source-muted": "",
-        "on-click": "~/.config/sway/scripts/volume --toggle-mic",
+        "on-click": "pavucontrol",
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
         "on-scroll-down": "~/.config/sway/scripts/volume --dec",
         "ignored-sinks": ["Easy Effects Source"],
-        "tooltip": false,
+        "tooltip": true,
     },
     "wireplumber": {
         "format": "{icon}",
@@ -179,7 +182,7 @@
         "on-click-right": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle region"
     },
     "custom/notification": {
-        "tooltip": false,
+        "tooltip": true,
         "format": "{icon}",
         "format-icons": {
             "notification": "<span foreground='red'><sup></sup></span>",
@@ -198,5 +201,10 @@
         "on-click-right": "swaync-client -d -sw",
         "escape": true
     },
-},
-]
+    "custom/app_drawer": {
+        "tooltip": true,
+        "format": " ",
+        "on-click": "swayr switch-window",
+    }
+}
+

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FILES=(*)
-IGNORE="update.sh go $@"
+IGNORE="update.sh clear.sh $@"
 echo "Ignored: $IGNORE"
 
 for UPDATE_PATH in "${FILES[@]}"; do

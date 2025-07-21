@@ -1,17 +1,5 @@
 # set floating (nontiling)for apps needing it:
 # for_window [all] title_format "<b>%title</b> (%app_id)"
-for_window [class="Yad" instance="yad"] floating enable
-for_window [app_id="yad"] floating enable
-
-# set floating (nontiling) for special apps:
-for_window [class="Xsane" instance="xsane"] floating enable
-for_window [app_id="pavucontrol" ] floating enable, resize set width 50ppt height 40ppt, move position 0 620
-for_window [class="qt5ct" instance="qt5ct"] floating enable, resize set width 60 ppt height 50 ppt
-for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
-for_window [app_id="pamac-manager"] floating enable, resize set width 80 ppt height 70 ppt
-for_window [app_id="lxappearance"] floating enable, resize set width 60 ppt height 50 ppt
-for_window [app_id="KeePassXC"] floating enable, sticky enable, resize set width 60 ppt height 80 ppt
-for_window [app_id="localsend_app"] floating enable, sticky enable, resize set width 60 ppt height 80 ppt
 
 # set floating for window roles
 for_window [window_role="pop-up"] floating enable
@@ -20,37 +8,53 @@ for_window [window_role="task_dialog"] floating enable
 for_window [window_role="Preferences"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
-for_window [app_id="thunar"] floating enable, resize set width 50 ppt height 70 ppt
+for_window [window_type="utility"] floating enable
+for_window [window_type="toolbar"] floating enable
+for_window [window_type="popup_menu"] floating enable
+for_window [window_type="dropdown_menu"] floating enable
+for_window [window_type="splash"] floating enable
+for_window [window_type="notification"] floating enable
+for_window [class="Yad" instance="yad"] floating enable
+for_window [app_id="yad"] floating enable
+for_window [app_id="xfce-polkit"] floating enable
+
+# set floating (nontiling) for special apps:
+for_window [app_id="pavucontrol" ] floating enable, resize set width 50ppt height 40ppt, move position 0 620
+for_window [class="qt5ct" instance="qt5ct"] floating enable, resize set width 60 ppt height 50 ppt
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [app_id="lxappearance"] floating enable, resize set width 60 ppt height 50 ppt
+for_window [class="KeePassXC"] floating enable, sticky enable, resize set width 60 ppt height 80 ppt
+for_window [title="KeePassXC"] floating enable, sticky enable, resize set width 60 ppt height 80 ppt
+for_window [app_id="localsend_app"] floating enable, sticky enable, resize set width 60 ppt height 80 ppt
+for_window [app_id="thunar"] floating enable, resize set width 55 ppt height 70 ppt
 for_window [window_role="About"] floating enable
-for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
-for_window [class="Vivaldi" title="Library"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
-for_window [class="Vivaldi-stable" title="Sign in - Google Account"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
-for_window [class="Vivaldi-stable" title="Post to Facebook"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
-for_window [class="Vivaldi-stable" title="Save Image"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
-for_window [class="Vivaldi-stable" title="Alby Extension - Vivaldi"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
-for_window [class="Vivaldi-stable" title="Alby - Nostr Wallet Connect - Vivaldi"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 60 ppt
+for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 55 ppt height 70 ppt
 for_window [app_id="Firefox" title="Library"] floating enable, border pixel 1, sticky enable, resize set width 60 ppt height 80 ppt
-for_window [app_id="Firefox" title="Sign in - Google Account -- Mozilla Firefox"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
-for_window [app_id="Firefox" title="Post to Facebook -- Mozilla Firefox"] floating enable, border pixel 1, sticky enable, resize set width 50 ppt height 70 ppt
+for_window [app_id="Firefox" title="Sign in - Google Account -- Mozilla Firefox"] floating enable, border pixel 1, sticky enable, resize set width 55 ppt height 70 ppt
+for_window [app_id="Firefox" title="Post to Facebook -- Mozilla Firefox"] floating enable, border pixel 1, sticky enable, resize set width 55 ppt height 70 ppt
 for_window [app_id="Firefox" title="Save Image"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
 for_window [app_id="Firefox" title="Extension:"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 50 ppt
 for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
 for_window [title="Picture in picture"] floating enable, sticky enable
-for_window [title="nmtui"] floating enable, resize set width 30ppt height 30ppt, move position 0 720
-for_window [title="nm-connection-editor"] floating enable, resize set width 30ppt height 30ppt, move position 0 720
-for_window [app_id="nm-connection-editor"] floating enable, resize set width 30ppt height 30ppt, move position 0 720
-for_window [title="htop"] floating enable, resize set width 50 ppt height 70 ppt
-for_window [app_id="btop"] floating enable, resize set width 50 ppt height 70 ppt
-for_window [app_id="float"] floating enable, resize set width 50 ppt height 70 ppt
+for_window [title="nmtui"] floating enable, resize set width 30ppt height 30ppt, move position 0 700
+for_window [app_id="nm-connection-editor"] floating enable, resize set width 30ppt height 30ppt, move position 200 380
+for_window [title="Network Connections" app_id="nm-connection-editor"] floating enable, resize set width 20ppt height 30ppt, move position 0 720
+for_window [title="htop"] floating enable, resize set width 55 ppt height 70 ppt
+for_window [app_id="btop"] floating enable, resize set width 55 ppt height 70 ppt
+for_window [app_id="float"] floating enable, resize set width 55 ppt height 70 ppt
 for_window [class="feh"] floating enable, resize set width 60 ppt height 90 ppt
 for_window [app_id="passw"] floating enable, resize set width 20 ppt height 30 ppt
-for_window [app_id="blueman-manager" title="Bluetooth"] floating enable, resize set width 30ppt height 30ppt, move position 0 720
-for_window [title="Nostr Relay Tray"] floating enable, resize set width 50 ppt height 70 ppt
+for_window [app_id="blueman-manager" title="Bluetooth"] floating enable, resize set width 30ppt height 30ppt, move position 0 700
+for_window [title="Nostr Relay Tray"] floating enable, resize set width 55 ppt height 70 ppt
 for_window [app_id="xsensors"] floating enable
 for_window [app_id="Waydroid"] floating enable
-for_window [app_id="Alacritty"] floating enable , resize set width 90 ppt height 80 ppt
+for_window [app_id="Alacritty"] floating enable, resize set width 90ppt height 80ppt
 for_window [title="Save File"] floating enable
-for_window [title="Syncthing Tray"] floating enable, border pixel 1, sticky enable, resize set width 30ppt height 30ppt, move position 0 720
+for_window [title="Syncthing Tray"] floating enable, border pixel 1, sticky enable, resize set width 30ppt height 30ppt, move position 0 700
+
+# Steam
+for_window [title="Steam Settings"] floating enable
+
 # Inhibit idle
 for_window [app_id="Firefox"] inhibit_idle fullscreen
 for_window [app_id="Chromium"] inhibit_idle fullscreen

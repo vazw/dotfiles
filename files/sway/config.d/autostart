@@ -1,21 +1,15 @@
-# Desktop notifications
-exec ~/.config/sway/scripts/notifications &
-exec asus-numpad &
-#
+exec ~/.config/sway/scripts/nvim.sh &
+
 # ntfy listening
 # exec ntfy sub -C &
 
 # Pipewire
-exec rm /run/user/1000/pipewire-0.lock &
-exec pipewire
 exec pactl set-default-sink alsa_output.pci-0000_03_00.6.analog-stereo
-exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ 1
-# nm-applet
-exec nm-applet --indicator
-exec blueman-applet
-exec easyeffects --gapplication-service
+exec pactl set-default-source alsa_input.pci-0000_03_00.5-platform-acp_yc_mach.0.stereo-fallback && pactl set-source-mute @DEFAULT_SOURCE@ 1
 
-exec firewalld-applet &
+# tray applet
+exec blueman-applet
+
 # exec nostr-relay-tray
 # exec ~/.config/sway/scripts/nostr.sh &
 
@@ -30,6 +24,9 @@ exec autotiling
 
 exec warp-taskbar &
 
+# usbguard 
+exec usbguard-notify &
+
 # Wlsunset
 # exec ~/.config/sway/scripts/light.sh
 
@@ -39,25 +36,32 @@ exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 
 # Clipman
 # exec clipman restore
-exec wl-paste -t text --watch clipman store
-
-# Gnome Keyring
-exec /usr/libexec/polkit-gnome-authentication-agent-1
-exec gnome-keyring-daemon --daemonize --start --components=gpg,pkcs11,secrets,ssh
+exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
 
 # Xdg DEsktop Portal
 exec /usr/libexec/xdg-desktop-portal
 exec /usr/libexec/xdg-desktop-portal-wlr
 
-# Set Minimun Screen Brightness so the screen won't going black on 0
-exec brillo -c -S 1
+# Set Minimum Screen Brightness so the screen won't going black on 0
 exec ~/.config/sway/scripts/restorebrightness.sh
 
 exec mkfifo $SWAYSOCK.wob
 exec tail -f $SWAYSOCK.wob | wob &
-# swayrd
-# exec_always swayrd
-# exec_always duplicated any services(Spawning new instance)
+
 exec swayrd
+# exec clamd & sudo clamonacc
 
 exec darkman run &
+
+
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+   swaybar_command waybar
+}
+# Desktop notifications
+exec_always ~/.config/sway/scripts/notifications &
+
+exec ~/.config/sway/scripts/restart_bar.sh
+

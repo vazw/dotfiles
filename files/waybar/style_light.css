@@ -1,10 +1,11 @@
 @import "machiatto.css";
+
 * {
   color: #131313;
   border: 0;
   border-radius: 0;
   padding: 0 0;
-  font-family: "Hack Nerd Font Propo", "ComicShannsMono Nerd Font Mono";
+  font-family: "Hack Nerd Font Propo", "Iosevka NFP SemiBold";
   font-size: 16px;
   font-weight: 500;
   transition: all 0.5s ease;
@@ -26,7 +27,7 @@
 
 #workspaces * {
   color: #131313;
-  font-family: "ComicShannsMono Nerd Font Mono";
+  font-family: "Iosevka NFP SemiBold";
 }
 
 #workspaces {
@@ -36,7 +37,7 @@
   padding: 0px 0px 0px 0px;
   margin-top: 0;
   font-size: 16px;
-  font-family: "ComicShannsMono Nerd Font Mono";
+  font-family: "Iosevka NFP SemiBold";
   /* margin: 2px 6px 6px 8px; */
 }
 
@@ -50,6 +51,7 @@
 #workspaces button.urgent * {
   color: @red;
 }
+
 #workspaces button.peristent * {
   color: #131313;
 }
@@ -64,10 +66,12 @@
   margin: 0px 0px 0px;
   padding: 0 0 0 8px;
 }
+
 #backlight-slider {
   background-color: transparent;
   padding: 0 8px;
 }
+
 #backlight-slider slider {
   min-height: 0px;
   min-width: 0px;
@@ -78,6 +82,7 @@
   border-radius: 8px;
   background-color: whitesmoke;
 }
+
 #backlight-slider trough {
   min-height: 14px;
   min-width: 50px;
@@ -85,6 +90,7 @@
   background-color: #494d64;
   color: green;
 }
+
 #backlight-slider highlight {
   min-width: 5px;
   border-radius: 8px;
@@ -120,16 +126,19 @@
   opacity: 1;
   margin: 0px 0px 0px;
 }
+
 #clock,
 #language,
 #custom-blockheight {
-  font-family: "ComicShannsMono Nerd Font Mono";
+  font-family: "Iosevka NFP SemiBold";
   font-size: 18px;
 }
+
 #pulseaudio {
   font-size: 18px;
   color: #131313;
 }
+
 #tray {
   padding: 0px 4px 0px 4px;
   margin-bottom: 0px;
@@ -140,6 +149,7 @@
 #pulseaudio.source-muted {
   color: #131313;
 }
+
 #pulseaudio.muted {
   color: #131313;
 }
@@ -168,4 +178,10 @@
   to {
     color: @red;
   }
+}
+
+tooltip * {
+  color: #131313;
+  text-shadow: none;
+  font-family: "Iosevka NFP SemiBold";
 }

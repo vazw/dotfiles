@@ -935,7 +935,7 @@ confirm_os_window_close 0
 #:     a mapping for the select_tab action which presents you with a list of
 #:     tabs and allows for easy switching to a tab.
 
-# tab_bar_align left
+tab_bar_align center
 
 #: The horizontal alignment of the tab bar, can be one of: left,
 #: center, right.
