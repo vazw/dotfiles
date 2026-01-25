@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/sh
 
 ## Copyright (C) 2020-2023 Aditya Shakya <adi1090x@gmail.com>
 
@@ -9,41 +9,36 @@ cdialog() {
   dialog Confirm? "Are You Sure?"
 }
 
-if [[ "$1" == '--shutdown' ]]; then
-  cdialog
-  if [[ "$?" == 0 ]]; then
+if [ "$1" = '--shutdown' ]; then
+  if cdialog; then
     loginctl poweroff
   else
     exit
   fi
-elif [[ "$1" == '--reboot' ]]; then
-  cdialog
-  if [[ "$?" == 0 ]]; then
+elif [ "$1" = '--reboot' ]; then
+  if cdialog; then
     loginctl reboot
   else
     exit
   fi
-elif [[ "$1" == '--hibernate' ]]; then
-  cdialog
-  if [[ "$?" == 0 ]]; then
+elif [ "$1" = '--hibernate' ]; then
+  if cdialog; then
     loginctl hibernate
   else
     exit
   fi
-elif [[ "$1" == '--lock' ]]; then
+elif [ "$1" = '--lock' ]; then
   playerctl pause
   swaylock
-elif [[ "$1" == '--suspend' ]]; then
-  cdialog
-  if [[ "$?" == 0 ]]; then
+elif [ "$1" = '--suspend' ]; then
+  if cdialog; then
     playerctl pause
     loginctl hybrid-sleep
   else
     exit
   fi
-elif [[ "$1" == '--logout' ]]; then
-  cdialog
-  if [[ "$?" == 0 ]]; then
+elif [ "$1" = '--logout' ]; then
+  if cdialog; then
     loginctl terminate-session $(loginctl session-status | grep $(whoami) | awk '{print $1}')
   else
     exit

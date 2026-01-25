@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export USER="asus_numpad"
+groups="$(id -Gn "$USER" | tr ' ' ':')"
+
+exec chpst -u "$USER:$groups" asus-numpad

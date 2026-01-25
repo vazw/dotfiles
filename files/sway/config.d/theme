@@ -20,7 +20,7 @@ exec_always swaymsg split none
 
 # Default Font
 # font pango:Noto Sans Regular 10
-font pango:"Hack Nerd Font Propo" Regular 8
+font pango:"Iosevka NFP SemiBold" Regular 11
 
 
 # Set wallpaper:
@@ -37,23 +37,6 @@ for_window [app_id="^.*"] border $border
 for_window [class="^.*"] opacity $opacity
 for_window [app_id="^.*"] opacity $opacity
 
-
-## Window decoration
-# class                 border  backgr. text    indicator child_border
-# client.focused           $mauve    $base $text  $lavender $mauve
-# client.focused_inactive  $mauve       $base $text  $mauve $mauve
-# client.unfocused         $mauve        $base $text  $mauve $mauve
-# client.urgent            $peach        $base $peach $overlay0  $peach
-# client.placeholder       $base     $base $text  $overlay0  $overlay0
-# client.background        $base
-
-# client.focused           $base     $base $text  $mauve $base
-# client.focused_inactive  $base       $base $text  $base $base
-# client.unfocused         $base        $base $text  $base $base
-# client.urgent            $peach        $base $peach $overlay0  $peach
-# client.placeholder       $base     $base $text  $overlay0  $base
-# client.background        $base
-
 client.focused           $green    $base $text  $green $green
 client.focused_tab_title           $green    $base $text  $green $green
 client.focused_inactive  $mantle       $base $text  $mantle $mantle
@@ -61,5 +44,3 @@ client.unfocused         $mantle        $base $text  $mantle $mantle
 client.urgent            $peach        $base $peach $overlay0  $peach
 client.placeholder       $base     $base $text  $overlay0  $overlay0
 client.background        $base
-# Set the background image
-# output * bg ~/Pictures/the_valley.webp fill

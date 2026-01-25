@@ -6,7 +6,6 @@ alias gdl='cd $HOME/Downloads'
 # alias install='sudo xbps-install -S'
 alias update='sudo xbps-install -Su'
 alias remove='sudo xbps-remove'
-alias cleanup='sudo xbps-remove -Oo'
 
 alias ll='ls --group-directories-first -l --color=always '
 alias ls='ls --group-directories-first --color=always'
@@ -34,10 +33,21 @@ alias wd-reboot="sudo waydroid container restart"
 # Add Color
 alias egrep='grep --color=auto'
 
+alias prepcam="sudo modprobe v4l2loopback && pkill gphoto"
+
 rvi () {
   nvim --server ~/.cache/nvim/server.pipe --remote-send ":cd $(pwd)<CR>"
   nvim --server ~/.cache/nvim/server.pipe --remote "$1"
   nvim --server ~/.cache/nvim/server.pipe --remote-ui
+}
+
+cleanup () {
+    echo 'Cleaning Up System'
+    echo '# sudo xbps-remove -Oo'
+    sudo xbps-remove -Oo
+    echo '# sudo vkpurge rm all'
+    sudo vkpurge rm all
+    printf '\nDone\n'
 }
 
 cd () {

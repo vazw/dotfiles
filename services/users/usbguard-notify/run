@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pidof usbguard-daemon > /dev/null || exit 1
+exec "$HOME/.local/bin/usbguard-notify" 

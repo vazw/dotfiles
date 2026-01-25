@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 entries="Active Screen Output Area Window"
 

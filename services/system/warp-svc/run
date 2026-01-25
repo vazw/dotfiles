@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>&1
+sv check NetworkManager >/dev/null || exit 1
+warp-svc 2>&1

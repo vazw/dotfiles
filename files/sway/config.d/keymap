@@ -44,10 +44,10 @@ $bindcode $mod+Shift+b exec ~/.config/sway/scripts/background-swap.sh
 ### Key bindings
 #
 # Basics:
-#
+
 $bindcode $mod+Return exec ghostty
-$bindcode $mod+Shift+Return exec kitten quick-access-terminal
-$bindcode $mod+Ctrl+Return exec $term-float
+$bindcode $mod+Shift+Return exec $term-float
+$bindcode $mod+Ctrl+Return exec kitten quick-access-terminal
 
 # Open the power menu
 # $bindcode $mod+Shift+e exec $powermenu

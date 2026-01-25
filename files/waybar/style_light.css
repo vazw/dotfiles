@@ -5,8 +5,8 @@
   border: 0;
   border-radius: 0;
   padding: 0 0;
-  font-family: "Hack Nerd Font Propo", "Iosevka NFP SemiBold";
-  font-size: 16px;
+  font-family: "Hack Nerd Font Propo", "Iosevka NFP SemiBold", "Iosevka NFP Bold";
+  font-size: 20px;
   font-weight: 500;
   transition: all 0.5s ease;
   background-color: darkgray;
@@ -45,7 +45,7 @@
   color: green;
   border-radius: 20px;
   font-weight: 800;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #workspaces button.urgent * {
@@ -131,11 +131,11 @@
 #language,
 #custom-blockheight {
   font-family: "Iosevka NFP SemiBold";
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #pulseaudio {
-  font-size: 18px;
+  font-size: 20px;
   color: #131313;
 }
 

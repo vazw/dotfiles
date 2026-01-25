@@ -1,0 +1,7 @@
+#!/bin/sh
+exec 2>&1
+exec 1>&2
+
+pidof sway >/dev/null || exit 1
+tmux start-server || exit 1
+exec chpst -b sway pause

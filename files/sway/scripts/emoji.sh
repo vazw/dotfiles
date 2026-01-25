@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/sh
 
 # TEST_WTYPE=$(wtype 0)
 # if [ "$TEST_WTYPE" -eq 0 ]

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/sh
 
 pidof swaync && pkill swaync
 sleep 1

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+update=$(xbps-install -nuM | grep -c -Fe update -e install)
+if [ "$update" -gt 0 ]; then
+  chpst -u vaz:vaz notify-send "System Update " "Void repo has $update new update packages"
+fi

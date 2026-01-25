@@ -1,14 +1,17 @@
-exec ~/.config/sway/scripts/nvim.sh &
+# exec ~/.config/sway/scripts/nvim.sh &
 
 # ntfy listening
 # exec ntfy sub -C &
+
+# Welcome
+exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 
 # Pipewire
 exec pactl set-default-sink alsa_output.pci-0000_03_00.6.analog-stereo
 exec pactl set-default-source alsa_input.pci-0000_03_00.5-platform-acp_yc_mach.0.stereo-fallback && pactl set-source-mute @DEFAULT_SOURCE@ 1
 
 # tray applet
-exec blueman-applet
+# exec blueman-applet
 
 # exec nostr-relay-tray
 # exec ~/.config/sway/scripts/nostr.sh &
@@ -22,7 +25,6 @@ exec thunar --daemon
 # Autotiling
 exec autotiling
 
-exec warp-taskbar &
 
 # usbguard 
 exec usbguard-notify &
@@ -30,23 +32,19 @@ exec usbguard-notify &
 # Wlsunset
 # exec ~/.config/sway/scripts/light.sh
 
-
-# Welcome
-exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-
 # Clipman
 # exec clipman restore
 exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
 
 # Xdg DEsktop Portal
-exec /usr/libexec/xdg-desktop-portal
-exec /usr/libexec/xdg-desktop-portal-wlr
+exec_always ~/.config/sway/scripts/portals.sh
+
+exec_always ~/.local/bin/check-update &
 
 # Set Minimum Screen Brightness so the screen won't going black on 0
 exec ~/.config/sway/scripts/restorebrightness.sh
 
-exec mkfifo $SWAYSOCK.wob
-exec tail -f $SWAYSOCK.wob | wob &
+exec ~/.config/sway/scripts/wobbar.sh &
 
 exec swayrd
 # exec clamd & sudo clamonacc
@@ -65,3 +63,6 @@ exec_always ~/.config/sway/scripts/notifications &
 
 exec ~/.config/sway/scripts/restart_bar.sh
 
+exec emacs --daemon
+
+exec dex /etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop

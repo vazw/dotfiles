@@ -1,7 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30,
+    "height": 40,
     "output": ["*"],
     "margin": 0,
    //  "modules-left": ["pulseaudio#source", "wireplumber", "group/light", "tray"],
@@ -35,7 +35,7 @@
         }
     },
     "tray": {
-        "icon-size": 22,
+        "icon-size": 24,
         "spacing": 10
     },
     "clock": {

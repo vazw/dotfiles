@@ -11,5 +11,5 @@ include $HOME/.config/sway/config.d/*
 # xwayland disable
 
 # Set the background image
-output * bg /home/vaz/.config/sway/backgrounds/saturn-rings.jpg fill
+output * bg /home/vaz/.config/sway/backgrounds/1.jpg fill
 
