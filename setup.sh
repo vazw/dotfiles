@@ -29,7 +29,7 @@ echo "$BPurple Copied profile to $COFF $BBlue $HOME/.profile $COFF"
 echo "$BGreen Done $COFF"
 
 echo "$BYellow Need Permission to install packages $COFF"
-sudo -E bash "$SCRIPT_DIR"/install.sh &&
+sudo -E bash "$SCRIPT_DIR"/zenbook-script/install.sh &&
   echo "$BGreen Done $COFF" ||
   echo "$BRed Failed to Install Packages $COFF"
 
