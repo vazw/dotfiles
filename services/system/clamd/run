@@ -1,0 +1,8 @@
+#!/bin/sh
+
+exec 2>&1
+mkdir -p /run/clamav
+chown -R _clamav:_clamav /run/clamav
+setfacl -m u:_clamav:x /run/user/1000
+getfacl /run/user/1000 | grep _clamav || exit 1
+exec chpst -n 19 clamd --config-file=/etc/clamd.conf

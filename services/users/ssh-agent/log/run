@@ -1,0 +1,2 @@
+#!/bin/sh
+exec vlogger -t ssh-agent -p user

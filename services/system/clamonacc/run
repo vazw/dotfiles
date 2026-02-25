@@ -1,0 +1,5 @@
+#!/bin/sh
+exec 2>&1
+
+pidof clamd > /dev/null || exit 1
+clamonacc --config-file=/etc/clamd.conf -F --fdpass --move=/var/log/clamav/infected

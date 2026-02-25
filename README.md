@@ -85,7 +85,7 @@ to tell runit use the following commands with 'root' or 'sudo'
 Example : Use NetworkManager instead of dhcpcd
 
 ```sh
-sudo rm /var/service/dhcpcd
+sudo unlink /var/service/dhcpcd
 sudo ln -s /etc/sv/NetworkManager /var/service/
 sudo sv up NetworkManager
 ```
@@ -93,6 +93,7 @@ sudo sv up NetworkManager
 NetworkManager.conf
 using dnsmasq for dns cache and using cloned-mac-address as stable per connection
 `scan-rand-mac-address` will random a mac-address on scan
+
 ```conf
 [main]
 dns=dnsmasq
@@ -131,7 +132,7 @@ EOF
 
 | Keybinds              | Uses                      |
 | --------------------- | ------------------------- |
-| Super + \<hjkl>        | Focus Window Vim Motion   |
+| Super + \<hjkl>       | Focus Window Vim Motion   |
 | Super + Enter         | Terminal                  |
 | Super + Shift + Enter | Floating Terminal         |
 | Super + Space         | Toggle Window Mode        |
@@ -143,7 +144,7 @@ EOF
 | Super + d             | App Launcher              |
 | Super + n             | Thunar                    |
 | Super + i             | Emoji Menu                |
-| Super + f             | Thunar File Manager   |
+| Super + f             | Thunar File Manager       |
 | Super + F             | Toggle Full Screen Mode   |
 | Super + (1-0)         | Switch Workspace (1-10)   |
 | Super + left click    | Move Window               |
