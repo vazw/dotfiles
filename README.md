@@ -1,18 +1,19 @@
 # my personal config files for Voidlinux
 
+# DISCLAIMER: THIS IS MY PERSONAL CONFIG FILE ON ASUS ZENBOOK UM5302TA, DON'T EXPECT IT TO WORK ON YOUR MACHINE.
+
 <!--toc:start-->
 
-- [my personal config files for Voidlinux](#my-personal-config-files-for-voidlinux)
-  - [Packages list to install](#packages-list-to-install)
-    - [Assume you've fresh installed Voidlinux and reboot into tty1](#assume-youve-fresh-installed-voidlinux-and-reboot-into-tty1)
-    - [Desktop stuff](#desktop-stuff)
-  - [runit](#runit)
-  - [Installation](#installation)
-  - [Keybind?](#keybind)
-  - [Auto-Mount USB Drive](#auto-mount-usb-drive)
-  - [Dark Theme](#dark-theme)
-  - [Autologin](#autologin)
-  <!--toc:end-->
+- [Packages list to install](#packages-list-to-install)
+- [Assume you've fresh installed Voidlinux and reboot into tty1](#assume-youve-fresh-installed-voidlinux-and-reboot-into-tty1)
+  - [Desktop stuff](#desktop-stuff)
+- [runit](#runit)
+- [Installation](#installation)
+- [Keybind?](#keybind)
+- [Auto-Mount USB Drive](#auto-mount-usb-drive)
+- [Dark Theme](#dark-theme)
+- [Autologin](#autologin)
+<!--toc:end-->
 
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/2.png">
 <img src="https://github.com/vazw/dotfiles/blob/main/screenshot/3.png">
@@ -20,10 +21,11 @@
 
 ## Packages list to install
 
-[Void Linux installation (NVMe, btrfs, LVM, full disk encryption using LUKS, 2FA-ish, SSD TRIM)](https://gist.github.com/tobi-wan-kenobi/bff3af81eac27e210e1dc88ba660596e)
-[Graphics Drivers](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html)
+- I've Installed from [Void Linux installation (NVMe, btrfs, LVM, full disk encryption using LUKS, 2FA-ish, SSD TRIM)](https://gist.github.com/tobi-wan-kenobi/bff3af81eac27e210e1dc88ba660596e) guidant
 
-#### Assume you've fresh installed Voidlinux and reboot into tty1
+- More info about [Graphics Drivers](https://docs.voidlinux.org/config/graphical-session/graphics-drivers/index.html)
+
+## Assume you've fresh installed Voidlinux and reboot into tty1
 
 you may have to setup your network first if you got wifi connect it with wpa-supplicant config
 
@@ -50,7 +52,7 @@ sudo xbps-install feh polkit python python3-pip python3-dbus dbus python3-Cython
 Void using `runit` service control instead of `systemd` this is how to replace `dhcpcd` with `NetworkManager`
 
 ```sh
-# avalable service list
+# available service list
 
 ls /etc/sv/
 ```
@@ -62,7 +64,7 @@ ls /var/service/
 ```
 
 ```sh
-# to link avalable service to use
+# to link available service to use
 
 sudo ln -s /etc/sv/<service-we-wanted> /var/service/
 ```
