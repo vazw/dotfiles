@@ -1,5 +1,6 @@
 #!/usr/bin/sh
 
+pidof swaync-client && pkill swaync-client
 pidof swaync && pkill swaync
 sleep 1
 swaync

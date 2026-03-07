@@ -41,7 +41,7 @@ background-blur = false
 unfocused-split-opacity = 0.7
 # background = #252525
 
-command = "bash"
+command = "zsh"
 
 
 wait-after-command = false

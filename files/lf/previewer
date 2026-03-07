@@ -11,6 +11,9 @@ x="$4"
 y="$5"
 
 case "$(file -Lb --mime-type "$file")" in
+# text/*)
+# 	bat "$file"
+# 	;;
 image/*)
 	draw "$file"
 	;;
@@ -21,7 +24,7 @@ video/*)
 	draw "$("$vidthumb" "$file")"
 	;;
 *)
-	"$HOME/.config/ranger/scope.sh" "${1}" "${2}" "${3}" "" "" || true
+	"$HOME/.config/lf/scope.sh" "${1}" "${2}" "${3}" "" "" || true
 	;;
 esac
 

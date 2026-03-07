@@ -271,7 +271,7 @@ map <c-t> :jump-tag
 
 # Quick Note
 map <f-2> $$EDITOR ~/Documents/TODO.md
-map <f-3> $fish
+map <f-3> $bash
 
 
 map <f-12> $btop

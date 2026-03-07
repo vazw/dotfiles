@@ -24,7 +24,21 @@
   "hide-on-clear": false,
   "hide-on-action": true,
   "script-fail-notify": true,
-  "widgets": ["title", "dnd", "notifications", "mpris", "volume", "backlight", "buttons-grid"],
+  "scripts": {
+    "sound-script": {
+      "exec": "bash -c '$HOME/.config/swaync/scripts/play.sh'",
+      "app-name": ".*"
+    }
+  },
+  "widgets": [
+    "title",
+    "dnd",
+    "notifications",
+    "mpris",
+    "volume",
+    "backlight",
+    "buttons-grid"
+  ],
   "widget-config": {
     "title": {
       "text": "Notification Center",
@@ -51,21 +65,21 @@
         {
           "label": "󰖩",
           "type": "toggle",
-          "active":true,
+          "active": true,
           "update-command": "bash -c '$HOME/.config/swaync/scripts/wifi.sh --check'",
           "command": "bash -c '$HOME/.config/swaync/scripts/wifi.sh --toggle'"
         },
         {
           "label": "󰂯",
           "type": "toggle",
-          "active":true,
+          "active": true,
           "update-command": "bash -c '$HOME/.config/swaync/scripts/bluetooth.sh --check'",
           "command": "bash -c '$HOME/.config/swaync/scripts/bluetooth.sh --toggle'"
         },
         {
           "label": "󰕾",
           "type": "toggle",
-          "active":true,
+          "active": true,
           "update-command": "sh -c '$HOME/.config/swaync/scripts/sink.sh --check'",
           "command": "sh -c '$HOME/.config/swaync/scripts/sink.sh --toggle'"
         },
@@ -73,7 +87,7 @@
         {
           "label": "󰍬",
           "type": "toggle",
-          "active":true,
+          "active": true,
           "update-command": "bash -c '$HOME/.config/swaync/scripts/source.sh --check'",
           "command": "bash -c '$HOME/.config/swaync/scripts/source.sh --toggle'"
         },

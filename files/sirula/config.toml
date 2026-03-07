@@ -18,4 +18,5 @@ extra_field = ["commandline", "executable"]
 extra_field_newline = false                 # show extra field under name and not alongside
 hide_extra_if_contained = true
 exclude = ["in.lsp_plug.lsp*"]
+## NO SYSTEMD
 cgroups = false

@@ -2,15 +2,16 @@
 
 case $1 in
 --check)
-    pactl get-sink-mute @DEFAULT_SINK@ | grep yes > /dev/null && echo false || echo true
-    break 
-  ;;
+    pactl get-sink-mute @DEFAULT_SINK@ | grep yes >/dev/null && echo false || echo true
+    shift
+    ;;
 --toggle)
     pactl set-sink-mute @DEFAULT_SINK@ toggle
-    pactl get-sink-mute @DEFAULT_SINK@ | grep yes > /dev/null && echo false || echo true
-    break 
-  ;;
+    pactl get-sink-mute @DEFAULT_SINK@ | grep yes >/dev/null && echo false || echo true
+    shift
+    ;;
 *)
-  echo false
-  ;;
+    echo false
+    shift
+    ;;
 esac

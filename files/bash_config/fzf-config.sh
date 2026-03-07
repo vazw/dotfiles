@@ -21,4 +21,6 @@ export FZF_DEFAULT_OPTS="
 # --layout=reverse
 # Lf file manager
 export PATH_ESCAPE='s/ /\ /g;s/\\/\\\\/g;s/"/\\"/g'
-eval "$(fzf --bash)"
+
+[ "$ZSH_VERSION" ] && eval "$(fzf --zsh)"
+[ "$BASH_VERSION" ] && eval "$(fzf --bash)"

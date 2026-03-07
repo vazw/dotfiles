@@ -4,22 +4,22 @@ wifi_state=$(nmcli radio wifi)
 
 case $1 in
 --check)
-  if [ "$wifi_state" == "enabled" ]; then echo true 
-  else echo false; fi
-  break 
-  ;;
+    if [ "$wifi_state" == "enabled" ]; then
+        echo true
+    else echo false; fi
+    shift
+    ;;
 --toggle)
-  if  [ "$wifi_state" == "enabled" ]; then 
-    nmcli radio wifi off 
-    echo false
-  else 
-    nmcli radio wifi on 
-    echo true
-  fi
-  break 
-  ;;
+    if [ "$wifi_state" == "enabled" ]; then
+        nmcli radio wifi off
+        echo false
+    else
+        nmcli radio wifi on
+        echo true
+    fi
+    shift
+    ;;
 *)
-  echo false
-  ;;
+    echo false
+    ;;
 esac
-

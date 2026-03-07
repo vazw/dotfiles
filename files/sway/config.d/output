@@ -13,11 +13,11 @@
 # Normal 1-2 monitors
 
 
-output DP-3 position 1601,0
+output DP-3 position 1580,0
 # output eDP-1 mode 2880x1800 position 1920,0 scale 1.8
-output eDP-1 mode 1920x1200 scale 1.2 position 0,0
-output DP-1 position 1601,0
-output DP-2 position 1601,0
+output eDP-1 mode 1920x1200 scale 1.22 position 0,0
+output DP-1 position 1580,0
+output DP-2 position 1580,0
 
 # exec_always ~/.config/sway/scripts/monitor.sh
 

@@ -5,7 +5,8 @@
   border: 0;
   border-radius: 0;
   padding: 0 0;
-  font-family: "Hack Nerd Font Propo", "Iosevka NFP SemiBold", "Iosevka NFP Bold";
+  font-family:
+    "Hack Nerd Font Propo", "Iosevka NFP SemiBold", "Iosevka NFP Bold";
   font-size: 20px;
   font-weight: 500;
   transition: all 0.5s ease;
@@ -164,6 +165,14 @@
   margin-bottom: 0px;
   /* font-size: 9px; */
 }
+#tray.needs-attention {
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 #clock,
 #language,
 #custom-blockheight {

@@ -36,7 +36,8 @@
     },
     "tray": {
         "icon-size": 24,
-        "spacing": 10
+        "spacing": 10,
+        "show-passive-items": false
     },
     "clock": {
         "format": "{:%H:%M}",
@@ -57,6 +58,7 @@
                               "today":      "<span size='14pt' color='#ff6699' font='Hack Nerd Font Propo ExtraBold'><b>{}</b></span>"
                               }
                     },
+        "on-click": "xdg-open https://calendar.google.com/calendar",
         "actions":  {
                     "on-click-right": "mode",
                     "on-click-forward": "tz_up",
@@ -80,18 +82,19 @@
     },
     "battery": {
         "states": {
-            // "warning": 40,
+            "warning": 40,
             "critical": 30
         },       
         "format": "{icon}",
-        "full-at": 100,
+        "full-at": 80,
         "format-charging": "{icon}⚡{capacity}%",
         "format-plugged": "{icon}⚡",
         "format-full": "{icon}⚡",        
         "format-alt" : "{icon} {capacity}%",
         "format-time": "{H}:{m} hours",        
         "format-icons": ["", "", "", "", ""],
-        "on-click": "~/.config/waybar/scripts/powerprofilecycle.sh",
+        "tooltip-format-discharging": "{capacity}% {power:>1.0f}W↓ {timeTo}",
+        "tooltip-format-charging": "{capacity}% {power:>1.0f}W↑"
     },
     "pulseaudio/slider": {
         "min": 0,
@@ -124,6 +127,7 @@
         "format-source": "<span color='#FF0000'><b></b></span>",
         "format-source-muted": "",
         "on-click": "pavucontrol",
+        "on-click-right": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
         "on-scroll-up": "~/.config/sway/scripts/volume --inc",
         "on-scroll-down": "~/.config/sway/scripts/volume --dec",
         "ignored-sinks": ["Easy Effects Source"],
@@ -142,14 +146,14 @@
     },
     "group/sound": {
         "orientation": "inherit",
-    "drawer": {
-        "transition-duration": 500,
-        "transition-left-to-right": true,
-    },
-    "modules": [
-        "wireplumber",
-        "pulseaudio/slider",
-    ]
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": true,
+        },
+        "modules": [
+            "wireplumber",
+            "pulseaudio/slider",
+        ]
     },
     "custom/blockheight": {
         "exec": "sleep 0.3 && ~/.config/waybar/scripts/blockheight.sh",
@@ -162,25 +166,25 @@
     },
     "group/light": {
         "orientation": "inherit",
-    "drawer": {
-        "transition-duration": 500,
-        "transition-left-to-right": true,
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": true,
+        },
+        "modules": [
+            "backlight",
+            "backlight/slider",
+        ]
     },
-    "modules": [
-        "backlight",
-        "backlight/slider",
-    ]
-    },
-    "custom/screenrecorder": {
-        "exec": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder status",
-        "interval": "once",
-        "signal": 1,
-        "return-type": "json",
-        "tooltip": true,
-        "format": "{}",
-        "on-click": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle fullscreen",
-        "on-click-right": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle region"
-    },
+    // "custom/screenrecorder": {
+    //     "exec": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder status",
+    //     "interval": "once",
+    //     "signal": 1,
+    //     "return-type": "json",
+    //     "tooltip": true,
+    //     "format": "{}",
+    //     "on-click": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle fullscreen",
+    //     "on-click-right": "$HOME/.config/waybar/waybar-screenrecorder/screenrecorder toggle region"
+    // },
     "custom/notification": {
         "tooltip": true,
         "format": "{icon}",
@@ -202,7 +206,7 @@
         "escape": true
     },
     "custom/app_drawer": {
-        "tooltip": true,
+        "tooltip": false,
         "format": " ",
         "on-click": "swayr switch-window",
     }

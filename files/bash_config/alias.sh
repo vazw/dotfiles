@@ -7,8 +7,9 @@ alias gdl='cd $HOME/Downloads'
 alias update='sudo xbps-install -Su'
 alias remove='sudo xbps-remove'
 
-alias ll='ls --group-directories-first -l --color=always '
 alias ls='ls --group-directories-first --color=always'
+alias ll='ls -l '
+alias la='ls -la '
 alias df='df -h'
 alias free='free -h'
 # Dotfiles & Files
@@ -27,21 +28,25 @@ alias Cenv="python -m venv .venv"
 alias Env="source .venv/bin/activate"
 alias Dnv="deactivate"
 
+alias cat='bat --style header --style snip --style changes'
+
 alias ipa="ip -c a"
 alias untar='tar -xvf '
 alias wd-reboot="sudo waydroid container restart"
 # Add Color
-alias egrep='grep --color=auto'
+alias grep='grep --color=auto'
 
 alias prepcam="sudo modprobe v4l2loopback && pkill gphoto"
 
-rvi () {
-  nvim --server ~/.cache/nvim/server.pipe --remote-send ":cd $(pwd)<CR>"
-  nvim --server ~/.cache/nvim/server.pipe --remote "$1"
-  nvim --server ~/.cache/nvim/server.pipe --remote-ui
+alias rm='echo "!!!Safty First!! Please Use \`trash-put\` command, or Use \\\rm "; false'
+
+rvi() {
+    nvim --server ~/.cache/nvim/server.pipe --remote-send ":cd $(pwd)<CR>"
+    nvim --server ~/.cache/nvim/server.pipe --remote "$1"
+    nvim --server ~/.cache/nvim/server.pipe --remote-ui
 }
 
-cleanup () {
+cleanup() {
     echo 'Cleaning Up System'
     echo '# sudo xbps-remove -Oo'
     sudo xbps-remove -Oo
@@ -50,6 +55,16 @@ cleanup () {
     printf '\nDone\n'
 }
 
-cd () {
-  command cd "$@" && ls
+clear_cache() {
+    echo "Cleaning cache"
+    rm -rf ~/.cache/*
+    printf '\nDone\n'
 }
+
+cd() {
+    command cd "$@" && ls
+}
+
+export LS_COLORS=$(vivid generate molokai)
+
+alias clamdscan="sudo -u _clamav clamdscan"
