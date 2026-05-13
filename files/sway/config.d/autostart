@@ -25,10 +25,6 @@ exec thunar --daemon
 # Autotiling
 exec autotiling
 
-
-# usbguard 
-exec usbguard-notify &
-
 exec_always pidof sirula || sirula -d &
 
 # Wlsunset
@@ -36,7 +32,8 @@ exec_always pidof sirula || sirula -d &
 
 # Clipman
 # exec clipman restore
-exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json"
+# ~/.local/share/clipman.json
+exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman.json"
 
 # Xdg DEsktop Portal
 exec_always ~/.config/sway/scripts/portals.sh

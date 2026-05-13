@@ -1,0 +1,19 @@
+xkb_keymap {
+    xkb_keycodes { include "evdev+aliases(qwerty)" };
+    xkb_types { include "complete" };
+
+    xkb_compat {
+        include "complete"
+        include "ledcaps(group_lock)"
+    };
+
+    xkb_symbols {
+        include "pc"
+        include "us"
+        include "th:2"
+        include "inet(evdev)"
+        include "capslock(escape_shifted_capslock)"
+        include "group(alt_space_toggle)"
+        replace key <RALT> { [ XF86AudioMedia ] };
+    };
+};

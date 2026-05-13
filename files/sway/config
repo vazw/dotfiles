@@ -11,5 +11,6 @@ include $HOME/.config/sway/config.d/*
 # xwayland disable
 
 # Set the background image
-output * bg /home/vaz/.config/sway/backgrounds/3.jpg fill
+# output * bg /home/vaz/.config/sway/backgrounds/4.jpg fill
+output * bg /home/vaz/.config/sway/backgrounds/5.jpg fit
 
