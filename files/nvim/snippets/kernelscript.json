@@ -1,0 +1,90 @@
+{
+  "XDP Program": {
+    "prefix": "xdp",
+    "body": [
+      "@xdp",
+      "fn ${1:prog_name}(ctx: ProgramRef) -> result: u32 {",
+      "\t${0:// XDP logic here}",
+      "\treturn 0",
+      "}"
+    ],
+    "description": "Create an XDP eBPF program"
+  },
+  "TC Program": {
+    "prefix": "tc",
+    "body": [
+      "@tc(\"${1:ingress}\")",
+      "fn ${2:tc_prog}(ctx: ProgramRef) -> result: u32 {",
+      "\t${0:// TC logic here}",
+      "\treturn 0",
+      "}"
+    ],
+    "description": "Create a Traffic Control (TC) eBPF program"
+  },
+  "Hash Map (Pinned)": {
+    "prefix": "maphash",
+    "body": ["pin var ${1:map_name}: hash<${2:u32}, ${3:u64}>(${4:1024})"],
+    "description": "Declare a pinned Hash Map"
+  },
+  "Array Map (Pinned)": {
+    "prefix": "maparray",
+    "body": ["pin var ${1:map_name}: array<${2:u32}, ${3:u64}>(${4:256})"],
+    "description": "Declare a pinned Array Map"
+  },
+  "Configuration Block": {
+    "prefix": "config",
+    "body": [
+      "config ${1:ConfigName} {",
+      "\t${2:field}: ${3:u32} = ${4:0},",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Define a configuration block"
+  },
+  "Struct Declaration": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:StructName} {",
+      "\t${2:field}: ${3:u32},",
+      "\t${0}",
+      "}"
+    ],
+    "description": "Declare a struct"
+  },
+  "Match Expression": {
+    "prefix": "match",
+    "body": [
+      "match (${1:expr}) {",
+      "\t${2:value}: ${3:result},",
+      "\tdefault: ${0:fallback}",
+      "}"
+    ],
+    "description": "Pattern matching expression"
+  },
+  "If Let (Declaration Condition)": {
+    "prefix": "iflet",
+    "body": ["if (var ${1:name} = ${2:expr}) {", "\t${0}", "}"],
+    "description": "If statement with variable declaration"
+  },
+  "For Loop (Range)": {
+    "prefix": "for",
+    "body": ["for (${1:i} in ${2:0}..${3:10}) {", "\t${0}", "}"],
+    "description": "For loop over a range"
+  },
+  "Impl Block": {
+    "prefix": "impl",
+    "body": [
+      "impl ${1:StructName} {",
+      "\tfn ${2:method_name}(${3:args}) -> ${4:void} {",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "Implementation block for struct operations"
+  },
+  "Function (Userspace/Helper)": {
+    "prefix": "fn",
+    "body": ["fn ${1:func_name}(${2:args}) -> ${3:void} {", "\t${0}", "}"],
+    "description": "Declare a standard function"
+  }
+}
