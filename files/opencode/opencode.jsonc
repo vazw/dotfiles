@@ -1,0 +1,46 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "model": "litellm/qwen3.8-flash-next-uncensored-think",
+    "provider": {
+        "litellm": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "Bangmod LocalLLM",
+            "options": {
+                "baseURL": "http://10.90.11.16:4000/v1"
+            },
+            "models": {
+                "qwen3.8-flash-next-uncensored-think": {
+                    "name": "Qwen 3.8 Flash Next",
+                    "modelID": "qwen3.8-flash-next-uncensored-think"
+                },
+                "qwen3.8-flash-next-uncensored-nothink": {
+                    "name": "Qwen 3.8 Flash Next (No Think)",
+                    "modelID": "qwen3.8-flash-next-uncensored-nothink"
+                }
+            }
+        },
+        "aipass": {
+            "npm": "@ai-sdk/openai-compatible",
+            "name": "TH AiPass",
+            "options": {
+                "baseURL": "http://127.0.0.1:8787/v1"
+            },
+            "models": {
+                "gemini-3.5-flash-lite": {
+                    "name": "Gemini 3.5 Flash Lite",
+                    "modelID": "gemini-3.5-flash-lite"
+                }
+            }
+        }
+    },
+    "subagent_depth": 2,
+    "permission": {
+        "webfetch": "allow"
+    },
+    "formatter": true,
+    "lsp": true,
+    "plugin": [
+        "@mohak34/opencode-notifier@latest",
+        "opencode-mem@latest"
+    ]
+}

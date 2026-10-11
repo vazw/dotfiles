@@ -1,0 +1,294 @@
+{
+  "schema": "aas-manifest-v1",
+  "updated": "2026-10-10",
+  "source_repo": "/home/vaz/Code/AI-Skills/awesome-skills",
+  "source_catalog": "skills/",
+  "install_dir": "~/.agents/skills/",
+  "strategy": "lean-curated, systems-first + Matt-Pocock engineering workflow adoption (new-gen core from skills_library)",
+  "skills": [
+    { "name": "concise-planning", "tier": "core" },
+    { "name": "ebpf-observability", "tier": "systems" },
+    { "name": "git-pushing", "tier": "core" },
+    { "name": "lint-and-validate", "tier": "core" },
+    { "name": "linux-shell-scripting", "tier": "systems" },
+    { "name": "memory-safety-patterns", "tier": "core" },
+    {
+      "name": "performance-profiling",
+      "tier": "systems",
+      "note": "description pivoted 2026-10-10: explicitly scoped to web/frontend (Core Web Vitals, Lighthouse, DevTools); installed copy intentionally differs from library on description line only — boundary vs performance-tuning (Linux/server)"
+    },
+    {
+      "name": "rust-pro",
+      "tier": "systems",
+      "note": "covers async at high level; rust-async-patterns pruned as redundant"
+    },
+    {
+      "name": "setup-matt-pocock-skills",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Per-repo setup for the engineering workflow: issue tracker, triage labels, domain doc layout; run once per repo before using the family"
+    },
+    {
+      "name": "ask-matt",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Router over the user-invoked workflow skills: which skill or flow fits the situation"
+    },
+    {
+      "name": "grilling",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Relentless interview to stress-test a plan or design with the user before building"
+    },
+    {
+      "name": "domain-modeling",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Build and sharpen the project domain model: ubiquitous language, terminology, and architecture decision records (ADR owner)"
+    },
+    {
+      "name": "grill-with-docs",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Grilling interview that also creates docs (ADRs and glossary) as it goes"
+    },
+    {
+      "name": "to-prd",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Synthesize the current conversation into a PRD and publish it to the issue tracker"
+    },
+    {
+      "name": "to-issues",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Break a plan/spec/PRD into independently-grabbable tracer-bullet issues on the tracker"
+    },
+    {
+      "name": "implement",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Implement a piece of work based on a PRD or set of issues"
+    },
+    {
+      "name": "tdd",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Test-driven development: red-green-refactor loop for features and bug fixes"
+    },
+    {
+      "name": "triage",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Move issues and external PRs through a triage state machine: categorise, verify, grill, write agent-ready briefs"
+    },
+    {
+      "name": "code-review",
+      "tier": "workflow",
+      "source": "skills_archive_20261010_pocock",
+      "date_added": "2026-10-10",
+      "note": "restored from old-gen archive because upstream dropped it; its /setup-matt-pocock-skills reference now resolves"
+    },
+    {
+      "name": "codebase-design",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Deep-module design vocabulary: interfaces, seams, adapters, depth — shared language used by tdd and architecture work"
+    },
+    {
+      "name": "handoff",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Compact the current conversation into a handoff document for a fresh agent; resolves the dangling /handoff reference in the ask-matt router"
+    },
+    {
+      "name": "improve-codebase-architecture",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Scan for deepening opportunities, present as an HTML report, then grill through the chosen one; resolves the dangling /improve-codebase-architecture reference in the ask-matt router (uses /codebase-design vocab)"
+    },
+    {
+      "name": "prototype",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Throwaway prototype (terminal app or toggleable UI variants) to answer a design question; resolves the dangling /prototype reference in the ask-matt router"
+    },
+    {
+      "name": "resolving-merge-conflicts",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Resolve in-progress git merge/rebase conflicts: preserve both intents, run project checks, always finish — never abort"
+    },
+    {
+      "name": "performance-tuning",
+      "tier": "systems",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Linux system performance tuning: kernel parameters, I/O schedulers, memory/CPU bottlenecks, benchmark-validated changes"
+    },
+    {
+      "name": "invariant-guard",
+      "tier": "core",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Correctness-first coding: state contracts, loop invariants, termination arguments, and edge cases before writing code"
+    },
+    {
+      "name": "agent-evals",
+      "tier": "core",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Build evaluation suites for AI agents: golden datasets, rubrics, and CI regression gates for prompt/feature changes"
+    },
+    {
+      "name": "mcp-builder",
+      "tier": "core",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Create high-quality MCP servers that let LLMs reach external services through well-designed, evaluated tools"
+    },
+    {
+      "name": "go-rust-reverse",
+      "tier": "systems",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Reverse stripped Go/Rust binaries: runtime recognition, pclntab/metadata recovery, panic-string analysis, decompilation strategies"
+    },
+    {
+      "name": "linux-hardening",
+      "tier": "systems",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Harden Linux servers to CIS benchmarks: SSH, users, network, services, and compliance baselines"
+    },
+    {
+      "name": "bats-testing-patterns",
+      "tier": "systems",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Comprehensive shell-script testing with Bats: fixtures, setup/teardown, exit-code assertions, CI integration"
+    },
+    {
+      "name": "posix-shell-pro",
+      "tier": "systems",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Strict POSIX sh scripting for maximum portability across Unix-like shells; complements linux-shell-scripting (bash-focused)"
+    },
+    {
+      "name": "diagnosing-bugs",
+      "tier": "core",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Debug loop: build a red-capable feedback loop, reproduce+minimise, ranked falsifiable hypotheses, tagged instrumentation, regression-test-before-fix, cleanup+post-mortem; reads CONTEXT.md/ADRs; hand-off to improve-codebase-architecture. Replaces archived systematic-debugging (debug-loop unification, 2026-10-10e)"
+    },
+    {
+      "name": "grill-me",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Slash-only entry to run a /grilling session on a plan/design outside a repo (stateless); resolves the ask-matt Standalone reference"
+    },
+    {
+      "name": "teach",
+      "tier": "core",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Teach the user a concept across sessions using the current directory as a stateful workspace (MISSION/LEARNING-RECORD/RESOURCES format files); slash-only; resolves the ask-matt Standalone reference"
+    },
+    {
+      "name": "writing-great-skills",
+      "tier": "workflow",
+      "source": "skills_library",
+      "date_added": "2026-10-10",
+      "purpose": "Skill-authoring vocabulary and principles (GLOSSARY.md companion); slash-only reference; resolves the ask-matt Standalone reference"
+    }
+  ],
+  "pruned_2026_10_10": [
+    {
+      "name": "rust-async-patterns",
+      "reason": "async coverage redundant with rust-pro"
+    },
+    {
+      "name": "systemd-services",
+      "reason": "partial overlap with linux-shell-scripting"
+    },
+    {
+      "name": "code-review",
+      "reason": "Matt Pocock family; depended on uninstalled /setup-matt-pocock-skills tracker config",
+      "status": "reinstated 2026-10-10 (new-gen adoption)"
+    },
+    {
+      "name": "grill-with-docs",
+      "reason": "Matt Pocock family; planning/interview workflow overlaps concise-planning",
+      "status": "reinstated 2026-10-10 (new-gen adoption)"
+    },
+    {
+      "name": "implement",
+      "reason": "Matt Pocock family orchestrator; hard-called code-review skill (removed together)",
+      "status": "reinstated 2026-10-10 (new-gen adoption)"
+    },
+    {
+      "name": "to-spec",
+      "reason": "Matt Pocock family; depended on uninstalled tracker setup"
+    },
+    {
+      "name": "to-tickets",
+      "reason": "Matt Pocock family; depended on uninstalled tracker setup"
+    },
+    {
+      "name": "find-skills",
+      "reason": "meta-discovery skill from vercel-labs; catalog is manually curated, discovery redundant"
+    }
+  ],
+  "pruned_2026_10_10_pocock_adoption": [
+    {
+      "name": "test-driven-development",
+      "reason": "replaced by pocock tdd — implement hard-calls /tdd; avoid dual model-invocation triggers in same domain"
+    }
+  ],
+  "pruned_2026_10_10_cleanup": [
+    {
+      "name": "systematic-debugging",
+      "reason": "replaced by pocock-native diagnosing-bugs — one debug loop per trigger space; pre-pocock curation (2026-02-27, zero inbound refs); archived byte-identical under skills_archive_20261010_cleanup/"
+    },
+    {
+      "name": "documentation-and-adrs",
+      "reason": "archived after full-set audit — body prescribed a conflicting ADR workflow (docs/decisions/) vs domain-modeling's ownership (docs/adr/); description pivot proved insufficient; residue (shipped-feature docs) generic. Archived byte-identical under skills_archive_20261010_cleanup/"
+    }
+  ],
+  "notes": [
+    "Installed by copying from awesome-skills catalog. opencode auto-discovers all directories in this folder; the manifest documents curation intent for future maintenance.",
+    "generation choice: new-gen Matt Pocock core adopted from skills_library/ (not the old-gen archive); to-spec/to-tickets remain archived, superseded upstream by to-prd/to-issues.",
+    "implement's trailing '/review' reference intentionally maps to the restored code-review skill; implement files kept byte-identical to skills_library source (not patched).",
+    ".skill-lock.json intentionally stays {} — skills are managed manually; CLI sync must not reinstall.",
+    "documentation-and-adrs description pivoted 2026-10-10 — ADR ownership moved to domain-modeling.",
+    "use-time requirement: run /setup-matt-pocock-skills once per repo before using the workflow family.",
+    "codebase-design installed 2026-10-10c — resolves the dangling /codebase-design reference in tdd/SKILL.md",
+    "2026-10-10d: 12-skill expansion from skills_library per user selection",
+    "2026-10-10e: ask-matt → /grill-me, /teach, /writing-great-skills RESOLVED — installed from skills_library, all disable-model-invocation:true (slash-only, zero auto-trigger overlap). setup-matt-pocock-skills → diagnosing-bugs RESOLVED by install (was verified prose-only): debug loop unified on pocock-native diagnosing-bugs; systematic-debugging archived (see pruned_2026_10_10_cleanup). Zero accepted slash danglings remain; implement's /review ≡ code-review stays intentional",
+    "2026-10-10e: performance trigger boundary RESOLVED (watch closed) — installed performance-profiling description pivoted to explicit web/frontend scope; performance-tuning remains Linux/server-scoped; installed performance-profiling intentionally differs from library copy (description line only), same pattern as documentation-and-adrs",
+    "library re-add trap: rust-async-patterns, systemd-services, test-driven-development, systematic-debugging exist in library but are deliberately pruned — do not install",
+    "2026-10-10f remediation: installed copies of posix-shell-pro (phantom resources/implementation-playbook.md ref removed), go-rust-reverse (upstream ../reverse-engineering, ../ida-reverse, ../ghidra-reverse, field-journal pointers removed), performance-tuning (Related list trimmed: linux-administration, systemd-services[re-add-trap], block-storage, nfs-storage), invariant-guard (lemmaly/mathguard/complexity-cuts load-directives neutralized, self-contained), agent-evals + linux-hardening (Related lists trimmed) intentionally differ from library copies — hunks documented in adoption archive audit note",
+    "trigger boundary: diagnosing-bugs owns regression-shaped slowness (was-fast-now-slow); performance-tuning owns ambient/baseline OS tuning; 'server is slow' without regression framing → performance-tuning",
+    "implement is model-invocable (only non-slash member of the pocock flow family); watch for scope-creep on generic 'implement X' requests; consider tightening description later",
+    "grill-trio separation (grilling / grill-me / grill-with-docs) relies on opencode honoring disable-model-invocation:true (flags verified ×12, enforcement untested); if auto-trigger roulette observed, pivot grill-me + grill-with-docs descriptions",
+    "2026-10-10g: installed skill renamed agent-memory-systems → ai-agent-memory at user request — better guessability, clean split from memory-safety-patterns; target name chosen to avoid skills_library/agent-memory (webzler/agentMemory, risk:critical, Node.js tool) which remains UNINSTALLED and a re-add trap — installing it later would coexist as a second, semantically overlapping memory skill; trigger space unchanged. Installed provenance remains byte-identical skills_library/agent-memory-systems (date_added 2026-02-27)",
+    "user manually remove ai-agent-memory skills and replaced it with memory-plugins"
+  ]
+}

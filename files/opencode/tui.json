@@ -1,0 +1,6 @@
+{
+  "plugin": [
+    "@mohak34/opencode-notifier@latest",
+    "opencode-mem@latest"
+  ]
+}

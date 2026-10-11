@@ -45,3 +45,4 @@ __pycache__/*
 env/*
 **/__pycache__/*
 **/runtime/*
+**/node_module/*
